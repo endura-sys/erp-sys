@@ -37,17 +37,26 @@
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item  ">
-                            <a href="index.php" class='sidebar-link'>
+                            <a href="dashboard.php" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item active ">
-                            <a href="table-datatable.php" class='sidebar-link'>
-                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                        <li class="sidebar-item active has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
                                 <span>Datatable</span>
                             </a>
+
+                            <ul class="submenu active">
+                                <li class="submenu-item ">
+                                    <a href="datatable-1.php">datatable-1</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="datatable-2.php">datatable-2</a>
+                                </li>
+                            </ul>
                         </li>
 
                     </ul>
@@ -81,66 +90,7 @@
                         </div>
                     </div>
                 </div>
-                <section class="section">
-                    <div class="card">
-
-                        <div class="card-header">
-                            Simple Datatable
-                        </div>
-
-                        <div class="card-body">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>NO</th>
-                                        <th>商品名稱</th>
-                                        <th>現況</th>
-                                        <th>P1</th>
-                                        <th>P2</th>
-                                        <th>P3</th>
-                                        <th>數量</th>
-                                        <th>地域</th>
-                                        <th>蔵元</th>
-                                        <th>容量</th>
-                                        <th>單位</th>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody>
-                                    <!-- Connect to the database -->
-                                    <?php
-
-                                        include '../database.php';
-                                        $conn = OpenCon();
-
-                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM data";
-                                        $result = $conn->query($sql);
-
-                                        $product_list = array();
-
-                                        if ($result->num_rows > 0) {
-                                            // output data of each row
-                                            while($row = $result->fetch_assoc()) {
-                                                // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
-                                                // echo $product_list[0][2];
-                                                // print_r($product_list);
-                                                echo "<tr><td>" .$row["no"] ."</td><td>" .$row["name"] ."</td><td>" .$row["status"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"] ."</td><td>" .$row["stock"] ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] ."</td><td>".$row["unit"] ."</td><td>" ."</td>";
-                                            }
-                                        } else {
-                                            echo "0 results";
-                                        }
-                                        echo $product_list[0][1];
-                                        CloseCon($conn);
-                                    ?>
-
-                                    
-                                </tbody>
-                                
-                            </table>
-                        </div>
-                    </div>
-
-                </section>
+                
             </div>
 
             <footer>

@@ -36,27 +36,28 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item active">
+                        <li class="sidebar-item ">
                             <a href="dashboard.php" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item has-sub">
-                            <a href="#" class='sidebar-link'>
+                        <li class="sidebar-item active has-sub">
+                            <a href="table-datatable.php" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Datatable</span>
                             </a>
 
                             <ul class="submenu active">
-                                <li class="submenu-item ">
+                                <li class="submenu-item active">
                                     <a href="datatable-1.php">datatable-1</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="datatable-2.php">datatable-2</a>
                                 </li>
                             </ul>
+
                         </li>
 
                     </ul>
@@ -83,7 +84,7 @@
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">DataTable</li>
                                 </ol>
                             </nav>
@@ -92,11 +93,13 @@
                 </div>
                 <section class="section">
                     <div class="card">
+
                         <div class="card-header">
-                            Some dashboard data here...
+                            Simple Datatable
                         </div>
+
                         <div class="card-body">
-                            <!-- <table class="table table-striped" id="table1">
+                            <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
                                         <th>NO</th>
@@ -112,21 +115,38 @@
                                         <th>單位</th>
                                     </tr>
                                 </thead>
-
+                                
                                 <tbody>
-                                    
-                                    <tr>
-                                        <td>Graiden</td>
-                                        <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                        <td>076 4820 8838</td>
-                                        <td>Offenburg</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                    <!-- Connect to the database -->
+                                    <?php
 
-                            </table> -->
+                                        include '../database.php';
+                                        $conn = OpenCon();
+
+                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM data";
+                                        $result = $conn->query($sql);
+
+                                        $product_list = array();
+
+                                        if ($result->num_rows > 0) {
+                                            // output data of each row
+                                            while($row = $result->fetch_assoc()) {
+                                                // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
+                                                // echo $product_list[0][2];
+                                                // print_r($product_list);
+                                                echo "<tr><td>" .$row["no"] ."</td><td>" .$row["name"] ."</td><td>" .$row["status"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"] ."</td><td>" .$row["stock"] ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] ."</td><td>".$row["unit"] ."</td><td>" ."</td>";
+                                            }
+                                        } else {
+                                            echo "0 results";
+                                        }
+                                        echo $product_list[0][1];
+                                        CloseCon($conn);
+                                    ?>
+
+                                    
+                                </tbody>
+                                
+                            </table>
                         </div>
                     </div>
 
