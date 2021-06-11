@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
 
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
@@ -71,10 +71,31 @@
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
+                <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+                    <div class="container">
+                        <div class="collapse navbar-collapse " id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Random Page</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Another Page</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-primary" href="login.php">Login</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </header>
 
             <div class="page-heading">
                 <div class="page-title">
+
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3>DataTable</h3>
@@ -114,7 +135,7 @@
                                 </thead>
 
                                 <tbody>
-                                    
+
                                     <tr>
                                         <td>Graiden</td>
                                         <td>vehicula.aliquet@semconsequat.co.uk</td>
@@ -145,6 +166,7 @@
             </footer>
         </div>
     </div>
+
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 
