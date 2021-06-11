@@ -48,7 +48,7 @@
                       <button class="btn btn-primary btn-block btn-lg shadow-lg mt-4">Log in</button>
                   </form>
                   <div class="text-center mt-5 text-lg fs-6">
-                      <p class="text-gray-600">Don't have an account? <a href="auth-register.html"
+                      <p class="text-gray-600">Don't have an account? <a href="auth-register.php"
                               class="font-bold">Sign
                               up</a></p>
                   </div>
