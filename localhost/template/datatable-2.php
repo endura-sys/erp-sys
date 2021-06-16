@@ -56,6 +56,9 @@
                                 <li class="submenu-item active">
                                     <a href="datatable-2.php">datatable-2</a>
                                 </li>
+                                <li class="submenu-item ">
+                                    <a href="addnew.php">Add new data</a>
+                                </li>
                             </ul>
 
                         </li>
