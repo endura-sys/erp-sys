@@ -32,35 +32,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-menu">
-                    <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
+                
+                <?php include('datatable-navbar.php'); ?>
 
-                        <li class="sidebar-item  ">
-                            <a href="dashboard.php" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
 
-                        <li class="sidebar-item active has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-stack"></i>
-                                <span>Datatable</span>
-                            </a>
-
-                            <ul class="submenu active">
-                                <li class="submenu-item ">
-                                    <a href="datatable-1.php">datatable-1</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="datatable-2.php">datatable-2</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
@@ -83,14 +58,54 @@
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">DataTable</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
-                
+                <section class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            Some dashboard data here...
+                        </div>
+                        <div class="card-body">
+                            <!-- <table class="table table-striped" id="table1">
+                                <thead>
+                                    <tr>
+                                        <th>NO</th>
+                                        <th>商品名稱</th>
+                                        <th>現況</th>
+                                        <th>P1</th>
+                                        <th>P2</th>
+                                        <th>P3</th>
+                                        <th>數量</th>
+                                        <th>地域</th>
+                                        <th>蔵元</th>
+                                        <th>容量</th>
+                                        <th>單位</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>Graiden</td>
+                                        <td>vehicula.aliquet@semconsequat.co.uk</td>
+                                        <td>076 4820 8838</td>
+                                        <td>Offenburg</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table> -->
+                        </div>
+                    </div>
+
+                </section>
             </div>
 
             <footer>

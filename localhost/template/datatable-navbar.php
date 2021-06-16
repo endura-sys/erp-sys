@@ -1,0 +1,136 @@
+<div class="sidebar-menu">
+    <ul class="menu">
+        <li class="sidebar-title">Menu</li>
+
+        <li class="sidebar-item <?php if ($currentPage === 'Home') {echo 'class="active"';} ?>">
+            <a href="dashboard.php" class='sidebar-link'>
+                <i class="bi bi-grid-fill"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <!-- General -->
+        <li class="sidebar-item has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                <span>General</span>
+            </a>
+
+            <ul class="submenu">
+                <li class="submenu-item ">
+                    <a href="datatable-1.php">Items list</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="datatable-2.php">Supplier list</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="">Customer list</a>
+                </li>
+            </ul>
+            
+        </li>
+        
+        <!-- Financial Management -->
+        <li class="sidebar-item has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                <span>Financial Management</span>
+            </a>
+
+            <ul class="submenu">
+                <li class="submenu-item ">
+                    <a href="">Purchase schedule</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="">Sales schedule</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Inventory inquiry -->
+        <li class="sidebar-item has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                <span>Inventory inquiry</span>
+            </a>
+
+            <ul class="submenu">
+                <li class="submenu-item ">
+                    <a href="">Warehousing list</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="">Outbound list</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Purchase -->
+        <li class="sidebar-item has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                <span>Purchase</span>
+            </a>
+
+            <ul class="submenu">
+                <li class="submenu-item ">
+                    <a href="">Purchase schedule</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="">New purchase order</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Sales -->
+        <li class="sidebar-item has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                <span>Sales</span>
+            </a>
+
+            <ul class="submenu">
+                <li class="submenu-item ">
+                    <a href="">Sales schedule</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="">New sales order</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Inbound -->
+        <li class="sidebar-item has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                <span>Inbound</span>
+            </a>
+
+            <ul class="submenu">
+                <li class="submenu-item ">
+                    <a href="">Inbound schedule</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="">New inbound</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Outbound -->
+        <li class="sidebar-item has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                <span>Outbound</span>
+            </a>
+
+            <ul class="submenu">
+                <li class="submenu-item ">
+                    <a href="">Outbound schedule</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="">New outbound order</a>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
