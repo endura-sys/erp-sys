@@ -1,3 +1,13 @@
+<?php
+  session_start();
+
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +29,10 @@
 </head>
 
 <body>
+  <div class="header">
+	<h2>Home Page</h2>
+</div>
+
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
@@ -33,6 +47,7 @@
                     </div>
                 </div>
                 <div class="sidebar-menu">
+
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
@@ -71,6 +86,16 @@
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
+                <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <!-- logged in user information -->
+                    <?php  if (isset($_SESSION['username'])) : ?>
+                      <h2>Welcome <strong><?php echo $_SESSION['username']; ?></strong></h2>
+                      <?php else: ?>
+                      <!-- <h3>You need Log In</h3> -->
+                    <?php endif ?>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
                     <div class="container">
                         <div class="collapse navbar-collapse " id="navbarNav">
@@ -85,17 +110,22 @@
                                     <a class="nav-link" href="#">Another Page</a>
                                 </li>
                                 <li class="nav-item">
+                                  <?php  if (isset($_SESSION['username'])) : ?>
+                                    <a class="btn btn-outline-primary" href="dashboard.php?logout='1'">Log Out</a>
+                                        <?php else: ?>
                                     <a class="btn btn-outline-primary" href="login.php">Login</a>
+                                  <?php endif ?>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
+              </div>
+            </div>
             </header>
 
             <div class="page-heading">
                 <div class="page-title">
-
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
                             <h3>DataTable</h3>
