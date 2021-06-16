@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 	<body>
-		User: <?php echo $_POST["fullname"]; ?><br>
-		Job Position: <?php echo $_POST["position"]; ?><br>
-		Email: <?php echo $_POST["email"]; ?><br>
-		Phone: <?php echo $_POST["phone"]; ?><br>
-		Username: <?php echo $_POST["username"]; ?><br>
-		Password: <?php echo $_POST["password"]; ?><br>
-		Confirm password: <?php echo $_POST["confirmpassword"]; ?><br>
+		<?php 
+			$user = $_POST["username"];
+			$pw = $_POST["password"];
+			include '../database.php';
+			$conn = OpenCon();
+			$sql = "CREATE USER '$user'@'localhost' IDENTIFIED BY '$pw'";
+			$result = $conn->query($sql);
+			/*
+			$sql = "GRANT ALL PRIVILEGES ON *.* TO $user@'localhost'";
+			$result = $conn->query($sql);
+			*/
+
+			CloseCon($conn);
+		?>
+		<br>user created</br>
 	</body>
 </html>
