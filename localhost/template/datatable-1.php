@@ -56,6 +56,9 @@
                                 <li class="submenu-item ">
                                     <a href="datatable-2.php">datatable-2</a>
                                 </li>
+                                <li class="submenu-item ">
+                                    <a href="addnew.php">Add new data</a>
+                                </li>
                             </ul>
 
                         </li>
@@ -124,6 +127,7 @@
                                         $conn = OpenCon();
 
                                         $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM data";
+                                        // "SELECT name FROM data where stock = '缺貨'"
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
