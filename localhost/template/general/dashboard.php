@@ -1,4 +1,4 @@
-<?php include('../layouts/header.php'); ?>
+<?php include('../header.php'); ?>
 <?php $currentPage = 'dashboard'; ?>
 
 <!-- <head>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 
-                <?php include('../layouts/datatable-navbar.php'); ?>
+                <?php include('../datatable-navbar.php'); ?>
 
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
@@ -77,7 +77,7 @@
         </div>
     </div>
 
-    <?php include('../layouts/footer.php'); ?>
+    <?php include('../footer.php'); ?>
 
 </body>
 
