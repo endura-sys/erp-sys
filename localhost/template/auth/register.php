@@ -1,18 +1,8 @@
-<?php include ('register_handler.php') ?>
+<?php include('../header.php'); ?>
+<?php include ('register-handler.php') ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="assets/css/pages/auth.css">
-</head>
 
 <body>
     <div id="auth">
@@ -26,7 +16,7 @@
                     <h1 class="auth-title">Sign Up</h1>
                     <p class="auth-subtitle mb-5">Input your information to register to our website.</p>
 
-                    <form action="auth-register.php" method="post">
+                    <form action="register" method="post">
 						<?php include ('errors.php'); ?>
 						<div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" class="form-control form-control-xl" name="fullname" placeholder="Full Name">
@@ -73,7 +63,7 @@
                         <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5" name="submitbtn">Sign Up</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class='text-gray-600'>Already have an account? <a href="login.php"
+                        <p class='text-gray-600'>Already have an account? <a href="login"
                                 class="font-bold">Log
                                 in</a>.</p>
                     </div>
