@@ -1,6 +1,9 @@
-<?php include('header.php'); ?>
-<?php $title = 'dashboard'; ?>
+<?php include('../layouts/header.php'); ?>
 <?php $currentPage = 'dashboard'; ?>
+
+<!-- <head>
+<base href="/template">
+</head> -->
 
 <body>
     <div id="app">
@@ -17,8 +20,7 @@
                     </div>
                 </div>
                 
-                <?php include('datatable-navbar.php'); ?>
-
+                <?php include('../layouts/datatable-navbar.php'); ?>
 
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
@@ -55,37 +57,7 @@
                             Some dashboard data here...
                         </div>
                         <div class="card-body">
-                            <!-- <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>NO</th>
-                                        <th>商品名稱</th>
-                                        <th>現況</th>
-                                        <th>P1</th>
-                                        <th>P2</th>
-                                        <th>P3</th>
-                                        <th>數量</th>
-                                        <th>地域</th>
-                                        <th>蔵元</th>
-                                        <th>容量</th>
-                                        <th>單位</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    
-                                    <tr>
-                                        <td>Graiden</td>
-                                        <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                        <td>076 4820 8838</td>
-                                        <td>Offenburg</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-
-                            </table> -->
+                        
                         </div>
                     </div>
 
@@ -105,7 +77,7 @@
         </div>
     </div>
 
-    <?php include('footer.php'); ?>
+    <?php include('../layouts/footer.php'); ?>
 
 </body>
 

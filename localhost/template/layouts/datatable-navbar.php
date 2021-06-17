@@ -2,26 +2,26 @@
     <ul class="menu">
         <li class="sidebar-title">Menu</li>
 
-        <li class="sidebar-item <?php if ($currentPage === 'Home') {echo 'class="active"';} ?>">
-            <a href="dashboard.php" class='sidebar-link'>
+        <li class="sidebar-item <?php if ($currentPage == 'dashboard') {echo "active";} else  {echo "noactive";}?>">
+            <a href="dashboard" class='sidebar-link'>
                 <i class="bi bi-grid-fill"></i>
                 <span>Dashboard</span>
             </a>
         </li>
 
         <!-- General -->
-        <li class="sidebar-item has-sub">
+        <li class="sidebar-item has-sub <?php if ($currentPage == 'item-list' || $currentPage == 'supplier-list') {echo "active";} else  {echo "noactive";}?>">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>General</span>
             </a>
 
-            <ul class="submenu">
-                <li class="submenu-item ">
-                    <a href="datatable-1.php">Items list</a>
+            <ul class="submenu <?php if ($currentPage == 'item-list' || $currentPage == 'supplier-list') {echo "active";} else  {echo "noactive";}?>">
+                <li class="submenu-item <?php if ($currentPage == 'item-list') {echo "active";} ?>">
+                    <a href="item-list">Items list</a>
                 </li>
-                <li class="submenu-item ">
-                    <a href="datatable-2.php">Supplier list</a>
+                <li class="submenu-item <?php if ($currentPage == 'supplier-list') {echo "active";} ?>">
+                    <a href="supplier-list">Supplier list</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="">Customer list</a>

@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataTable - Admin Dashboard</title>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-
-    <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
-
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-</head>
+<?php include('../layouts/header.php'); ?>
+<?php $currentPage = 'item-list'; ?>
 
 <body>
     <div id="app">
@@ -32,10 +15,9 @@
                         </div>
                     </div>
                 </div>
+
+                <?php include('../layouts/datatable-navbar.php'); ?>
                 
-                <?php include('datatable-navbar.php'); ?>
-
-
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
@@ -58,7 +40,7 @@
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">DataTable</li>
                                 </ol>
                             </nav>
@@ -67,11 +49,13 @@
                 </div>
                 <section class="section">
                     <div class="card">
+
                         <div class="card-header">
-                            Some dashboard data here...
+                            Simple Datatable
                         </div>
+
                         <div class="card-body">
-                            <!-- <table class="table table-striped" id="table1">
+                            <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
                                         <th>NO</th>
@@ -87,21 +71,38 @@
                                         <th>單位</th>
                                     </tr>
                                 </thead>
-
+                                
                                 <tbody>
-                                    
-                                    <tr>
-                                        <td>Graiden</td>
-                                        <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                        <td>076 4820 8838</td>
-                                        <td>Offenburg</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                    <!-- Connect to the database -->
+                                    <?php
 
-                            </table> -->
+                                        include '../../database.php';
+                                        $conn = OpenCon();
+
+                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM data";
+                                        $result = $conn->query($sql);
+
+                                        $product_list = array();
+
+                                        if ($result->num_rows > 0) {
+                                            // output data of each row
+                                            while($row = $result->fetch_assoc()) {
+                                                // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
+                                                // echo $product_list[0][2];
+                                                // print_r($product_list);
+                                                echo "<tr><td>" .$row["no"] ."</td><td>" .$row["name"] ."</td><td>" .$row["status"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"] ."</td><td>" .$row["stock"] ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] ."</td><td>".$row["unit"] ."</td><td>" ."</td>";
+                                            }
+                                        } else {
+                                            echo "0 results";
+                                        }
+                                        echo $product_list[0][1];
+                                        CloseCon($conn);
+                                    ?>
+
+                                    
+                                </tbody>
+                                
+                            </table>
                         </div>
                     </div>
 
@@ -120,17 +121,9 @@
             </footer>
         </div>
     </div>
-    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    
+    <?php include('../layouts/footer.php'); ?>
 
-    <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
-    <script>
-        // Simple Datatable
-        let table1 = document.querySelector('#table1');
-        let dataTable = new simpleDatatables.DataTable(table1);
-    </script>
-
-    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

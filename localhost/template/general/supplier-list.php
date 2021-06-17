@@ -1,6 +1,5 @@
-<?php include('header.php'); ?>
-
-<?php $currentPage = 'dashboard'; ?>
+<?php include('../layouts/header.php'); ?>
+<?php $currentPage = 'supplier-list'; ?>
 
 <body>
     <div id="app">
@@ -17,7 +16,7 @@
                     </div>
                 </div>
                 
-                <?php include('datatable-navbar.php'); ?>
+                <?php include('../layouts/datatable-navbar.php'); ?>
                 
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
@@ -123,7 +122,7 @@
         </div>
     </div>
     
-    <?php include('footer.php'); ?>
+    <?php include('../layouts/footer.php'); ?>
     
 </body>
 
