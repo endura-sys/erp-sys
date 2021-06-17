@@ -50,13 +50,15 @@
                     <!-- logged in user information -->
                     <?php  if (isset($_SESSION['username'])) : ?>
                       <h2>Welcome <strong><?php
-                      $db=mysqli_connect('localhost', 'root', 'root', 'db');
+                      include '../../database.php';
+                      $conn = OpenCon();
                       $u=$_SESSION['username'];
                       $query = "SELECT full_name FROM users where username='$u'";
-                      if ($result = mysqli_query($db, $query)) {
+                      if ($result = mysqli_query($conn, $query)) {
                         $obj=$result-> fetch_object();
                         echo $obj->full_name;
                       }
+                      CloseCon($conn);
                       ?></strong></h2>
                       <?php else: ?>
                       <!-- <h3>You need Log In</h3> -->
@@ -111,7 +113,7 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            
+
                             <!-- Content Row -->
                             <div class="row">
 
@@ -218,7 +220,7 @@
                                                 <th>蔵元</th>
                                             </tr>
                                         </thead>
-                                        
+
                                         <tbody>
                                 </div>
                                 <!-- Connect to the database -->
