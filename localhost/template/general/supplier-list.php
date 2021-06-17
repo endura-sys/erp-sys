@@ -76,10 +76,10 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        include '../database.php';
+                                        include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM data";
+                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM product";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
