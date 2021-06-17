@@ -90,7 +90,15 @@
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <!-- logged in user information -->
                     <?php  if (isset($_SESSION['username'])) : ?>
-                      <h2>Welcome <strong><?php echo $_SESSION['username']; ?></strong></h2>
+                      <h2>Welcome <strong><?php
+                      $db=mysqli_connect('localhost', 'root', 'root', 'db');
+                      $u=$_SESSION['username'];
+                      $query = "SELECT full_name FROM users where username='$u'";
+                      if ($result = mysqli_query($db, $query)) {
+                        $obj=$result-> fetch_object();
+                        echo $obj->full_name;
+                      }
+                      ?></strong></h2>
                       <?php else: ?>
                       <!-- <h3>You need Log In</h3> -->
                     <?php endif ?>
