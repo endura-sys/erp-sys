@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="template/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="template/assets/css/app.css">
     <link rel="shortcut icon" href="template/assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="template/assets/css/pages/auth.css">
 
 </head>
 
