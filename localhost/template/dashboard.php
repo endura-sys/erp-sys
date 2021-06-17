@@ -1,3 +1,13 @@
+<?php
+  session_start();
+
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/vendors/simple-datatables/style.css">
 
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
@@ -19,6 +29,10 @@
 </head>
 
 <body>
+  <div class="header">
+	<h2>Home Page</h2>
+</div>
+
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
@@ -33,6 +47,7 @@
                     </div>
                 </div>
                 <div class="sidebar-menu">
+
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
@@ -71,6 +86,50 @@
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
+                <div class="row">
+                <div class="col-12 col-md-6 order-md-1 order-last">
+                    <!-- logged in user information -->
+                    <?php  if (isset($_SESSION['username'])) : ?>
+                      <h2>Welcome <strong><?php
+                      $db=mysqli_connect('localhost', 'root', 'root', 'db');
+                      $u=$_SESSION['username'];
+                      $query = "SELECT full_name FROM users where username='$u'";
+                      if ($result = mysqli_query($db, $query)) {
+                        $obj=$result-> fetch_object();
+                        echo $obj->full_name;
+                      }
+                      ?></strong></h2>
+                      <?php else: ?>
+                      <!-- <h3>You need Log In</h3> -->
+                    <?php endif ?>
+                </div>
+                <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+                    <div class="container">
+                        <div class="collapse navbar-collapse " id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Random Page</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Another Page</a>
+                                </li>
+                                <li class="nav-item">
+                                  <?php  if (isset($_SESSION['username'])) : ?>
+                                    <a class="btn btn-outline-primary" href="dashboard.php?logout='1'">Log Out</a>
+                                        <?php else: ?>
+                                    <a class="btn btn-outline-primary" href="login.php">Login</a>
+                                  <?php endif ?>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+              </div>
+            </div>
             </header>
 
             <div class="page-heading">
@@ -114,7 +173,7 @@
                                 </thead>
 
                                 <tbody>
-                                    
+
                                     <tr>
                                         <td>Graiden</td>
                                         <td>vehicula.aliquet@semconsequat.co.uk</td>
@@ -145,6 +204,7 @@
             </footer>
         </div>
     </div>
+
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 
