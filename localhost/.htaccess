@@ -15,3 +15,5 @@ RewriteRule ^register /template/auth/register.php [L,QSA,NC]
 
 RewriteRule ^addnew /template/addnew/addnew.php [L,QSA,NC]
 RewriteRule ^insert /template/addnew/insert.php [L,QSA,NC]
+
+RewriteRule ^user-management /template/user-management/user-management.php [L,QSA,NC]
