@@ -1,2 +1,17 @@
 Options -Indexes
 DirectoryIndex index.php
+
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^assets/(.*) [L,QSA,NC]
+RewriteRule ^index /template/general/dashboard.php [L,QSA,NC]
+RewriteRule ^dashboard /template/general/dashboard.php [L,QSA,NC]
+RewriteRule ^item-list /template/general/item-list.php [L,QSA,NC]
+RewriteRule ^supplier-list /template/general/supplier-list.php [L,QSA,NC]
+
+RewriteRule ^login /template/auth/login.php [L,QSA,NC]
+RewriteRule ^register /template/auth/register.php [L,QSA,NC]
+
+RewriteRule ^addnew /template/addnew/addnew.php [L,QSA,NC]
+RewriteRule ^insert /template/addnew/insert.php [L,QSA,NC]
