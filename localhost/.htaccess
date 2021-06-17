@@ -9,3 +9,6 @@ RewriteRule ^index /template/general/dashboard.php [L,QSA,NC]
 RewriteRule ^dashboard /template/general/dashboard.php [L,QSA,NC]
 RewriteRule ^item-list /template/general/item-list.php [L,QSA,NC]
 RewriteRule ^supplier-list /template/general/supplier-list.php [L,QSA,NC]
+
+RewriteRule ^login /template/auth/login.php [L,QSA,NC]
+RewriteRule ^register /template/auth/register.php [L,QSA,NC]

@@ -1,17 +1,8 @@
+<?php include('../header.php'); ?>
 <?php include('server.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="assets/css/pages/auth.css">
-</head>
 <body>
   <div id="auth">
 
@@ -24,7 +15,7 @@
                   <h1 class="auth-title">Log in</h1>
                   <p class="auth-subtitle mb-5">Log in with your data that you entered during registration</p>
 
-                  <form method="post" action="login.php">
+                  <form method="post" action="login">
                     	<?php include('errors.php'); ?>
                       <div class="form-group position-relative has-icon-left mb-4">
                           <input type="text" name="username" class="form-control form-control-xl" placeholder="Username">
@@ -50,7 +41,7 @@
                       <button class="btn btn-primary btn-block btn-lg shadow-lg mt-4" name="login_user">Log in</button>
                   </form>
                   <div class="text-center mt-5 text-lg fs-6">
-                      <p class="text-gray-600">Don't have an account? <a href="auth-register.php"
+                      <p class="text-gray-600">Don't have an account? <a href="register"
                               class="font-bold">Sign
                               up</a></p>
                   </div>

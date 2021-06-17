@@ -4,7 +4,7 @@
 		<?php 
 			
 			if (isset($_POST["submitbtn"])) {
-				include '../database.php';
+				include '../../database.php';
 				$conn = OpenCon();
 				
 				$fullname = $_POST["fullname"];
@@ -25,8 +25,7 @@
 				if (empty($pw2)) { array_push($errors, "Please enter password again."); }
 				else if ($pw != $pw2) { array_push($errors, "Passwords do not match."); }
 
-
-				$sql = "SELECT * from user where username = '$user'";
+				$sql = "SELECT * from users where username = '$user'";
 				$result = $conn->query($sql);
 				$num = mysqli_num_rows($result);
 				
@@ -36,7 +35,7 @@
 				
 				if (count($errors) == 0) {
 				
-					$sql = "INSERT INTO user (full_name, position, email, phone, username, password) VALUES('$fullname', '$position', '$email', '$phone', '$user', '$pw')";
+					$sql = "INSERT INTO users (full_name, position, email, phone, username, password) VALUES('$fullname', '$position', '$email', '$phone', '$user', '$pw')";
 					$result = $conn->query($sql);
 					
 					$sql = "CREATE USER '$user'@'localhost' IDENTIFIED BY '$pw'";
@@ -47,7 +46,7 @@
 					$result = $conn->query($sql);
 					*/
 					
-					header("location: dashboard.php");
+					header("location: dashboard");
 				}
 				
 				CloseCon($conn);
