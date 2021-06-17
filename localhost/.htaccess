@@ -12,3 +12,6 @@ RewriteRule ^supplier-list /template/general/supplier-list.php [L,QSA,NC]
 
 RewriteRule ^login /template/auth/login.php [L,QSA,NC]
 RewriteRule ^register /template/auth/register.php [L,QSA,NC]
+
+RewriteRule ^addnew /template/addnew/addnew.php [L,QSA,NC]
+RewriteRule ^insert /template/addnew/insert.php [L,QSA,NC]

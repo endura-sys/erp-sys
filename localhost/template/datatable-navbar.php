@@ -24,7 +24,7 @@
                     <a href="supplier-list">Supplier list</a>
                 </li>
                 <li class="submenu-item ">
-                <a href="addnew.php">Add new data</a>
+                <a href="addnew">Add new data</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="">Customer list</a>
