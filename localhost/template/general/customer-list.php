@@ -71,7 +71,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT NO, Name, address FROM customer";
+                                        $sql = "SELECT id, name, address FROM customer";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -82,7 +82,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["NO"] ."</td><td>" .$row["Name"] ."</td><td>" .$row["address"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["id"] ."</td><td>" .$row["name"] ."</td><td>" .$row["address"] ."</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";

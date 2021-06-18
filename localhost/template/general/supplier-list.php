@@ -58,6 +58,7 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
+                                        <th>id</th>
                                         <th>蔵元</th>
                                         <th>登录住所</th>
                                         
@@ -71,7 +72,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT sake_brewer, address FROM supplier";
+                                        $sql = "SELECT supplier_id, sake_brewer, address FROM supplier";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -82,7 +83,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["sake_brewer"] ."</td><td>" .$row["address"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>".$row["supplier_id"]."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["address"] ."</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
