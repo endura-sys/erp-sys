@@ -47,14 +47,14 @@
                         </div>
                     </div>
                 </div>
-				
+
                 <section class="section">
                     <div class="card">
 						<div class="row">
 							<div class="card-header col-md-6">
 								Simple Datatable
 							</div>
-							
+
 							<div class="buttons col-md-6 d-flex justify-content-end h-50">
 								<a href="create.php" class="btn btn-success">Create a New User</a>
 							</div>
@@ -99,7 +99,7 @@
                                                 <td><?php echo $row["phone"]; ?></td>
                                                 <td><?php echo $row["username"]; ?></td>
                                                 <td><?php echo $row["password"]; ?></td>
-                                                <td><a class="btn btn-primary btn-block btn-sm shadow-lg" href="user-update">Update</a></td>
+                                                <td><a class="btn btn-primary btn-block btn-sm shadow-lg" href="user-update" name=<?php $row["id"]?>>Update</a></td>
                                               </tr>
                                     <?php
                                               //  echo "<tr><td>" .$row["id"] ."</td><td>" .$row["full_name"] ."</td><td>" .$row["position"] ."</td><td>" . $row["email"] ."</td><td>" . $row["phone"] ."</td><td>" . $row["username"] ."</td><td>" .$row["password"] ."</td>";
