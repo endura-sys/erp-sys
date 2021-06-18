@@ -17,7 +17,7 @@
                 </div>
 
                 <?php include('../datatable-navbar.php'); ?>
-                
+
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
@@ -65,9 +65,10 @@
                                         <th>phone</th>
                                         <th>username</th>
                                         <th>password</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     <!-- Connect to the database -->
                                     <?php
@@ -83,7 +84,19 @@
                                         if ($result->num_rows > 0) {
                                             // output data of each row
                                             while($row = $result->fetch_assoc()) {
-                                                echo "<tr><td>" .$row["id"] ."</td><td>" .$row["full_name"] ."</td><td>" .$row["position"] ."</td><td>" . $row["email"] ."</td><td>" . $row["phone"] ."</td><td>" . $row["username"] ."</td><td>" .$row["password"] ."</td>";
+                                    ?>
+                                              <tr>
+                                                <td><?php echo $row["id"]; ?></td>
+                                                <td><?php echo $row["full_name"]; ?></td>
+                                                <td><?php echo $row["position"]; ?></td>
+                                                <td><?php echo $row["email"]; ?></td>
+                                                <td><?php echo $row["phone"]; ?></td>
+                                                <td><?php echo $row["username"]; ?></td>
+                                                <td><?php echo $row["password"]; ?></td>
+                                                <td><a class="btn btn-primary btn-block btn-sm shadow-lg" href="user-update">Update</a></td>
+                                              </tr>
+                                    <?php
+                                              //  echo "<tr><td>" .$row["id"] ."</td><td>" .$row["full_name"] ."</td><td>" .$row["position"] ."</td><td>" . $row["email"] ."</td><td>" . $row["phone"] ."</td><td>" . $row["username"] ."</td><td>" .$row["password"] ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
@@ -92,9 +105,9 @@
                                         CloseCon($conn);
                                     ?>
 
-                                    
+
                                 </tbody>
-                                
+
                             </table>
                         </div>
                     </div>
@@ -114,7 +127,7 @@
             </footer>
         </div>
     </div>
-    
+
     <?php include('../footer.php'); ?>
 
 </body>
