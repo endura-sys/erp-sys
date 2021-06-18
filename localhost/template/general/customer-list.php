@@ -1,5 +1,5 @@
 <?php include('../header.php'); ?>
-<?php $currentPage = 'supplier-list'; ?>
+<?php $currentPage = 'customer-list'; ?>
 
 <body>
     <div id="app">
@@ -58,9 +58,9 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>蔵元</th>
-                                        <th>登录住所</th>
-                                        
+                                        <th>お客様の番号</th>
+                                        <th>名前</th>
+                                        <th>住所</th>
                                     </tr>
                                 </thead>
                                 
@@ -71,7 +71,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT sake_brewer, address FROM supplier";
+                                        $sql = "SELECT NO, Name, address FROM customer";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -82,12 +82,12 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["sake_brewer"] ."</td><td>" .$row["address"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["NO"] ."</td><td>" .$row["Name"] ."</td><td>" .$row["address"] ."</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
                                         }
-                                        echo $supplier_list[0][1];
+                                        echo $customer_list[0][1];
                                         CloseCon($conn);
                                     ?>
 

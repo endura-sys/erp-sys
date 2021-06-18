@@ -10,24 +10,25 @@
         </li>
 
         <!-- General -->
-        <li class="sidebar-item has-sub <?php if ($currentPage == 'item-list' || $currentPage == 'supplier-list') {echo "active";} else  {echo "noactive";}?>">
+        <li class="sidebar-item has-sub <?php if ($currentPage == 'item-list' || $currentPage == 'supplier-list'||$currentPage == 'customer-list') {echo "active";} else  {echo "noactive";}?>">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>General</span>
             </a>
 
-            <ul class="submenu <?php if ($currentPage == 'item-list' || $currentPage == 'supplier-list') {echo "active";} else  {echo "noactive";}?>">
+            <ul class="submenu <?php if ($currentPage == 'item-list' || $currentPage == 'supplier-list'||$currentPage =='customer-list') {echo "active";} else  {echo "noactive";}?>">
                 <li class="submenu-item <?php if ($currentPage == 'item-list') {echo "active";} ?>">
                     <a href="item-list">Items list</a>
                 </li>
                 <li class="submenu-item <?php if ($currentPage == 'supplier-list') {echo "active";} ?>">
                     <a href="supplier-list">Supplier list</a>
                 </li>
-                <li class="submenu-item ">
-                <a href="addnew">Add new data</a>
+                
+                <li class="submenu-item <?php if ($currentPage == 'customer-list') {echo "active";} ?>">
+                    <a href="customer-list">Customer list</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="">Customer list</a>
+                <a href="addnew">Add new data</a>
                 </li>
             </ul>
             
