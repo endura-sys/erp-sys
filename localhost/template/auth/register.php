@@ -19,31 +19,31 @@
                     <form action="register" method="post">
 						<?php include ('errors.php'); ?>
 						<div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="fullname" placeholder="Full Name">
+                            <input type="text" class="form-control form-control-xl" name="fullname" placeholder="Full Name" value=<?php echo $fullname; ?>>
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
 						<div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="position" placeholder="Job Position">
+                            <input type="text" class="form-control form-control-xl" name="position" placeholder="Job Position" value=<?php echo $position; ?>>
                             <div class="form-control-icon">
                                 <i class="bi bi-briefcase"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="email" placeholder="Email">
+                            <input type="email" class="form-control form-control-xl" name="email" placeholder="Email" value=<?php echo $email; ?>>
                             <div class="form-control-icon">
                                 <i class="bi bi-envelope"></i>
                             </div>
                         </div>
 						<div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="phone" placeholder="Phone">
+                            <input type="text" class="form-control form-control-xl" name="phone" placeholder="Phone" value=<?php echo $phone; ?>>
                             <div class="form-control-icon">
                                 <i class="bi bi-telephone"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="username" placeholder="Username">
+                            <input type="text" class="form-control form-control-xl" name="username" placeholder="Username" value=<?php echo $user; ?>>
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>

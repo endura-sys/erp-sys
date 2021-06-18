@@ -47,12 +47,18 @@
                         </div>
                     </div>
                 </div>
+				
                 <section class="section">
                     <div class="card">
-
-                        <div class="card-header">
-                            Simple Datatable
-                        </div>
+						<div class="row">
+							<div class="card-header col-md-6">
+								Simple Datatable
+							</div>
+							
+							<div class="buttons col-md-6 d-flex justify-content-end h-50">
+								<a href="create.php" class="btn btn-success">Create a New User</a>
+							</div>
+						</div>
 
                         <div class="card-body">
                             <table class="table table-striped" id="table1">

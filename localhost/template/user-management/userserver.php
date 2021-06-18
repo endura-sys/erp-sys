@@ -51,7 +51,7 @@ if (isset($_POST["submitbtn"])) {
     $sql = "CREATE USER '$user'@'localhost' IDENTIFIED BY '$pw'";
     $result = $conn->query($sql);
 
-    header("location: login");
+    header("location: user-management");
   }
 }
 
