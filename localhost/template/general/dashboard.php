@@ -77,11 +77,7 @@
                                     <a class="nav-link" href="#">Another Page</a>
                                 </li>
                                 <li class="nav-item">
-                                  <?php  if (isset($_SESSION['username'])) : ?>
-                                    <a class="btn btn-outline-primary" href="dashboard.php?logout='1'">Log Out</a>
-                                        <?php else: ?>
-                                    <a class="btn btn-outline-primary" href="login">Login</a>
-                                  <?php endif ?>
+                                    <a class="btn btn-outline-danger"href="login">Log Out</a>
                                 </li>
                             </ul>
                         </div>
