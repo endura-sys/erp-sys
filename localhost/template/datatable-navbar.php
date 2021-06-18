@@ -135,7 +135,7 @@
             </ul>
         </li>
         <li class="sidebar-item  ">
-         <a class="btn btn-outline-danger "href="login">Log Out</a>
+         <a class="btn btn-outline-danger btn-block"href="login">Log Out</a>
         </li>
     </ul>
 </div>

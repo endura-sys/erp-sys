@@ -76,9 +76,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Another Page</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="btn btn-outline-danger"href="login">Log Out</a>
-                                </li>
                             </ul>
                         </div>
                     </div>
