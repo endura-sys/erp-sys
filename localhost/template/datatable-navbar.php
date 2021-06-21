@@ -127,7 +127,7 @@
 
             <ul class="submenu">
                 <li class="submenu-item ">
-                    <a href="">Outbound schedule</a>
+                    <a href="outbound">Outbound schedule</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="">New outbound order</a>

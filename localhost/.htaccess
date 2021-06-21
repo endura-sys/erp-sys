@@ -20,3 +20,7 @@ RewriteRule ^user-management /template/user-management/user-management.php [L,QS
 RewriteRule ^user-update /template/user-management/user-update.php [L,QSA,NC]
 RewriteRule ^create /template/user-management/create.php [L,QSA,NC]
 RewriteRule ^userserver /template/user-management/userserver.php [L,QSA,NC]
+
+RewriteRule ^outbound /template/outbound/outbound.php [L,QSA,NC]
+RewriteRule ^invoice /template/outbound/invoice.php [L,QSA,NC]
+RewriteRule ^test /template/outbound/test.php [L,QSA,NC]
