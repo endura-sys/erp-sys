@@ -99,10 +99,11 @@
                                                 <td><?php echo $row["phone"]; ?></td>
                                                 <td><?php echo $row["username"]; ?></td>
                                                 <td><?php echo $row["password"]; ?></td>
+                                                <td><a class="btn btn-primary btn-block btn-sm shadow-lg" href="user-update?id=<?php echo $row["id"]?>" >Update</a></td>
                                                 <td>
-													<a class="btn btn-primary btn-sm shadow-lg" href="user-update" name=<?php $row["id"]?>>Update</a>
-													
-													
+
+
+
 														<button type="button" class="btn btn-danger btn-sm shadow-lg" data-bs-toggle="modal" data-bs-target="#confirmModal">
 															Delete
 														</button>
@@ -121,7 +122,7 @@
 																			<i class="bx bx-x d-block d-sm-none"></i>
 																			<span class="d-none d-sm-block">Close</span>
 																		</button>
-																		
+
 																		<form action="delete-user" method="POST">
 																			<input type="hidden" name="id" value="<?php echo $row['id']; ?>">
 																		<input type="submit" class="btn btn-danger ml-1" value="Delete">
