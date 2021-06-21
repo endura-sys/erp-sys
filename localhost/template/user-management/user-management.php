@@ -99,7 +99,39 @@
                                                 <td><?php echo $row["phone"]; ?></td>
                                                 <td><?php echo $row["username"]; ?></td>
                                                 <td><?php echo $row["password"]; ?></td>
-                                                <td><a class="btn btn-primary btn-block btn-sm shadow-lg" href="user-update" name=<?php $row["id"]?>>Update</a></td>
+                                                <td>
+													<a class="btn btn-primary btn-sm shadow-lg" href="user-update" name=<?php $row["id"]?>>Update</a>
+													
+													
+														<button type="button" class="btn btn-danger btn-sm shadow-lg" data-bs-toggle="modal" data-bs-target="#confirmModal">
+															Delete
+														</button>
+														<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="exampleModalCenterTitle">Confirmation</h5>
+																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																	</div>
+																	<div class="modal-body">
+																		<p>Confirm to delete user <b><?php echo $row["username"]; ?></b>?</p>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+																			<i class="bx bx-x d-block d-sm-none"></i>
+																			<span class="d-none d-sm-block">Close</span>
+																		</button>
+																		
+																		<form action="delete-user" method="POST">
+																			<input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+																		<input type="submit" class="btn btn-danger ml-1" value="Delete">
+																			<i class="bx bx-check d-block d-sm-none"></i>
+																		</form>
+																	</div>
+																</div>
+															</div>
+														</div>
+												</td>
                                               </tr>
                                     <?php
                                               //  echo "<tr><td>" .$row["id"] ."</td><td>" .$row["full_name"] ."</td><td>" .$row["position"] ."</td><td>" . $row["email"] ."</td><td>" . $row["phone"] ."</td><td>" . $row["username"] ."</td><td>" .$row["password"] ."</td>";
