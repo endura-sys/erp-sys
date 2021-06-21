@@ -99,10 +99,7 @@
                                                 <td><?php echo $row["phone"]; ?></td>
                                                 <td><?php echo $row["username"]; ?></td>
                                                 <td><?php echo $row["password"]; ?></td>
-                                                <td><a class="btn btn-primary btn-block btn-sm shadow-lg" href="user-update?id=<?php echo $row["id"]?>" >Update</a></td>
-                                                <td>
-
-
+                                                <td><a class="btn btn-primary btn-sm shadow-lg" href="user-update?id=<?php echo $row["id"]?>" >Update</a>
 
 														<button type="button" class="btn btn-danger btn-sm shadow-lg" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["id"]?>">
 															Delete
@@ -115,7 +112,7 @@
 																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 																	</div>
 																	<div class="modal-body">
-																		<p>Confirm to delete user <?php echo $row["username"]; ?>?</p>
+																		<p>Confirm to delete user <b><?php echo $row["username"]; ?></b>?</p>
 																	</div>
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
@@ -123,11 +120,25 @@
 																			<span class="d-none d-sm-block">Close</span>
 																		</button>
 
-																		<form action="delete-user" method="POST">
+																		<form  method="POST">
 																			<input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-																		<input type="submit" class="btn btn-danger ml-1" value="Delete">
+																			<input type="submit" name="deletebtn" class="btn btn-danger ml-1" value="Delete">
 																			<i class="bx bx-check d-block d-sm-none"></i>
 																		</form>
+																		<?php
+																			if (isset($_POST["deletebtn"])) {
+																				$id = $_POST["id"];
+	
+																				$sql = "DELETE FROM users where id = '$id'";
+																				$result = $conn->query($sql);
+																				
+																				$message = "User Deleted Successfully";
+
+																				header("location: user-management");
+																			}
+																		?>
+
+																		
 																	</div>
 																</div>
 															</div>
