@@ -104,10 +104,10 @@
 
 
 
-														<button type="button" class="btn btn-danger btn-sm shadow-lg" data-bs-toggle="modal" data-bs-target="#confirmModal">
+														<button type="button" class="btn btn-danger btn-sm shadow-lg" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["id"]?>">
 															Delete
 														</button>
-														<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+														<div class="modal fade" id="confirmModal<?php echo $row["id"]?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 															<div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
 																<div class="modal-content">
 																	<div class="modal-header">
@@ -115,7 +115,7 @@
 																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 																	</div>
 																	<div class="modal-body">
-																		<p>Confirm to delete user <b><?php echo $row["username"]; ?></b>?</p>
+																		<p>Confirm to delete user <?php echo $row["username"]; ?>?</p>
 																	</div>
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
