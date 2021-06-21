@@ -99,7 +99,7 @@
                                                 <td><?php echo $row["phone"]; ?></td>
                                                 <td><?php echo $row["username"]; ?></td>
                                                 <td><?php echo $row["password"]; ?></td>
-                                                <td><a class="btn btn-primary btn-block btn-sm shadow-lg" href="user-update" name=<?php $row["id"]?>>Update</a></td>
+                                                <td><a class="btn btn-primary btn-block btn-sm shadow-lg" href="user-update?id=<?php echo $row["id"]?>" >Update</a></td>
                                               </tr>
                                     <?php
                                               //  echo "<tr><td>" .$row["id"] ."</td><td>" .$row["full_name"] ."</td><td>" .$row["position"] ."</td><td>" . $row["email"] ."</td><td>" . $row["phone"] ."</td><td>" . $row["username"] ."</td><td>" .$row["password"] ."</td>";

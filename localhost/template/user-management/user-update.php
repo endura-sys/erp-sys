@@ -1,5 +1,15 @@
-<?php include('../header.php'); ?>
-<?php include ('userserver.php') ?>
+<?php include ('../header.php'); ?>
+<?php
+include '../../database.php';
+$conn = OpenCon();
+if(count($_POST)>0) {
+  mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', position='" . $_POST['position'] . "' , email='" . $_POST['email'] . "' , username='" . $_POST['username'] . "' , password='" . $_POST['password'] . "' WHERE id='" . $_POST['id'] . "'");
+  //mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', last_name='" . $_POST['last_name'] . "', city_name='" . $_POST['city_name'] . "' ,email='" . $_POST['email'] . "' WHERE id='" . $_POST['userid'] . "'");
+  $message = "Record Modified Successfully";
+}
+$result = mysqli_query($conn,"SELECT * FROM users WHERE id='" . $_GET['id'] . "'");
+$row= mysqli_fetch_array($result);
+?>
 
 <body>
     <div id="app">
@@ -34,7 +44,7 @@
               <div class="page-title">
                 <div class="row">
                   <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Update user "..." information</h3>
+                    <h3>Update username: "<?php echo $row['username']?>" information</h3>
                     <p class="text-subtitle text-muted">Type the information you want to update</p>
                   </div>
                   <div class="col-12 col-md-6 order-md-2 order-first">
@@ -45,24 +55,26 @@
                 </div>
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">User "..." Information</h4>
+                    <h4 class="card-title">"<?php echo $row['username']?>" Information</h4>
                   </div>
                   <div class="card-content">
                     <div class="card-body">
-                      <form class="form form-horizontal" action="create.php" method="post">
+                      <form class="form form-horizontal" action="user-update?id=<?php echo $row["id"]?>" method="post">
+                        <?php if(isset($message)) { ?>
+                        <div class="alert alert-success">
+                          <i class="bi bi-check-circle"></i>
+                          <?echo $message; } ?>
+                        </div>
                         <?php include ('errors.php'); ?>
                         <div class="form-body">
                           <div class="row">
-                            <?php $conn = OpenCon();
-                              $result = mysqli_query($conn,"SELECT * FROM users WHERE id='" . $_GET['id'] . "'");
-                              $row= mysqli_fetch_array($result);
-                            ?>
                             <div class="col-md-4">
                               <label> Full Name</label>
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text" class="form-control form-control-xl" name="fullname" value="Full Name" value=<?php echo $fullname; ?>>
+                                <input type="hidden" class="form-control form-control-xl" name="id" value="<?php echo $row['id']?>">
+                                <input type="text" class="form-control form-control-xl" name="full_name" value="<?php echo $row['full_name']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-person"></i>
                                 </div>
@@ -73,7 +85,7 @@
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text" class="form-control form-control-xl" name="position" value="Job Position" value=<?php echo $position; ?>>
+                                <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-briefcase"></i>
                                 </div>
@@ -84,7 +96,7 @@
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="email" class="form-control form-control-xl" name="email" value="Email" value=<?php echo $email; ?>>
+                                <input type="email" class="form-control form-control-xl" name="email" value="<?php echo $row['email']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-envelope"></i>
                                 </div>
@@ -95,7 +107,7 @@
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text" class="form-control form-control-xl" name="phone" value="Phone" value=<?php echo $phone; ?>>
+                                <input type="text" class="form-control form-control-xl" name="phone" value="<?php echo $row['phone']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-telephone"></i>
                                 </div>
@@ -106,83 +118,46 @@
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text" class="form-control form-control-xl" name="username" value="Username" value=<?php echo $user; ?>>
+                                <input type="text" class="form-control form-control-xl" name="username" value="<?php echo $row['username']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-person"></i>
                                 </div>
                               </div>
                             </div>
-                            <?php CloseCon($conn);?>
+                            <div class="col-md-4">
+                              <label>Password</label>
+                            </div>
+                            <div class="col-md-8">
+                              <div class="form-group position-relative has-icon-left mb-4">
+                                <input type="text" class="form-control form-control-xl" name="password" value="<?php echo $row['password']?>">
+                                <div class="form-control-icon">
+                                  <i class="bi bi-shield-lock"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Enter Password Again</label>
+                            </div>
+                            <div class="col-md-8">
+                              <div class="form-group position-relative has-icon-left mb-4">
+                                <input type="text" class="form-control form-control-xl" name="confirmpassword" value="<?php echo $row['password']?>">
+                                <div class="form-control-icon">
+                                  <i class="bi bi-shield-lock"></i>
+                                </div>
+                              </div>
+                            </div>
                             <div class="col-sm-12 d-flex justify-content-end">
-                              <button type="submit" class="btn btn-primary me-1 mb-1" name="submitbtn">Update</button>
+                              <button type="submit" type="Submit" class="btn btn-primary me-1 mb-1" name="submit">Update</button>
                               <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                             </div>
                           </div>
                         </div>
+                        <?php CloseCon($conn);?>
                       </form>
                     </div>
                             </div>
                         </div>
                     </div>
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Update user ... details</h3>
-                            <p class="text-subtitle text-muted">For user to check they list</p>
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <section class="section">
-                    <div class="card">
-
-                        <div class="card-header">
-                            Simple Datatable
-                        </div>
-
-                        <form name="frmUser" method="post" action="">
-                          <div><?php if(isset($message)) { echo $message; } ?>
-                          </div>
-                          <div style="padding-bottom:5px;">
-                          <a href="user-management">Back to Previous</a>
-                          </div>
-                          Username: <br>
-                            <input type="text" class="form-control form-control-m" value="Password">
-                          <!-- <input type="hidden" name="userid" class="txtField" value="<?php echo $row['userid']; ?>">
-                          <input type="text" name="userid"  value="<?php echo $row['userid']; ?>"> -->
-                          <br>
-                          First Name: <br>
-                          <input type="text" class="form-control form-control-m" value="Password">
-                          <!-- <input type="text" name="first_name" class="txtField" value="<?php echo $row['first_name']; ?>"> -->
-                          <br>
-                          Last Name :<br>
-                          <input type="text" class="form-control form-control-m" value="Password">
-                          <!-- <input type="text" name="last_name" class="txtField" value="<?php echo $row['last_name']; ?>"> -->
-                          <br>
-                          City:<br>
-                          <input type="text" class="form-control form-control-m" value="Password">
-                          <!-- <input type="text" name="city_name" class="txtField" value="<?php echo $row['city_name']; ?>"> -->
-                          <br>
-                          Email:<br>
-                          <input type="text" class="form-control form-control-m" value="Password">
-                          <!-- <input type="text" name="email" class="txtField" value="<?php echo $row['email']; ?>"> -->
-                          <br>
-                          <input type="submit" name="submit" value="Submit" class="buttom">
-
-                        </form>
-                        <div class="card-body">
-
-                        </div>
-                    </div>
-
-                </section>
             </div>
 
             <footer>
