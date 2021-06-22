@@ -34,8 +34,8 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Item List Data Table</h3>
-                            <p class="text-subtitle text-muted">For item data to be checked</p>
+                            <h3>DataTable</h3>
+                            <p class="text-subtitle text-muted">For user to check they list</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -49,12 +49,191 @@
                 </div>
                 <section class="section">
                     <div class="card">
-
                         <div class="card-header">
-                            Item List Information
-                                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                        <a href="#" class="btn btn-primary">Add New Data</a>
-                                </nav>
+                            Simple Datatable
+
+                            <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
+                                data-bs-target="#border-add">
+                                Launch Modal
+                            </button>
+                                <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
+                                    role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Add new data</h5>
+                                                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form data-target="#border-added" method="post">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="no">No:</label>
+                                                                <input type="integer" class="form-control" name="no" id="No" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="status">Status:</label>
+                                                                <input type="varchar" class="form-control" name="status" id="Status" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="p1">P1:</label>
+                                                                <input type="varchar" class="form-control" name="p1" id="P1" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="p2">P2:</label>
+                                                                <input type="varchar" class="form-control" name="p2" id=P2 placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="p3">P3:</label>
+                                                                <input type="varchar" class="form-control" name="p3" id="P3" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="stock">Stock:</label>
+                                                                <input type="varchar" class="form-control" name="stock" id="Stock" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-6">
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="location">Location:</label>
+                                                                <input type="varchar" class="form-control" name="location" id="Location" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="sake_brewer">Sake Brewer:</label>
+                                                                <input type="varchar" class="form-control" name="sake_brewer" id="Sake_brewer" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="name">Name:</label>
+                                                                <input type="varchar" class="form-control" name="name" id="Name" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="volume">Volume:</label>
+                                                                <input type="varchar" class="form-control" name="volume" id="Volume" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="unit">Unit:</label>
+                                                                <input type="varchar" class="form-control" name="unit" id="Unit" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="modal-footer">
+                                                        <form data-target="#border-added" method="post">
+                                                            <input type="submit" class="btn-check" value="Submit" id='submit'>
+                                                            <label class="btn btn-light-primary" for="submit">Submit</label>
+                                                        </form>
+                                                        <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal">
+                                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                                            <span class="d-none d-sm-block">Close</span>
+                                                        </button>
+                                                    </div>
+                                                    
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="modal fade text-left modal-borderless" id="border-added" tabindex="-1"
+                                role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Add new data</h5>
+                                            <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i data-feather="x"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="card-body">
+                                                <tbody>
+                                                    <center>
+                                                        <?php
+                                                            
+                                                            $conn = mysqli_connect("localhost", "root", "root", "db");
+                                                            
+                                                            // Check connection
+                                                            if($conn === false){
+                                                                die("ERROR: Could not connect. " 
+                                                                    . mysqli_connect_error());
+                                                            }
+                                                            
+                                                            $no =  $_REQUEST['no'];
+                                                            $status =  $_REQUEST['status'];
+                                                            $p1 = $_REQUEST['p1'];
+                                                            $p2 = $_REQUEST['p2'];
+                                                            $p3 = $_REQUEST['p3'];
+                                                            $stock = $_REQUEST['stock'];
+                                                            $location = $_REQUEST['location'];
+                                                            $sake_brewer = $_REQUEST['sake_brewer'];
+                                                            $name = $_REQUEST['name'];
+                                                            $volume = $_REQUEST['volume'];
+                                                            $unit = $_REQUEST['unit'];
+                                                            
+                                                            // Performing insert query execution
+                                                            $sql = "INSERT INTO product  VALUES ('$no'
+                                                                ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer', 
+                                                                '$name','$volume','$unit')";
+                                                            
+                                                            if(mysqli_query($conn, $sql)){
+                                                                echo "<h3>Data stored in a database successfully." 
+                                                                . " Please browse your localhost" 
+                                                                . " to view the updated data</h3>"; 
+                                                                
+                                                                echo nl2br("No : $no\n"
+                                                                    . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
+                                                            } else{
+                                                                // echo "ERROR : Invalid input $sql. "
+                                                                // . mysqli_error($conn);
+                                                                echo "ERROR : Invalid input. " 
+                                                                . mysqli_error($conn);
+                                                            }
+                                                            mysqli_close($conn);
+                                                        ?>
+                                                        <div>
+                                                            <div class="card-body">
+                                                            </div>
+                                                            
+                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew" 
+                                                                onClick="document.location.href='addnew'" />
+                                                            <label class="btn btn-outline-success" for="addnew">Add another data</label>
+                                                            
+                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn" 
+                                                                onClick="document.location.href='dashboard'" />
+                                                            <label class="btn btn-outline-danger" for="mainn">Back to database</label>
+                                                        </div>
+                                                    </center>
+                                                </tbody>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="card-body">
