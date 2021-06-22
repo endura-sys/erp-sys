@@ -73,71 +73,43 @@
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="no">No:</label>
-                                                                <input type="integer" class="form-control" name="no" id="No" placeholder="">
+                                                                <label for="supplier_id">Supplier id:</label>
+                                                                <input type="integer" class="form-control" name="supplier_id" id="Supplier_id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="status">Status:</label>
-                                                                <input type="varchar" class="form-control" name="status" id="Status" placeholder="">
+                                                                <label for="product_id">Product id:</label>
+                                                                <input type="varchar" class="form-control" name="product_id" id="Product_id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="p1">P1:</label>
-                                                                <input type="varchar" class="form-control" name="p1" id="P1" placeholder="">
+                                                                <label for="supplier_name">Supplier name:</label>
+                                                                <input type="varchar" class="form-control" name="supplier_name" id="Supplier_name" placeholder="">
                                                             </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="p2">P2:</label>
-                                                                <input type="varchar" class="form-control" name="p2" id=P2 placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="p3">P3:</label>
-                                                                <input type="varchar" class="form-control" name="p3" id="P3" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="stock">Stock:</label>
-                                                                <input type="varchar" class="form-control" name="stock" id="Stock" placeholder="">
-                                                            </div>
+
                                                         </div>
                                                         
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="location">Location:</label>
-                                                                <input type="varchar" class="form-control" name="location" id="Location" placeholder="">
+                                                                <label for="supplier_phone">Supplier phone:</label>
+                                                                <input type="varchar" class="form-control" name="supplier_phone" id="Supplier_phone" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="sake_brewer">Sake Brewer:</label>
-                                                                <input type="varchar" class="form-control" name="sake_brewer" id="Sake_brewer" placeholder="">
+                                                                <label for="supplier_email">Supplier email:</label>
+                                                                <input type="varchar" class="form-control" name="supplier_email" id="Supplier_email" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="name">Name:</label>
-                                                                <input type="varchar" class="form-control" name="name" id="Name" placeholder="">
+                                                                <label for="supplier_address">Supplier address:</label>
+                                                                <input type="varchar" class="form-control" name="supplier_address" id="Supplier_address" placeholder="">
                                                             </div>
                                                             
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="volume">Volume:</label>
-                                                                <input type="varchar" class="form-control" name="volume" id="Volume" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="unit">Unit:</label>
-                                                                <input type="varchar" class="form-control" name="unit" id="Unit" placeholder="">
-                                                            </div>
                                                         </div>
                                                     </div>
                                                     
@@ -182,22 +154,16 @@
                                                                     . mysqli_connect_error());
                                                             }
                                                             
-                                                            $no =  $_REQUEST['no'];
-                                                            $status =  $_REQUEST['status'];
-                                                            $p1 = $_REQUEST['p1'];
-                                                            $p2 = $_REQUEST['p2'];
-                                                            $p3 = $_REQUEST['p3'];
-                                                            $stock = $_REQUEST['stock'];
-                                                            $location = $_REQUEST['location'];
-                                                            $sake_brewer = $_REQUEST['sake_brewer'];
-                                                            $name = $_REQUEST['name'];
-                                                            $volume = $_REQUEST['volume'];
-                                                            $unit = $_REQUEST['unit'];
+                                                            $supplier_id =  $_REQUEST['supplier_id'];
+                                                            $product_id =  $_REQUEST['product_id'];
+                                                            $supplier_name = $_REQUEST['supplier_name'];
+                                                            $supplier_phone = $_REQUEST['supplier_phone'];
+                                                            $supplier_email = $_REQUEST['supplier_email'];
+                                                            $supplier_address = $_REQUEST['supplier_address'];
                                                             
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO product  VALUES ('$no'
-                                                                ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer', 
-                                                                '$name','$volume','$unit')";
+                                                            $sql = "INSERT INTO supplier  VALUES ('$supplier_id'
+                                                                ,'$product_id','$supplier_name','$supplier_phone','$supplier_email','$supplier_address')";
                                                             
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully." 
