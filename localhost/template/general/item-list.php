@@ -54,7 +54,7 @@
 
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
                                 data-bs-target="#border-add">
-                                Launch Modal
+                                Add new data
                             </button>
                                 <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
                                     role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">

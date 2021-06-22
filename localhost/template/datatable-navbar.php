@@ -27,9 +27,7 @@
                 <li class="submenu-item <?php if ($currentPage == 'customer-list') {echo "active";} ?>">
                     <a href="customer-list">Customer list</a>
                 </li>
-                <li class="submenu-item ">
-                <a href="addnew">Add new data</a>
-                </li>
+
             </ul>
             
         </li>
