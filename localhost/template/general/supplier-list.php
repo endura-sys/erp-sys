@@ -1,5 +1,5 @@
 <?php include('../header.php'); ?>
-<?php $currentPage = 'item-list'; ?>
+<?php $currentPage = 'supplier-list'; ?>
 
 <body>
     <div id="app">
