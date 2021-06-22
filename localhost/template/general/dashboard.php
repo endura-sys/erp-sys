@@ -176,7 +176,7 @@
                                     <!-- Card Body -->
                                     <div class="card-body">
                                         <div class="chart-area">
-                                        <iframe width="600" height="475" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTl3XiKTtaUkV6M-awGPFq6ogoLjoLtaLjZ7_UPp_EKwjhH8eeqkuerDMtgkLytHK0hTRmoetcSTUB7/pubchart?oid=943475450&amp;format=interactive"></iframe>
+                                        <p align = "center"><iframe width="600" height="475" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTl3XiKTtaUkV6M-awGPFq6ogoLjoLtaLjZ7_UPp_EKwjhH8eeqkuerDMtgkLytHK0hTRmoetcSTUB7/pubchart?oid=943475450&amp;format=interactive"></iframe></p>
                                         </div>
                                     </div>
                                         </div>
