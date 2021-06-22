@@ -99,9 +99,9 @@
                                                 <td><?php echo $row["phone"]; ?></td>
                                                 <td><?php echo $row["username"]; ?></td>
                                                 <td><?php echo $row["password"]; ?></td>
-                                                <td><a class="btn btn-primary btn-sm shadow-lg" href="user-update?id=<?php echo $row["id"]?>" >Update</a>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="user-update?id=<?php echo $row["id"]?>" >Update</a>
 
-														<button type="button" class="btn btn-danger btn-sm shadow-lg" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["id"]?>">
+														<button type="button" class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["id"]?>">
 															Delete
 														</button>
 														<div class="modal fade" id="confirmModal<?php echo $row["id"]?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -128,17 +128,17 @@
 																		<?php
 																			if (isset($_POST["deletebtn"])) {
 																				$id = $_POST["id"];
-	
+
 																				$sql = "DELETE FROM users where id = '$id'";
 																				$result = $conn->query($sql);
-																				
+
 																				$message = "User Deleted Successfully";
 
 																				header("location: user-management");
 																			}
 																		?>
 
-																		
+
 																	</div>
 																</div>
 															</div>
