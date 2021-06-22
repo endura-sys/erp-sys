@@ -52,6 +52,9 @@
 
                         <div class="card-header">
                             Simple Datatable
+                                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                        <a href="#" class="btn btn-primary">Add New Data</a>
+                                </nav>
                         </div>
 
                         <div class="card-body">
@@ -126,4 +129,3 @@
 
 </body>
 
-</html>

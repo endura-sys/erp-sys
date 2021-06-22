@@ -212,7 +212,7 @@
                                             </tr>
                                         </thead>
                                         
-                                        <tbody>
+                                    </table>
                                 </div>
                                 <!-- Connect to the database -->
                         </div>
