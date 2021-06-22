@@ -58,9 +58,14 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>お客様の番号</th>
-                                        <th>名前</th>
-                                        <th>住所</th>
+                                        <th>顧客編號</th>
+                                        <th>姓名</th>
+                                        <th>姓別</th>
+                                        <th>聯絡電話</th>
+                                        <th>聯絡電郵</th>
+                                        <th>聯絡地址</th>
+                                        <th>會員績分</th>
+                                        <th>上次消費日期</th>
                                     </tr>
                                 </thead>
                                 
@@ -71,7 +76,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT id, name, address FROM customer";
+                                        $sql = "SELECT `customer_id``name``gender``contact_no.``contact_email``address``member_point``date_of_last_purchasing` FROM customer";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -82,7 +87,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["id"] ."</td><td>" .$row["name"] ."</td><td>" .$row["address"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["customer_id"] ."</td><td>" .$row["name"] ."</td><td>" .$row["gender"] ."</td><td>" .$row["contact_no."] ."</td><td>" .$row["contact_email"] . "</td><td>" .$row["address"] ."</td><td>" .$row["member_point"] ."</td><td>" .$row["date_of_last_purchasing"]. "</td>";
                                             }
                                         } else {
                                             echo "0 results";

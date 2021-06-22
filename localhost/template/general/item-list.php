@@ -240,7 +240,7 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>NO</th>
+                                        <th>商品編號</th>
                                         <th>商品名稱</th>
                                         <th>現況</th>
                                         <th>P1</th>

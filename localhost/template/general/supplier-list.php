@@ -206,12 +206,12 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>supplier_id</th>
-                                        <th>product_id</th>
-                                        <th>supplier_name</th>
-                                        <th>supplier_phone</th>
-                                        <th>supplier_email</th>
-                                        <th>supplier_address</th>
+                                        <th>供應商編號</th>
+                                        <th>商品編號</th>
+                                        <th>供應商姓名</th>
+                                        <th>聯絡電話</th>
+                                        <th>聯絡電郵</th>
+                                        <th>聯絡地址</th>
                                     </tr>
                                 </thead>
                                 
