@@ -20,11 +20,11 @@
                 </div>
 
                 <?php include('../datatable-navbar.php'); ?>
-                
+
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
-		
+
 		<div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
@@ -41,7 +41,7 @@
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<div class="buttons d-flex justify-content-end h-70">
-							<a href="user-management.php" class="btn btn-primary">Back</a>
+							<a href="user-management" class="btn btn-primary">Back</a>
 						</div>
 					</div>
 				</div>

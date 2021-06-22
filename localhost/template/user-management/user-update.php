@@ -2,13 +2,58 @@
 <?php
 include '../../database.php';
 $conn = OpenCon();
-if(count($_POST)>0) {
-  mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', position='" . $_POST['position'] . "' , email='" . $_POST['email'] . "' , username='" . $_POST['username'] . "' , password='" . $_POST['password'] . "' WHERE id='" . $_POST['id'] . "'");
-  //mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', last_name='" . $_POST['last_name'] . "', city_name='" . $_POST['city_name'] . "' ,email='" . $_POST['email'] . "' WHERE id='" . $_POST['userid'] . "'");
-  $message = "Record Modified Successfully";
+
+
+$username = "";
+$fullname = "";
+$position = "";
+$email = "";
+$phone = "";
+$user = "";
+$errors = array();
+if (isset($_POST['updatebtn'])) {
+    $fullname = $_POST["full_name"];
+    $position = $_POST["position"];
+    $email = $_POST["email"];
+    $phone = $_POST["phone"];
+    $user = $_POST["username"];
+    $pw = $_POST["password"];
+    $pw2 = $_POST["confirmpassword"];
+
+
+    if (empty($fullname)) { array_push($errors, "Full Name is required."); }
+    if (empty($position)) { array_push($errors, "Job Position is required."); }
+    if (empty($email)) { array_push($errors, "Email is required."); }
+    if (empty($phone)) { array_push($errors, "Phone is required."); }
+    if (empty($user)) { array_push($errors, "Username is required."); }
+    if (empty($pw)) { array_push($errors, "Password is required."); }
+    if (empty($pw2)) { array_push($errors, "Please enter password again."); }
+    else if ($pw != $pw2) { array_push($errors, "Passwords do not match."); }
+
+    $sql_check = "SELECT * from users where username = '$user'";
+    $result_check = $conn->query($sql_check);
+    $num_check = mysqli_num_rows($result_check);
+
+    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE id='" . $_GET['id'] . "'");
+    $row2= mysqli_fetch_array($result2);
+
+    if($row2['username']!=$user){
+      if ($num_check > 0) {
+        array_push($errors, "Username already exists. Please create a new username.");
+      }
+    }
+    if (count($errors) == 0) {
+      if(count($_POST)>0) {
+        mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', position='" . $_POST['position'] . "' , email='" . $_POST['email'] . "' , username='" . $_POST['username'] . "' , password='" . $_POST['password'] . "' WHERE id='" . $_POST['id'] . "'");
+        //mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', last_name='" . $_POST['last_name'] . "', city_name='" . $_POST['city_name'] . "' ,email='" . $_POST['email'] . "' WHERE id='" . $_POST['userid'] . "'");
+        $message = "Record Modified Successfully";
+      }
+    }
+
 }
 $result = mysqli_query($conn,"SELECT * FROM users WHERE id='" . $_GET['id'] . "'");
 $row= mysqli_fetch_array($result);
+
 ?>
 
 <body>
@@ -49,7 +94,7 @@ $row= mysqli_fetch_array($result);
                   </div>
                   <div class="col-12 col-md-6 order-md-2 order-first">
                     <div class="buttons d-flex justify-content-end h-70">
-                      <a href="user-management.php" class="btn btn-primary">Back</a>
+                      <a href="user-management" class="btn btn-primary">Back</a>
                     </div>
                   </div>
                 </div>
@@ -147,7 +192,7 @@ $row= mysqli_fetch_array($result);
                               </div>
                             </div>
                             <div class="col-sm-12 d-flex justify-content-end">
-                              <button type="submit" type="Submit" class="btn btn-primary me-1 mb-1" name="submit">Update</button>
+                              <button type="submit" type="Submit" class="btn btn-primary me-1 mb-1" name="updatebtn">Update</button>
                               <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                             </div>
                           </div>
