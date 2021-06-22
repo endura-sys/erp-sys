@@ -144,9 +144,9 @@
                                                     <div class="modal-footer">
                                                         <form data-target="#border-added" method="post">
                                                             <input type="submit" class="btn-check" value="Submit" id='submit'>
-                                                            <label class="btn btn-light-primary" for="submit">Submit</label>
+                                                            <label class="btn btn-primary" for="submit">Submit</label>
                                                         </form>
-                                                        <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal">
+                                                        <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
                                                             <i class="bx bx-check d-block d-sm-none"></i>
                                                             <span class="d-none d-sm-block">Close</span>
                                                         </button>
