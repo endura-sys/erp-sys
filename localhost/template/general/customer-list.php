@@ -87,7 +87,10 @@
                                                             
                                                             <div class="form-group">
                                                                 <label for="gender">Gender:</label>
-                                                                <input type="varchar" class="form-control" name="gender" id="Gender" placeholder="">
+                                                               <div> <select name="gender" id="Gender" >
+                                                                <option value="male">male</option>
+                                                                <option value="female">female</option>
+                                                                </select></div>
                                                             </div>
 
                                                             <div class="form-group">
