@@ -118,8 +118,8 @@
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="inbound_way">Inbound tool:</label>
-                                                                <input type="varchar" class="form-control" name="inbound_way" id="Inbound tool" placeholder="">
+                                                                <label for="inbound_way">Shipping way:</label>
+                                                                <input type="varchar" class="form-control" name="inbound_way" id="Shipping way" placeholder="">
                                                             </div>
                                                             
                                                             
@@ -192,7 +192,7 @@
                                                                 . " to view the updated data</h3>"; 
                                                                 
                                                                 echo nl2br("Purchasing id : $purchasing_id\n"
-                                                                    . "Product id : $product_id\nQuantity : $quantity\nAccount payable : $account_payable\n Employee id : $employee_id\nInbound date : $inbound_date\nShelf date : $shelf_date\n  Inbound tool : $inbound_way\nShipping cost : $inbound_cost\n");
+                                                                    . "Product id : $product_id\nQuantity : $quantity\nAccount payable : $account_payable\n Employee id : $employee_id\nInbound date : $inbound_date\nShelf date : $shelf_date\nShipping way : $inbound_way\nShipping cost : $inbound_cost\n");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
@@ -234,7 +234,7 @@
                                         <th>負責人編號</th>
                                         <th>入庫日期</th>
                                         <th>保質期限</th>
-                                        <th>入庫方式</th>
+                                        <th>運輸途徑</th>
                                         <th>運輸成本</th>
                                     </tr>
                                 </thead>
