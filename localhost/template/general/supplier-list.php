@@ -225,7 +225,7 @@
                                         $sql = "SELECT supplier_id, product_id, supplier_name, supplier_phone, supplier_email, supplier_address FROM supplier";
                                         $result = $conn->query($sql);
 
-                                        $product_list = array();
+                                        $supplier_list = array();
 
                                         if ($result->num_rows > 0) {
                                             // output data of each row
@@ -238,7 +238,7 @@
                                         } else {
                                             echo "0 results";
                                         }
-                                        echo $product_list[0][1];
+                                        echo $supplier_list[0][1];
                                         CloseCon($conn);
                                     ?>
 

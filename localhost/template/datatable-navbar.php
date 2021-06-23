@@ -50,18 +50,19 @@
         </li>
 
         <!-- Inventory inquiry -->
-        <li class="sidebar-item has-sub">
+   <li class="sidebar-item has-sub <?php if ($currentPage == 'inbound-list' || $currentPage == 'outbound-list') {echo "active";} else  {echo "noactive";}?>">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Inventory inquiry</span>
             </a>
 
-            <ul class="submenu">
-                <li class="submenu-item ">
-                    <a href="">Warehousing list</a>
+            <ul class="submenu <?php if ($currentPage == 'inbound-list' || $currentPage == 'outbound-list') {echo "active";} else  {echo "noactive";}?>">
+
+            <li class="submenu-item <?php if ($currentPage == 'inbound-list') {echo "active";} ?>">
+                    <a href="inbound-list">Warehousing list</a>
                 </li>
-                <li class="submenu-item ">
-                    <a href="">Outbound list</a>
+                <li class="submenu-item <?php if ($currentPage == 'outbound-list') {echo "active";} ?>">
+                    <a href="outbound-list">Outbound list</a>
                 </li>
             </ul>
         </li>
