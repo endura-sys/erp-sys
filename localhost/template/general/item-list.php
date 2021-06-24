@@ -92,7 +92,7 @@
                                                             
                                                             <div class="form-group">
                                                                 <label for="p2">P2:</label>
-                                                                <input type="varchar" class="form-control" name="p2" id=P2 placeholder="">
+                                                                <input type="varchar" class="form-control" name="p2" id="P2" placeholder="">
                                                             </div>
                                                             
                                                             
