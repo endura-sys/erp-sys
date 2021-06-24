@@ -64,7 +64,7 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>id</th>
+                                        <th>№</th>
                                         <th>full name</th>
                                         <th>position</th>
                                         <th>email</th>
@@ -89,10 +89,11 @@
 
                                         if ($result->num_rows > 0) {
                                             // output data of each row
+                                            $i=1;
                                             while($row = $result->fetch_assoc()) {
                                     ?>
                                               <tr>
-                                                <td><?php echo $row["id"]; ?></td>
+                                                <td><?php echo $i; $i++; ?></td>
                                                 <td><?php echo $row["full_name"]; ?></td>
                                                 <td><?php echo $row["position"]; ?></td>
                                                 <td><?php echo $row["email"]; ?></td>

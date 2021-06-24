@@ -1,5 +1,19 @@
-<?php include('../header.php'); ?>
-<?php include ('userserver.php') ?>
+<?php include('../header.php');
+      include ('userserver.php');
+      include "database.php";
+      $conn0=OpenCon();
+      $sql0 = "SELECT position FROM job_position";
+      $result0 = $conn0->query($sql0);
+      $position_list = array();
+      $i=0;
+      while($row0 = $result0->fetch_assoc()){
+        $position_list[$i]=$row0['position'];
+        $i++;
+      }
+      $arrlength = count($position_list);
+      CloseCon($conn0);
+
+      ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +85,18 @@
 										</div>
 										<div class="col-md-8">
 											<div class="form-group position-relative has-icon-left mb-4">
-												<input type="text" class="form-control form-control-xl" name="position" placeholder="Job Position" value=<?php echo $position; ?>>
+												<!-- <input type="text" class="form-control form-control-xl" name="position" placeholder="Job Position" value=<?php echo $position; ?>> -->
+                        <select name="position" class="form-control form-control-xl" >
+                          <option value="">Select Position
+                          <?php
+                          for($x = 0; $x < $arrlength; $x++) {
+                          ?>
+                            <option value="<?php echo $position_list[$x]?>"><?php echo $position_list[$x];?></option>
+                          <?php
+                          }
+                          ?>
+                        </select>
+
 												<div class="form-control-icon">
 													<i class="bi bi-briefcase"></i>
 												</div>

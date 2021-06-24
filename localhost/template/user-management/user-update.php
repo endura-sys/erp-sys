@@ -20,7 +20,6 @@ if (isset($_POST['updatebtn'])) {
     $pw = $_POST["password"];
     $pw2 = $_POST["confirmpassword"];
 
-
     if (empty($fullname)) { array_push($errors, "Full Name is required."); }
     if (empty($position)) { array_push($errors, "Job Position is required."); }
     if (empty($email)) { array_push($errors, "Email is required."); }
@@ -42,6 +41,7 @@ if (isset($_POST['updatebtn'])) {
         array_push($errors, "Username already exists. Please create a new username.");
       }
     }
+
     if (count($errors) == 0) {
       if(count($_POST)>0) {
         mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', position='" . $_POST['position'] . "' , email='" . $_POST['email'] . "' , username='" . $_POST['username'] . "' , password='" . $_POST['password'] . "' WHERE id='" . $_POST['id'] . "'");
@@ -130,7 +130,22 @@ $row= mysqli_fetch_array($result);
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position']?>">
+                                <!-- <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position']?>"> -->
+                                <select name="position" class="form-control form-control-xl" placeholder="Select Position">
+                                  <option value="<?php echo $row['position']?>"><?php echo $row['position']?></option>
+                                  <?php $sql0 = "SELECT Position FROM job_position";
+                                        $result0 = $conn->query($sql0);
+
+                                        $product_list0 = array();
+                                        while($row0 = $result0->fetch_assoc()) {
+                                          if($row['position']!=$row0['Position']){
+                                  ?>
+                                          <option value="<?php echo $row0['Position']?>"><?php echo $row0['Position']?></option>
+                                  <?php
+                                          }
+                                        }
+                                  ?>
+                                </select>
                                 <div class="form-control-icon">
                                   <i class="bi bi-briefcase"></i>
                                 </div>

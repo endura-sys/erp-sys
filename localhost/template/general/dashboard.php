@@ -49,18 +49,8 @@
                 <div class="col-12 col-md-6 order-md-1 order-last">
                     <!-- logged in user information -->
                     <?php  if (isset($_SESSION['username'])) : ?>
-                      <h2>Welcome <strong><?php
-                      include '../../database.php';
-                      $conn = OpenCon();
-                      $u=$_SESSION['username'];
-                      $query = "SELECT full_name FROM users where username='$u'";
-                      if ($result = mysqli_query($conn, $query)) {
-                        $obj=$result-> fetch_object();
-                        echo $obj->full_name;
-                      }
-                      CloseCon($conn);
-                      ?></strong></h2>
-                      <?php else: ?>
+                      <h2>Welcome <strong><?php echo $_SESSION['username'];?></strong></h2>
+                    <?php else: ?>
                       <!-- <h3>You need Log In</h3> -->
                     <?php endif ?>
                 </div>
