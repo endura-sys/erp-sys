@@ -12,6 +12,7 @@ RewriteRule ^supplier-list /template/general/supplier-list.php [L,QSA,NC]
 RewriteRule ^customer-list /template/general/customer-list.php [L,QSA,NC]
 RewriteRule ^inbound-list /template/general/inbound-list.php [L,QSA,NC]
 RewriteRule ^outbound-list /template/general/outbound-list.php [L,QSA,NC]
+RewriteRule ^purchase-list /template/general/purchase-list.php [L,QSA,NC]
 
 RewriteRule ^login /template/auth/login.php [L,QSA,NC]
 RewriteRule ^register /template/auth/register.php [L,QSA,NC]

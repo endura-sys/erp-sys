@@ -68,18 +68,15 @@
         </li>
 
         <!-- Purchase -->
-        <li class="sidebar-item has-sub">
+        <li class="sidebar-item has-sub <?php if ($currentPage == 'purchase-list') {echo "active";} else  {echo "noactive";}?>">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Purchase</span>
             </a>
 
-            <ul class="submenu">
-                <li class="submenu-item ">
-                    <a href="">Purchase schedule</a>
-                </li>
-                <li class="submenu-item ">
-                    <a href="">New purchase order</a>
+            <ul class="submenu <?php if ($currentPage == 'purchase-list') {echo "active";} else  {echo "noactive";}?>">
+                <li class="submenu-item <?php if ($currentPage == 'purchase-list') {echo "active";} ?>">
+                <a href="purchase-list">Purchase schedule</a>
                 </li>
             </ul>
         </li>
