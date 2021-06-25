@@ -1,5 +1,5 @@
 <?php include('../header.php'); ?>
-<?php $currentPage = 'item-list'; ?>
+<?php $currentPage = 'branch'; ?>
 
 <body>
     <div id="app">
@@ -73,72 +73,30 @@
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="no">No:</label>
-                                                                <input type="integer" class="form-control" name="no" id="No" placeholder="">
+                                                                <label for="branch_id">Branch id:</label>
+                                                                <input type="integer" class="form-control" name="branch_id" id="Bracnch id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="status">Status:</label>
-                                                                <input type="varchar" class="form-control" name="status" id="Status" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="p1">P1:</label>
-                                                                <input type="varchar" class="form-control" name="p1" id="P1" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="p2">P2:</label>
-                                                                <input type="varchar" class="form-control" name="p2" id="P2" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="p3">P3:</label>
-                                                                <input type="varchar" class="form-control" name="p3" id="P3" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="stock">Stock:</label>
-                                                                <input type="varchar" class="form-control" name="stock" id="Stock" placeholder="">
+                                                                <label for="employee_id">Employee id:</label>
+                                                                <input type="integer" class="form-control" name="employee_id" id="Employee id" placeholder="">
                                                             </div>
                                                         </div>
                                                         
                                                         <div class="col-md-6">
                                                             
-                                                            <div class="form-group">
-                                                                <label for="location">Location:</label>
-                                                                <input type="varchar" class="form-control" name="location" id="Location" placeholder="">
+                                                                                                                        
+                                                        <div class="form-group">
+                                                                <label for="date_of_start">Starting time:</label>
+                                                                <input type="time" class="form-control" name="date_of_start" id="Starting time" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="sake_brewer">Sake Brewer:</label>
-                                                                <input type="varchar" class="form-control" name="sake_brewer" id="Sake_brewer" placeholder="">
+                                                                <label for="date_of_end">Ending time:</label>
+                                                                <input type="time" class="form-control" name="date_of_end" id="Ending time" placeholder="">
                                                             </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="name">Name:</label>
-                                                                <input type="varchar" class="form-control" name="name" id="Name" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="volume">Volume:</label>
-                                                                <input type="varchar" class="form-control" name="volume" id="Volume" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="unit">Unit:</label>
-                                                                <input type="varchar" class="form-control" name="unit" id="Unit" placeholder="">
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     
                                                     <div class="modal-footer">
@@ -182,30 +140,22 @@
                                                                     . mysqli_connect_error());
                                                             }
                                                             
-                                                            $no =  $_REQUEST['no'];
-                                                            $status =  $_REQUEST['status'];
-                                                            $p1 = $_REQUEST['p1'];
-                                                            $p2 = $_REQUEST['p2'];
-                                                            $p3 = $_REQUEST['p3'];
-                                                            $stock = $_REQUEST['stock'];
-                                                            $location = $_REQUEST['location'];
-                                                            $sake_brewer = $_REQUEST['sake_brewer'];
-                                                            $name = $_REQUEST['name'];
-                                                            $volume = $_REQUEST['volume'];
-                                                            $unit = $_REQUEST['unit'];
+                                                            $branch_id =  $_REQUEST['branch_id'];
+                                                            $employee_id =  $_REQUEST['employee_id'];
+                                                            $date_of_start = $_REQUEST['date_of_start'];
+                                                            $date_of_end = $_REQUEST['date_of_end'];
                                                             
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO product  VALUES ('$no'
-                                                                ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer', 
-                                                                '$name','$volume','$unit')";
+                                                            $sql = "INSERT INTO branch  VALUES ('$branch_id'
+                                                                ,'$employee_id','$date_of_start','$date_of_end')";
                                                             
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully." 
                                                                 . " Please browse your localhost" 
                                                                 . " to view the updated data</h3>"; 
                                                                 
-                                                                echo nl2br("No : $no\n"
-                                                                    . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
+                                                                echo nl2br("Branch id : $branch_id\n"
+                                                                    . "Employee id : $employee_id\nEnding time : $date_of_start\nStarting time : $date_of_end\n");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
@@ -240,17 +190,10 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>商品編號</th>
-                                        <th>商品名稱</th>
-                                        <th>現況</th>
-                                        <th>P1</th>
-                                        <th>P2</th>
-                                        <th>P3</th>
-                                        <th>數量</th>
-                                        <th>地域</th>
-                                        <th>蔵元</th>
-                                        <th>容量</th>
-                                        <th>單位</th>
+                                        <th>櫃位編號</th>
+                                        <th>值班人員編號</th>
+                                        <th>上崗時間</th>
+                                        <th>下崗時間</th>
                                     </tr>
                                 </thead>
                                 
@@ -261,7 +204,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM product";
+                                        $sql = "SELECT branch_id, employee_id, time_of_start, time_of_end FROM branch";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -272,7 +215,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["no"] ."</td><td>" .$row["name"] ."</td><td>" .$row["status"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"] ."</td><td>" .$row["stock"] ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] ."</td><td>".$row["unit"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["branch_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" .$row["time_of_start"] ."</td><td>" . $row["time_of_end"] ."</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
