@@ -187,30 +187,32 @@
                                                                     . mysqli_connect_error());
                                                             }
                                                             
-                                                            $no =  $_REQUEST['no'];
-                                                            $status =  $_REQUEST['status'];
-                                                            $p1 = $_REQUEST['p1'];
-                                                            $p2 = $_REQUEST['p2'];
-                                                            $p3 = $_REQUEST['p3'];
-                                                            $stock = $_REQUEST['stock'];
-                                                            $location = $_REQUEST['location'];
-                                                            $sake_brewer = $_REQUEST['sake_brewer'];
-                                                            $name = $_REQUEST['name'];
-                                                            $volume = $_REQUEST['volume'];
-                                                            $unit = $_REQUEST['unit'];
+                                                            $sale_id =  $_REQUEST['sale_id'];
+                                                            $customer_id =  $_REQUEST['customer_id'];
+                                                            $employee_id = $_REQUEST['employee_id'];
+                                                            $product_id = $_REQUEST['product_id'];
+                                                            $branch_id = $_REQUEST['branch_id'];
+                                                            $quantity = $_REQUEST['quantity'];
+                                                            $discount = $_REQUEST['discount'];
+                                                            $promotion_scheme = $_REQUEST['promotion_scheme'];
+                                                            $account_receive = $_REQUEST['account_receive'];
+                                                            $sale_date = $_REQUEST['sale_date'];
+                                                            $sale_time = $_REQUEST['sale_time'];
+                                                            $payment_method = $_REQUEST['payment_method'];
                                                             
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO product  VALUES ('$no'
-                                                                ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer', 
-                                                                '$name','$volume','$unit')";
+                                                            $sql = "INSERT INTO product  VALUES ('$sale_id'
+                                                                ,'$customer_id','$employee_id','$product_id','$branch_id','$quantity',
+                                                                '$discount','$promotion_scheme, 
+                                                                '$account_receive','$sale_date','$sale_time','$payment_method')";
                                                             
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully." 
                                                                 . " Please browse your localhost" 
                                                                 . " to view the updated data</h3>"; 
                                                                 
-                                                                echo nl2br("No : $no\n"
-                                                                    . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
+                                                                echo nl2br("Sale ID : $sale_id\n"
+                                                                    . "Status : $customer_id\nP1 : $employee_id\nP2 : $product_id\nP3 : $branch_id\nStatus : $quantity\nLocation : $discount\nSake brewer : $promotion_scheme\nName : $account_receive\nVolume : $sale_date\nUnit : $sale_time\nUnit : $payment_method");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
