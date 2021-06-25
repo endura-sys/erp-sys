@@ -82,18 +82,15 @@
         </li>
 
         <!-- Sales -->
-        <li class="sidebar-item has-sub">
+        <li class="sidebar-item has-sub <?php if ($currentPage == 'sales') {echo "active";} else  {echo "noactive";}?>">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Sales</span>
             </a>
 
-            <ul class="submenu">
-                <li class="submenu-item <?php if ($currentPage == 'sales') {echo "active";} ?>">
-                    <a href="sales">Items list</a>
-                </li>
-                <li class="submenu-item ">
-                    <a href="">New sales order</a>
+            <ul class="submenu <?php if ($currentPage == 'sales') {echo "active";} else  {echo "noactive";}?>">
+                <li class="submenu-item <?php if ($currentPage == 'sales') {echo "active";} else {echo "noactive";} ?>">
+                <a href="sales">sales record</a>
                 </li>
             </ul>
         </li>
