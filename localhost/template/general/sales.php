@@ -92,19 +92,19 @@
                                                             
                                                             <div class="form-group">
                                                                 <label for="product_id">Product ID:</label>
-                                                                <input type="varchar" class="form-control" name="product_id" id=Product_id placeholder="">
+                                                                <input type="integer" class="form-control" name="product_id" id=Product_id placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
                                                                 <label for="branch_id">Branch ID:</label>
-                                                                <input type="varchar" class="form-control" name="branch_id" id="Branch_id" placeholder="">
+                                                                <input type="integer" class="form-control" name="branch_id" id="Branch_id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
                                                                 <label for="quantity">Quantity:</label>
-                                                                <input type="varchar" class="form-control" name="quantity" id="Quantity" placeholder="">
+                                                                <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
                                                             </div>
                                                         </div>
                                                         
@@ -124,7 +124,7 @@
                                                             
                                                             <div class="form-group">
                                                                 <label for="account_receive">Account receive:</label>
-                                                                <input type="varchar" class="form-control" name="account_receive" id="Account_receive" placeholder="">
+                                                                <input type="integer" class="form-control" name="account_receive" id="Account_receive" placeholder="">
                                                             </div>
                                                             
                                                             
@@ -201,7 +201,7 @@
                                                             $payment_method = $_REQUEST['payment_method'];
                                                             
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO product  VALUES ('$sale_id'
+                                                            $sql = "INSERT INTO sales  VALUES ('$sale_id'
                                                                 ,'$customer_id','$employee_id','$product_id','$branch_id','$quantity',
                                                                 '$discount','$promotion_scheme, 
                                                                 '$account_receive','$sale_date','$sale_time','$payment_method')";
