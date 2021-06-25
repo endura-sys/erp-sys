@@ -123,15 +123,26 @@
 
             <ul class="submenu">
                 <li class="submenu-item ">
-                    <a href="">Outbound schedule</a>
+                    <a href="outbound">Outbound schedule</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="">New outbound order</a>
                 </li>
             </ul>
         </li>
+        
+
+        <!-- User management -->
+        <li class="sidebar-item <?php if ($currentPage == 'user-management') {echo "active";} else  {echo "noactive";}?>">
+            <a href="user-management" class='sidebar-link'>
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                <span>User management</span>
+            </a>
+        </li>
+
         <li class="sidebar-item  ">
          <a class="btn btn-outline-danger btn-block"href="login">Log Out</a>
         </li>
+
     </ul>
 </div>

@@ -3,67 +3,63 @@ session_start();
 
 // initializing variables
 $username = "";
-$email    = "";
+$fullname = "";
+$position = "";
+$email = "";
+$phone = "";
+$user = "";
 $errors = array();
-$random = "Aizhigit";
 
 // connect to the database
-$db = mysqli_connect('localhost', 'root', 'root', 'db');
+include '../../database.php';
+$conn = OpenCon();
+
+if (isset($_POST["submitbtn"])) {
 
 
-// REGISTER USER
-if (isset($_POST['reg_user'])) {
-  // receive all input values from the form
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $email = mysqli_real_escape_string($db, $_POST['email']);
-  $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-  $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
-  // form validation: ensure that the form is correctly filled ...
-  // by adding (array_push()) corresponding error unto $errors array
-  if(empty($db)){ array_push($errors, "Database is empty"); }
-  if (empty($username)) { array_push($errors, "Username is required"); }
-  if (empty($email)) { array_push($errors, "Email is required"); }
-  if (empty($password_1)) { array_push($errors, "Password is required"); }
-  if ($password_1 != $password_2) {
-	array_push($errors, "The two passwords do not match");
+  $fullname = $_POST["fullname"];
+  $position = $_POST["position"];
+  $email = $_POST["email"];
+  $phone = $_POST["phone"];
+  $user = $_POST["username"];
+  $pw = $_POST["password"];
+  $pw2 = $_POST["confirmpassword"];
+
+  if (empty($fullname)) { array_push($errors, "Full Name is required."); }
+  if (empty($position)) { array_push($errors, "Job Position is required."); }
+  if (empty($email)) { array_push($errors, "Email is required."); }
+  if (empty($phone)) { array_push($errors, "Phone is required."); }
+  if (empty($user)) { array_push($errors, "Username is required."); }
+  if (empty($pw)) { array_push($errors, "Password is required."); }
+  if (empty($pw2)) { array_push($errors, "Please enter password again."); }
+  else if ($pw != $pw2) { array_push($errors, "Passwords do not match."); }
+
+  $sql = "SELECT * from users where username = '$user'";
+  $result = $conn->query($sql);
+  $num = mysqli_num_rows($result);
+
+  if ($num > 0) {
+    array_push($errors, "Username already exists. Please create a new username.");
   }
 
-  // first check the database to make sure
-  // a user does not already exist with the same username and/or email
-  $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
-  $result = mysqli_query($db, $user_check_query);
-  $user = mysqli_fetch_assoc($result);
-
-  if ($user) { // if user exists
-    if ($user['username'] === $username) {
-      array_push($errors, "Username already exists");
-    }
-
-    if ($user['email'] === $email) {
-      array_push($errors, "email already exists");
-    }
-  }
-
-  // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
-    $password = $password_1;
-  	//$password = md5($password_1);//encrypt the password before saving in the database
 
-  	$query = "INSERT INTO users (username, email, password)
-  			  VALUES('$username', '$email', '$password')";
-  	mysqli_query($db, $query);
-  	$_SESSION['username'] = $username;
-  	$_SESSION['success'] = "You are now logged in";
-  	header('location: index');
+    $sql = "INSERT INTO users (full_name, position, email, phone, username, password) VALUES('$fullname', '$position', '$email', '$phone', '$user', '$pw')";
+    $result = $conn->query($sql);
+
+    $sql = "CREATE USER '$user'@'localhost' IDENTIFIED BY '$pw'";
+    $result = $conn->query($sql);
+
+    header("location: login");
   }
 }
 
-// ...
+// Login user
 
 if (isset($_POST['login_user'])) {
-  $username = mysqli_real_escape_string($db, $_POST['username']);
-  $password = mysqli_real_escape_string($db, $_POST['password']);
+  $username = mysqli_real_escape_string($conn, $_POST['username']);
+  $password = mysqli_real_escape_string($conn, $_POST['password']);
 
   if (empty($username)) {
   	array_push($errors, "Username is required");
@@ -73,11 +69,9 @@ if (isset($_POST['login_user'])) {
   }
 
   if (count($errors) == 0) {
-  	//$password = md5($password);
   	$query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-  	$results = mysqli_query($db, $query);
-    // $random_query = "SELECT full_name FROM users WHERE username='$username' AND password='$password'";
-    // $aaa = mysqli_fetch_assoc($db, $random_query);
+  	$results = mysqli_query($conn, $query);
+
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "You are now logged in";
@@ -87,5 +81,5 @@ if (isset($_POST['login_user'])) {
   	}
   }
 }
-
+CloseCon($conn);
 ?>

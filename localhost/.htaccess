@@ -22,3 +22,12 @@ RewriteRule ^register /template/auth/register.php [L,QSA,NC]
 RewriteRule ^addnew /template/addnew/addnew.php [L,QSA,NC]
 RewriteRule ^insert /template/addnew/insert.php [L,QSA,NC]
 
+RewriteRule ^user-management /template/user-management/user-management.php [L,QSA,NC]
+RewriteRule ^user-update /template/user-management/user-update.php [L,QSA,NC]
+RewriteRule ^create /template/user-management/create.php [L,QSA,NC]
+RewriteRule ^delete-user /template/user-management/delete-user.php [L,QSA,NC]
+RewriteRule ^userserver /template/user-management/userserver.php [L,QSA,NC]
+
+RewriteRule ^outbound /template/outbound/outbound.php [L,QSA,NC]
+RewriteRule ^invoice /template/outbound/invoice.php [L,QSA,NC]
+RewriteRule ^test /template/outbound/test.php [L,QSA,NC]
