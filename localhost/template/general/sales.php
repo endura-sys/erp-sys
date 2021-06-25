@@ -1,5 +1,5 @@
 <?php include('../header.php'); ?>
-<?php $currentPage = 'item-list'; ?>
+<?php $currentPage = 'sales'; ?>
 
 <body>
     <div id="app">
@@ -80,13 +80,13 @@
                                                             
                                                             <div class="form-group">
                                                                 <label for="customer_id">Customer ID:</label>
-                                                                <input type="varchar" class="form-control" name="customer_id" id="Customer_id" placeholder="">
+                                                                <input type="integer" class="form-control" name="customer_id" id="Customer_id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
                                                                 <label for="employee_id">Employee ID:</label>
-                                                                <input type="varchar" class="form-control" name="employee_id" id="Employee_id" placeholder="">
+                                                                <input type="integer" class="form-control" name="employee_id" id="Employee_id" placeholder="">
                                                             </div>
                                                             
                                                             
@@ -269,7 +269,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM product";
+                                        $sql = "SELECT sale_id, customer_id, employee_id, product_id, branch_id, quantity, discount, promotion_scheme, account_receive, sale_date, sale_time, payment_method FROM sales";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -280,7 +280,8 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["no"] ."</td><td>" .$row["name"] ."</td><td>" .$row["status"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"] ."</td><td>" .$row["stock"] ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] ."</td><td>".$row["unit"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" . $row["product_id"] ."</td><td>" . $row["branch_id"] ."</td><td>" . $row["quantity"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["promotion_scheme"] ."</td><td>" .$row["account_receive"] ."</td><td>" .$row["sale_date"] ."</td><td>".$row["sale_time"] ."</td><td>" .$row["payment_method"] .
+                                                    "</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
