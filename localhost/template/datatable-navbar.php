@@ -89,8 +89,8 @@
             </a>
 
             <ul class="submenu">
-                <li class="submenu-item ">
-                    <a href="">Sales schedule</a>
+                <li class="submenu-item <?php if ($currentPage == 'sales') {echo "active";} ?>">
+                    <a href="sales">Items list</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="">New sales order</a>
