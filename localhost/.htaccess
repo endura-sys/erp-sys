@@ -14,6 +14,7 @@ RewriteRule ^inbound-list /template/general/inbound-list.php [L,QSA,NC]
 RewriteRule ^outbound-list /template/general/outbound-list.php [L,QSA,NC]
 RewriteRule ^purchase-list /template/general/purchase-list.php [L,QSA,NC]
 RewriteRule ^sales /template/general/sales.php [L,QSA,NC]
+RewriteRule ^branch /template/general/branch.php [L,QSA,NC]
 
 RewriteRule ^login /template/auth/login.php [L,QSA,NC]
 RewriteRule ^register /template/auth/register.php [L,QSA,NC]
