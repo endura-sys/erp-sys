@@ -1,6 +1,5 @@
-
 <?php include('../header.php'); ?>
-<?php $currentPage = 'item-list'; ?>
+<?php $currentPage = 'outbound-list'; ?>
 
 <body>
     <div id="app">
@@ -53,35 +52,6 @@
                         <div class="card-header">
                             Simple Datatable
 
-<!--                            <div class="col-md-6 mb-4">-->
-<!--                                <h6>Multiple Select with Remove Button</h6>-->
-<!--                                <p>Use <code>.multiple-remove</code> attribute for multiple select box with remove-->
-<!--                                    button.</p>-->
-<!--                                <div class="form-group">-->
-<!--                                    <select class="choices form-select multiple-remove" multiple="multiple">-->
-<!--                                        <optgroup label="Figures">-->
-<!--                                            <option value="romboid">Romboid</option>-->
-<!--                                            <option value="trapeze" selected>Trapeze</option>-->
-<!--                                            <option value="triangle">Triangle</option>-->
-<!--                                            <option value="polygon">Polygon</option>-->
-<!--                                        </optgroup>-->
-<!--                                        <optgroup label="Colors">-->
-<!--                                            <option value="red">Red</option>-->
-<!--                                            <option value="green">Green</option>-->
-<!--                                            <option value="blue" selected>Blue</option>-->
-<!--                                            <option value="purple">Purple</option>-->
-<!--                                        </optgroup>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            {% endblock %}-->
-<!--                            {% block stylesfirst %}-->
-<!--                            <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />-->
-<!--                            {% endblock %}-->
-<!--                            {% block js %}-->
-<!--                            <script src="assets/vendors/choices.js/choices.min.js"></script>-->
-<!--                            {% endblock %}-->
-                            
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
                                 data-bs-target="#border-add">
                                 Add new data
@@ -103,71 +73,49 @@
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="no">No:</label>
-                                                                <input type="integer" class="form-control" name="no" id="No" placeholder="">
+                                                                <label for="outbound_id">Outbound id:</label>
+                                                                <input type="integer" class="form-control" name="outbound_id" id="Outbound id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="status">Status:</label>
-                                                                <input type="varchar" class="form-control" name="status" id="Status" placeholder="">
+                                                                <label for="product_id">Product id:</label>
+                                                                <input type="integer" class="form-control" name="product_id" id="Product id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="p1">P1:</label>
-                                                                <input type="varchar" class="form-control" name="p1" id="P1" placeholder="">
+                                                                <label for="quantity">Quantity:</label>
+                                                                <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="p2">P2:</label>
-                                                                <input type="varchar" class="form-control" name="p2" id="P2" placeholder="">
+                                                                <label for="employee_id">Employee id:</label>
+                                                                <input type="integer" class="form-control" name="employee_id" id="Employee id" placeholder="">
                                                             </div>
                                                             
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="p3">P3:</label>
-                                                                <input type="varchar" class="form-control" name="p3" id="P3" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="stock">Stock:</label>
-                                                                <input type="varchar" class="form-control" name="stock" id="Stock" placeholder="">
-                                                            </div>
                                                         </div>
                                                         
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="location">Location:</label>
-                                                                <input type="varchar" class="form-control" name="location" id="Location" placeholder="">
+                                                                <label for="date_of_outbound">Date of outbound:</label>
+                                                                <input type="date" class="form-control" name="date_of_outbound" id="Date of outbound" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="sake_brewer">Sake Brewer:</label>
-                                                                <input type="varchar" class="form-control" name="sake_brewer" id="Sake_brewer" placeholder="">
+                                                                <label for="outbound_way">Shipping way:</label>
+                                                                <input type="varchar" class="form-control" name="outbound_way" id="Shipping way" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="name">Name:</label>
-                                                                <input type="varchar" class="form-control" name="name" id="Name" placeholder="">
+                                                                <label for="outbound_cost">Shipping cost:</label>
+                                                                <input type="integer" class="form-control" name="outbound_cost" id="Shipping cost" placeholder="">
                                                             </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="volume">Volume:</label>
-                                                                <input type="varchar" class="form-control" name="volume" id="Volume" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="unit">Unit:</label>
-                                                                <input type="varchar" class="form-control" name="unit" id="Unit" placeholder="">
-                                                            </div>
+                                                
                                                         </div>
                                                     </div>
                                                     
@@ -212,30 +160,26 @@
                                                                     . mysqli_connect_error());
                                                             }
                                                             
-                                                            $no =  $_REQUEST['no'];
-                                                            $status =  $_REQUEST['status'];
-                                                            $p1 = $_REQUEST['p1'];
-                                                            $p2 = $_REQUEST['p2'];
-                                                            $p3 = $_REQUEST['p3'];
-                                                            $stock = $_REQUEST['stock'];
-                                                            $location = $_REQUEST['location'];
-                                                            $sake_brewer = $_REQUEST['sake_brewer'];
-                                                            $name = $_REQUEST['name'];
-                                                            $volume = $_REQUEST['volume'];
-                                                            $unit = $_REQUEST['unit'];
+                                                            $outbound_id =  $_REQUEST['outbound_id'];
+                                                            $product_id =  $_REQUEST['product_id'];
+                                                            $quantity = $_REQUEST['quantity'];
+                                                            $employee_id = $_REQUEST['employee_id'];
+                                                            $date_of_outbound = $_REQUEST['date_of_outbound'];
+                                                            $outbound_way = $_REQUEST['outbound_way'];
+                                                            $outbound_cost = $_REQUEST['outbound_cost'];
                                                             
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO product  VALUES ('$no'
-                                                                ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer', 
-                                                                '$name','$volume','$unit')";
+                                                            $sql = "INSERT INTO outbound VALUES ('$outbound_id',
+                                                            '$product_id','$quantity','$employee_id','$date_of_outbound',
+                                                            '$outbound_way','$outbound_cost')";
                                                             
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully." 
                                                                 . " Please browse your localhost" 
                                                                 . " to view the updated data</h3>"; 
                                                                 
-                                                                echo nl2br("No : $no\n"
-                                                                    . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
+                                                                echo nl2br("Outbound id : $outbound_id\n"
+                                                                    . "Product id : $product_id\nQuantity : $quantity\nEmployee id : $employee_id\nDate of outbound : $date_of_outbound\nShipping way : $outbound_way\nShipping cost : $outbound_cost\n");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
@@ -270,17 +214,13 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
+                                        <th>出庫編號</th>
                                         <th>商品編號</th>
-                                        <th>商品名稱</th>
-                                        <th>現況</th>
-                                        <th>P1</th>
-                                        <th>P2</th>
-                                        <th>P3</th>
                                         <th>數量</th>
-                                        <th>地域</th>
-                                        <th>蔵元</th>
-                                        <th>容量</th>
-                                        <th>單位</th>
+                                        <th>負責人編號</th>
+                                        <th>出庫日期</th>
+                                        <th>運輸途徑</th>
+                                        <th>運輸成本</th>
                                     </tr>
                                 </thead>
                                 
@@ -291,10 +231,10 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM product";
+                                        $sql = "SELECT outbound_id, product_id, quantity, employee_id, date_of_outbound, outbound_way, outbound_cost FROM outbound";
                                         $result = $conn->query($sql);
 
-                                        $product_list = array();
+                                        $outbound_list = array();
 
                                         if ($result->num_rows > 0) {
                                             // output data of each row
@@ -302,12 +242,12 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["no"] ."</td><td>" .$row["name"] ."</td><td>" .$row["status"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"] ."</td><td>" .$row["stock"] ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] ."</td><td>".$row["unit"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["outbound_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["date_of_outbound"] ."</td><td>" . $row["outbound_way"] ."</td><td>" .$row["outbound_cost"] ."</td><td>" ."</td>"; 
                                             }
                                         } else {
                                             echo "0 results";
                                         }
-                                        echo $product_list[0][1];
+                                        echo $outbound_list[0][1];
                                         CloseCon($conn);
                                     ?>
 

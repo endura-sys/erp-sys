@@ -1,6 +1,5 @@
-
 <?php include('../header.php'); ?>
-<?php $currentPage = 'item-list'; ?>
+<?php $currentPage = 'inbound-list'; ?>
 
 <body>
     <div id="app">
@@ -53,35 +52,6 @@
                         <div class="card-header">
                             Simple Datatable
 
-<!--                            <div class="col-md-6 mb-4">-->
-<!--                                <h6>Multiple Select with Remove Button</h6>-->
-<!--                                <p>Use <code>.multiple-remove</code> attribute for multiple select box with remove-->
-<!--                                    button.</p>-->
-<!--                                <div class="form-group">-->
-<!--                                    <select class="choices form-select multiple-remove" multiple="multiple">-->
-<!--                                        <optgroup label="Figures">-->
-<!--                                            <option value="romboid">Romboid</option>-->
-<!--                                            <option value="trapeze" selected>Trapeze</option>-->
-<!--                                            <option value="triangle">Triangle</option>-->
-<!--                                            <option value="polygon">Polygon</option>-->
-<!--                                        </optgroup>-->
-<!--                                        <optgroup label="Colors">-->
-<!--                                            <option value="red">Red</option>-->
-<!--                                            <option value="green">Green</option>-->
-<!--                                            <option value="blue" selected>Blue</option>-->
-<!--                                            <option value="purple">Purple</option>-->
-<!--                                        </optgroup>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            {% endblock %}-->
-<!--                            {% block stylesfirst %}-->
-<!--                            <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />-->
-<!--                            {% endblock %}-->
-<!--                            {% block js %}-->
-<!--                            <script src="assets/vendors/choices.js/choices.min.js"></script>-->
-<!--                            {% endblock %}-->
-                            
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
                                 data-bs-target="#border-add">
                                 Add new data
@@ -103,70 +73,59 @@
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="no">No:</label>
-                                                                <input type="integer" class="form-control" name="no" id="No" placeholder="">
+                                                                <label for="purchasing_id">Purchasing id:</label>
+                                                                <input type="integer" class="form-control" name="purchasing_id" id="Purchasing id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="status">Status:</label>
-                                                                <input type="varchar" class="form-control" name="status" id="Status" placeholder="">
+                                                                <label for="product_id">Product id:</label>
+                                                                <input type="integer" class="form-control" name="product_id" id="Product id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="p1">P1:</label>
-                                                                <input type="varchar" class="form-control" name="p1" id="P1" placeholder="">
+                                                                <label for="quantity">Quantity:</label>
+                                                                <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="p2">P2:</label>
-                                                                <input type="varchar" class="form-control" name="p2" id="P2" placeholder="">
+                                                                <label for="account_payable">Account payable:</label>
+                                                                <input type="integer" class="form-control" name="account_payable" id="Account payable" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="p3">P3:</label>
-                                                                <input type="varchar" class="form-control" name="p3" id="P3" placeholder="">
+                                                                <label for="employee_id">Employee id:</label>
+                                                                <input type="integer" class="form-control" name="employee_id" id="Employee id" placeholder="">
                                                             </div>
+                                                        </div>   
                                                             
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="stock">Stock:</label>
-                                                                <input type="varchar" class="form-control" name="stock" id="Stock" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                        
+
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="location">Location:</label>
-                                                                <input type="varchar" class="form-control" name="location" id="Location" placeholder="">
+                                                                <label for="inbound_date">Inbound date:</label>
+                                                                <input type="date" class="form-control" name="inbound_date" id="Inbound date" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="sake_brewer">Sake Brewer:</label>
-                                                                <input type="varchar" class="form-control" name="sake_brewer" id="Sake_brewer" placeholder="">
+                                                                <label for="shelf_date">Shelf date:</label>
+                                                                <input type="date" class="form-control" name="shelf_date" id="Shelf date" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="name">Name:</label>
-                                                                <input type="varchar" class="form-control" name="name" id="Name" placeholder="">
+                                                                <label for="inbound_way">Shipping way:</label>
+                                                                <input type="varchar" class="form-control" name="inbound_way" id="Shipping way" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="volume">Volume:</label>
-                                                                <input type="varchar" class="form-control" name="volume" id="Volume" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="unit">Unit:</label>
-                                                                <input type="varchar" class="form-control" name="unit" id="Unit" placeholder="">
+                                                                <label for="inbound_cost">Shipping cost:</label>
+                                                                <input type="integer" class="form-control" name="inbound_cost" id="Shipping cost" placeholder="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -212,30 +171,28 @@
                                                                     . mysqli_connect_error());
                                                             }
                                                             
-                                                            $no =  $_REQUEST['no'];
-                                                            $status =  $_REQUEST['status'];
-                                                            $p1 = $_REQUEST['p1'];
-                                                            $p2 = $_REQUEST['p2'];
-                                                            $p3 = $_REQUEST['p3'];
-                                                            $stock = $_REQUEST['stock'];
-                                                            $location = $_REQUEST['location'];
-                                                            $sake_brewer = $_REQUEST['sake_brewer'];
-                                                            $name = $_REQUEST['name'];
-                                                            $volume = $_REQUEST['volume'];
-                                                            $unit = $_REQUEST['unit'];
+                                                            $purchasing_id =  $_REQUEST['purchasing_id'];
+                                                            $product_id =  $_REQUEST['product_id'];
+                                                            $quantity = $_REQUEST['quantity'];
+                                                            $account_payable = $_REQUEST['account_payable'];
+                                                            $employee_id = $_REQUEST['employee_id'];
+                                                            $inbound_date = $_REQUEST['inbound_date'];
+                                                            $shelf_date = $_REQUEST['shelf_date'];
+                                                            $inbound_way = $_REQUEST['inbound_way'];
+                                                            $inbound_cost = $_REQUEST['inbound_cost'];
                                                             
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO product  VALUES ('$no'
-                                                                ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer', 
-                                                                '$name','$volume','$unit')";
+                                                            $sql = "INSERT INTO inbound VALUES ('$purchasing_id','$product_id','$quantity', 
+                                                            '$account_payable','$employee_id','$inbound_date','$shelf_date',
+                                                            '$inbound_way','$inbound_cost')";
                                                             
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully." 
                                                                 . " Please browse your localhost" 
                                                                 . " to view the updated data</h3>"; 
                                                                 
-                                                                echo nl2br("No : $no\n"
-                                                                    . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
+                                                                echo nl2br("Purchasing id : $purchasing_id\n"
+                                                                    . "Product id : $product_id\nQuantity : $quantity\nAccount payable : $account_payable\n Employee id : $employee_id\nInbound date : $inbound_date\nShelf date : $shelf_date\nShipping way : $inbound_way\nShipping cost : $inbound_cost\n");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
@@ -270,17 +227,15 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
+                                        <th>採購單編號</th>
                                         <th>商品編號</th>
-                                        <th>商品名稱</th>
-                                        <th>現況</th>
-                                        <th>P1</th>
-                                        <th>P2</th>
-                                        <th>P3</th>
                                         <th>數量</th>
-                                        <th>地域</th>
-                                        <th>蔵元</th>
-                                        <th>容量</th>
-                                        <th>單位</th>
+                                        <th>應付賬項</th>
+                                        <th>負責人編號</th>
+                                        <th>入庫日期</th>
+                                        <th>保質期限</th>
+                                        <th>運輸途徑</th>
+                                        <th>運輸成本</th>
                                     </tr>
                                 </thead>
                                 
@@ -291,10 +246,10 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM product";
+                                        $sql = "SELECT purchasing_id, product_id, employee_id, account_payable, quantity, inbound_date, shelf_date, inbound_way, inbound_cost FROM inbound";
                                         $result = $conn->query($sql);
 
-                                        $product_list = array();
+                                        $inbound_list = array();
 
                                         if ($result->num_rows > 0) {
                                             // output data of each row
@@ -302,12 +257,12 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["no"] ."</td><td>" .$row["name"] ."</td><td>" .$row["status"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"] ."</td><td>" .$row["stock"] ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] ."</td><td>".$row["unit"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["account_payable"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["inbound_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>" .$row["inbound_way"] ."</td><td>" .$row["inbound_cost"] ."</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
                                         }
-                                        echo $product_list[0][1];
+                                        echo $inbound_list[0][1];
                                         CloseCon($conn);
                                     ?>
 

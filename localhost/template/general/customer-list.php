@@ -1,6 +1,5 @@
-
 <?php include('../header.php'); ?>
-<?php $currentPage = 'item-list'; ?>
+<?php $currentPage = 'customer-list'; ?>
 
 <body>
     <div id="app">
@@ -16,9 +15,9 @@
                         </div>
                     </div>
                 </div>
-
-                <?php include('../datatable-navbar.php'); ?>
                 
+                <?php include('../datatable-navbar.php'); ?>
+
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
@@ -50,38 +49,10 @@
                 </div>
                 <section class="section">
                     <div class="card">
+
                         <div class="card-header">
                             Simple Datatable
 
-<!--                            <div class="col-md-6 mb-4">-->
-<!--                                <h6>Multiple Select with Remove Button</h6>-->
-<!--                                <p>Use <code>.multiple-remove</code> attribute for multiple select box with remove-->
-<!--                                    button.</p>-->
-<!--                                <div class="form-group">-->
-<!--                                    <select class="choices form-select multiple-remove" multiple="multiple">-->
-<!--                                        <optgroup label="Figures">-->
-<!--                                            <option value="romboid">Romboid</option>-->
-<!--                                            <option value="trapeze" selected>Trapeze</option>-->
-<!--                                            <option value="triangle">Triangle</option>-->
-<!--                                            <option value="polygon">Polygon</option>-->
-<!--                                        </optgroup>-->
-<!--                                        <optgroup label="Colors">-->
-<!--                                            <option value="red">Red</option>-->
-<!--                                            <option value="green">Green</option>-->
-<!--                                            <option value="blue" selected>Blue</option>-->
-<!--                                            <option value="purple">Purple</option>-->
-<!--                                        </optgroup>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            {% endblock %}-->
-<!--                            {% block stylesfirst %}-->
-<!--                            <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />-->
-<!--                            {% endblock %}-->
-<!--                            {% block js %}-->
-<!--                            <script src="assets/vendors/choices.js/choices.min.js"></script>-->
-<!--                            {% endblock %}-->
-                            
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
                                 data-bs-target="#border-add">
                                 Add new data
@@ -103,72 +74,57 @@
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="no">No:</label>
-                                                                <input type="integer" class="form-control" name="no" id="No" placeholder="">
+                                                                <label for="customer_id">Customer id:</label>
+                                                                <input type="integer" class="form-control" name="customer_id" id="Customer id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="status">Status:</label>
-                                                                <input type="varchar" class="form-control" name="status" id="Status" placeholder="">
+                                                                <label for="name">Customer name:</label>
+                                                                <input type="varchar" class="form-control" name="name" id="Customer name" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="p1">P1:</label>
-                                                                <input type="varchar" class="form-control" name="p1" id="P1" placeholder="">
+                                                                <label for="gender">Gender:</label>
+                                                               <div>
+                                                                 <select name="gender" id="Gender" >
+                                                                 <option value="male">male</option>
+                                                                 <option value="female">female</option>
+                                                                 </select>
+                                                                </div>
                                                             </div>
-                                                            
-                                                            
+
                                                             <div class="form-group">
-                                                                <label for="p2">P2:</label>
-                                                                <input type="varchar" class="form-control" name="p2" id="P2" placeholder="">
+                                                                <label for="contact_no">Contact no:</label>
+                                                                <input type="varchar" class="form-control" name="contact_no" id="Contact no" placeholder="">
                                                             </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="p3">P3:</label>
-                                                                <input type="varchar" class="form-control" name="p3" id="P3" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="stock">Stock:</label>
-                                                                <input type="varchar" class="form-control" name="stock" id="Stock" placeholder="">
-                                                            </div>
+
                                                         </div>
                                                         
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="location">Location:</label>
-                                                                <input type="varchar" class="form-control" name="location" id="Location" placeholder="">
+                                                                <label for="contact_email">Contact email:</label>
+                                                                <input type="varchar" class="form-control" name="contact_email" id="Contact email" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="sake_brewer">Sake Brewer:</label>
-                                                                <input type="varchar" class="form-control" name="sake_brewer" id="Sake_brewer" placeholder="">
+                                                                <label for="address">Address:</label>
+                                                                <input type="varchar" class="form-control" name="address" id="Address" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="name">Name:</label>
-                                                                <input type="varchar" class="form-control" name="name" id="Name" placeholder="">
+                                                                <label for="member_point">Member point:</label>
+                                                                <input type="varchar" class="form-control" name="member_point" id="Member point" placeholder="">
                                                             </div>
-                                                            
                                                             
                                                             <div class="form-group">
-                                                                <label for="volume">Volume:</label>
-                                                                <input type="varchar" class="form-control" name="volume" id="Volume" placeholder="">
+                                                                <label for="date_of_last_purchasing">Date of last purchasing</label>
+                                                                <input type="date" class="form-control" name="date_of_last_purchasing" id="Date of last purchasing" placeholder="">
                                                             </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="unit">Unit:</label>
-                                                                <input type="varchar" class="form-control" name="unit" id="Unit" placeholder="">
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                     
                                                     <div class="modal-footer">
@@ -212,30 +168,27 @@
                                                                     . mysqli_connect_error());
                                                             }
                                                             
-                                                            $no =  $_REQUEST['no'];
-                                                            $status =  $_REQUEST['status'];
-                                                            $p1 = $_REQUEST['p1'];
-                                                            $p2 = $_REQUEST['p2'];
-                                                            $p3 = $_REQUEST['p3'];
-                                                            $stock = $_REQUEST['stock'];
-                                                            $location = $_REQUEST['location'];
-                                                            $sake_brewer = $_REQUEST['sake_brewer'];
-                                                            $name = $_REQUEST['name'];
-                                                            $volume = $_REQUEST['volume'];
-                                                            $unit = $_REQUEST['unit'];
+                                                            $customer_id =  $_REQUEST['customer_id'];
+                                                            $name =  $_REQUEST['name'];
+                                                            $gender = $_REQUEST['gender'];
+                                                            $contact_no = $_REQUEST['contact_no'];
+                                                            $contact_email = $_REQUEST['contact_email'];
+                                                            $address = $_REQUEST['address'];
+                                                            $member_point = $_REQUEST['member_point'];
+                                                            $date_of_last_purchasing = $_REQUEST['date_of_last_purchasing'];
                                                             
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO product  VALUES ('$no'
-                                                                ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer', 
-                                                                '$name','$volume','$unit')";
+                                                            $sql = "INSERT INTO customer VALUES ('$customer_id',
+                                                            '$name','$gender','$contact_no','$contact_email',
+                                                            '$address','$member_point','$date_of_last_purchasing')";
                                                             
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully." 
                                                                 . " Please browse your localhost" 
                                                                 . " to view the updated data</h3>"; 
                                                                 
-                                                                echo nl2br("No : $no\n"
-                                                                    . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
+                                                                echo nl2br("Customer id : $customer_id\n"
+                                                                    . "Customer name : $name\nGender : $gender\nContact no : $contact_no\nContact email : $contact_email\nAddress : $address\nMember point : $member_point\nDate of last purchasing : $date_of_last_purchasing\n");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
@@ -256,7 +209,7 @@
                                                                 onClick="document.location.href='dashboard'" />
                                                             <label class="btn btn-outline-danger" for="mainn">Back to database</label>
                                                         </div>
-                                                    </center>
+                                                        </center>
                                                 </tbody>
                                             </div>
                                         </div>
@@ -270,17 +223,14 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>商品編號</th>
-                                        <th>商品名稱</th>
-                                        <th>現況</th>
-                                        <th>P1</th>
-                                        <th>P2</th>
-                                        <th>P3</th>
-                                        <th>數量</th>
-                                        <th>地域</th>
-                                        <th>蔵元</th>
-                                        <th>容量</th>
-                                        <th>單位</th>
+                                        <th>顧客編號</th>
+                                        <th>姓名</th>
+                                        <th>姓別</th>
+                                        <th>聯絡電話</th>
+                                        <th>聯絡電郵</th>
+                                        <th>聯絡地址</th>
+                                        <th>會員績分</th>
+                                        <th>上次消費日期</th>
                                     </tr>
                                 </thead>
                                 
@@ -291,10 +241,10 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM product";
+                                        $sql = "SELECT customer_id, name, gender, contact_no, contact_email, address, member_point, date_of_last_purchasing FROM customer";
                                         $result = $conn->query($sql);
 
-                                        $product_list = array();
+                                        $customer_list = array();
 
                                         if ($result->num_rows > 0) {
                                             // output data of each row
@@ -302,12 +252,12 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["no"] ."</td><td>" .$row["name"] ."</td><td>" .$row["status"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"] ."</td><td>" .$row["stock"] ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] ."</td><td>".$row["unit"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["customer_id"] ."</td><td>" .$row["name"] ."</td><td>" .$row["gender"] ."</td><td>" .$row["contact_no"] ."</td><td>" .$row["contact_email"] . "</td><td>" .$row["address"] ."</td><td>" .$row["member_point"] ."</td><td>" .$row["date_of_last_purchasing"]."</td><td>". "</td>";
                                             }
                                         } else {
                                             echo "0 results";
                                         }
-                                        echo $product_list[0][1];
+                                        echo $customer_list[0][1];
                                         CloseCon($conn);
                                     ?>
 
@@ -335,6 +285,7 @@
     </div>
     
     <?php include('../footer.php'); ?>
-
+    
 </body>
 
+</html>

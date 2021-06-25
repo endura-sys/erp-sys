@@ -9,6 +9,15 @@ RewriteRule ^index /template/general/dashboard.php [L,QSA,NC]
 RewriteRule ^dashboard /template/general/dashboard.php [L,QSA,NC]
 RewriteRule ^item-list /template/general/item-list.php [L,QSA,NC]
 RewriteRule ^supplier-list /template/general/supplier-list.php [L,QSA,NC]
+RewriteRule ^customer-list /template/general/customer-list.php [L,QSA,NC]
+
+
+RewriteRule ^inbound-list /template/inbound/inbound-list.php [L,QSA,NC]
+RewriteRule ^outbound-list /template/outbound/outbound-list.php [L,QSA,NC]
+RewriteRule ^purchase-list /template/purchase/purchase-list.php [L,QSA,NC]
+
+RewriteRule ^sales /template/sales/sales.php [L,QSA,NC]
+RewriteRule ^branch /template/sales/branch.php [L,QSA,NC]
 
 RewriteRule ^login /template/auth/login.php [L,QSA,NC]
 RewriteRule ^register /template/auth/register.php [L,QSA,NC]

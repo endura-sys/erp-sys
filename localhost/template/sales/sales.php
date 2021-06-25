@@ -1,6 +1,5 @@
-
 <?php include('../header.php'); ?>
-<?php $currentPage = 'item-list'; ?>
+<?php $currentPage = 'sales'; ?>
 
 <body>
     <div id="app">
@@ -53,35 +52,6 @@
                         <div class="card-header">
                             Simple Datatable
 
-<!--                            <div class="col-md-6 mb-4">-->
-<!--                                <h6>Multiple Select with Remove Button</h6>-->
-<!--                                <p>Use <code>.multiple-remove</code> attribute for multiple select box with remove-->
-<!--                                    button.</p>-->
-<!--                                <div class="form-group">-->
-<!--                                    <select class="choices form-select multiple-remove" multiple="multiple">-->
-<!--                                        <optgroup label="Figures">-->
-<!--                                            <option value="romboid">Romboid</option>-->
-<!--                                            <option value="trapeze" selected>Trapeze</option>-->
-<!--                                            <option value="triangle">Triangle</option>-->
-<!--                                            <option value="polygon">Polygon</option>-->
-<!--                                        </optgroup>-->
-<!--                                        <optgroup label="Colors">-->
-<!--                                            <option value="red">Red</option>-->
-<!--                                            <option value="green">Green</option>-->
-<!--                                            <option value="blue" selected>Blue</option>-->
-<!--                                            <option value="purple">Purple</option>-->
-<!--                                        </optgroup>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            {% endblock %}-->
-<!--                            {% block stylesfirst %}-->
-<!--                            <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />-->
-<!--                            {% endblock %}-->
-<!--                            {% block js %}-->
-<!--                            <script src="assets/vendors/choices.js/choices.min.js"></script>-->
-<!--                            {% endblock %}-->
-                            
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
                                 data-bs-target="#border-add">
                                 Add new data
@@ -103,70 +73,75 @@
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="no">No:</label>
-                                                                <input type="integer" class="form-control" name="no" id="No" placeholder="">
+                                                                <label for=sale_id>Sale ID:</label>
+                                                                <input type="integer" class="form-control" name="sale_id" id="Sale_id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="status">Status:</label>
-                                                                <input type="varchar" class="form-control" name="status" id="Status" placeholder="">
+                                                                <label for="customer_id">Customer ID:</label>
+                                                                <input type="integer" class="form-control" name="customer_id" id="Customer_id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="p1">P1:</label>
-                                                                <input type="varchar" class="form-control" name="p1" id="P1" placeholder="">
+                                                                <label for="employee_id">Employee ID:</label>
+                                                                <input type="integer" class="form-control" name="employee_id" id="Employee_id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="p2">P2:</label>
-                                                                <input type="varchar" class="form-control" name="p2" id="P2" placeholder="">
+                                                                <label for="product_id">Product ID:</label>
+                                                                <input type="integer" class="form-control" name="product_id" id=Product_id placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="p3">P3:</label>
-                                                                <input type="varchar" class="form-control" name="p3" id="P3" placeholder="">
+                                                                <label for="branch_id">Branch ID:</label>
+                                                                <input type="integer" class="form-control" name="branch_id" id="Branch_id" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="stock">Stock:</label>
-                                                                <input type="varchar" class="form-control" name="stock" id="Stock" placeholder="">
+                                                                <label for="quantity">Quantity:</label>
+                                                                <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
                                                             </div>
                                                         </div>
                                                         
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
-                                                                <label for="location">Location:</label>
-                                                                <input type="varchar" class="form-control" name="location" id="Location" placeholder="">
+                                                                <label for="discount">Discount:</label>
+                                                                <input type="varchar" class="form-control" name="discount" id="Discount" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="sake_brewer">Sake Brewer:</label>
-                                                                <input type="varchar" class="form-control" name="sake_brewer" id="Sake_brewer" placeholder="">
+                                                                <label for="promotion_scheme">Promotion scheme:</label>
+                                                                <input type="varchar" class="form-control" name="promotion_scheme" id="Promotion_scheme" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="name">Name:</label>
-                                                                <input type="varchar" class="form-control" name="name" id="Name" placeholder="">
+                                                                <label for="account_receive">Account receive:</label>
+                                                                <input type="integer" class="form-control" name="account_receive" id="Account_receive" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="volume">Volume:</label>
-                                                                <input type="varchar" class="form-control" name="volume" id="Volume" placeholder="">
+                                                                <label for="sale_date">Sale date:</label>
+                                                                <input type="varchar" class="form-control" name="sale_date" id="Sale_date" placeholder="">
                                                             </div>
                                                             
                                                             
                                                             <div class="form-group">
-                                                                <label for="unit">Unit:</label>
-                                                                <input type="varchar" class="form-control" name="unit" id="Unit" placeholder="">
+                                                                <label for="sale_time">Sale time:</label>
+                                                                <input type="varchar" class="form-control" name="sale_time" id="Sale_time" placeholder="">
+                                                            </div>
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="payment_method">Payment method:</label>
+                                                                <input type="varchar" class="form-control" name="payment_method" id="Payment_method" placeholder="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -212,30 +187,32 @@
                                                                     . mysqli_connect_error());
                                                             }
                                                             
-                                                            $no =  $_REQUEST['no'];
-                                                            $status =  $_REQUEST['status'];
-                                                            $p1 = $_REQUEST['p1'];
-                                                            $p2 = $_REQUEST['p2'];
-                                                            $p3 = $_REQUEST['p3'];
-                                                            $stock = $_REQUEST['stock'];
-                                                            $location = $_REQUEST['location'];
-                                                            $sake_brewer = $_REQUEST['sake_brewer'];
-                                                            $name = $_REQUEST['name'];
-                                                            $volume = $_REQUEST['volume'];
-                                                            $unit = $_REQUEST['unit'];
+                                                            $sale_id =  $_REQUEST['sale_id'];
+                                                            $customer_id =  $_REQUEST['customer_id'];
+                                                            $employee_id = $_REQUEST['employee_id'];
+                                                            $product_id = $_REQUEST['product_id'];
+                                                            $branch_id = $_REQUEST['branch_id'];
+                                                            $quantity = $_REQUEST['quantity'];
+                                                            $discount = $_REQUEST['discount'];
+                                                            $promotion_scheme = $_REQUEST['promotion_scheme'];
+                                                            $account_receive = $_REQUEST['account_receive'];
+                                                            $sale_date = $_REQUEST['sale_date'];
+                                                            $sale_time = $_REQUEST['sale_time'];
+                                                            $payment_method = $_REQUEST['payment_method'];
                                                             
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO product  VALUES ('$no'
-                                                                ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer', 
-                                                                '$name','$volume','$unit')";
+                                                            $sql = "INSERT INTO sales VALUES ('$sale_id'
+                                                                ,'$customer_id','$employee_id','$product_id','$branch_id','$quantity',
+                                                                '$discount','$promotion_scheme',
+                                                                '$account_receive','$sale_date','$sale_time','$payment_method')";
                                                             
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully." 
                                                                 . " Please browse your localhost" 
                                                                 . " to view the updated data</h3>"; 
                                                                 
-                                                                echo nl2br("No : $no\n"
-                                                                    . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
+                                                                echo nl2br("Sale_id : $sale_id\n"
+                                                                    . "Customer_id : $customer_id\nEmployee_id : $employee_id\nProduct_id : $product_id\nBranch_id : $branch_id\nQuantity : $quantity\nDiscount : $discount\nPromotion_scheme : $promotion_scheme\nAccount_receive : $account_receive\nSale_date : $sale_date\nSale_time : $sale_time\nPayment_method : $payment_method");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
@@ -270,17 +247,18 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>商品編號</th>
-                                        <th>商品名稱</th>
-                                        <th>現況</th>
-                                        <th>P1</th>
-                                        <th>P2</th>
-                                        <th>P3</th>
-                                        <th>數量</th>
-                                        <th>地域</th>
-                                        <th>蔵元</th>
-                                        <th>容量</th>
-                                        <th>單位</th>
+                                        <th>Sale ID</th>
+                                        <th>Customer ID</th>
+                                        <th>Employee ID</th>
+                                        <th>Product ID</th>
+                                        <th>Branch ID</th>
+                                        <th>Quantity</th>
+                                        <th>Discount</th>
+                                        <th>Promotion scheme</th>
+                                        <th>Account receive</th>
+                                        <th>Sale date</th>
+                                        <th>Sale time</th>
+                                        <th>Payment method</th>
                                     </tr>
                                 </thead>
                                 
@@ -291,7 +269,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM product";
+                                        $sql = "SELECT sale_id, customer_id, employee_id, product_id, branch_id, quantity, discount, promotion_scheme, account_receive, sale_date, sale_time, payment_method FROM sales";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -302,7 +280,8 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["no"] ."</td><td>" .$row["name"] ."</td><td>" .$row["status"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"] ."</td><td>" .$row["stock"] ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] ."</td><td>".$row["unit"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" . $row["product_id"] ."</td><td>" . $row["branch_id"] ."</td><td>" . $row["quantity"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["promotion_scheme"] ."</td><td>" .$row["account_receive"] ."</td><td>" .$row["sale_date"] ."</td><td>".$row["sale_time"] ."</td><td>" .$row["payment_method"] .
+                                                    "</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
