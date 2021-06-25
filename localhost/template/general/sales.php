@@ -203,7 +203,7 @@
                                                             // Performing insert query execution
                                                             $sql = "INSERT INTO sales VALUES ('$sale_id'
                                                                 ,'$customer_id','$employee_id','$product_id','$branch_id','$quantity',
-                                                                '$discount','$promotion_scheme,
+                                                                '$discount','$promotion_scheme',
                                                                 '$account_receive','$sale_date','$sale_time','$payment_method')";
                                                             
                                                             if(mysqli_query($conn, $sql)){
