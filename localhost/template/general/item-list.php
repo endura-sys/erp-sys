@@ -1,3 +1,4 @@
+
 <?php include('../header.php'); ?>
 <?php $currentPage = 'item-list'; ?>
 
@@ -52,6 +53,35 @@
                         <div class="card-header">
                             Simple Datatable
 
+<!--                            <div class="col-md-6 mb-4">-->
+<!--                                <h6>Multiple Select with Remove Button</h6>-->
+<!--                                <p>Use <code>.multiple-remove</code> attribute for multiple select box with remove-->
+<!--                                    button.</p>-->
+<!--                                <div class="form-group">-->
+<!--                                    <select class="choices form-select multiple-remove" multiple="multiple">-->
+<!--                                        <optgroup label="Figures">-->
+<!--                                            <option value="romboid">Romboid</option>-->
+<!--                                            <option value="trapeze" selected>Trapeze</option>-->
+<!--                                            <option value="triangle">Triangle</option>-->
+<!--                                            <option value="polygon">Polygon</option>-->
+<!--                                        </optgroup>-->
+<!--                                        <optgroup label="Colors">-->
+<!--                                            <option value="red">Red</option>-->
+<!--                                            <option value="green">Green</option>-->
+<!--                                            <option value="blue" selected>Blue</option>-->
+<!--                                            <option value="purple">Purple</option>-->
+<!--                                        </optgroup>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            {% endblock %}-->
+<!--                            {% block stylesfirst %}-->
+<!--                            <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />-->
+<!--                            {% endblock %}-->
+<!--                            {% block js %}-->
+<!--                            <script src="assets/vendors/choices.js/choices.min.js"></script>-->
+<!--                            {% endblock %}-->
+                            
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
                                 data-bs-target="#border-add">
                                 Add new data
