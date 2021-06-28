@@ -15,6 +15,7 @@ RewriteRule ^customer-list /template/general/customer-list.php [L,QSA,NC]
 RewriteRule ^inbound-list /template/inbound/inbound-list.php [L,QSA,NC]
 RewriteRule ^outbound-list /template/outbound/outbound-list.php [L,QSA,NC]
 RewriteRule ^purchase-list /template/purchase/purchase-list.php [L,QSA,NC]
+RewriteRule ^outbound-schedule /template/outbound/outbound-schedule.php [L,QSA,NC]
 
 RewriteRule ^sales /template/sales/sales.php [L,QSA,NC]
 RewriteRule ^branch /template/sales/branch.php [L,QSA,NC]
@@ -30,3 +31,5 @@ RewriteRule ^user-update /template/user-management/user-update.php [L,QSA,NC]
 RewriteRule ^create /template/user-management/create.php [L,QSA,NC]
 RewriteRule ^delete-user /template/user-management/delete-user.php [L,QSA,NC]
 RewriteRule ^userserver /template/user-management/userserver.php [L,QSA,NC]
+
+RewriteRule ^invoice /template/pdf-generator/pdf/invoice.php [L,QSA,NC]

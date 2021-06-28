@@ -23,15 +23,15 @@
                 <li class="submenu-item <?php if ($currentPage == 'supplier-list') {echo "active";} ?>">
                     <a href="supplier-list">Supplier list</a>
                 </li>
-                
+
                 <li class="submenu-item <?php if ($currentPage == 'customer-list') {echo "active";} ?>">
                     <a href="customer-list">Customer list</a>
                 </li>
 
             </ul>
-            
+
         </li>
-        
+
         <!-- Financial Management -->
         <li class="sidebar-item has-sub">
             <a href="#" class='sidebar-link'>
@@ -115,22 +115,22 @@
         </li>
 
         <!-- Outbound -->
-        <li class="sidebar-item has-sub">
+        <li class="sidebar-item has-sub <?php if ($currentPage == 'outbound-schedule') {echo "active";} ?>">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Outbound</span>
             </a>
 
-            <ul class="submenu">
-                <li class="submenu-item ">
-                    <a href="outbound">Outbound schedule</a>
+            <ul class="submenu <?php if ($currentPage == 'outbound-schedule') {echo "active";} ?>">
+                <li class="submenu-item <?php if ($currentPage == 'outbound-schedule') {echo "active";} ?>">
+                    <a href="outbound-schedule">Outbound schedule</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="">New outbound order</a>
                 </li>
             </ul>
         </li>
-        
+
 
         <!-- User management -->
         <li class="sidebar-item <?php if ($currentPage == 'user-management') {echo "active";} else  {echo "noactive";}?>">
