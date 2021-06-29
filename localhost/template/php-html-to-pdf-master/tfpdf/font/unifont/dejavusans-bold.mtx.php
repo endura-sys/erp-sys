@@ -16,5 +16,4 @@ $ut=44;
 $ttffile='../tfpdf/font/unifont/DejaVuSans-Bold.ttf';
 $originalsize=672300;
 $fontkey='dejavuBOLD';
-
 ?>
