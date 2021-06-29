@@ -1,7 +1,7 @@
 <?php
 
 	require('../php-html-to-pdf/php-html-to-pdf.php');
-	//define('FPDF_FONTPATH','../tfpdf/font/');
+	define('FPDF_FONTPATH','../tfpdf/font/');
 
 
 	$pdf_object = new HTMLtoPDF([
@@ -29,7 +29,24 @@
 	$pdf_object->addProdcutInfo();
 	$pdf_object->addAccountInfo();
 
+	/*
+	include '../../../database.php';
+	$conn = OpenCon();
+
+
+	$sql = "SELECT `order no.` FROM `outbound schedule`";
+	$result = $conn->query($sql);
+	while($row = $result->fetch_assoc()) {
+
+		$pdf_object->Cell(0,20,$row["order no."],0,0,'');
+		$pdf_object->Ln();
+	}
+	*/
+
 	$pdf_object->Output();
+
+
+
 /*
 
 		Others...
