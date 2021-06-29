@@ -133,11 +133,20 @@
 
 
         <!-- User management -->
-        <li class="sidebar-item <?php if ($currentPage == 'user-management') {echo "active";} else  {echo "noactive";}?>">
+        <li class="sidebar-item has-sub <?php if ($currentPage == 'user-management') {echo "active";} else  {echo "noactive";}?>">
             <a href="user-management" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>User management</span>
             </a>
+
+            <ul class="submenu">
+              <li class="submenu-item ">
+                  <a href="user-management">User Management</a>
+              </li>
+                <li class="submenu-item ">
+                    <a href="position-management">Position Management</a>
+                </li>
+            </ul>
         </li>
 
         <li class="sidebar-item  ">
