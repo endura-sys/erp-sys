@@ -1,5 +1,5 @@
 <?php include('../header.php'); ?>
-<?php $currentPage = 'user-management'; ?>
+<?php $currentPage = 'position-management'; ?>
 
 <body>
     <div id="app">
@@ -56,7 +56,7 @@
 							</div>
 
 							<div class="buttons col-md-6 d-flex justify-content-end h-50">
-								<a href="create-user" class="btn btn-success">Create a New User</a>
+								<a href="create-position" class="btn btn-success">Create a New Position</a>
 							</div>
 						</div>
 
@@ -65,12 +65,7 @@
                                 <thead>
                                     <tr>
                                         <th>№</th>
-                                        <th>full name</th>
                                         <th>position</th>
-                                        <th>email</th>
-                                        <th>phone</th>
-                                        <th>username</th>
-                                        <th>password</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -82,7 +77,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT id, full_name, position, email, phone, username, password FROM users";
+                                        $sql = "SELECT * FROM job_position";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -94,18 +89,13 @@
                                     ?>
                                               <tr>
                                                 <td><?php echo $i; $i++; ?></td>
-                                                <td><?php echo $row["full_name"]; ?></td>
                                                 <td><?php echo $row["position"]; ?></td>
-                                                <td><?php echo $row["email"]; ?></td>
-                                                <td><?php echo $row["phone"]; ?></td>
-                                                <td><?php echo $row["username"]; ?></td>
-                                                <td><?php echo $row["password"]; ?></td>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="user-update?id=<?php echo $row["id"]?>" >Update</a>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="position-update?pos=<?php echo $row["position"]?>" >Update</a>
 
-														<button type="button" class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["id"]?>">
+														<button type="button" class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["position"]?>">
 															Delete
 														</button>
-														<div class="modal fade" id="confirmModal<?php echo $row["id"]?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+														<div class="modal fade" id="confirmModal<?php echo $row["position"]?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 															<div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
 																<div class="modal-content">
 																	<div class="modal-header">
@@ -113,7 +103,7 @@
 																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 																	</div>
 																	<div class="modal-body">
-																		<p>Confirm to delete user <b><?php echo $row["username"]; ?></b>?</p>
+																		<p>Confirm to delete position <b><?php echo $row["position"]; ?></b>?</p>
 																	</div>
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
@@ -122,20 +112,20 @@
 																		</button>
 
 																		<form  method="POST">
-																			<input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+																			<input type="hidden" name="positiondlt" value="<?php echo $row['position']; ?>">
 																			<input type="submit" name="deletebtn" class="btn btn-danger ml-1" value="Delete">
 																			<i class="bx bx-check d-block d-sm-none"></i>
 																		</form>
 																		<?php
 																			if (isset($_POST["deletebtn"])) {
-																				$id = $_POST["id"];
+																				$position = $_POST["positiondlt"];
 
-																				$sql = "DELETE FROM users where id = '$id'";
+																				$sql = "DELETE FROM job_position where position = '$position'";
 																				$result = $conn->query($sql);
 
 																				$message = "User Deleted Successfully";
 
-																				header("location: user-management");
+																				header("location: position-management");
 																			}
 																		?>
 

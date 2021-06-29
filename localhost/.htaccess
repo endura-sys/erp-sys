@@ -27,8 +27,11 @@ RewriteRule ^addnew /template/addnew/addnew.php [L,QSA,NC]
 RewriteRule ^insert /template/addnew/insert.php [L,QSA,NC]
 
 RewriteRule ^user-management /template/user-management/user-management.php [L,QSA,NC]
+RewriteRule ^position-management /template/user-management/position-management.php [L,QSA,NC]
 RewriteRule ^user-update /template/user-management/user-update.php [L,QSA,NC]
-RewriteRule ^create /template/user-management/create.php [L,QSA,NC]
+RewriteRule ^position-update /template/user-management/position-update.php [L,QSA,NC]
+RewriteRule ^create-user /template/user-management/create-user.php [L,QSA,NC]
+RewriteRule ^create-position /template/user-management/create-position.php [L,QSA,NC]
 RewriteRule ^delete-user /template/user-management/delete-user.php [L,QSA,NC]
 RewriteRule ^userserver /template/user-management/userserver.php [L,QSA,NC]
 
