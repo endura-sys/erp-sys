@@ -14,10 +14,10 @@ if (isset($_POST['updatebtn'])) {
     $result_check = $conn->query($sql_check);
     $num_check = mysqli_num_rows($result_check);
 
-    $result2 = mysqli_query($conn,"SELECT * FROM job_position WHERE position='" . $_GET['pos'] . "'");
-    $row2= mysqli_fetch_array($result2);
+    $result_check = mysqli_query($conn,"SELECT * FROM job_position WHERE id='" . $_GET['id'] . "'");
+    $row_check= mysqli_fetch_array($result_check);
 
-    if($row2['username']!=$user){
+    if($row_check['position']!=$position){
       if ($num_check > 0) {
         array_push($errors, "Username already exists. Please create a new username.");
       }
@@ -25,7 +25,7 @@ if (isset($_POST['updatebtn'])) {
 
     if (count($errors) == 0) {
       if(count($_POST)>0) {
-        mysqli_query($conn,"UPDATE job_position set position='" . $_POST['position'] . "' WHERE position='" . $_GET['pos'] . "'");
+        mysqli_query($conn,"UPDATE job_position set position='" . $_POST['position'] . "' WHERE id='" . $_GET['id'] . "'");
         //mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', last_name='" . $_POST['last_name'] . "', city_name='" . $_POST['city_name'] . "' ,email='" . $_POST['email'] . "' WHERE id='" . $_POST['userid'] . "'");
 
         //header("location: position-update?pos=" .$_POST['position']."");
@@ -34,7 +34,7 @@ if (isset($_POST['updatebtn'])) {
     }
 
 }
-$result = mysqli_query($conn,"SELECT * FROM job_position WHERE position='" . $_GET['pos'] . "'");
+$result = mysqli_query($conn,"SELECT * FROM job_position WHERE id='" . $_GET['id'] . "'");
 $row= mysqli_fetch_array($result);
 
 ?>
@@ -72,7 +72,7 @@ $row= mysqli_fetch_array($result);
               <div class="page-title">
                 <div class="row">
                   <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Update Position: "<?php echo $_GET['pos']?>"</h3>
+                    <h3>Update Position: "<?php echo $row['position']?>"</h3>
                     <p class="text-subtitle text-muted">Type the information you want to update</p>
                   </div>
                   <div class="col-12 col-md-6 order-md-2 order-first">
@@ -87,7 +87,7 @@ $row= mysqli_fetch_array($result);
                   </div>
                   <div class="card-content">
                     <div class="card-body">
-                      <form class="form form-horizontal" action="position-update?pos=<?php echo $_GET['pos']?>" method="post">
+                      <form class="form form-horizontal" action="position-update?id=<?php echo $row['id']?>" method="post">
                         <?php if(isset($message)) { ?>
                         <div class="alert alert-success">
                           <i class="bi bi-check-circle"></i>

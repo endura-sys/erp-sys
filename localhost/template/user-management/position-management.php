@@ -90,7 +90,7 @@
                                               <tr>
                                                 <td><?php echo $i; $i++; ?></td>
                                                 <td><?php echo $row["position"]; ?></td>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="position-update?pos=<?php echo $row["position"]?>" >Update</a>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="position-update?id=<?php echo $row["id"]?>" >Update</a>
 
 														<button type="button" class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["position"]?>">
 															Delete
