@@ -86,7 +86,7 @@
                                                 // print_r($product_list);
                                                 echo "<tr><td>" .$row["order no."] ."</td><td>" .$row["shipping date"] ."</td><td>" .$row["outgoer"] ."</td><td>" . $row["quantity"] ."</td>";
                                                 ?>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice" target="_blank">Generate</a></td>";
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice" target="_blank">Generate</a></td>
                                                 <?php
                                             }
                                         } else {

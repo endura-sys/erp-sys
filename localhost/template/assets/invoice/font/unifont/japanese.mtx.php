@@ -13,7 +13,7 @@ $desc=array (
 );
 $up=-125;
 $ut=50;
-$ttffile='C:\Users\Irene\Documents\GitHub\erp-sys\localhost\template\php-html-to-pdf-master\tfpdf/font/unifont/japanese.ttf';
+$ttffile='../tfpdf/font/unifont/japanese.ttf';
 $originalsize=9681820;
 $fontkey='japanese';
 ?>

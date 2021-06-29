@@ -13,7 +13,7 @@ $desc=array (
 );
 $up=-63;
 $ut=44;
-$ttffile='C:\Users\Irene\Documents\GitHub\erp-sys\localhost\template\php-html-to-pdf-master\tfpdf/font/unifont/DejaVuSans-Oblique.ttf';
+$ttffile='../tfpdf/font/unifont/DejaVuSans-Oblique.ttf';
 $originalsize=611556;
 $fontkey='dejavuITALIC';
 ?>
