@@ -73,6 +73,11 @@
                                                         <div class="col-md-6">
                                                             
                                                             <div class="form-group">
+                                                                <label for="inbound_id">Inbound id:</label>
+                                                                <input type="integer" class="form-control" name="inbound_id" id="Inbound id" placeholder="">   
+                                                            </div>
+
+                                                            <div class="form-group">
                                                                 <label for="purchasing_id">Purchasing id:</label>
                                                                 <input type="integer" class="form-control" name="purchasing_id" id="Purchasing id" placeholder="">
                                                             </div>
@@ -87,12 +92,6 @@
                                                             <div class="form-group">
                                                                 <label for="quantity">Quantity:</label>
                                                                 <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="form-group">
-                                                                <label for="account_payable">Account payable:</label>
-                                                                <input type="integer" class="form-control" name="account_payable" id="Account payable" placeholder="">
                                                             </div>
                                                             
                                                             
@@ -170,11 +169,11 @@
                                                                 die("ERROR: Could not connect. " 
                                                                     . mysqli_connect_error());
                                                             }
-                                                            
+                                                           
+                                                            $inbound_id = $_REQUEST['inbound_id'];
                                                             $purchasing_id =  $_REQUEST['purchasing_id'];
                                                             $product_id =  $_REQUEST['product_id'];
                                                             $quantity = $_REQUEST['quantity'];
-                                                            $account_payable = $_REQUEST['account_payable'];
                                                             $employee_id = $_REQUEST['employee_id'];
                                                             $inbound_date = $_REQUEST['inbound_date'];
                                                             $shelf_date = $_REQUEST['shelf_date'];
@@ -182,8 +181,8 @@
                                                             $inbound_cost = $_REQUEST['inbound_cost'];
                                                             
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO inbound VALUES ('$purchasing_id','$product_id','$quantity', 
-                                                            '$account_payable','$employee_id','$inbound_date','$shelf_date',
+                                                            $sql = "INSERT INTO inbound VALUES ('$inbound_id','$purchasing_id','$product_id','$quantity', 
+                                                            '$employee_id','$inbound_date','$shelf_date',
                                                             '$inbound_way','$inbound_cost')";
                                                             
                                                             if(mysqli_query($conn, $sql)){
@@ -191,8 +190,8 @@
                                                                 . " Please browse your localhost" 
                                                                 . " to view the updated data</h3>"; 
                                                                 
-                                                                echo nl2br("Purchasing id : $purchasing_id\n"
-                                                                    . "Product id : $product_id\nQuantity : $quantity\nAccount payable : $account_payable\n Employee id : $employee_id\nInbound date : $inbound_date\nShelf date : $shelf_date\nShipping way : $inbound_way\nShipping cost : $inbound_cost\n");
+                                                                echo nl2br("Inbound id : $inbound_id\n"
+                                                                    . "Purchasing id : $purchasing_id\nProduct id : $product_id\nQuantity : $quantity\nEmployee id : $employee_id\nInbound date : $inbound_date\nShelf date : $shelf_date\nShipping way : $inbound_way\nShipping cost : $inbound_cost\n");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
@@ -227,10 +226,10 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
+                                        <th>入庫編號</th>
                                         <th>採購單編號</th>
                                         <th>商品編號</th>
                                         <th>數量</th>
-                                        <th>應付賬項</th>
                                         <th>負責人編號</th>
                                         <th>入庫日期</th>
                                         <th>保質期限</th>
@@ -246,7 +245,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT purchasing_id, product_id, employee_id, account_payable, quantity, inbound_date, shelf_date, inbound_way, inbound_cost FROM inbound";
+                                        $sql = "SELECT inbound_id, purchasing_id, product_id, employee_id, quantity, inbound_date, shelf_date, inbound_way, inbound_cost FROM inbound";
                                         $result = $conn->query($sql);
 
                                         $inbound_list = array();
@@ -257,7 +256,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["account_payable"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["inbound_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>" .$row["inbound_way"] ."</td><td>" .$row["inbound_cost"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["inbound_id"]. "</td><td>". $row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["inbound_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>" .$row["inbound_way"] ."</td><td>" .$row["inbound_cost"] ."</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
