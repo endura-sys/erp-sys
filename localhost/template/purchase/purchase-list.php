@@ -89,6 +89,10 @@
                                                                 <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
                                                             </div>
                                                             
+                                                            <div class="form-group">
+                                                                <label for="account_payable">Account payable:</label>
+                                                                <input type="integer" class="form-control" name="account_payable" id="Account_payable" placeholder="">
+                                                            </div>
                                                             
                                                             <div class="form-group">
                                                                 <label for="supplier_id">Supplier id:</label>
@@ -169,7 +173,8 @@
                                                             $purchasing_id =  $_REQUEST['purchasing_id'];
                                                             $product_id =  $_REQUEST['product_id'];
                                                             $quantity = $_REQUEST['quantity'];
-                                                            $supplier_id = $_REQUEST['supplier_id'];
+                                                            $account_payable = $_REQUEST['account_payable'];
+                                                            $supplier_id = $_REQUEST['supplier_id']; 
                                                             $employee_id = $_REQUEST['employee_id'];
                                                             $production_date = $_REQUEST['production_date'];
                                                             $purchasing_date = $_REQUEST['purchasing_date'];
@@ -177,7 +182,7 @@
                                                             
                                                             // Performing insert query execution
                                                             $sql = "INSERT INTO purchase VALUES ('$purchasing_id','$product_id','$quantity',
-                                                            '$supplier_id','$employee_id','$production_date','$purchasing_date','$shelf_date')";
+                                                            '$account_payable','$supplier_id','$employee_id','$production_date','$purchasing_date','$shelf_date')";
                                                             
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully." 
@@ -223,6 +228,7 @@
                                         <th>採購編號</th>
                                         <th>商品編號</th>
                                         <th>數量</th>
+                                        <th>Account Payable</th>
                                         <th>供應商編號</th>
                                         <th>負責人編號</th>
                                         <th>生產日期</th>
@@ -238,7 +244,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT purchasing_id, product_id, quantity, supplier_id, employee_id, production_date, purchasing_date, shelf_date FROM purchase";
+                                        $sql = "SELECT purchasing_id, product_id, quantity, account_payable, supplier_id, employee_id, production_date, purchasing_date, shelf_date FROM purchase";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -249,7 +255,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["account_payable"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
