@@ -182,7 +182,7 @@
 
                                                             // Performing insert query execution
                                                             $sql = "INSERT INTO purchase VALUES ('$purchasing_id','$product_id','$quantity',
-                                                            '$account_payable','$supplier_id','$employee_id','$production_date','$purchasing_date','$shelf_date')";
+                                                            '$supplier_id','$employee_id','$production_date','$purchasing_date','$shelf_date')";
 
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully."
