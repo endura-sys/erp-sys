@@ -225,7 +225,7 @@
                                                             $unit = $_REQUEST['unit'];
                                                             
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO product  VALUES ('$no'
+                                                            $sql = "INSERT INTO wine_list  VALUES ('$no'
                                                                 ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer', 
                                                                 '$name','$volume','$unit')";
                                                             
@@ -272,11 +272,9 @@
                                     <tr>
                                         <th>商品編號</th>
                                         <th>商品名稱</th>
-                                        <th>現況</th>
                                         <th>P1</th>
                                         <th>P2</th>
                                         <th>P3</th>
-                                        <th>數量</th>
                                         <th>地域</th>
                                         <th>蔵元</th>
                                         <th>容量</th>
@@ -291,7 +289,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT no, status, p1, p2, p3, stock, location, sake_brewer, name, volume, unit FROM product";
+                                        $sql = "SELECT no, p1, p2, p3, location, sake_brewer, name, volume, unit FROM wine_list";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -302,7 +300,15 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["no"] ."</td><td>" .$row["name"] ."</td><td>" .$row["status"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"] ."</td><td>" .$row["stock"] ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] ."</td><td>".$row["unit"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["no"] ."</td><td>" 
+                                                .$row["name"] ."</td><td>" 
+                                                ."$" .$row["p1"] ."</td><td>" 
+                                                ."$" .$row["p2"] ."</td><td>" 
+                                                ."$" .$row["p3"] ."</td><td>" 
+                                                .$row["location"] ."</td><td>" 
+                                                .$row["sake_brewer"] ."</td><td>" 
+                                                .$row["volume"]. "ML" ."</td><td>"
+                                                .$row["unit"]. "/ctn" ."</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
