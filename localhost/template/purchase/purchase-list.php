@@ -34,7 +34,7 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>DataTable</h3>
+                            <h3>Purchase List</h3>
                             <p class="text-subtitle text-muted">For user to check they list</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
@@ -225,6 +225,7 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
+                                        <th>Select</th>
                                         <th>Purchasing ID</th>
                                         <th>Product ID</th>
                                         <th>Quantity</th>
@@ -256,7 +257,11 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["account_payable"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td>";
+                                                ?><tr>
+                                                  <td><input type="checkbox" name="checkbox<?php echo $row["purchasing_id"]?>" class="form-check-input"></td>
+
+                                                <?php
+                                                echo "<td>" .$row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["account_payable"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td>";
                                                 ?>
                                                 <td>
                                                   <a type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["purchasing_id"]?>" >Confirm Inbound</a>
@@ -328,7 +333,7 @@
                                                                       </div>
 
                                                                       <div class="modal-footer">
-                                                                          <button type="Submit" class="btn btn-primary me-1 mb-1" name="confirm_inbound">Update</button>
+                                                                          <button type="Submit" class="btn btn-primary me-1 mb-1" name="confirm_inbound">Confirm</button>
                                                                           <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
                                                                               <i class="bx bx-check d-block d-sm-none"></i>
                                                                               <span class="d-none d-sm-block">Close</span>
@@ -362,10 +367,7 @@
 
                                                       if (count($errors) == 0) {
                                                         mysqli_query($conn, $sql_inbound_confirm);
-                                                        $id = $_POST["purchasing_id"];
-                																				$sql = "DELETE FROM purchase where purchasing_id = '$id'";
-                																				$result = $conn->query($sql);
-
+                                                        
                                                         header("location:  purchase-list");
 
                                                       }
