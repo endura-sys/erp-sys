@@ -1,5 +1,4 @@
 <?php include('../header.php'); ?>
-<?php $currentPage = 'outbound-schedule'; ?>
 
 <html>
 
@@ -24,7 +23,6 @@
             </div>
         </div>
 
-
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
@@ -35,39 +33,27 @@
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>DataTable</h3>
-                            <p class="text-subtitle text-muted">For user to check outbound schedule</p>
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
+            					<div class="col-12 col-md-6 order-md-1 order-last">
+                        <h3>Outbound Order No: <?php echo $_GET['id'] ?></h3>
+            						<p class="text-subtitle text-muted">Details</p>
+            					</div>
+            					<div class="col-12 col-md-6 order-md-2 order-first">
+            						<div class="buttons d-flex justify-content-end h-70">
+            							<a href="outbound-schedule" class="btn btn-primary">Back</a>
+            						</div>
+            					</div>
+            				</div>
                 </div>
+
                 <section class="section">
                     <div class="card">
-
-                        <div class="card-header">
-                            Simple Datatable
-                        </div>
-
+							          <div class="card-header">Simple Datatable</div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
                                         <th>Outbound ID</th>
-                                        <th>Employee ID</th>
-                                        <th>Shipping Date</th>
-                                        <th>Outgoer</th>
-                                        <th>Outbound Way</th>
-                                        <th>Outbound Cost</th>
-                                        <th>Details</th>
-                                        <th>Invoice</th>
+                                        <th>Sale ID</th>
                                     </tr>
                                 </thead>
 
@@ -78,7 +64,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT outbound_id, employee_id, date_of_outbound, outgoer, outbound_way, outbound_cost FROM outbound";
+                                        $sql = "SELECT * FROM `outbound_items` where outbound_id='" . $_GET['id'] . "'";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -89,10 +75,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["outbound_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["date_of_outbound"] ."</td><td>" . $row["outgoer"] ."</td><td>" . $row["outbound_way"] ."</td><td>" .$row["outbound_cost"] ."</td>";                                                ?>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="outbound-info?id=<?php echo $row["outbound_id"]?>">View</a></td>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice" target="_blank">Generate</a></td>
-                                                <?php
+                                                echo "<tr><td>" .$row["outbound_id"] ."</td><td>" .$row["sale_id"] ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
@@ -100,14 +83,10 @@
                                         echo $product_list[0][1];
                                         CloseCon($conn);
                                     ?>
-
-
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
-
                 </section>
             </div>
 

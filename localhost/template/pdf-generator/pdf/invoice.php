@@ -26,7 +26,32 @@
 	$pdf_object->Ln();//换行
 
 	$pdf_object->addCustomerInfo("酒蛙Sakewa Eugene", "酒蛙Sakewa Eugene", "酒蛙Sakewa Eugene", "email@gmail.com", "1305室 香港觀塘巧明街106號冠力工業大廈", "JP123456", "2021-6-21");
-	$pdf_object->addProdcutInfo();
+	$pdf_object->addProdcutHeader();
+	$sale = $_GET['id'];
+
+	include '../../../database.php';
+	$conn = OpenCon();
+
+	$sql = "SELECT product_id, quantity FROM `sale_items` where sale_id=$sale";
+	$result = $conn->query($sql);
+	$i = 1;
+	$totalquantity = 0;
+	$totalamount= 0;
+	while($row = $result->fetch_assoc()) {
+		$sql2 = "SELECT name, volume, p2 FROM `product` where no='". $row['product_id'] ."'";
+		$result2 = $conn->query($sql2);
+		while($row2 = $result2->fetch_assoc()) {
+			$price = substr($row2["p2"], 1);
+			$p = (int) str_replace(',', '', $price);
+			$q = (int) $row["quantity"];
+			$a = $p * $q;
+			$pdf_object->addProdcutInfo($i, $row2["name"], $row2["volume"], $row2["p2"], $row["quantity"], $a);
+			$i++;
+			$totalquantity += $q;
+			$totalamount += $a;
+		}
+	}
+	$pdf_object->addProdcutTotal($totalquantity, $totalamount);
 	$pdf_object->addAccountInfo();
 
 	/*

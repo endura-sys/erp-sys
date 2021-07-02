@@ -16,8 +16,10 @@ RewriteRule ^inbound-list /template/inbound/inbound-list.php [L,QSA,NC]
 RewriteRule ^outbound-list /template/outbound/outbound-list.php [L,QSA,NC]
 RewriteRule ^purchase-list /template/purchase/purchase-list.php [L,QSA,NC]
 RewriteRule ^outbound-schedule /template/outbound/outbound-schedule.php [L,QSA,NC]
+RewriteRule ^outbound-info /template/outbound/outbound-info.php [L,QSA,NC]
 
 RewriteRule ^sales /template/sales/sales.php [L,QSA,NC]
+RewriteRule ^order-info /template/sales/order-info.php [L,QSA,NC]
 RewriteRule ^branch /template/sales/branch.php [L,QSA,NC]
 
 RewriteRule ^login /template/auth/login.php [L,QSA,NC]

@@ -723,7 +723,7 @@
 
 		}
 
-		function addProdcutInfo(){
+		function addProdcutHeader(){
 
 			$this->SetFont('','',9.5);
 			$this->Cell(10 ,6,"",1,0,'C');
@@ -744,24 +744,30 @@
 			// $this->Ln(); //换行
 
 			/*Heading Of the table end*/
-			for ($i = 0; $i <= 10; $i++) {
-				$this->Cell(10 ,6,$i,1,0,'C');
-				$this->Cell(80 ,6,'アイウエオ',1,0);
-				$this->Cell(23 ,6,'1',1,0,'C');
-				$this->Cell(30 ,6,'15000.00',1,0,'C');
-				$this->Cell(20 ,6,'100.00',1,0,'C');
-				$this->Cell(25 ,6,'100.00',1,0,'C');
-				$this->Ln(); //换行
+
+		}
+
+		function addProdcutInfo($i, $name, $volume, $price, $quantity, $amount){
+			$this->Cell(10 ,6,$i,1,0,'C');
+			$this->Cell(80 ,6,$name,1,0);
+			$this->Cell(23 ,6,$volume,1,0,'C');
+			$this->Cell(30 ,6,$price,1,0,'C');
+			$this->Cell(20 ,6,$quantity,1,0,'C');
+			//$p = (int)$price;
+			//$q = (int)$quantity;
+			$this->Cell(25 ,6, $amount,1,0,'C');
+			//$this->Cell(25 ,6, $p * $q,1,0,'C');
+			$this->Ln(); //换行
 
 				// $this->Cell(25 ,6,'15100.00',1,1,'R');
-			}
-			//$this->SetFont('','',9.5);
+		}
 
+		function addProdcutTotal($quantity, $amount){
 			$this->Cell(10 ,6,"",0,0,'C');
 			$this->Cell(80 ,6,"",0,0,'C');
 			$this->Cell(23 ,6,"",0,0,'C');
 			$this->Cell(30 ,6,"Total: ",1,0,'C');
-			$this->Cell(20 ,6,"xxxxx",1,0,'C');
+			$this->Cell(20 ,6, $quantity,1,0,'C');
 			$this->Cell(25 ,6,'',1,1,'C');
 
 
@@ -772,13 +778,11 @@
 			$this->Cell(23 ,6,"",0,0,'C');
 			$this->Cell(30 ,6,"",0,0,'C');
 			$this->Cell(20 ,6,"Amount:",1,0,'C');
-			$this->Cell(25 ,6,'xxxxx',1,1,'C');
+			$this->Cell(25 ,6, $amount,1,1,'C');
 
 			// $this->Ln(); //换行
 			// $this->SetFont('Arial','', 9.5);
 			$this->Cell(0 ,6,"**Under the law of Hong Kong, intoxicating liquor must not be sold or supplied to a minor in the course of business**",0,0,'L');
-
-
 		}
 
 		function addAccountInfo( ){

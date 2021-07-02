@@ -65,7 +65,7 @@
 					</div>
 					<div class="card-content">
 						<div class="card-body">
-							<form class="form form-horizontal" action="create.php" method="post">
+							<form class="form form-horizontal" action="create-user" method="post">
 								<?php include ('errors.php'); ?>
 								<div class="form-body">
 									<div class="row">
