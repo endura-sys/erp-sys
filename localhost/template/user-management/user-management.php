@@ -56,7 +56,7 @@
 							</div>
 
 							<div class="buttons col-md-6 d-flex justify-content-end h-50">
-								<a href="create.php" class="btn btn-success">Create a New User</a>
+								<a href="create-user" class="btn btn-success">Create a New User</a>
 							</div>
 						</div>
 

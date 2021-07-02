@@ -1,6 +1,7 @@
 <?php
 
 /*call the FPDF library*/
+//include('chinese.php');
 require('../assets/invoice/tfpdf.php');
 // require('../assets/invoice/tfpdf.php');
 define('FPDF_FONTPATH','../assets/invoice/font');
@@ -67,15 +68,15 @@ class PDF extends tFPDF {
 
 	function addProdcutInfo(){
 
-		$this->SetFont('simhei','',9.5);
+		$this->SetFont('han','',9.5);
 		$this->Cell(10 ,6,"",1,0,'C');
-		$this->Cell(80 ,6,"商品名稱",1,0,'C');
+		$this->Cell(80 ,6,"商品名稱あいうえお",1,0,'C');
 		$this->Cell(23 ,6,"容量",1,0,'C');
 		$this->Cell(30 ,6,"售價",1,0,'C');
 		$this->Cell(20 ,6,"數量",1,0,'C');
 		$this->Cell(25 ,6,'金額',1,1,'C');
 		// $this->Ln(); //换行
-		
+
 		$this->SetFont('GenShinGothic','',9.5);
 
 		// $this->Cell(10 ,6,'1',1,0,'C');
@@ -84,7 +85,7 @@ class PDF extends tFPDF {
 		// $this->Cell(30 ,6,'4',1,0,'C');
 		// $this->Cell(20 ,6,'5',1,0,'C');
 		// $this->Ln(); //换行
-		
+
 		/*Heading Of the table end*/
 		for ($i = 0; $i <= 10; $i++) {
 			$this->Cell(10 ,6,$i,1,0,'C');
@@ -119,8 +120,8 @@ class PDF extends tFPDF {
 		// $this->Ln(); //换行
 		// $this->SetFont('Arial','', 9.5);
 		$this->Cell(0 ,6,"**Under the law of Hong Kong, intoxicating liquor must not be sold or supplied to a minor in the course of business**",0,0,'L');
-		
-		
+
+
 	}
 
 	function addAccountInfo( ){
@@ -165,10 +166,10 @@ class PDF extends tFPDF {
 		$this->Cell(0,5,"Hanabi international Limited",0,0,'L');
 		$this->Ln(); //换行
 
-		
+
 
 	}
-	
+
 }
 
 
@@ -193,6 +194,10 @@ class PDF extends tFPDF {
 $pdf = new PDF();
 // Add font from data file 'font/'
 $pdf->AddFont('simhei','','simhei.php');
+
+//$pdf->AddFont('chinese','','chinese.php');
+
+$pdf->AddFont('han','','SourceHanSerifTC-Regular.php');
 // $pdf->AddFont('ubuntu','','ubuntu.php');
 // $pdf->AddFont('Nexa Bold', 'Nexa Bold');
 // $pdf->AddFont('Nexa Light', 'Nexa Light');
@@ -202,6 +207,7 @@ $pdf->AddFont('GenShinGothic','','GenShinGothic-Regular.php');
 // $pdf->AddFont('NotoSerifJP','','NotoSerifJP-Regular.ttf', true);
 
 // $pdf->AddFont('AppliMincho', 'AppliMincho');
+
 
 
 $pdf->AddPage();

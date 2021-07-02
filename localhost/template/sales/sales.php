@@ -17,7 +17,7 @@
                 </div>
 
                 <?php include('../datatable-navbar.php'); ?>
-                
+
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
@@ -71,81 +71,81 @@
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for=sale_id>Sale ID:</label>
                                                                 <input type="integer" class="form-control" name="sale_id" id="Sale_id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="customer_id">Customer ID:</label>
                                                                 <input type="integer" class="form-control" name="customer_id" id="Customer_id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="employee_id">Employee ID:</label>
                                                                 <input type="integer" class="form-control" name="employee_id" id="Employee_id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="product_id">Product ID:</label>
                                                                 <input type="integer" class="form-control" name="product_id" id=Product_id placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="branch_id">Branch ID:</label>
                                                                 <input type="integer" class="form-control" name="branch_id" id="Branch_id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="quantity">Quantity:</label>
                                                                 <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="discount">Discount:</label>
                                                                 <input type="varchar" class="form-control" name="discount" id="Discount" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="promotion_scheme">Promotion scheme:</label>
                                                                 <input type="varchar" class="form-control" name="promotion_scheme" id="Promotion_scheme" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="account_receive">Account receive:</label>
                                                                 <input type="integer" class="form-control" name="account_receive" id="Account_receive" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="sale_date">Sale date:</label>
                                                                 <input type="varchar" class="form-control" name="sale_date" id="Sale_date" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="sale_time">Sale time:</label>
                                                                 <input type="varchar" class="form-control" name="sale_time" id="Sale_time" placeholder="">
                                                             </div>
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="payment_method">Payment method:</label>
                                                                 <input type="varchar" class="form-control" name="payment_method" id="Payment_method" placeholder="">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="modal-footer">
                                                         <form data-target="#border-added" method="post">
                                                             <input type="submit" class="btn-check" value="Submit" id='submit'>
@@ -156,7 +156,7 @@
                                                             <span class="d-none d-sm-block">Close</span>
                                                         </button>
                                                     </div>
-                                                    
+
                                                 </form>
                                             </div>
                                         </div>
@@ -178,15 +178,15 @@
                                                 <tbody>
                                                     <center>
                                                         <?php
-                                                            
+
                                                             $conn = mysqli_connect("localhost", "root", "root", "db");
-                                                            
+
                                                             // Check connection
                                                             if($conn === false){
-                                                                die("ERROR: Could not connect. " 
+                                                                die("ERROR: Could not connect. "
                                                                     . mysqli_connect_error());
                                                             }
-                                                            
+
                                                             $sale_id =  $_REQUEST['sale_id'];
                                                             $customer_id =  $_REQUEST['customer_id'];
                                                             $employee_id = $_REQUEST['employee_id'];
@@ -199,24 +199,24 @@
                                                             $sale_date = $_REQUEST['sale_date'];
                                                             $sale_time = $_REQUEST['sale_time'];
                                                             $payment_method = $_REQUEST['payment_method'];
-                                                            
+
                                                             // Performing insert query execution
                                                             $sql = "INSERT INTO sales VALUES ('$sale_id'
                                                                 ,'$customer_id','$employee_id','$product_id','$branch_id','$quantity',
                                                                 '$discount','$promotion_scheme',
                                                                 '$account_receive','$sale_date','$sale_time','$payment_method')";
-                                                            
+
                                                             if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully." 
-                                                                . " Please browse your localhost" 
-                                                                . " to view the updated data</h3>"; 
-                                                                
+                                                                echo "<h3>Data stored in a database successfully."
+                                                                . " Please browse your localhost"
+                                                                . " to view the updated data</h3>";
+
                                                                 echo nl2br("Sale_id : $sale_id\n"
                                                                     . "Customer_id : $customer_id\nEmployee_id : $employee_id\nProduct_id : $product_id\nBranch_id : $branch_id\nQuantity : $quantity\nDiscount : $discount\nPromotion_scheme : $promotion_scheme\nAccount_receive : $account_receive\nSale_date : $sale_date\nSale_time : $sale_time\nPayment_method : $payment_method");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. " 
+                                                                echo "ERROR : Invalid input. "
                                                                 . mysqli_error($conn);
                                                             }
                                                             mysqli_close($conn);
@@ -224,12 +224,12 @@
                                                         <div>
                                                             <div class="card-body">
                                                             </div>
-                                                            
-                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew" 
+
+                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew"
                                                                 onClick="document.location.href='addnew'" />
                                                             <label class="btn btn-outline-success" for="addnew">Add another data</label>
-                                                            
-                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn" 
+
+                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn"
                                                                 onClick="document.location.href='dashboard'" />
                                                             <label class="btn btn-outline-danger" for="mainn">Back to database</label>
                                                         </div>
@@ -250,18 +250,18 @@
                                         <th>Sale ID</th>
                                         <th>Customer ID</th>
                                         <th>Employee ID</th>
-                                        <th>Product ID</th>
                                         <th>Branch ID</th>
-                                        <th>Quantity</th>
                                         <th>Discount</th>
                                         <th>Promotion scheme</th>
                                         <th>Account receive</th>
                                         <th>Sale date</th>
                                         <th>Sale time</th>
                                         <th>Payment method</th>
+                                        <th>Details</th>
+                                        <th>Invoice</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     <!-- Connect to the database -->
                                     <?php
@@ -269,7 +269,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT sale_id, customer_id, employee_id, product_id, branch_id, quantity, discount, promotion_scheme, account_receive, sale_date, sale_time, payment_method FROM sales";
+                                        $sql = "SELECT sale_id, customer_id, employee_id, branch_id, discount, promotion_scheme, account_receive, sale_date, sale_time, payment_method FROM sales";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -280,8 +280,12 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" . $row["product_id"] ."</td><td>" . $row["branch_id"] ."</td><td>" . $row["quantity"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["promotion_scheme"] ."</td><td>" .$row["account_receive"] ."</td><td>" .$row["sale_date"] ."</td><td>".$row["sale_time"] ."</td><td>" .$row["payment_method"] .
-                                                    "</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" . $row["branch_id"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["promotion_scheme"] ."</td><td>" .$row["account_receive"]
+                                                      ."</td><td>" .$row["sale_date"] ."</td><td>".$row["sale_time"] ."</td><td>" .$row["payment_method"] ."</td>";
+                                                ?>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="order-info?id=<?php echo $row["sale_id"]?>">View</a></td>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice?id=<?php echo $row["sale_id"]?>" target="_blank">Generate</a></td>
+                                                <?php
                                             }
                                         } else {
                                             echo "0 results";
@@ -290,9 +294,9 @@
                                         CloseCon($conn);
                                     ?>
 
-                                    
+
                                 </tbody>
-                                
+
                             </table>
                         </div>
                     </div>
@@ -312,8 +316,7 @@
             </footer>
         </div>
     </div>
-    
+
     <?php include('../footer.php'); ?>
 
 </body>
-
