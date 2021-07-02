@@ -17,7 +17,7 @@
                 </div>
 
                 <?php include('../datatable-navbar.php'); ?>
-                
+
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
@@ -71,64 +71,64 @@
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="inbound_id">Inbound id:</label>
-                                                                <input type="integer" class="form-control" name="inbound_id" id="Inbound id" placeholder="">   
+                                                                <input type="integer" class="form-control" name="inbound_id" id="Inbound id" placeholder="">
                                                             </div>
 
                                                             <div class="form-group">
                                                                 <label for="purchasing_id">Purchasing id:</label>
                                                                 <input type="integer" class="form-control" name="purchasing_id" id="Purchasing id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="product_id">Product id:</label>
                                                                 <input type="integer" class="form-control" name="product_id" id="Product id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="quantity">Quantity:</label>
                                                                 <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="employee_id">Employee id:</label>
                                                                 <input type="integer" class="form-control" name="employee_id" id="Employee id" placeholder="">
                                                             </div>
-                                                        </div>   
-                                                            
+                                                        </div>
+
 
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="inbound_date">Inbound date:</label>
                                                                 <input type="date" class="form-control" name="inbound_date" id="Inbound date" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="shelf_date">Shelf date:</label>
                                                                 <input type="date" class="form-control" name="shelf_date" id="Shelf date" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="inbound_way">Shipping way:</label>
                                                                 <input type="varchar" class="form-control" name="inbound_way" id="Shipping way" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="inbound_cost">Shipping cost:</label>
                                                                 <input type="integer" class="form-control" name="inbound_cost" id="Shipping cost" placeholder="">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="modal-footer">
                                                         <form data-target="#border-added" method="post">
                                                             <input type="submit" class="btn-check" value="Submit" id='submit'>
@@ -139,7 +139,7 @@
                                                             <span class="d-none d-sm-block">Close</span>
                                                         </button>
                                                     </div>
-                                                    
+
                                                 </form>
                                             </div>
                                         </div>
@@ -161,15 +161,15 @@
                                                 <tbody>
                                                     <center>
                                                         <?php
-                                                            
+
                                                             $conn = mysqli_connect("localhost", "root", "root", "db");
-                                                            
+
                                                             // Check connection
                                                             if($conn === false){
-                                                                die("ERROR: Could not connect. " 
+                                                                die("ERROR: Could not connect. "
                                                                     . mysqli_connect_error());
                                                             }
-                                                           
+
                                                             $inbound_id = $_REQUEST['inbound_id'];
                                                             $purchasing_id =  $_REQUEST['purchasing_id'];
                                                             $product_id =  $_REQUEST['product_id'];
@@ -179,23 +179,23 @@
                                                             $shelf_date = $_REQUEST['shelf_date'];
                                                             $inbound_way = $_REQUEST['inbound_way'];
                                                             $inbound_cost = $_REQUEST['inbound_cost'];
-                                                            
+
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO inbound VALUES ('$inbound_id','$purchasing_id','$product_id','$quantity', 
+                                                            $sql = "INSERT INTO inbound VALUES ('$inbound_id','$purchasing_id','$product_id','$quantity',
                                                             '$employee_id','$inbound_date','$shelf_date',
                                                             '$inbound_way','$inbound_cost')";
-                                                            
+
                                                             if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully." 
-                                                                . " Please browse your localhost" 
-                                                                . " to view the updated data</h3>"; 
-                                                                
+                                                                echo "<h3>Data stored in a database successfully."
+                                                                . " Please browse your localhost"
+                                                                . " to view the updated data</h3>";
+
                                                                 echo nl2br("Inbound id : $inbound_id\n"
                                                                     . "Purchasing id : $purchasing_id\nProduct id : $product_id\nQuantity : $quantity\nEmployee id : $employee_id\nInbound date : $inbound_date\nShelf date : $shelf_date\nShipping way : $inbound_way\nShipping cost : $inbound_cost\n");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. " 
+                                                                echo "ERROR : Invalid input. "
                                                                 . mysqli_error($conn);
                                                             }
                                                             mysqli_close($conn);
@@ -203,12 +203,12 @@
                                                         <div>
                                                             <div class="card-body">
                                                             </div>
-                                                            
-                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew" 
+
+                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew"
                                                                 onClick="document.location.href='addnew'" />
                                                             <label class="btn btn-outline-success" for="addnew">Add another data</label>
-                                                            
-                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn" 
+
+                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn"
                                                                 onClick="document.location.href='dashboard'" />
                                                             <label class="btn btn-outline-danger" for="mainn">Back to database</label>
                                                         </div>
@@ -226,18 +226,18 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>入庫編號</th>
-                                        <th>採購單編號</th>
-                                        <th>商品編號</th>
-                                        <th>數量</th>
-                                        <th>負責人編號</th>
-                                        <th>入庫日期</th>
-                                        <th>保質期限</th>
-                                        <th>運輸途徑</th>
-                                        <th>運輸成本</th>
+                                        <th>Inbound ID</th>
+                                        <th>Purchasing ID</th>
+                                        <th>Product ID</th>
+                                        <th>Quantity</th>
+                                        <th>Employee ID</th>
+                                        <th>Inbound Date</th>
+                                        <th>Sheft Date</th>
+                                        <th>Inbound Way</th>
+                                        <th>Inbound Cost</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     <!-- Connect to the database -->
                                     <?php
@@ -265,9 +265,9 @@
                                         CloseCon($conn);
                                     ?>
 
-                                    
+
                                 </tbody>
-                                
+
                             </table>
                         </div>
                     </div>
@@ -287,8 +287,7 @@
             </footer>
         </div>
     </div>
-    
+
     <?php include('../footer.php'); ?>
 
 </body>
-
