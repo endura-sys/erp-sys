@@ -750,12 +750,12 @@
 		function addProdcutInfo($i, $name, $volume, $price, $quantity, $amount){
 			$this->Cell(10 ,6,$i,1,0,'C');
 			$this->Cell(80 ,6,$name,1,0);
-			$this->Cell(23 ,6,$volume,1,0,'C');
-			$this->Cell(30 ,6,$price,1,0,'C');
+			$this->Cell(23 ,6,$volume . "ML",1,0,'C');
+			$this->Cell(30 ,6,"$" . $price,1,0,'C');
 			$this->Cell(20 ,6,$quantity,1,0,'C');
 			//$p = (int)$price;
 			//$q = (int)$quantity;
-			$this->Cell(25 ,6, $amount,1,0,'C');
+			$this->Cell(25 ,6, "$" . $amount,1,0,'C');
 			//$this->Cell(25 ,6, $p * $q,1,0,'C');
 			$this->Ln(); //换行
 
@@ -778,7 +778,7 @@
 			$this->Cell(23 ,6,"",0,0,'C');
 			$this->Cell(30 ,6,"",0,0,'C');
 			$this->Cell(20 ,6,"Amount:",1,0,'C');
-			$this->Cell(25 ,6, $amount,1,1,'C');
+			$this->Cell(25 ,6, "$" . $amount,1,1,'C');
 
 			// $this->Ln(); //换行
 			// $this->SetFont('Arial','', 9.5);

@@ -38,11 +38,10 @@
 	$totalquantity = 0;
 	$totalamount= 0;
 	while($row = $result->fetch_assoc()) {
-		$sql2 = "SELECT name, volume, p2 FROM `product` where no='". $row['product_id'] ."'";
+		$sql2 = "SELECT name, volume, p2 FROM `wine_list` where no='". $row['product_id'] ."'";
 		$result2 = $conn->query($sql2);
 		while($row2 = $result2->fetch_assoc()) {
-			$price = substr($row2["p2"], 1);
-			$p = (int) str_replace(',', '', $price);
+			$p = (int) $row2["p2"];
 			$q = (int) $row["quantity"];
 			$a = $p * $q;
 			$pdf_object->addProdcutInfo($i, $row2["name"], $row2["volume"], $row2["p2"], $row["quantity"], $a);
