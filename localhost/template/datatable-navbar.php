@@ -1,5 +1,8 @@
-<div class="sidebar-menu">
+  <div class="sidebar-menu">
     <ul class="menu">
+      <?php  if (isset($_SESSION['username'])) { ?>
+        <li class="sidebar-title"><h6>Welcome <strong><?php echo $_SESSION['username'];?></strong> </h6></li>
+      <?php } ?>
         <li class="sidebar-title">Menu</li>
 
         <li class="sidebar-item <?php if ($currentPage == 'dashboard') {echo "active";} else  {echo "noactive";}?>">
@@ -50,19 +53,19 @@
         </li>
 
         <!-- Inventory inquiry -->
-   <li class="sidebar-item has-sub <?php if ($currentPage == 'inbound-list' || $currentPage == 'outbound-list') {echo "active";} else  {echo "noactive";}?>">
+   <li class="sidebar-item has-sub ">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Inventory inquiry</span>
             </a>
 
-            <ul class="submenu <?php if ($currentPage == 'inbound-list' || $currentPage == 'outbound-list') {echo "active";} else  {echo "noactive";}?>">
+            <ul class="submenu ">
 
-            <li class="submenu-item <?php if ($currentPage == 'inbound-list') {echo "active";} ?>">
-                    <a href="inbound-list">Warehousing list</a>
+            <li class="submenu-item ">
+                    <a href="">Warehousing list</a>
                 </li>
-                <li class="submenu-item <?php if ($currentPage == 'outbound-list') {echo "active";} ?>">
-                    <a href="outbound-list">Outbound list</a>
+                <li class="submenu-item ">
+                    <a href="">Outbound list</a>
                 </li>
             </ul>
         </li>
@@ -98,15 +101,15 @@
         </li>
 
         <!-- Inbound -->
-        <li class="sidebar-item has-sub">
+        <li class="sidebar-item has-sub <?php if ($currentPage == 'inbound-list') {echo "active";} else  {echo "noactive";}?>" >
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Inbound</span>
             </a>
 
-            <ul class="submenu">
-                <li class="submenu-item ">
-                    <a href="">Inbound schedule</a>
+            <ul class="submenu <?php if ($currentPage == 'inbound-list') {echo "active";} else  {echo "noactive";}?>">
+                <li class="submenu-item <?php if ($currentPage == 'inbound-list') {echo "active";}?>">
+                    <a href="inbound-list">Inbound schedule</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="">New inbound</a>
@@ -133,24 +136,28 @@
 
 
         <!-- User management -->
-        <li class="sidebar-item has-sub <?php if ($currentPage == 'user-management') {echo "active";} else  {echo "noactive";}?>">
-            <a href="user-management" class='sidebar-link'>
+        <li class="sidebar-item has-sub <?php if ($currentPage == 'user-management' || $currentPage == 'position-management') {echo "active";} else  {echo "noactive";}?>">
+            <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>User management</span>
             </a>
 
-            <ul class="submenu">
-              <li class="submenu-item ">
+            <ul class="submenu <?php if ($currentPage == 'user-management' || $currentPage == 'position-management') {echo "active";} else  {echo "noactive";}?>">
+              <li class="submenu-item <?php if ($currentPage == 'user-management') {echo "active";} ?>">
                   <a href="user-management">User Management</a>
               </li>
-                <li class="submenu-item ">
+                <li class="submenu-item <?php if ($currentPage == 'position-management') {echo "active";} ?>">
                     <a href="position-management">Position Management</a>
                 </li>
             </ul>
         </li>
 
         <li class="sidebar-item  ">
-         <a class="btn btn-outline-danger btn-block"href="login">Log Out</a>
+          <?php  if (isset($_SESSION['username'])){ ?>
+          	<p> <a class="btn btn-outline-danger btn-block" href="index.php?logout='1'">Log out</a> </p>
+          <?php } else {?>
+            <p> <a class="btn btn-outline-primary btn-block" href="login" >Login</a> </p>
+          <?php } ?>
         </li>
 
     </ul>

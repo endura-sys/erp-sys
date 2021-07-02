@@ -7,7 +7,7 @@
   if (isset($_GET['logout'])) {
   	session_destroy();
   	unset($_SESSION['username']);
-  	header("location: login");
+  	header("location: index");
   }
 ?>
 
@@ -194,8 +194,8 @@
                                         </div>
                                     </div>
                                     <!-- Card Body -->
-                                    
-                                    
+
+
                                      <div class="card-body">
                                     <table class="table table-striped" id="table1">
                                         <thead>
@@ -206,7 +206,7 @@
                                                 <th>蔵元</th>
                                             </tr>
                                         </thead>
-                                        
+
                                     </table>
 
                                         <tbody>

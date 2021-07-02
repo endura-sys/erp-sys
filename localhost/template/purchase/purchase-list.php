@@ -17,7 +17,7 @@
                 </div>
 
                 <?php include('../datatable-navbar.php'); ?>
-                
+
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
@@ -71,60 +71,60 @@
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="purchasing_id">Purchasing id:</label>
                                                                 <input type="integegr" class="form-control" name="purchasing_id" id="Purchasing id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="product_id">Product id:</label>
                                                                 <input type="integer" class="form-control" name="product_id" id="Product id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="quantity">Quantity:</label>
                                                                 <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="supplier_id">Supplier id:</label>
                                                                 <input type="integer" class="form-control" name="supplier_id" id="Supplier id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="employee_id">Employee id:</label>
                                                                 <input type="integer" class="form-control" name="employee_id" id="Employee id" placeholder="">
                                                             </div>
-                                                            
+
                                                         </div>
-                                                        
+
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="production_date">Production date:</label>
                                                                 <input type="date" class="form-control" name="production_date" id="Production date" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="purchasing_date">Purchasing date:</label>
                                                                 <input type="date" class="form-control" name="purchasing_date" id="Purchasing date" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="shelf_date">Shelf date:</label>
                                                                 <input type="date" class="form-control" name="shelf_date" id="Shelf date" placeholder="">
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="modal-footer">
                                                         <form data-target="#border-added" method="post">
                                                             <input type="submit" class="btn-check" value="Submit" id='submit'>
@@ -135,7 +135,7 @@
                                                             <span class="d-none d-sm-block">Close</span>
                                                         </button>
                                                     </div>
-                                                    
+
                                                 </form>
                                             </div>
                                         </div>
@@ -157,15 +157,15 @@
                                                 <tbody>
                                                     <center>
                                                         <?php
-                                                            
+
                                                             $conn = mysqli_connect("localhost", "root", "root", "db");
-                                                            
+
                                                             // Check connection
                                                             if($conn === false){
-                                                                die("ERROR: Could not connect. " 
+                                                                die("ERROR: Could not connect. "
                                                                     . mysqli_connect_error());
                                                             }
-                                                            
+
                                                             $purchasing_id =  $_REQUEST['purchasing_id'];
                                                             $product_id =  $_REQUEST['product_id'];
                                                             $quantity = $_REQUEST['quantity'];
@@ -174,22 +174,22 @@
                                                             $production_date = $_REQUEST['production_date'];
                                                             $purchasing_date = $_REQUEST['purchasing_date'];
                                                             $shelf_date = $_REQUEST['shelf_date'];
-                                                            
+
                                                             // Performing insert query execution
                                                             $sql = "INSERT INTO purchase VALUES ('$purchasing_id','$product_id','$quantity',
                                                             '$supplier_id','$employee_id','$production_date','$purchasing_date','$shelf_date')";
-                                                            
+
                                                             if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully." 
-                                                                . " Please browse your localhost" 
-                                                                . " to view the updated data</h3>"; 
-                                                                
+                                                                echo "<h3>Data stored in a database successfully."
+                                                                . " Please browse your localhost"
+                                                                . " to view the updated data</h3>";
+
                                                                 echo nl2br("Purchasing id : $purchasing_id\n"
                                                                     . "Production id : $product_id\nQuantity : $quantity\nSupplier id : $supplier_id\nEmployee id : $employee_id\nProduction date : $production_date\nPurchasing date : $purchasing_date\nShelf date : $shelf_date");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. " 
+                                                                echo "ERROR : Invalid input. "
                                                                 . mysqli_error($conn);
                                                             }
                                                             mysqli_close($conn);
@@ -197,12 +197,12 @@
                                                         <div>
                                                             <div class="card-body">
                                                             </div>
-                                                            
-                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew" 
+
+                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew"
                                                                 onClick="document.location.href='addnew'" />
                                                             <label class="btn btn-outline-success" for="addnew">Add another data</label>
-                                                            
-                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn" 
+
+                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn"
                                                                 onClick="document.location.href='dashboard'" />
                                                             <label class="btn btn-outline-danger" for="mainn">Back to database</label>
                                                         </div>
@@ -228,9 +228,10 @@
                                         <th>生產日期</th>
                                         <th>採購日期</th>
                                         <th>保質期限</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     <!-- Connect to the database -->
                                     <?php
@@ -249,7 +250,10 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td>";
+                                                ?>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="inbound-list" >Confirm Inbound</a></td></tr>
+                                                <?php
                                             }
                                         } else {
                                             echo "0 results";
@@ -258,9 +262,9 @@
                                         CloseCon($conn);
                                     ?>
 
-                                    
+
                                 </tbody>
-                                
+
                             </table>
                         </div>
                     </div>
@@ -280,8 +284,7 @@
             </footer>
         </div>
     </div>
-    
+
     <?php include('../footer.php'); ?>
 
 </body>
-
