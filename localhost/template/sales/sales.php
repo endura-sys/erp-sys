@@ -1,4 +1,5 @@
-<?php include('../header.php'); ?>
+<?php include ('../header.php'); ?>
+
 <?php $currentPage = 'sales'; ?>
 
 <body>
@@ -244,6 +245,8 @@
                         </div>
 
                         <div class="card-body">
+                          <?php include ('sales-to-outbound.php'); ?>
+                          <form action="sales" method="POST">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
@@ -280,7 +283,12 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" . $row["branch_id"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["promotion_scheme"] ."</td><td>" .$row["account_receive"]
+                                                ?>
+                                                <tr><td><input type="checkbox" name="outbound[]" value="<?php echo $row["sale_id"]?>" id="check<?php echo $row["sale_id"]?>">
+                                                    <label for="check<?php echo $row["sale_id"]?>"><?php echo $row["sale_id"]?></label>
+                                                </td>
+                                                <?php
+                                                echo "<td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" . $row["branch_id"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["promotion_scheme"] ."</td><td>" .$row["account_receive"]
                                                       ."</td><td>" .$row["sale_date"] ."</td><td>".$row["sale_time"] ."</td><td>" .$row["payment_method"] ."</td>";
                                                 ?>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="order-info?id=<?php echo $row["sale_id"]?>">View</a></td>
@@ -296,8 +304,9 @@
 
 
                                 </tbody>
-
                             </table>
+                            <input type="submit" name="submitoutbound" value="Confirm Outbound" class="btn btn-primary btn-md shadow-sm float-lg-end">
+                          </form>
                         </div>
                     </div>
 
