@@ -21,6 +21,7 @@ RewriteRule ^outbound-info /template/outbound/outbound-info.php [L,QSA,NC]
 RewriteRule ^sales /template/sales/sales.php [L,QSA,NC]
 RewriteRule ^order-info /template/sales/order-info.php [L,QSA,NC]
 RewriteRule ^branch /template/sales/branch.php [L,QSA,NC]
+RewriteRule ^sales-to-outbound /template/sales/sales-to-outbound.php [L,QSA,NC]
 
 RewriteRule ^login /template/auth/login.php [L,QSA,NC]
 RewriteRule ^register /template/auth/register.php [L,QSA,NC]
