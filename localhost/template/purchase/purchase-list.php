@@ -1,6 +1,27 @@
 <?php include('../header.php'); ?>
 <?php $currentPage = 'purchase-list'; ?>
-
+<?php
+if (isset($_POST['confirminbound'])) {
+  $id=$_POST['checkbox'];
+  $N=count($id);
+  for($i=0; $i<$N; $i++){
+    $conn = mysqli_connect("localhost", "root", "root", "db");
+    $sql="UPDATE purchase SET inbound_status=true WHERE purchasing_id='" . $id[$i] . "'";
+    mysqli_query($conn,$sql);
+    header("location: purchase-list");
+  }
+}
+if (isset($_POST['cancelinbound'])) {
+  $id=$_POST['checkbox'];
+  $N=count($id);
+  for($i=0; $i<$N; $i++){
+    $conn = mysqli_connect("localhost", "root", "root", "db");
+    $sql="UPDATE purchase SET inbound_status=false WHERE purchasing_id='" . $id[$i] . "'";
+    mysqli_query($conn,$sql);
+    header("location: purchase-list");
+  }
+}
+?>
 <body>
     <div id="app">
         <div id="sidebar" class="active">
@@ -179,10 +200,11 @@
                                                             $production_date = $_REQUEST['production_date'];
                                                             $purchasing_date = $_REQUEST['purchasing_date'];
                                                             $shelf_date = $_REQUEST['shelf_date'];
+                                                            $inbound_status=0;
 
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO purchase VALUES ('$purchasing_id','$product_id','$quantity',
-                                                            '$supplier_id','$employee_id','$production_date','$purchasing_date','$shelf_date')";
+                                                            $sql = "INSERT INTO purchase VALUES ('$purchasing_id','$product_id','$quantity', '$account_payable',
+                                                            '$supplier_id','$employee_id','$production_date','$purchasing_date','$shelf_date', '$inbound_status')";
 
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully."
@@ -222,10 +244,10 @@
                         </div>
 
                         <div class="card-body">
+                          <form action="purchase-list" method="post">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>Select</th>
                                         <th>Purchasing ID</th>
                                         <th>Product ID</th>
                                         <th>Quantity</th>
@@ -235,7 +257,7 @@
                                         <th>Production Date</th>
                                         <th>Purchasing Date</th>
                                         <th>Shelf Date</th>
-                                        <th>Action</th>
+                                        <th>Inbound Status</th>
                                     </tr>
                                 </thead>
 
@@ -246,7 +268,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT purchasing_id, product_id, quantity, account_payable, supplier_id, employee_id, production_date, purchasing_date, shelf_date FROM purchase";
+                                        $sql = "SELECT * FROM purchase";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -254,17 +276,31 @@
                                         if ($result->num_rows > 0) {
                                             // output data of each row
                                             while($row = $result->fetch_assoc()) {
+
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
                                                 ?><tr>
-                                                  <td><input type="checkbox" name="checkbox<?php echo $row["purchasing_id"]?>" class="form-check-input"></td>
+                                                  <td><input type="checkbox" name="checkbox[]" class="form-check-input" id="checkbox<?php echo $row["purchasing_id"]?>" value="<?php echo $row["purchasing_id"]?>">
+                                                      <label for="checkbox<?php echo $row["purchasing_id"]?>"><?php echo $row["purchasing_id"]?></label>
+                                                  </td>
 
                                                 <?php
-                                                echo "<td>" .$row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["account_payable"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td>";
+                                                echo "<td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["account_payable"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>";
                                                 ?>
-                                                <td>
-                                                  <a type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["purchasing_id"]?>" >Confirm Inbound</a>
+                                                <?php  if ($row["inbound_status"]==false){ ?>
+                                                	 <span class="badge bg-danger" >Not Confirmed</span>
+                                                <?php } else {?>
+                                                  <spam class="badge bg-success" >Confirmed</span>
+                                                <?php } ?>
+                                                <!-- if($row["inbound_status"]==false){
+                                                  echo "NO";
+                                                }else{
+                                                  echo "Success</span>" ;
+                                                }
+                                                ?> -->
+                                              </td>
+                                                  <!-- <a type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["purchasing_id"]?>" >Confirm Inbound</a> -->
 
                                                   <div class="modal fade text-left modal-borderless" id="confirmModal<?php echo $row["purchasing_id"]?>" tabindex="-1"
                                                       role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
@@ -367,7 +403,7 @@
 
                                                       if (count($errors) == 0) {
                                                         mysqli_query($conn, $sql_inbound_confirm);
-                                                        
+
                                                         header("location:  purchase-list");
 
                                                       }
@@ -388,6 +424,10 @@
                                 </tbody>
 
                             </table>
+                            <button type="Submit" class="btn btn-light-primary me-1 mb-1" name="confirminbound">Confirm Inbound</button>
+                            <button type="Submit" class="btn btn-light-danger me-1 mb-1" name="cancelinbound">Cancel Inbound</button>
+
+                          </form>
                         </div>
                     </div>
 
