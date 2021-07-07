@@ -246,7 +246,7 @@
 
                         <div class="card-body">
                           <?php include ('sales-to-outbound.php'); ?>
-                          <form action="sales" method="POST">
+                          <form method="POST">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
@@ -258,10 +258,10 @@
                                         <th>Promotion scheme</th>
                                         <th>Account receive</th>
                                         <th>Sale date</th>
-                                        <th>Sale time</th>
                                         <th>Payment method</th>
                                         <th>Details</th>
                                         <th>Invoice</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
 
@@ -283,17 +283,31 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                ?>
-                                                <tr><td><input type="checkbox" name="outbound[]" value="<?php echo $row["sale_id"]?>" id="check<?php echo $row["sale_id"]?>">
-                                                    <label for="check<?php echo $row["sale_id"]?>"><?php echo $row["sale_id"]?></label>
-                                                </td>
-                                                <?php
+                                                $status = false;
+                                                $sql2 = "SELECT * FROM outbound_items where sale_id ='" . $row["sale_id"] ."'";
+                                                $result2 = $conn->query($sql2);
+                                                if($result2->num_rows > 0) {
+                                                  $status = true;
+                                                } else {
+                                                  $status = false;
+                                                } ?>
+                                                <tr>
+                                                  <?php if($status == true) { ?>
+                                                    <td><input type="checkbox" name="outbound[]" value="<?php echo $row["sale_id"]?>" disabled><?php echo " " . $row["sale_id"]?><br></td>
+                                                  <?php } else { ?>
+                                                    <td><input type="checkbox" name="outbound[]" value="<?php echo $row["sale_id"]?>"><?php echo " " . $row["sale_id"]?><br></td>
+                                                  <?php }
                                                 echo "<td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" . $row["branch_id"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["promotion_scheme"] ."</td><td>" .$row["account_receive"]
-                                                      ."</td><td>" .$row["sale_date"] ."</td><td>".$row["sale_time"] ."</td><td>" .$row["payment_method"] ."</td>";
+                                                      ."</td><td>" .$row["sale_date"] ."</td><td>" .$row["payment_method"] ."</td>";
                                                 ?>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="order-info?id=<?php echo $row["sale_id"]?>">View</a></td>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice?id=<?php echo $row["sale_id"]?>" target="_blank">Generate</a></td>
                                                 <?php
+                                                if($status == true) { ?>
+                                                  <td><span class="badge bg-success" >Confirmed</span></td>
+                                                <?php } else { ?>
+                                                  <td><span class="badge bg-danger" >Not Confirmed</span></td>
+                                                <?php }
                                             }
                                         } else {
                                             echo "0 results";
@@ -307,6 +321,33 @@
                             </table>
                             <input type="submit" name="submitoutbound" value="Confirm Outbound" class="btn btn-primary btn-md shadow-sm float-lg-end">
                           </form>
+                          <?php
+                              if(isset($_POST["submitoutbound"])) {
+                                $id = $_POST['outbound'];
+                                if(empty($id)) {
+                                  echo "<div>You didn't select any sales.</div>";
+                                }
+                                else {
+                                  include '../../database.php';
+                                  $conn = OpenCon();
+
+                                  $sql = "INSERT INTO outbound (outbound_id, employee_id, date_of_outbound, outbound_way, outbound_cost, outgoer) VALUES (NULL, NULL, CURRENT_TIMESTAMP, NULL, NULL, NULL)";
+                                  $result = $conn->query($sql);
+
+                                  $sql2 = "SELECT MAX(outbound_id) FROM outbound";
+                                  $result2 = $conn->query($sql2);
+                                  $row = $result2->fetch_assoc();
+                                  $out_id = $row["MAX(outbound_id)"];
+
+                                  $N = count($id);
+                                  for($i=0; $i < $N; $i++) {
+                                    $sql = "INSERT INTO `outbound_items` (`outbound_id`, `sale_id`) VALUES ('$out_id', '$id[$i]')";
+                                    $result = $conn->query($sql);
+                                  }
+                                }
+                                header("location: sales");
+                              }
+                          ?>
                         </div>
                     </div>
 
