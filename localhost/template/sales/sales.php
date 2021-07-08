@@ -1,4 +1,5 @@
 <?php include ('../header.php'); ?>
+<?php include('sales-to-outbound.php'); ?>
 
 <?php $currentPage = 'sales'; ?>
 
@@ -245,7 +246,7 @@
                         </div>
 
                         <div class="card-body">
-                          <form action="template/sales/sales-to-outbound.php" method="post">
+                          <form action="sales" method="post">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>

@@ -1,4 +1,5 @@
 <?php
+  if(isset($_POST["confirmoutbound"])) {
     $id = $_POST["outbound"];
     $outbounddate = $_POST["outbound_date"];
     $outboundway = $_POST["outbound_way"];
@@ -29,5 +30,6 @@
           $result = $conn->query($sql);
         }
       }
-      header("location: sales.php");
+      header("location: sales");
+    }
 ?>
