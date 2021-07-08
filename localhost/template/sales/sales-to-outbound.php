@@ -1,6 +1,10 @@
 <?php
-    $id = $_POST['outbound'];
-    if(isset($_POST["submitoutbound"])) {
+    $id = $_POST["outbound"];
+    $outbounddate = $_POST["outbound_date"];
+    $outboundway = $_POST["outbound_way"];
+    $outboundcost = $_POST["outbound_cost"];
+    $outgoer = $_POST["outgoer"];
+
       if(empty($id))
       {
         echo "<div>You didn't select any sales.</div>";
@@ -10,7 +14,7 @@
         include '../../database.php';
         $conn = OpenCon();
 
-        $sql = "INSERT INTO outbound (outbound_id, employee_id, date_of_outbound, outbound_way, outbound_cost, outgoer) VALUES (NULL, NULL, CURRENT_TIMESTAMP, NULL, NULL, NULL)";
+        $sql = "INSERT INTO outbound (outbound_id, employee_id, date_of_outbound, outbound_way, outbound_cost, outgoer) VALUES (NULL, NULL, '$outbounddate', '$outboundway', '$outboundcost', '$outgoer')";
         $result = $conn->query($sql);
 
         $sql2 = "SELECT MAX(outbound_id) FROM outbound";
@@ -25,6 +29,5 @@
           $result = $conn->query($sql);
         }
       }
-      header("location: sales");
-    }
+      header("location: sales.php");
 ?>

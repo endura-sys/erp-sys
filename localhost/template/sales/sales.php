@@ -245,8 +245,7 @@
                         </div>
 
                         <div class="card-body">
-                          <?php include ('sales-to-outbound.php'); ?>
-                          <form method="POST">
+                          <form action="template/sales/sales-to-outbound.php" method="post">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
@@ -293,9 +292,9 @@
                                                 } ?>
                                                 <tr>
                                                   <?php if($status == true) { ?>
-                                                    <td><input type="checkbox" name="outbound[]" value="<?php echo $row["sale_id"]?>" disabled><?php echo " " . $row["sale_id"]?><br></td>
+                                                    <td><input type="checkbox" name="outbound[]" class="form-check-input" value="<?php echo $row["sale_id"]?>" disabled><?php echo $row["sale_id"]?><br></td>
                                                   <?php } else { ?>
-                                                    <td><input type="checkbox" name="outbound[]" value="<?php echo $row["sale_id"]?>"><?php echo " " . $row["sale_id"]?><br></td>
+                                                    <td><input type="checkbox" name="outbound[]" class="form-check-input" value="<?php echo $row["sale_id"]?>"><?php echo $row["sale_id"]?><br></td>
                                                   <?php }
                                                 echo "<td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" . $row["branch_id"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["promotion_scheme"] ."</td><td>" .$row["account_receive"]
                                                       ."</td><td>" .$row["sale_date"] ."</td><td>" .$row["payment_method"] ."</td>";
@@ -319,35 +318,67 @@
 
                                 </tbody>
                             </table>
-                            <input type="submit" name="submitoutbound" value="Confirm Outbound" class="btn btn-primary btn-md shadow-sm float-lg-end">
+                            <button type="button" name="submitoutbound" class="btn btn-primary btn-md shadow-sm float-lg-end" data-bs-toggle="modal" data-bs-target="#confirmModal">Confirm Outbound</button>
+                            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="exampleModalCenterTitle">Outbound Confirmation</h5>
+																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																	</div>
+																	<div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="outbound_date">Outbound Date</label>
+                                                <?php
+                                                date_default_timezone_set('Asia/Hong_Kong');
+                                                $date = date('d-m-y h:i:s');
+                                                ?>
+                                                <input type="datetime" class="form-control" name="outbound_date" id="outbound_date" value="<?php echo $date;?>" readonly>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="outbound_way">Outbound Way</label>
+                                                <input type="varchar" class="form-control" name="outbound_way" id="outbound_way">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="outbound_cost">Outbound Cost</label>
+                                                <input type="varchar" class="form-control" name="outbound_cost" id="outbound_cost">
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="outgoer">Outgoer</label>
+                                                <input type="varchar" class="form-control" name="outgoer" id="outgoer">
+                                            </div>
+
+                                        </div>
+                                    </div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+																			<i class="bx bx-x d-block d-sm-none"></i>
+																			<span class="d-none d-sm-block">Close</span>
+																		</button>
+
+																			<button type="submit" name="confirmoutbound" class="btn btn-primary ml-1" value="Confirm">Confirm</button>
+																			<i class="bx bx-check d-block d-sm-none"></i>
+
+																	</div>
+																</div>
+															</div>
+														</div>
+
                           </form>
-                          <?php
-                              if(isset($_POST["submitoutbound"])) {
-                                $id = $_POST['outbound'];
-                                if(empty($id)) {
-                                  echo "<div>You didn't select any sales.</div>";
-                                }
-                                else {
-                                  include '../../database.php';
-                                  $conn = OpenCon();
 
-                                  $sql = "INSERT INTO outbound (outbound_id, employee_id, date_of_outbound, outbound_way, outbound_cost, outgoer) VALUES (NULL, NULL, CURRENT_TIMESTAMP, NULL, NULL, NULL)";
-                                  $result = $conn->query($sql);
-
-                                  $sql2 = "SELECT MAX(outbound_id) FROM outbound";
-                                  $result2 = $conn->query($sql2);
-                                  $row = $result2->fetch_assoc();
-                                  $out_id = $row["MAX(outbound_id)"];
-
-                                  $N = count($id);
-                                  for($i=0; $i < $N; $i++) {
-                                    $sql = "INSERT INTO `outbound_items` (`outbound_id`, `sale_id`) VALUES ('$out_id', '$id[$i]')";
-                                    $result = $conn->query($sql);
-                                  }
-                                }
-                                header("location: sales");
-                              }
-                          ?>
                         </div>
                     </div>
 
@@ -370,3 +401,5 @@
     <?php include('../footer.php'); ?>
 
 </body>
+
+</html>
