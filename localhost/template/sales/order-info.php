@@ -54,6 +54,8 @@
                                     <tr>
                                         <th>Sale ID</th>
                                         <th>Items ID</th>
+                                        <th>Items Name</th>
+                                        <th>Price</th>
                                         <th>Quantity</th>
                                     </tr>
                                 </thead>
@@ -76,8 +78,13 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td>";
+                                                $sql2 = "SELECT name, p2 FROM `wine_list` where no='". $row['product_id'] ."'";
+                                            		$result2 = $conn->query($sql2);
+                                                while($row2 = $result2->fetch_assoc()) {
+                                                  echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row2["name"] ."</td><td>$" .$row2["p2"] ."</td><td>" .$row["quantity"] ."</td>";
+                                                }
                                             }
+
                                         } else {
                                             echo "0 results";
                                         }
