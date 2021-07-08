@@ -227,9 +227,6 @@
                                 <thead>
                                     <tr>
                                         <th>Inbound ID</th>
-                                        <th>Purchasing ID</th>
-                                        <th>Product ID</th>
-                                        <th>Quantity</th>
                                         <th>Employee ID</th>
                                         <th>Inbound Date</th>
                                         <th>Sheft Date</th>
@@ -245,7 +242,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT inbound_id, purchasing_id, product_id, employee_id, quantity, inbound_date, shelf_date, inbound_way, inbound_cost FROM inbound";
+                                        $sql = "SELECT * FROM inbound";
                                         $result = $conn->query($sql);
 
                                         $inbound_list = array();
@@ -256,7 +253,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["inbound_id"]. "</td><td>". $row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["inbound_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>" .$row["inbound_way"] ."</td><td>" .$row["inbound_cost"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["inbound_id"]. "</td><td>" . $row["employee_id"] ."</td><td>" . $row["inbound_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>" .$row["inbound_way"] ."</td><td>" .$row["inbound_cost"] ."</td><td>" ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
