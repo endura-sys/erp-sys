@@ -334,9 +334,9 @@
                                                 <label for="outbound_date">Outbound Date</label>
                                                 <?php
                                                 date_default_timezone_set('Asia/Hong_Kong');
-                                                $date = date('d-m-y h:i:s');
+                                                $date = date('Y-m-d H:i:s');
                                                 ?>
-                                                <input type="datetime" class="form-control" name="outbound_date" id="outbound_date" value="<?php echo $date;?>" readonly>
+                                                <input type="datetime" class="form-control" name="outbound_date" id="outbound_date" value="<?php echo $date;?>">
                                             </div>
 
 
