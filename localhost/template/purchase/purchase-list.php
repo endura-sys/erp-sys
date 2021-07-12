@@ -230,8 +230,6 @@
                                 <thead>
                                     <tr>
                                         <th>Purchasing ID</th>
-                                        <th>Product ID</th>
-                                        <th>Quantity</th>
                                         <th>Account Payable</th>
                                         <th>Supplier ID</th>
                                         <th>Employee ID</th>
@@ -270,7 +268,7 @@
                                                   </td>
 
                                                 <?php
-                                                echo "<td>" .$row["product_id"] ."</td><td>" .$row["quantity"] ."</td><td>" . $row["account_payable"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>";
+                                                echo "<td>" . $row["account_payable"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>";
                                                 ?>
                                                 <?php  if ($status==true){ ?>
                                                 	 <spam class="badge bg-success" >Confirmed</span>

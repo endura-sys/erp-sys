@@ -26,6 +26,7 @@ if (isset($_POST['updatebtn'])) {
     if (empty($phone)) { array_push($errors, "Phone is required."); }
     if (empty($user)) { array_push($errors, "Username is required."); }
     if (empty($pw)) { array_push($errors, "Password is required."); }
+    if (strlen($pw)<8) {array_push($errors, "The password must contain at least 8 characters.");}
     if (empty($pw2)) { array_push($errors, "Please enter password again."); }
     else if ($pw != $pw2) { array_push($errors, "Passwords do not match."); }
 
