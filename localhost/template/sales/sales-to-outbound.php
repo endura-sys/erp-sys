@@ -28,6 +28,21 @@
         {
           $sql = "INSERT INTO `outbound_items` (`outbound_id`, `sale_id`) VALUES ('$out_id', '$id[$i]')";
           $result = $conn->query($sql);
+
+          $sql2 = "SELECT product_id, quantity FROM sale_items where sale_id='". $id[$i] ."'";
+          $result2 = $conn->query($sql2);
+          while($row2 = $result2->fetch_assoc()) {
+            $product = $row2["product_id"];
+            $quantity = $row2["quantity"];
+            $sql = "SELECT `stock` FROM `stock_list` WHERE no='$product'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $stock = $row["stock"];
+            $newstock = $stock - $quantity;
+            $sql3 = "UPDATE `stock_list` SET `stock` = '$newstock' WHERE `stock_list`.`no` = '$product'";
+            $result3 = $conn->query($sql3);
+          }
+
         }
       }
       header("location: sales");
