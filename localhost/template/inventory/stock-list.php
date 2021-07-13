@@ -68,6 +68,7 @@
                                         <th>Volume</th>
                                         <th>Unit</th>
                                         <th>Stock</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
 
@@ -102,6 +103,12 @@
                                                 $result2 = $conn->query($sql2);
                                                 $row2 = $result2->fetch_assoc();
                                                 echo "<td>" .$row2["stock"] ."</td>";
+                                                if($row2["stock"] == 0) { ?>
+                                                  <td><span class="badge bg-danger" >Out of stock</span></td>
+                                                <?php } else { ?>
+                                                  <td><span class="badge bg-success" >In stock</span></td>
+                                                <?php }
+
                                             }
                                         } else {
                                             echo "0 results";
