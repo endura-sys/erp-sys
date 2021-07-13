@@ -39,5 +39,6 @@ RewriteRule ^delete-user /template/user-management/delete-user.php [L,QSA,NC]
 RewriteRule ^userserver /template/user-management/userserver.php [L,QSA,NC]
 RewriteRule ^errors /template/user-management/errors.php [L,QSA,NC]
 
-
 RewriteRule ^invoice /template/pdf-generator/pdf/invoice.php [L,QSA,NC]
+
+RewriteRule ^stock-list /template/inventory/stock-list.php [L,QSA,NC]
