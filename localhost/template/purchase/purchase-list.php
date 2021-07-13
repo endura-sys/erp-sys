@@ -181,11 +181,13 @@
                                                             $production_date = $_REQUEST['production_date'];
                                                             $purchasing_date = $_REQUEST['purchasing_date'];
                                                             $shelf_date = $_REQUEST['shelf_date'];
-                                                            $inbound_status=0;
 
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO purchase VALUES ('$purchasing_id','$product_id','$quantity', '$account_payable',
-                                                            '$supplier_id','$employee_id','$production_date','$purchasing_date','$shelf_date', '$inbound_status')";
+                                                            $sql = "INSERT INTO purchase VALUES ('$purchasing_id', '$account_payable',
+                                                            '$supplier_id','$employee_id','$production_date','$purchasing_date','$shelf_date')";
+
+                                                            $sql_puchase_list = "INSERT INTO purchase_list VALUES ('$purchasing_id','$product_id','$quantity')";
+
 
                                                             if(mysqli_query($conn, $sql)){
                                                                 echo "<h3>Data stored in a database successfully."
@@ -200,6 +202,9 @@
                                                                 echo "ERROR : Invalid input. "
                                                                 . mysqli_error($conn);
                                                             }
+
+                                                            $result_purchase_list=$conn->query($sql_puchase_list);
+
                                                             mysqli_close($conn);
                                                         ?>
                                                         <div>
