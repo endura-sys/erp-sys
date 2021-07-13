@@ -37,7 +37,7 @@ class PDF extends PDF_Chinese {
 
 		// $this->Cell(59 ,10,'',0,1);
 	}
-	
+
 }
 
 
@@ -109,7 +109,7 @@ $pdf->Cell(0,20,"あそ",0,0,'C');
 // $pdf->Cell(130 ,5,'Delhi, 751001',0,0);
 // $pdf->Cell(25 ,5,'Invoice Date:',0,0);
 // $pdf->Cell(34 ,5,'12th Jan 2019',0,1);
- 
+
 // $pdf->Cell(130 ,5,'',0,0);
 // $pdf->Cell(25 ,5,'Invoice No:',0,0);
 // $pdf->Cell(34 ,5,'ORD001',0,1);
@@ -143,7 +143,7 @@ $pdf->Cell(0,20,"あそ",0,0,'C');
 // 		$pdf->Cell(20 ,6,'100.00',1,0,'R');
 // 		$pdf->Cell(25 ,6,'15100.00',1,1,'R');
 // 	}
-		
+
 
 // $pdf->Cell(118 ,6,'',0,0);
 // $pdf->Cell(25 ,6,'Subtotal',0,0);

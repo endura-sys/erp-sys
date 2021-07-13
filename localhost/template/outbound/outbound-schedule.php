@@ -91,7 +91,7 @@
                                                 // print_r($product_list);
                                                 echo "<tr><td>" .$row["outbound_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["date_of_outbound"] ."</td><td>" . $row["outgoer"] ."</td><td>" . $row["outbound_way"] ."</td><td>" .$row["outbound_cost"] ."</td>";                                                ?>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="outbound-info?id=<?php echo $row["outbound_id"]?>">View</a></td>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice" target="_blank">Generate</a></td>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice-outbound?id=<?php echo $row["outbound_id"]?>" target="_blank">Generate</a></td>
                                                 <?php
                                             }
                                         } else {

@@ -301,7 +301,7 @@
                                                       ."</td><td>" .$row["sale_date"] ."</td><td>" .$row["payment_method"] ."</td>";
                                                 ?>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="order-info?id=<?php echo $row["sale_id"]?>">View</a></td>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice?id=<?php echo $row["sale_id"]?>" target="_blank">Generate</a></td>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice-sales?id=<?php echo $row["sale_id"]?>" target="_blank">Generate</a></td>
                                                 <?php
                                                 if($status == true) { ?>
                                                   <td><span class="badge bg-success" >Confirmed</span></td>
