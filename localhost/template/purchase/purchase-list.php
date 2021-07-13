@@ -382,6 +382,20 @@
 
                                   $sql7 = "INSERT INTO `inbound_items` (`inbound_id`, `purchasing_id`) VALUES ('$in_id', '$id[$i]')";
                                   $result = $conn->query($sql7);
+
+                                  $sql2 = "SELECT product_id, quantity FROM purchase_list where purchasing_id='". $id[$i] ."'";
+                                  $result2 = $conn->query($sql2);
+                                  while($row2 = $result2->fetch_assoc()) {
+                                    $product = $row2["product_id"];
+                                    $quantity = $row2["quantity"];
+                                    $sql = "SELECT `stock` FROM `stock_list` WHERE no='$product'";
+                                    $result = $conn->query($sql);
+                                    $row = $result->fetch_assoc();
+                                    $stock = $row["stock"];
+                                    $newstock = $stock + $quantity;
+                                    $sql3 = "UPDATE `stock_list` SET `stock` = '$newstock' WHERE `stock_list`.`no` = '$product'";
+                                    $result3 = $conn->query($sql3);
+                                  }
                                 }
 
                                 header("location: purchase-list");
