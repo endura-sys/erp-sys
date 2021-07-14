@@ -57,6 +57,8 @@
                                         <th>Items Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
+                                        <th>Stock</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
 
@@ -81,7 +83,16 @@
                                                 $sql2 = "SELECT name, p2 FROM `wine_list` where no='". $row['product_id'] ."'";
                                             		$result2 = $conn->query($sql2);
                                                 while($row2 = $result2->fetch_assoc()) {
-                                                  echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row2["name"] ."</td><td>$" .$row2["p2"] ."</td><td>" .$row["quantity"] ."</td>";
+                                                  $sql3 = "SELECT stock FROM stock_list where no ='" . $row["product_id"] ."'";
+                                                  $result3 = $conn->query($sql3);
+                                                  while($row3 = $result3->fetch_assoc()) {
+                                                    echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row2["name"] ."</td><td>$" .$row2["p2"] ."</td><td>" .$row["quantity"] ."</td><td>" .$row3["stock"] ."</td>";
+                                                    if($row["quantity"] > $row3["stock"]) { ?>
+                                                      <td><span class="badge bg-danger" >Out of stock</span></td>
+                                                    <?php } else { ?>
+                                                      <td><span class="badge bg-success" >Ready</span></td>
+                                                    <?php }
+                                                  }
                                                 }
                                             }
 

@@ -52,8 +52,11 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>Outbound ID</th>
-                                        <th>Sale ID</th>
+                                      <th>Sale ID</th>
+                                      <th>Items ID</th>
+                                      <th>Items Name</th>
+                                      <th>Price</th>
+                                      <th>Quantity</th>
                                     </tr>
                                 </thead>
 
@@ -75,7 +78,15 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["outbound_id"] ."</td><td>" .$row["sale_id"] ."</td>";
+                                                $sql2 = "SELECT product_id, quantity FROM `sale_items` where sale_id='". $row['sale_id'] ."'";
+                                                $result2 = $conn->query($sql2);
+                                                while($row2 = $result2->fetch_assoc()) {
+                                              		$sql3 = "SELECT name, volume, p2 FROM `wine_list` where no='". $row2['product_id'] ."'";
+                                              		$result3 = $conn->query($sql3);
+                                              		while($row3 = $result3->fetch_assoc()) {
+                                                    echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row2["product_id"] ."</td><td>" .$row3["name"] ."</td><td>$" .$row3["p2"] ."</td><td>" .$row2["quantity"] ."</td>";
+                                              		}
+                                              	}
                                             }
                                         } else {
                                             echo "0 results";
