@@ -60,10 +60,10 @@
                             </button>
                                 <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
                                     role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Add new data</h5>
+                                                <h5 class="modal-title">Add new sales</h5>
                                                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
                                                     aria-label="Close">
                                                     <i data-feather="x"></i>
@@ -72,80 +72,90 @@
                                             <div class="modal-body">
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
-                                                        <div class="col-md-6">
 
+                                                      <div class="col-sm-6 col-md-1">
                                                             <div class="form-group">
                                                                 <label for=sale_id>Sale ID:</label>
                                                                 <input type="integer" class="form-control" name="sale_id" id="Sale_id" placeholder="">
                                                             </div>
+                                                      </div>
 
-
+                                                      <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
                                                                 <label for="customer_id">Customer ID:</label>
                                                                 <input type="integer" class="form-control" name="customer_id" id="Customer_id" placeholder="">
                                                             </div>
+                                                      </div>
 
-
+                                                      <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
                                                                 <label for="employee_id">Employee ID:</label>
                                                                 <input type="integer" class="form-control" name="employee_id" id="Employee_id" placeholder="">
                                                             </div>
+                                                      </div>
 
-
-                                                            <div class="form-group">
-                                                                <label for="product_id">Product ID:</label>
-                                                                <input type="integer" class="form-control" name="product_id" id=Product_id placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="branch_id">Branch ID:</label>
-                                                                <input type="integer" class="form-control" name="branch_id" id="Branch_id" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="quantity">Quantity:</label>
-                                                                <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-
+                                                      <div class="col-sm-6 col-md-1">
                                                             <div class="form-group">
                                                                 <label for="discount">Discount:</label>
                                                                 <input type="varchar" class="form-control" name="discount" id="Discount" placeholder="">
                                                             </div>
+                                                      </div>
 
-
-                                                            <div class="form-group">
-                                                                <label for="promotion_scheme">Promotion scheme:</label>
-                                                                <input type="varchar" class="form-control" name="promotion_scheme" id="Promotion_scheme" placeholder="">
-                                                            </div>
-
-
+                                                      <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
                                                                 <label for="account_receive">Account receive:</label>
                                                                 <input type="integer" class="form-control" name="account_receive" id="Account_receive" placeholder="">
                                                             </div>
+                                                      </div>
 
-
+                                                      <div class="col-sm-6 col-md-1">
                                                             <div class="form-group">
                                                                 <label for="sale_date">Sale date:</label>
                                                                 <input type="varchar" class="form-control" name="sale_date" id="Sale_date" placeholder="">
                                                             </div>
+                                                      </div>
 
-
+                                                      <div class="col-sm-6 col-md-1">
                                                             <div class="form-group">
                                                                 <label for="sale_time">Sale time:</label>
                                                                 <input type="varchar" class="form-control" name="sale_time" id="Sale_time" placeholder="">
                                                             </div>
+                                                      </div>
 
+                                                      <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
                                                                 <label for="payment_method">Payment method:</label>
                                                                 <input type="varchar" class="form-control" name="payment_method" id="Payment_method" placeholder="">
                                                             </div>
-                                                        </div>
+                                                      </div>
+
+                                                      <div class="form-group">
+                                                        <table class = "table">
+                                                          <thead>
+                                                            <tr>
+                                                              <th class="col-sm-6 col-md-6">Product ID:</th>
+                                                              <th class="col-sm-6 col-md-6">Quantity:</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody id="tbody">
+                                                            <tr>
+                                                                <th>
+                                                                    <input type="integer" class="form-control" name="product_id[]">
+                                                                </th>
+
+                                                                <th>
+                                                                    <input type="integer" class="form-control" name="quantity[]">
+                                                                </th>
+                                                            </tr>
+                                                          </tbody>
+                                                        </table>
+                                                      </div>
+
+                                                            <div class="form-group">
+                                                              <button type="button" class="btn btn-primary" onclick="add()">
+                                                                  <i class="bi bi-plus-circle"></i>
+                                                              </button>
+                                                            </div>
                                                     </div>
 
                                                     <div class="modal-footer">
@@ -192,38 +202,46 @@
                                                             $sale_id =  $_REQUEST['sale_id'];
                                                             $customer_id =  $_REQUEST['customer_id'];
                                                             $employee_id = $_REQUEST['employee_id'];
-                                                            $product_id = $_REQUEST['product_id'];
-                                                            $branch_id = $_REQUEST['branch_id'];
-                                                            $quantity = $_REQUEST['quantity'];
                                                             $discount = $_REQUEST['discount'];
-                                                            $promotion_scheme = $_REQUEST['promotion_scheme'];
                                                             $account_receive = $_REQUEST['account_receive'];
                                                             $sale_date = $_REQUEST['sale_date'];
                                                             $sale_time = $_REQUEST['sale_time'];
                                                             $payment_method = $_REQUEST['payment_method'];
+                                                            $product = $_REQUEST['product_id'];
+                                                            $quantity = $_REQUEST['quantity'];
 
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO sales VALUES ('$sale_id'
-                                                                ,'$customer_id','$employee_id','$product_id','$branch_id','$quantity',
-                                                                '$discount','$promotion_scheme',
-                                                                '$account_receive','$sale_date','$sale_time','$payment_method')";
+                                                            $sql = "INSERT INTO sales VALUES ('$sale_id','$customer_id','$employee_id','$discount','$account_receive','$sale_date','$sale_time','$payment_method')";
+                                                            $result = $conn->query($sql);
 
-                                                            if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully."
-                                                                . " Please browse your localhost"
-                                                                . " to view the updated data</h3>";
-
-                                                                echo nl2br("Sale_id : $sale_id\n"
-                                                                    . "Customer_id : $customer_id\nEmployee_id : $employee_id\nProduct_id : $product_id\nBranch_id : $branch_id\nQuantity : $quantity\nDiscount : $discount\nPromotion_scheme : $promotion_scheme\nAccount_receive : $account_receive\nSale_date : $sale_date\nSale_time : $sale_time\nPayment_method : $payment_method");
-                                                            } else{
-                                                                // echo "ERROR : Invalid input $sql. "
-                                                                // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. "
-                                                                . mysqli_error($conn);
+                                                            $N = count($product);
+                                                            for($i = 0; $i < $N; $i++) {
+                                                              $sql2 = "INSERT INTO sale_items VALUES ('$sale_id', '$product[$i]', '$quantity[$i]')";
+                                                              $result2 = $conn->query($sql2);
                                                             }
+
+                                                            // if(mysqli_query($conn, $sql)){
+                                                            //   $N = count($product);
+                                                            //   for($i = 0; $i < $N; $i++) {
+                                                            //     $sql2 = "INSERT INTO sale_items VALUES ('$sale_id', '$product', '$quantity')";
+                                                            //     $result2 = $conn->query($sql2);
+                                                            //   }
+                                                            //
+                                                            //     echo "<h3>Data stored in a database successfully."
+                                                            //     . " Please browse your localhost"
+                                                            //     . " to view the updated data</h3>";
+                                                            //
+                                                            //     echo nl2br("Sale_id : $sale_id\n"
+                                                            //         . "Customer_id : $customer_id\nEmployee_id : $employee_id\nDiscount : $discount\nAccount_receive : $account_receive\nSale_date : $sale_date\nSale_time : $sale_time\nPayment_method : $payment_method");
+                                                            // } else{
+                                                            //     // echo "ERROR : Invalid input $sql. "
+                                                            //     // . mysqli_error($conn);
+                                                            //     echo "ERROR : Invalid input. "
+                                                            //     . mysqli_error($conn);
+                                                            // }
                                                             mysqli_close($conn);
                                                         ?>
-                                                        <div>
+                                                        <!-- <div>
                                                             <div class="card-body">
                                                             </div>
 
@@ -234,7 +252,7 @@
                                                             <input type="mainn" value="Mainn" class="btn-check" id="mainn"
                                                                 onClick="document.location.href='dashboard'" />
                                                             <label class="btn btn-outline-danger" for="mainn">Back to database</label>
-                                                        </div>
+                                                        </div> -->
                                                     </center>
                                                 </tbody>
                                             </div>
@@ -253,9 +271,7 @@
                                         <th>Sale ID</th>
                                         <th>Customer ID</th>
                                         <th>Employee ID</th>
-                                        <th>Branch ID</th>
                                         <th>Discount</th>
-                                        <th>Promotion scheme</th>
                                         <th>Account receive</th>
                                         <th>Sale date</th>
                                         <th>Payment method</th>
@@ -272,7 +288,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT sale_id, customer_id, employee_id, branch_id, discount, promotion_scheme, account_receive, sale_date, sale_time, payment_method FROM sales";
+                                        $sql = "SELECT sale_id, customer_id, employee_id, discount, account_receive, sale_date, sale_time, payment_method FROM sales";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -297,7 +313,7 @@
                                                   <?php } else { ?>
                                                     <td><input type="checkbox" name="outbound[]" class="form-check-input" value="<?php echo $row["sale_id"]?>"><?php echo $row["sale_id"]?><br></td>
                                                   <?php }
-                                                echo "<td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" . $row["branch_id"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["promotion_scheme"] ."</td><td>" .$row["account_receive"]
+                                                echo "<td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["account_receive"]
                                                       ."</td><td>" .$row["sale_date"] ."</td><td>" .$row["payment_method"] ."</td>";
                                                 ?>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="order-info?id=<?php echo $row["sale_id"]?>">View</a></td>
@@ -400,6 +416,16 @@
     </div>
 
     <?php include('../footer.php'); ?>
+
+  <script>
+    function add() {
+      var html = "<th><input type='integer' class='form-control' name='product_id[]'></th>";
+      html += "<th><input type='integer' class='form-control' name='quantity[]'></th>";
+      var table = document.getElementById("tbody");
+      var row = table.insertRow();
+      row.innerHTML = html;
+    }
+  </script>
 
 </body>
 
