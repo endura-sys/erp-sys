@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,10 +18,12 @@
     <link rel="stylesheet" href="template/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="template/assets/css/app.css">
     <link rel="shortcut icon" href="template/assets/images/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="template/assets/css/pages/auth.css">
 
 </head>
 
 </html>
+
 <body>
     <div id="app">
         <div id="sidebar" class="active">
@@ -36,9 +39,9 @@
                     </div>
                 </div>
 
-                <div class="sidebar-menu">
+                  <div class="sidebar-menu">
     <ul class="menu">
-        <li class="sidebar-title">Menu</li>
+              <li class="sidebar-title">Menu</li>
 
         <li class="sidebar-item noactive">
             <a href="dashboard" class='sidebar-link'>
@@ -61,17 +64,15 @@
                 <li class="submenu-item ">
                     <a href="supplier-list">Supplier list</a>
                 </li>
-                
+
                 <li class="submenu-item ">
                     <a href="customer-list">Customer list</a>
                 </li>
-                <li class="submenu-item ">
-                <a href="addnew">Add new data</a>
-                </li>
+
             </ul>
-            
+
         </li>
-        
+
         <!-- Financial Management -->
         <li class="sidebar-item has-sub">
             <a href="#" class='sidebar-link'>
@@ -90,14 +91,15 @@
         </li>
 
         <!-- Inventory inquiry -->
-        <li class="sidebar-item has-sub">
+   <li class="sidebar-item has-sub ">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Inventory inquiry</span>
             </a>
 
-            <ul class="submenu">
-                <li class="submenu-item ">
+            <ul class="submenu ">
+
+            <li class="submenu-item ">
                     <a href="">Warehousing list</a>
                 </li>
                 <li class="submenu-item ">
@@ -107,49 +109,45 @@
         </li>
 
         <!-- Purchase -->
-        <li class="sidebar-item has-sub">
+        <li class="sidebar-item has-sub noactive">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Purchase</span>
             </a>
 
-            <ul class="submenu">
+            <ul class="submenu noactive">
                 <li class="submenu-item ">
-                    <a href="">Purchase schedule</a>
-                </li>
-                <li class="submenu-item ">
-                    <a href="">New purchase order</a>
+                <a href="purchase-list">Purchase schedule</a>
                 </li>
             </ul>
         </li>
 
         <!-- Sales -->
-        <li class="sidebar-item has-sub">
+        <li class="sidebar-item has-sub noactive">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Sales</span>
             </a>
 
-            <ul class="submenu">
-                <li class="submenu-item ">
-                    <a href="">Sales schedule</a>
+            <ul class="submenu noactive">
+                <li class="submenu-item noactive">
+                <a href="sales">sales record</a>
                 </li>
-                <li class="submenu-item ">
-                    <a href="">New sales order</a>
-                </li>
+                <li class="submenu-item noactive">
+                <a href="branch">branch record</a>
             </ul>
         </li>
 
         <!-- Inbound -->
-        <li class="sidebar-item has-sub">
+        <li class="sidebar-item has-sub noactive" >
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Inbound</span>
             </a>
 
-            <ul class="submenu">
+            <ul class="submenu noactive">
                 <li class="submenu-item ">
-                    <a href="">Inbound schedule</a>
+                    <a href="inbound-list">Inbound schedule</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="">New inbound</a>
@@ -158,26 +156,47 @@
         </li>
 
         <!-- Outbound -->
-        <li class="sidebar-item has-sub">
+        <li class="sidebar-item has-sub ">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Outbound</span>
             </a>
 
-            <ul class="submenu">
+            <ul class="submenu ">
                 <li class="submenu-item ">
-                    <a href="">Outbound schedule</a>
+                    <a href="outbound-schedule">Outbound schedule</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="">New outbound order</a>
                 </li>
             </ul>
         </li>
-        <li class="sidebar-item  ">
-         <a class="btn btn-outline-danger btn-block"href="login">Log Out</a>
+
+
+        <!-- User management -->
+        <li class="sidebar-item has-sub noactive">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                <span>User management</span>
+            </a>
+
+            <ul class="submenu noactive">
+              <li class="submenu-item ">
+                  <a href="user-management">User Management</a>
+              </li>
+                <li class="submenu-item ">
+                    <a href="position-management">Position Management</a>
+                </li>
+            </ul>
         </li>
+
+        <li class="sidebar-item  ">
+                      <p> <a class="btn btn-outline-primary btn-block" href="login" >Login</a> </p>
+                  </li>
+
     </ul>
-</div>                
+</div>
+                
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
@@ -209,73 +228,158 @@
                 </div>
                 <section class="section">
                     <div class="card">
-
                         <div class="card-header">
                             Simple Datatable
-                        </div>
 
-                        <div class="card-body">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>NO</th>
-                                        <th>商品名稱</th>
-                                        <th>現況</th>
-                                        <th>P1</th>
-                                        <th>P2</th>
-                                        <th>P3</th>
-                                        <th>數量</th>
-                                        <th>地域</th>
-                                        <th>蔵元</th>
-                                        <th>容量</th>
-                                        <th>單位</th>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody>
-                                    <!-- Connect to the database -->
-                                    
-Warning: mysqli::__construct(): (HY000/2002): No such file or directory in /Users/chanfei/Sites/erp-sys/localhost/database.php on line 27
-
-Warning: mysqli::query(): Couldn't fetch mysqli in /Users/chanfei/Sites/erp-sys/localhost/template/general/item-list.php on line 83
-0 results
-Warning: mysqli::close(): Couldn't fetch mysqli in /Users/chanfei/Sites/erp-sys/localhost/database.php on line 34
-
-                                    
-                                </tbody>
-                                
-                            </table>
-                        </div>
-                    </div>
-
-                </section>
-            </div>
-
-            <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>2021 &copy; ERP</p>
-                    </div>
-                    <div class="float-end">
-                        <p>Something here</p>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-    
-    <script src="template/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="template/assets/js/bootstrap.bundle.min.js"></script>
-
-<script src="template/assets/vendors/simple-datatables/simple-datatables.js"></script>
-<script>
-    // Simple Datatable
-    let table1 = document.querySelector('#table1');
-    let dataTable = new simpleDatatables.DataTable(table1);
-</script>
-
-<script src="template/assets/js/main.js"></script>
-
-</body>
-
-</html>
+<!--                            <div class="col-md-6 mb-4">-->
+<!--                                <h6>Multiple Select with Remove Button</h6>-->
+<!--                                <p>Use <code>.multiple-remove</code> attribute for multiple select box with remove-->
+<!--                                    button.</p>-->
+<!--                                <div class="form-group">-->
+<!--                                    <select class="choices form-select multiple-remove" multiple="multiple">-->
+<!--                                        <optgroup label="Figures">-->
+<!--                                            <option value="romboid">Romboid</option>-->
+<!--                                            <option value="trapeze" selected>Trapeze</option>-->
+<!--                                            <option value="triangle">Triangle</option>-->
+<!--                                            <option value="polygon">Polygon</option>-->
+<!--                                        </optgroup>-->
+<!--                                        <optgroup label="Colors">-->
+<!--                                            <option value="red">Red</option>-->
+<!--                                            <option value="green">Green</option>-->
+<!--                                            <option value="blue" selected>Blue</option>-->
+<!--                                            <option value="purple">Purple</option>-->
+<!--                                        </optgroup>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            {% endblock %}-->
+<!--                            {% block stylesfirst %}-->
+<!--                            <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />-->
+<!--                            {% endblock %}-->
+<!--                            {% block js %}-->
+<!--                            <script src="assets/vendors/choices.js/choices.min.js"></script>-->
+<!--                            {% endblock %}-->
+                            
+                            <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
+                                data-bs-target="#border-add">
+                                Add new data
+                            </button>
+                                <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
+                                    role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Add new data</h5>
+                                                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form data-target="#border-added" method="post">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="no">No:</label>
+                                                                <input type="integer" class="form-control" name="no" id="No" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="status">Status:</label>
+                                                                <input type="varchar" class="form-control" name="status" id="Status" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="p1">P1:</label>
+                                                                <input type="varchar" class="form-control" name="p1" id="P1" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="p2">P2:</label>
+                                                                <input type="varchar" class="form-control" name="p2" id="P2" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="p3">P3:</label>
+                                                                <input type="varchar" class="form-control" name="p3" id="P3" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="stock">Stock:</label>
+                                                                <input type="varchar" class="form-control" name="stock" id="Stock" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-6">
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="location">Location:</label>
+                                                                <input type="varchar" class="form-control" name="location" id="Location" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="sake_brewer">Sake Brewer:</label>
+                                                                <input type="varchar" class="form-control" name="sake_brewer" id="Sake_brewer" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="name">Name:</label>
+                                                                <input type="varchar" class="form-control" name="name" id="Name" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="volume">Volume:</label>
+                                                                <input type="varchar" class="form-control" name="volume" id="Volume" placeholder="">
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="unit">Unit:</label>
+                                                                <input type="varchar" class="form-control" name="unit" id="Unit" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="modal-footer">
+                                                        <form data-target="#border-added" method="post">
+                                                            <input type="submit" class="btn-check" value="Submit" id='submit'>
+                                                            <label class="btn btn-primary" for="submit">Submit</label>
+                                                        </form>
+                                                        <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                                            <span class="d-none d-sm-block">Close</span>
+                                                        </button>
+                                                    </div>
+                                                    
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="modal fade text-left modal-borderless" id="border-added" tabindex="-1"
+                                role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Add new data</h5>
+                                            <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i data-feather="x"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="card-body">
+                                                <tbody>
+                                                    <center>
+                                                        
+Warning: mysqli_connect(): (HY000/2002): No such file or directory in /Users/chanfei/Sites/erp-sys/localhost/template/general/item-list.php on line 207
+ERROR: Could not connect. No such file or directory
