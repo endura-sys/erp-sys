@@ -32,13 +32,13 @@
 	include '../../../database.php';
 	$conn = OpenCon();
 
-	$sql = "SELECT product_id, quantity FROM `sale_items` where sale_id=$sale";
+	$sql = "SELECT product_id, quantity FROM `sale_items_list` where sale_id=$sale";
 	$result = $conn->query($sql);
 	$i = 1;
 	$totalquantity = 0;
 	$totalamount= 0;
 	while($row = $result->fetch_assoc()) {
-		$sql2 = "SELECT name, volume, p2 FROM `wine_list` where no='". $row['product_id'] ."'";
+		$sql2 = "SELECT name, volume, p2 FROM `wine_list` where product_id='". $row['product_id'] ."'";
 		$result2 = $conn->query($sql2);
 		while($row2 = $result2->fetch_assoc()) {
 			$p = (int) $row2["p2"];

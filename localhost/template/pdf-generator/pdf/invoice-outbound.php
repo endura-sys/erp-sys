@@ -32,16 +32,16 @@
 	include '../../../database.php';
 	$conn = OpenCon();
 
-	$sql = "SELECT sale_id FROM `outbound_items` where outbound_id=$outbound";
+	$sql = "SELECT sale_id FROM `outbound_items_list` where outbound_id=$outbound";
 	$result = $conn->query($sql);
   $i = 1;
   $totalquantity = 0;
   $totalamount= 0;
   while($row = $result->fetch_assoc()) {
-    $sql2 = "SELECT product_id, quantity FROM `sale_items` where sale_id='". $row['sale_id'] ."'";
+    $sql2 = "SELECT product_id, quantity FROM `sale_items_list` where sale_id='". $row['sale_id'] ."'";
     $result2 = $conn->query($sql2);
   	while($row2 = $result2->fetch_assoc()) {
-  		$sql3 = "SELECT name, volume, p2 FROM `wine_list` where no='". $row2['product_id'] ."'";
+  		$sql3 = "SELECT name, volume, p2 FROM `wine_list` where product_id='". $row2['product_id'] ."'";
   		$result3 = $conn->query($sql3);
   		while($row3 = $result3->fetch_assoc()) {
   			$p = (int) $row3["p2"];

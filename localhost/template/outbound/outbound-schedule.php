@@ -62,8 +62,7 @@
                                     <tr>
                                         <th>Outbound ID</th>
                                         <th>Employee ID</th>
-                                        <th>Shipping Date</th>
-                                        <th>Outgoer</th>
+                                        <th>Outbound Date</th>
                                         <th>Outbound Way</th>
                                         <th>Outbound Cost</th>
                                         <th>Details</th>
@@ -78,7 +77,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT outbound_id, employee_id, date_of_outbound, outgoer, outbound_way, outbound_cost FROM outbound";
+                                        $sql = "SELECT outbound_id, employee_id, outbound_date, outbound_way, outbound_cost FROM outbound";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -89,7 +88,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["outbound_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["date_of_outbound"] ."</td><td>" . $row["outgoer"] ."</td><td>" . $row["outbound_way"] ."</td><td>" .$row["outbound_cost"] ."</td>";                                                ?>
+                                                echo "<tr><td>" .$row["outbound_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["outbound_date"] ."</td><td>" . $row["outbound_way"] ."</td><td>" .$row["outbound_cost"] ."</td>";                                                ?>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="outbound-info?id=<?php echo $row["outbound_id"]?>">View</a></td>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice-outbound?id=<?php echo $row["outbound_id"]?>" target="_blank">Generate</a></td>
                                                 <?php
