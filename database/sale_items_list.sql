@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 16, 2021 at 03:04 AM
+-- Generation Time: Jul 19, 2021 at 07:34 AM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -29,18 +29,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `sale_items_list` (
   `sale_id` int(20) NOT NULL,
   `product_id` int(20) NOT NULL,
-  `quantity` int(10) NOT NULL,
-  `expect_outbound_date` date DEFAULT NULL,
-  `is_outbound` varchar(2) NOT NULL
+  `quantity` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sale_items_list`
 --
 
-INSERT INTO `sale_items_list` (`sale_id`, `product_id`, `quantity`, `expect_outbound_date`, `is_outbound`) VALUES
-(5500001, 31, 6, '2021-07-06', 'T'),
-(5500002, 5, 5, '2021-07-06', 'T');
+INSERT INTO `sale_items_list` (`sale_id`, `product_id`, `quantity`) VALUES
+(5500001, 31, 6),
+(5500002, 5, 5),
+(5500002, 13, 6);
 
 --
 -- Indexes for dumped tables
