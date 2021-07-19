@@ -69,7 +69,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT * FROM `sale_items` where sale_id='" . $_GET['id'] . "'";
+                                        $sql = "SELECT * FROM `sale_items_list` where sale_id='" . $_GET['id'] . "'";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -80,10 +80,10 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                $sql2 = "SELECT name, p2 FROM `wine_list` where no='". $row['product_id'] ."'";
+                                                $sql2 = "SELECT name, p2 FROM `wine_list` where product_id='". $row['product_id'] ."'";
                                             		$result2 = $conn->query($sql2);
                                                 while($row2 = $result2->fetch_assoc()) {
-                                                  $sql3 = "SELECT stock FROM stock_list where no ='" . $row["product_id"] ."'";
+                                                  $sql3 = "SELECT stock FROM stock where product_id ='" . $row["product_id"] ."'";
                                                   $result3 = $conn->query($sql3);
                                                   while($row3 = $result3->fetch_assoc()) {
                                                     echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row2["name"] ."</td><td>$" .$row2["p2"] ."</td><td>" .$row["quantity"] ."</td><td>" .$row3["stock"] ."</td>";

@@ -73,7 +73,7 @@
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
 
-                                                      <div class="col-sm-6 col-md-1">
+                                                      <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
                                                                 <label for=sale_id>Sale ID:</label>
                                                                 <input type="integer" class="form-control" name="sale_id" id="Sale_id" placeholder="">
@@ -83,49 +83,73 @@
                                                       <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
                                                                 <label for="customer_id">Customer ID:</label>
-                                                                <input type="integer" class="form-control" name="customer_id" id="Customer_id" placeholder="">
+                                                                <select name="customer_id" class="form-control form-control-md" >
+                                                                  <option value="">Select Customer ID</option>
+                                                                  <?php
+                                                                  $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+
+                                                                  $sql0 = "SELECT customer_id, lastname FROM customer";
+                                                                  $result0 = $conn->query($sql0);
+                                                                  while($row0 = $result0->fetch_assoc()) {
+                                                                    ?>
+                                                                    <option value="<?php echo $row0["customer_id"]?>"><?php echo $row0["lastname"];?></option>
+
+                                                                  <?php
+                                                                }
+
+                                                                ?>
+                                                                </select>
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
                                                                 <label for="employee_id">Employee ID:</label>
-                                                                <input type="integer" class="form-control" name="employee_id" id="Employee_id" placeholder="">
-                                                            </div>
-                                                      </div>
+                                                                <select name="employee_id" class="form-control form-control-md" >
+                                                                  <option value="">Select Employee ID</option>
+                                                                  <?php
+                                                                  $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
-                                                      <div class="col-sm-6 col-md-1">
-                                                            <div class="form-group">
-                                                                <label for="discount">Discount:</label>
-                                                                <input type="varchar" class="form-control" name="discount" id="Discount" placeholder="">
+
+                                                                  $sql0 = "SELECT employee_id, lastname FROM employee";
+                                                                  $result0 = $conn->query($sql0);
+                                                                  while($row0 = $result0->fetch_assoc()) {
+                                                                    ?>
+                                                                    <option value="<?php echo $row0["employee_id"]?>"><?php echo $row0["lastname"];?></option>
+
+                                                                  <?php
+                                                                }
+
+                                                                ?>
+                                                                </select>
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
-                                                                <label for="account_receive">Account receive:</label>
-                                                                <input type="integer" class="form-control" name="account_receive" id="Account_receive" placeholder="">
-                                                            </div>
-                                                      </div>
-
-                                                      <div class="col-sm-6 col-md-1">
-                                                            <div class="form-group">
                                                                 <label for="sale_date">Sale date:</label>
-                                                                <input type="varchar" class="form-control" name="sale_date" id="Sale_date" placeholder="">
+                                                                <input type="date" class="form-control" name="sale_date" id="Sale_date" placeholder="">
                                                             </div>
                                                       </div>
 
-                                                      <div class="col-sm-6 col-md-1">
+                                                      <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
                                                                 <label for="sale_time">Sale time:</label>
-                                                                <input type="varchar" class="form-control" name="sale_time" id="Sale_time" placeholder="">
+                                                                <input type="time" class="form-control" name="sale_time" id="Sale_time" placeholder="">
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
                                                                 <label for="payment_method">Payment method:</label>
-                                                                <input type="varchar" class="form-control" name="payment_method" id="Payment_method" placeholder="">
+                                                                <select name="payment_method" class="form-control form-control-md" >
+                                                                  <option value="">Select Payment</option>
+                                                                  <option value="cash">Cash</option>
+                                                                  <option value="credit card">Credit Card</option>
+                                                                  <option value="alipay">Alipay</option>
+                                                                  <option value="FPS">FPS</option>
+                                                                </select>
                                                             </div>
                                                       </div>
 
@@ -151,12 +175,24 @@
                                                         </table>
                                                       </div>
 
-                                                            <div class="form-group">
-                                                              <button type="button" class="btn btn-primary" onclick="add()">
-                                                                  <i class="bi bi-plus-circle"></i>
-                                                              </button>
-                                                            </div>
+                                                      <div class="row">
+                                                        <div class="col-sm-6 col-md-6">
+                                                          <div class="form-group">
+                                                            <button type="button" class="btn btn-primary" onclick="add()">
+                                                                <i class="bi bi-plus-circle"></i>
+                                                            </button>
+                                                          </div>
+                                                        </div>
+
+                                                        <div class="col-sm-6 col-md-6 d-flex justify-content-end">
+                                                              <div class="form-group">
+                                                                  <label for="total_sale">Total sale:</label>
+                                                                  <input type="varchar" class="form-control" name="total_sale" id="total_sale" placeholder="">
+                                                              </div>
+                                                        </div>
+                                                      </div>
                                                     </div>
+
 
                                                     <div class="modal-footer">
                                                         <form data-target="#border-added" method="post">
@@ -191,7 +227,7 @@
                                                     <center>
                                                         <?php
 
-                                                            $conn = mysqli_connect("localhost", "root", "root", "db");
+                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
                                                             // Check connection
                                                             if($conn === false){
@@ -202,21 +238,20 @@
                                                             $sale_id =  $_REQUEST['sale_id'];
                                                             $customer_id =  $_REQUEST['customer_id'];
                                                             $employee_id = $_REQUEST['employee_id'];
-                                                            $discount = $_REQUEST['discount'];
-                                                            $account_receive = $_REQUEST['account_receive'];
                                                             $sale_date = $_REQUEST['sale_date'];
                                                             $sale_time = $_REQUEST['sale_time'];
                                                             $payment_method = $_REQUEST['payment_method'];
                                                             $product = $_REQUEST['product_id'];
                                                             $quantity = $_REQUEST['quantity'];
+                                                            $total_sale = $_REQUEST['total_sale'];
 
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO sales VALUES ('$sale_id','$customer_id','$employee_id','$discount','$account_receive','$sale_date','$sale_time','$payment_method')";
+                                                            $sql = "INSERT INTO sales VALUES ('$sale_id','$customer_id','$employee_id','$sale_date','$sale_time','$payment_method','$total_sale')";
                                                             $result = $conn->query($sql);
 
                                                             $N = count($product);
                                                             for($i = 0; $i < $N; $i++) {
-                                                              $sql2 = "INSERT INTO sale_items VALUES ('$sale_id', '$product[$i]', '$quantity[$i]')";
+                                                              $sql2 = "INSERT INTO sale_items_list (`sale_id`, `product_id`, `quantity`, `expect_outbound_date`, `is_outbound`) VALUES ('$sale_id', '$product[$i]', '$quantity[$i]', NULL, '')";
                                                               $result2 = $conn->query($sql2);
                                                             }
 
@@ -271,10 +306,10 @@
                                         <th>Sale ID</th>
                                         <th>Customer ID</th>
                                         <th>Employee ID</th>
-                                        <th>Discount</th>
-                                        <th>Account receive</th>
                                         <th>Sale date</th>
+                                        <th>Sale time</th>
                                         <th>Payment method</th>
+                                        <th>Total sale</th>
                                         <th>Details</th>
                                         <th>Invoice</th>
                                         <th>Status</th>
@@ -288,7 +323,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT sale_id, customer_id, employee_id, discount, account_receive, sale_date, sale_time, payment_method FROM sales";
+                                        $sql = "SELECT sale_id, customer_id, employee_id, sale_date, sale_time, payment_method, total_sale FROM sales";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -300,7 +335,7 @@
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
                                                 $status = false;
-                                                $sql2 = "SELECT * FROM outbound_items where sale_id ='" . $row["sale_id"] ."'";
+                                                $sql2 = "SELECT * FROM outbound_items_list where sale_id ='" . $row["sale_id"] ."'";
                                                 $result2 = $conn->query($sql2);
                                                 if($result2->num_rows > 0) {
                                                   $status = true;
@@ -313,8 +348,7 @@
                                                   <?php } else { ?>
                                                     <td><input type="checkbox" name="outbound[]" class="form-check-input" value="<?php echo $row["sale_id"]?>"><?php echo $row["sale_id"]?><br></td>
                                                   <?php }
-                                                echo "<td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" .$row["discount"] ."</td><td>" .$row["account_receive"]
-                                                      ."</td><td>" .$row["sale_date"] ."</td><td>" .$row["payment_method"] ."</td>";
+                                                echo "<td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" .$row["sale_date"] ."</td><td>" .$row["sale_time"] ."</td><td>" .$row["payment_method"] ."</td><td>" .$row["total_sale"] ."</td>";
                                                 ?>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="order-info?id=<?php echo $row["sale_id"]?>">View</a></td>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice-sales?id=<?php echo $row["sale_id"]?>" target="_blank">Generate</a></td>
@@ -347,14 +381,45 @@
                                     <div class="row">
                                         <div class="col-md-6">
 
+                                          <div class="form-group">
+                                              <label for=outbound_id>Outbound ID:</label>
+                                              <input type="integer" class="form-control" name="outbound_id" id="outbound_id" placeholder="">
+                                          </div>
+
+                                          <div class="form-group">
+                                              <label for="employee_id">Employee ID:</label>
+                                              <select name="employee_id" class="form-control form-control-md" >
+                                                <option value="">Select Employee ID</option>
+                                                <?php
+                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+
+                                                $sql0 = "SELECT employee_id, lastname FROM employee";
+                                                $result0 = $conn->query($sql0);
+                                                while($row0 = $result0->fetch_assoc()) {
+                                                  ?>
+                                                  <option value="<?php echo $row0["employee_id"]?>"><?php echo $row0["lastname"];?></option>
+
+                                                <?php
+                                              }
+
+                                              ?>
+                                              </select>
+                                          </div>
+
                                             <div class="form-group">
                                                 <label for="outbound_date">Outbound Date</label>
                                                 <?php
                                                 date_default_timezone_set('Asia/Hong_Kong');
-                                                $date = date('Y-m-d H:i:s');
+                                                $date = date('Y-m-d');
                                                 ?>
-                                                <input type="datetime" class="form-control" name="outbound_date" id="outbound_date" value="<?php echo $date;?>">
+                                                <input type="date" class="form-control" name="outbound_date" id="outbound_date" value="<?php echo $date;?>">
                                             </div>
+
+
+                                          </div>
+
+                                          <div class="col-md-6">
 
 
                                             <div class="form-group">
@@ -362,19 +427,9 @@
                                                 <input type="varchar" class="form-control" name="outbound_way" id="outbound_way">
                                             </div>
 
-                                        </div>
-
-                                        <div class="col-md-6">
-
                                             <div class="form-group">
                                                 <label for="outbound_cost">Outbound Cost</label>
                                                 <input type="varchar" class="form-control" name="outbound_cost" id="outbound_cost">
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label for="outgoer">Outgoer</label>
-                                                <input type="varchar" class="form-control" name="outgoer" id="outgoer">
                                             </div>
 
                                         </div>
