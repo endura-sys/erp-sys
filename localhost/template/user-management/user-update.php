@@ -5,14 +5,15 @@ $conn = OpenCon();
 
 
 $username = "";
-$fullname = "";
+$lastname = "";
+$surname = "";
 $position = "";
 $email = "";
-$phone = "";
 $user = "";
 $errors = array();
 if (isset($_POST['updatebtn'])) {
-    $fullname = $_POST["full_name"];
+    $lastname = $_POST["lastname"];
+    $surname = $_POST["surname"];
     $position = $_POST["position"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
@@ -20,21 +21,21 @@ if (isset($_POST['updatebtn'])) {
     $pw = $_POST["password"];
     $pw2 = $_POST["confirmpassword"];
 
-    if (empty($fullname)) { array_push($errors, "Full Name is required."); }
+    if (empty($lastname)) { array_push($errors, "Lastname is required."); }
+    if (empty($surname)) { array_push($errors, "Surname is required."); }
     if (empty($position)) { array_push($errors, "Job Position is required."); }
     if (empty($email)) { array_push($errors, "Email is required."); }
-    if (empty($phone)) { array_push($errors, "Phone is required."); }
     if (empty($user)) { array_push($errors, "Username is required."); }
     if (empty($pw)) { array_push($errors, "Password is required."); }
     if (strlen($pw)<8) {array_push($errors, "The password must contain at least 8 characters.");}
     if (empty($pw2)) { array_push($errors, "Please enter password again."); }
     else if ($pw != $pw2) { array_push($errors, "Passwords do not match."); }
 
-    $sql_check = "SELECT * from users where username = '$user'";
+    $sql = "SELECT * from account where username = '$user'";
     $result_check = $conn->query($sql_check);
     $num_check = mysqli_num_rows($result_check);
 
-    $result2 = mysqli_query($conn,"SELECT * FROM users WHERE id='" . $_GET['id'] . "'");
+    $result2 = mysqli_query($conn,"SELECT * FROM account WHERE employee_id='" . $_GET['id'] . "'");
     $row2= mysqli_fetch_array($result2);
 
     if($row2['username']!=$user){
@@ -45,14 +46,16 @@ if (isset($_POST['updatebtn'])) {
 
     if (count($errors) == 0) {
       if(count($_POST)>0) {
-        mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', position='" . $_POST['position'] . "' , email='" . $_POST['email'] . "' , username='" . $_POST['username'] . "' , password='" . $_POST['password'] . "' WHERE id='" . $_POST['id'] . "'");
+        mysqli_query($conn,"UPDATE employee set employee_id='" . $_POST['id'] . "', lastname='" . $_POST['lastname'] ."', surname='" . $_POST['surname'] . "',
+          position_id='" . $_POST['position'] . "' , email='" . $_POST['email']."' WHERE employee_id='" . $_POST['id'] . "'");
+        mysqli_query($conn,"UPDATE account set employee_id='" . $_POST['id'] . "', username='" . $_POST['username'] ."', password='" . $_POST['password'] . "' WHERE employee_id='" . $_POST['id'] . "'");
         //mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', last_name='" . $_POST['last_name'] . "', city_name='" . $_POST['city_name'] . "' ,email='" . $_POST['email'] . "' WHERE id='" . $_POST['userid'] . "'");
         $message = "Record Modified Successfully";
       }
     }
 
 }
-$result = mysqli_query($conn,"SELECT * FROM users WHERE id='" . $_GET['id'] . "'");
+$result = mysqli_query($conn,"SELECT * FROM employee WHERE employee_id='" . $_GET['id'] . "'");
 $row= mysqli_fetch_array($result);
 
 ?>
@@ -115,12 +118,24 @@ $row= mysqli_fetch_array($result);
                         <div class="form-body">
                           <div class="row">
                             <div class="col-md-4">
-                              <label> Full Name</label>
+                              <label>Lastname</label>
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
                                 <input type="hidden" class="form-control form-control-xl" name="id" value="<?php echo $row['id']?>">
-                                <input type="text" class="form-control form-control-xl" name="full_name" value="<?php echo $row['full_name']?>">
+                                <input type="text" class="form-control form-control-xl" name="lastname" value="<?php echo $row['lastname']?>">
+                                <div class="form-control-icon">
+                                  <i class="bi bi-person"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Surname</label>
+                            </div>
+                            <div class="col-md-8">
+                              <div class="form-group position-relative has-icon-left mb-4">
+                                <input type="hidden" class="form-control form-control-xl" name="id" value="<?php echo $row['id']?>">
+                                <input type="text" class="form-control form-control-xl" name="surname" value="<?php echo $row['surname']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-person"></i>
                                 </div>
@@ -133,15 +148,20 @@ $row= mysqli_fetch_array($result);
                               <div class="form-group position-relative has-icon-left mb-4">
                                 <!-- <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position']?>"> -->
                                 <select name="position" class="form-control form-control-xl" placeholder="Select Position">
-                                  <option value="<?php echo $row['position']?>"><?php echo $row['position']?></option>
-                                  <?php $sql0 = "SELECT Position FROM job_position";
+                                  <?php
+                                    $sql_pos="SELECT position_name FROM position WHERE position_id= '" . $row['position_id']. "'";
+                                    $result_pos = $conn->query($sql_pos);
+                                    $row_pos = $result_pos->fetch_assoc();
+                                  ?>
+                                  <option value="<?php echo $row['position_id']?>"><?php echo $row_pos['position_name']?></option>
+                                  <?php $sql0 = "SELECT position_id, position_name FROM position";
                                         $result0 = $conn->query($sql0);
 
                                         $product_list0 = array();
                                         while($row0 = $result0->fetch_assoc()) {
-                                          if($row['position']!=$row0['Position']){
+                                          if($row['position_id']!=$row0['position_id']){
                                   ?>
-                                          <option value="<?php echo $row0['Position']?>"><?php echo $row0['Position']?></option>
+                                          <option value="<?php echo $row0['position_id']?>"><?php echo $row0['position_name']?></option>
                                   <?php
                                           }
                                         }
@@ -163,17 +183,7 @@ $row= mysqli_fetch_array($result);
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-4">
-                              <label>Phone</label>
-                            </div>
-                            <div class="col-md-8">
-                              <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text" class="form-control form-control-xl" name="phone" value="<?php echo $row['phone']?>">
-                                <div class="form-control-icon">
-                                  <i class="bi bi-telephone"></i>
-                                </div>
-                              </div>
-                            </div>
+
                             <div class="col-md-4">
                               <label>Username</label>
                             </div>
