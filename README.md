@@ -6,7 +6,7 @@ This [bootstrap tamplete](https://zuramai.github.io/mazer/) was used to design t
 
 ## Database
 
-`function OpenCon(){...}` Connects Server with the Database
+`function OpenCon(){...}` Connects Server with the Database </br>
 `function CloseCon(){...}` Closes Connection with the Database
 > `mysqli_connect("localhost", "root", "root", "sakedb");` can also be used to connect
 
