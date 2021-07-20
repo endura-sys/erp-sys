@@ -164,7 +164,7 @@
                                                     <center>
                                                         <?php
 
-                                                            $conn = mysqli_connect("localhost", "root", "root", "db");
+                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
                                                             // Check connection
                                                             if($conn === false){
@@ -364,7 +364,7 @@
                             $errors = array();
 
                               if (isset($_POST['confirminbound'])) {
-                                $conn = mysqli_connect("localhost", "root", "root", "db");
+                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
                                 $confirm_employee_id = $_POST["employee_id"];
                                 $confirm_inbound_date = $_POST["inbound_date"];

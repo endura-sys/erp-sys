@@ -17,7 +17,7 @@
                 </div>
 
                 <?php include('../datatable-navbar.php'); ?>
-                
+
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
@@ -71,48 +71,48 @@
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="supplier_id">Supplier id:</label>
                                                                 <input type="integer" class="form-control" name="supplier_id" id="Supplier_id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="product_id">Product id:</label>
                                                                 <input type="varchar" class="form-control" name="product_id" id="Product_id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="supplier_name">Supplier name:</label>
                                                                 <input type="varchar" class="form-control" name="supplier_name" id="Supplier_name" placeholder="">
                                                             </div>
 
                                                         </div>
-                                                        
+
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="supplier_phone">Supplier phone:</label>
                                                                 <input type="varchar" class="form-control" name="supplier_phone" id="Supplier_phone" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="supplier_email">Supplier email:</label>
                                                                 <input type="varchar" class="form-control" name="supplier_email" id="Supplier_email" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="supplier_address">Supplier address:</label>
                                                                 <input type="varchar" class="form-control" name="supplier_address" id="Supplier_address" placeholder="">
                                                             </div>
-                                                            
+
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="modal-footer">
                                                         <form data-target="#border-added" method="post">
                                                             <input type="submit" class="btn-check" value="Submit" id='submit'>
@@ -123,7 +123,7 @@
                                                             <span class="d-none d-sm-block">Close</span>
                                                         </button>
                                                     </div>
-                                                    
+
                                                 </form>
                                             </div>
                                         </div>
@@ -145,37 +145,37 @@
                                                 <tbody>
                                                     <center>
                                                         <?php
-                                                            
-                                                            $conn = mysqli_connect("localhost", "root", "root", "db");
-                                                            
+
+                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
                                                             // Check connection
                                                             if($conn === false){
-                                                                die("ERROR: Could not connect. " 
+                                                                die("ERROR: Could not connect. "
                                                                     . mysqli_connect_error());
                                                             }
-                                                            
+
                                                             $supplier_id =  $_REQUEST['supplier_id'];
                                                             $product_id =  $_REQUEST['product_id'];
                                                             $supplier_name = $_REQUEST['supplier_name'];
                                                             $supplier_phone = $_REQUEST['supplier_phone'];
                                                             $supplier_email = $_REQUEST['supplier_email'];
                                                             $supplier_address = $_REQUEST['supplier_address'];
-                                                            
+
                                                             // Performing insert query execution
                                                             $sql = "INSERT INTO supplier  VALUES ('$supplier_id'
                                                                 ,'$product_id','$supplier_name','$supplier_phone','$supplier_email','$supplier_address')";
-                                                            
+
                                                             if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully." 
-                                                                . " Please browse your localhost" 
-                                                                . " to view the updated data</h3>"; 
-                                                                
+                                                                echo "<h3>Data stored in a database successfully."
+                                                                . " Please browse your localhost"
+                                                                . " to view the updated data</h3>";
+
                                                                 echo nl2br("No : $no\n"
                                                                     . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. " 
+                                                                echo "ERROR : Invalid input. "
                                                                 . mysqli_error($conn);
                                                             }
                                                             mysqli_close($conn);
@@ -183,12 +183,12 @@
                                                         <div>
                                                             <div class="card-body">
                                                             </div>
-                                                            
-                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew" 
+
+                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew"
                                                                 onClick="document.location.href='addnew'" />
                                                             <label class="btn btn-outline-success" for="addnew">Add another data</label>
-                                                            
-                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn" 
+
+                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn"
                                                                 onClick="document.location.href='dashboard'" />
                                                             <label class="btn btn-outline-danger" for="mainn">Back to database</label>
                                                         </div>
@@ -214,7 +214,7 @@
                                         <th>聯絡地址</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     <!-- Connect to the database -->
                                     <?php
@@ -242,9 +242,9 @@
                                         CloseCon($conn);
                                     ?>
 
-                                    
+
                                 </tbody>
-                                
+
                             </table>
                         </div>
                     </div>
@@ -264,8 +264,7 @@
             </footer>
         </div>
     </div>
-    
+
     <?php include('../footer.php'); ?>
 
 </body>
-

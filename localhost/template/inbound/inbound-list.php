@@ -162,7 +162,7 @@
                                                     <center>
                                                         <?php
 
-                                                            $conn = mysqli_connect("localhost", "root", "root", "db");
+                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
                                                             // Check connection
                                                             if($conn === false){

@@ -131,8 +131,11 @@
 																			if (isset($_POST["deletebtn"])) {
 																				$id = $_POST["id"];
 
-																				$sql = "DELETE FROM users where id = '$id'";
+																				$sql = "DELETE FROM employee where employee_id = '$id'";
 																				$result = $conn->query($sql);
+
+                                        $sql2 = "DELETE FROM account where employee_id = '$id'";
+																				$result2 = $conn->query($sql2);
 
 																				$message = "User Deleted Successfully";
 

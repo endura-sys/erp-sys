@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <?php include('../datatable-navbar.php'); ?>
 
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -72,19 +72,19 @@
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="customer_id">Customer id:</label>
                                                                 <input type="integer" class="form-control" name="customer_id" id="Customer id" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="name">Customer name:</label>
                                                                 <input type="varchar" class="form-control" name="name" id="Customer name" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="gender">Gender:</label>
                                                                <div>
@@ -101,32 +101,32 @@
                                                             </div>
 
                                                         </div>
-                                                        
+
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="contact_email">Contact email:</label>
                                                                 <input type="varchar" class="form-control" name="contact_email" id="Contact email" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="address">Address:</label>
                                                                 <input type="varchar" class="form-control" name="address" id="Address" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="member_point">Member point:</label>
                                                                 <input type="varchar" class="form-control" name="member_point" id="Member point" placeholder="">
                                                             </div>
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="date_of_last_purchasing">Date of last purchasing</label>
                                                                 <input type="date" class="form-control" name="date_of_last_purchasing" id="Date of last purchasing" placeholder="">
                                                             </div>
                                                     </div>
-                                                    
+
                                                     <div class="modal-footer">
                                                         <form data-target="#border-added" method="post">
                                                             <input type="submit" class="btn-check" value="Submit" id='submit'>
@@ -137,7 +137,7 @@
                                                             <span class="d-none d-sm-block">Close</span>
                                                         </button>
                                                     </div>
-                                                    
+
                                                 </form>
                                             </div>
                                         </div>
@@ -159,15 +159,15 @@
                                                 <tbody>
                                                     <center>
                                                         <?php
-                                                            
-                                                            $conn = mysqli_connect("localhost", "root", "root", "db");
-                                                            
+
+                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
                                                             // Check connection
                                                             if($conn === false){
-                                                                die("ERROR: Could not connect. " 
+                                                                die("ERROR: Could not connect. "
                                                                     . mysqli_connect_error());
                                                             }
-                                                            
+
                                                             $customer_id =  $_REQUEST['customer_id'];
                                                             $name =  $_REQUEST['name'];
                                                             $gender = $_REQUEST['gender'];
@@ -176,23 +176,23 @@
                                                             $address = $_REQUEST['address'];
                                                             $member_point = $_REQUEST['member_point'];
                                                             $date_of_last_purchasing = $_REQUEST['date_of_last_purchasing'];
-                                                            
+
                                                             // Performing insert query execution
                                                             $sql = "INSERT INTO customer VALUES ('$customer_id',
                                                             '$name','$gender','$contact_no','$contact_email',
                                                             '$address','$member_point','$date_of_last_purchasing')";
-                                                            
+
                                                             if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully." 
-                                                                . " Please browse your localhost" 
-                                                                . " to view the updated data</h3>"; 
-                                                                
+                                                                echo "<h3>Data stored in a database successfully."
+                                                                . " Please browse your localhost"
+                                                                . " to view the updated data</h3>";
+
                                                                 echo nl2br("Customer id : $customer_id\n"
                                                                     . "Customer name : $name\nGender : $gender\nContact no : $contact_no\nContact email : $contact_email\nAddress : $address\nMember point : $member_point\nDate of last purchasing : $date_of_last_purchasing\n");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. " 
+                                                                echo "ERROR : Invalid input. "
                                                                 . mysqli_error($conn);
                                                             }
                                                             mysqli_close($conn);
@@ -200,12 +200,12 @@
                                                         <div>
                                                             <div class="card-body">
                                                             </div>
-                                                            
-                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew" 
+
+                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew"
                                                                 onClick="document.location.href='addnew'" />
                                                             <label class="btn btn-outline-success" for="addnew">Add another data</label>
-                                                            
-                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn" 
+
+                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn"
                                                                 onClick="document.location.href='dashboard'" />
                                                             <label class="btn btn-outline-danger" for="mainn">Back to database</label>
                                                         </div>
@@ -233,7 +233,7 @@
                                         <th>上次消費日期</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     <!-- Connect to the database -->
                                     <?php
@@ -261,9 +261,9 @@
                                         CloseCon($conn);
                                     ?>
 
-                                    
+
                                 </tbody>
-                                
+
                             </table>
                         </div>
                     </div>
@@ -283,9 +283,9 @@
             </footer>
         </div>
     </div>
-    
+
     <?php include('../footer.php'); ?>
-    
+
 </body>
 
 </html>

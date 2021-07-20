@@ -18,7 +18,7 @@
                 </div>
 
                 <?php include('../datatable-navbar.php'); ?>
-                
+
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
@@ -81,12 +81,12 @@
 <!--                            {% block js %}-->
 <!--                            <script src="assets/vendors/choices.js/choices.min.js"></script>-->
 <!--                            {% endblock %}-->
-                            
+
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
                                 data-bs-target="#border-add">
                                 Add new data
                             </button>
-                            
+
                                 <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
                                     role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -98,81 +98,81 @@
                                                     <i data-feather="x"></i>
                                                 </button>
                                             </div>
-                                            
+
                                             <div class="modal-body">
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="no">No:</label>
                                                                 <input type="integer" class="form-control" name="no" id="No" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="status">Status:</label>
                                                                 <input type="varchar" class="form-control" name="status" id="Status" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="p1">P1:</label>
                                                                 <input type="varchar" class="form-control" name="p1" id="P1" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="p2">P2:</label>
                                                                 <input type="varchar" class="form-control" name="p2" id="P2" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="p3">P3:</label>
                                                                 <input type="varchar" class="form-control" name="p3" id="P3" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="stock">Stock:</label>
                                                                 <input type="varchar" class="form-control" name="stock" id="Stock" placeholder="">
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <div class="col-md-6">
-                                                            
+
                                                             <div class="form-group">
                                                                 <label for="location">Location:</label>
                                                                 <input type="varchar" class="form-control" name="location" id="Location" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="sake_brewer">Sake Brewer:</label>
                                                                 <input type="varchar" class="form-control" name="sake_brewer" id="Sake_brewer" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="name">Name:</label>
                                                                 <input type="varchar" class="form-control" name="name" id="Name" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="volume">Volume:</label>
                                                                 <input type="varchar" class="form-control" name="volume" id="Volume" placeholder="">
                                                             </div>
-                                                            
-                                                            
+
+
                                                             <div class="form-group">
                                                                 <label for="unit">Unit:</label>
                                                                 <input type="varchar" class="form-control" name="unit" id="Unit" placeholder="">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="modal-footer">
                                                         <form data-target="#border-added" method="post">
                                                             <input type="submit" class="btn-check" value="Submit" id='submit'>
@@ -183,7 +183,7 @@
                                                             <span class="d-none d-sm-block">Close</span>
                                                         </button>
                                                     </div>
-                                                    
+
                                                 </form>
                                             </div>
                                         </div>
@@ -205,15 +205,15 @@
                                                 <tbody>
                                                     <center>
                                                         <?php
-                                                            
-                                                            $conn = mysqli_connect("localhost", "root", "root", "db");
-                                                            
+
+                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
                                                             // Check connection
                                                             if($conn === false){
-                                                                die("ERROR: Could not connect. " 
+                                                                die("ERROR: Could not connect. "
                                                                     . mysqli_connect_error());
                                                             }
-                                                            
+
                                                             $no =  $_REQUEST['no'];
                                                             $status =  $_REQUEST['status'];
                                                             $p1 = $_REQUEST['p1'];
@@ -225,23 +225,23 @@
                                                             $name = $_REQUEST['name'];
                                                             $volume = $_REQUEST['volume'];
                                                             $unit = $_REQUEST['unit'];
-                                                            
+
                                                             // Performing insert query execution
                                                             $sql = "INSERT INTO product  VALUES ('$no'
-                                                                ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer', 
+                                                                ,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer',
                                                                 '$name','$volume','$unit')";
-                                                            
+
                                                             if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully." 
-                                                                . " Please browse your localhost" 
-                                                                . " to view the updated data</h3>"; 
-                                                                
+                                                                echo "<h3>Data stored in a database successfully."
+                                                                . " Please browse your localhost"
+                                                                . " to view the updated data</h3>";
+
                                                                 echo nl2br("No : $no\n"
                                                                     . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
                                                             } else{
                                                                 // echo "ERROR : Invalid input $sql. "
                                                                 // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. " 
+                                                                echo "ERROR : Invalid input. "
                                                                 . mysqli_error($conn);
                                                             }
                                                             mysqli_close($conn);
@@ -249,12 +249,12 @@
                                                         <div>
                                                             <div class="card-body">
                                                             </div>
-                                                            
-                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew" 
+
+                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew"
                                                                 onClick="document.location.href='addnew'" />
                                                             <label class="btn btn-outline-success" for="addnew">Add another data</label>
-                                                            
-                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn" 
+
+                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn"
                                                                 onClick="document.location.href='dashboard'" />
                                                             <label class="btn btn-outline-danger" for="mainn">Back to database</label>
                                                         </div>
@@ -285,7 +285,7 @@
                                         <th>單位</th>
                                     </tr>
                                 </thead>
-                                
+
                                 <tbody>
                                     <!-- Connect to the database -->
                                     <?php
@@ -313,9 +313,9 @@
                                         CloseCon($conn);
                                     ?>
 
-                                    
+
                                 </tbody>
-                                
+
                             </table>
                         </div>
                     </div>
@@ -335,8 +335,7 @@
             </footer>
         </div>
     </div>
-    
+
     <?php include('../footer.php'); ?>
 
 </body>
-

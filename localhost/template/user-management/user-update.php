@@ -31,7 +31,7 @@ if (isset($_POST['updatebtn'])) {
     if (empty($pw2)) { array_push($errors, "Please enter password again."); }
     else if ($pw != $pw2) { array_push($errors, "Passwords do not match."); }
 
-    $sql = "SELECT * from account where username = '$user'";
+    $sql_check = "SELECT * from account where username = '$user'";
     $result_check = $conn->query($sql_check);
     $num_check = mysqli_num_rows($result_check);
 
@@ -46,10 +46,9 @@ if (isset($_POST['updatebtn'])) {
 
     if (count($errors) == 0) {
       if(count($_POST)>0) {
-        mysqli_query($conn,"UPDATE employee set employee_id='" . $_POST['id'] . "', lastname='" . $_POST['lastname'] ."', surname='" . $_POST['surname'] . "',
+        mysqli_query($conn,"UPDATE employee set lastname='" . $_POST['lastname'] ."', surname='" . $_POST['surname'] . "',
           position_id='" . $_POST['position'] . "' , email='" . $_POST['email']."' WHERE employee_id='" . $_POST['id'] . "'");
-        mysqli_query($conn,"UPDATE account set employee_id='" . $_POST['id'] . "', username='" . $_POST['username'] ."', password='" . $_POST['password'] . "' WHERE employee_id='" . $_POST['id'] . "'");
-        //mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', last_name='" . $_POST['last_name'] . "', city_name='" . $_POST['city_name'] . "' ,email='" . $_POST['email'] . "' WHERE id='" . $_POST['userid'] . "'");
+        mysqli_query($conn,"UPDATE account set username='" . $_POST['username'] ."', password='" . $_POST['password'] . "' WHERE employee_id='" . $_POST['id'] . "'");
         $message = "Record Modified Successfully";
       }
     }
@@ -57,6 +56,9 @@ if (isset($_POST['updatebtn'])) {
 }
 $result = mysqli_query($conn,"SELECT * FROM employee WHERE employee_id='" . $_GET['id'] . "'");
 $row= mysqli_fetch_array($result);
+$result2 = mysqli_query($conn,"SELECT * FROM account WHERE employee_id='" . $_GET['id'] . "'");
+$row2= mysqli_fetch_array($result2);
+
 
 ?>
 
@@ -93,7 +95,7 @@ $row= mysqli_fetch_array($result);
               <div class="page-title">
                 <div class="row">
                   <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Update username: "<?php echo $row['username']?>" information</h3>
+                    <h3>Update information for username: "<?php echo $row2['username']?>"</h3>
                     <p class="text-subtitle text-muted">Type the information you want to update</p>
                   </div>
                   <div class="col-12 col-md-6 order-md-2 order-first">
@@ -104,11 +106,11 @@ $row= mysqli_fetch_array($result);
                 </div>
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">"<?php echo $row['username']?>" Information</h4>
+                    <h4 class="card-title">"<?php echo $row2['username']?>" Information</h4>
                   </div>
                   <div class="card-content">
                     <div class="card-body">
-                      <form class="form form-horizontal" action="user-update?id=<?php echo $row["id"]?>" method="post">
+                      <form class="form form-horizontal" action="user-update?id=<?php echo $row["employee_id"]?>" method="post">
                         <?php if(isset($message)) { ?>
                         <div class="alert alert-success">
                           <i class="bi bi-check-circle"></i>
@@ -122,7 +124,7 @@ $row= mysqli_fetch_array($result);
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="hidden" class="form-control form-control-xl" name="id" value="<?php echo $row['id']?>">
+                                <input type="hidden" class="form-control form-control-xl" name="id" value="<?php echo $row['employee_id']?>">
                                 <input type="text" class="form-control form-control-xl" name="lastname" value="<?php echo $row['lastname']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-person"></i>
@@ -134,7 +136,7 @@ $row= mysqli_fetch_array($result);
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="hidden" class="form-control form-control-xl" name="id" value="<?php echo $row['id']?>">
+                                <input type="hidden" class="form-control form-control-xl" name="id" value="<?php echo $row['employee_id']?>">
                                 <input type="text" class="form-control form-control-xl" name="surname" value="<?php echo $row['surname']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-person"></i>
@@ -189,7 +191,7 @@ $row= mysqli_fetch_array($result);
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text" class="form-control form-control-xl" name="username" value="<?php echo $row['username']?>">
+                                <input type="text" class="form-control form-control-xl" name="username" value="<?php echo $row2['username']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-person"></i>
                                 </div>
@@ -200,7 +202,7 @@ $row= mysqli_fetch_array($result);
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text" class="form-control form-control-xl" name="password" value="<?php echo $row['password']?>">
+                                <input type="password" class="form-control form-control-xl" name="password" value="<?php echo $row2['password']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-shield-lock"></i>
                                 </div>
@@ -211,7 +213,7 @@ $row= mysqli_fetch_array($result);
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="text" class="form-control form-control-xl" name="confirmpassword" value="<?php echo $row['password']?>">
+                                <input type="password" class="form-control form-control-xl" name="confirmpassword" value="<?php echo $row2['password']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-shield-lock"></i>
                                 </div>
