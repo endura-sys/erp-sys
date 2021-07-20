@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 16, 2021 at 03:36 AM
+-- Generation Time: Jul 20, 2021 at 03:58 AM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -28,15 +28,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `outbound_items_list` (
   `outbound_id` int(20) NOT NULL,
-  `purchasing_id` int(20) NOT NULL
+  `sale_id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `outbound_items_list`
 --
 
-INSERT INTO `outbound_items_list` (`outbound_id`, `purchasing_id`) VALUES
-(6600001, 8800001);
+INSERT INTO `outbound_items_list` (`outbound_id`, `sale_id`) VALUES
+(6600001, 5500001),
+(6600001, 5500002);
 
 --
 -- Indexes for dumped tables
@@ -47,7 +48,7 @@ INSERT INTO `outbound_items_list` (`outbound_id`, `purchasing_id`) VALUES
 --
 ALTER TABLE `outbound_items_list`
   ADD KEY `outbound_id` (`outbound_id`),
-  ADD KEY `purchasing_id` (`purchasing_id`);
+  ADD KEY `sale_id` (`sale_id`);
 
 --
 -- Constraints for dumped tables
@@ -57,8 +58,8 @@ ALTER TABLE `outbound_items_list`
 -- Constraints for table `outbound_items_list`
 --
 ALTER TABLE `outbound_items_list`
-  ADD CONSTRAINT `Connect Purchase6` FOREIGN KEY (`purchasing_id`) REFERENCES `purchase` (`purchasing_id`),
-  ADD CONSTRAINT `Connect outbound` FOREIGN KEY (`outbound_id`) REFERENCES `outbound` (`outbound_id`);
+  ADD CONSTRAINT `Connect outbound` FOREIGN KEY (`outbound_id`) REFERENCES `outbound` (`outbound_id`),
+  ADD CONSTRAINT `Connet sale` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`sale_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
