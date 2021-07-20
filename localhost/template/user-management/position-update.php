@@ -10,31 +10,28 @@ if (isset($_POST['updatebtn'])) {
 
     if (empty($position)) { array_push($errors, "Job Position is required."); }
 
-    $sql_check = "SELECT * from job_position where position = '$position'";
+    $sql_check = "SELECT * from position where position_name = '$position'";
     $result_check = $conn->query($sql_check);
     $num_check = mysqli_num_rows($result_check);
 
-    $result_check = mysqli_query($conn,"SELECT * FROM job_position WHERE id='" . $_GET['id'] . "'");
+    $result_check = mysqli_query($conn,"SELECT * FROM position WHERE position_id ='" . $_GET['id'] . "'");
     $row_check= mysqli_fetch_array($result_check);
 
     if($row_check['position']!=$position){
       if ($num_check > 0) {
-        array_push($errors, "Username already exists. Please create a new username.");
+        array_push($errors, "Position already exists. Please create a new position.");
       }
     }
 
     if (count($errors) == 0) {
       if(count($_POST)>0) {
-        mysqli_query($conn,"UPDATE job_position set position='" . $_POST['position'] . "' WHERE id='" . $_GET['id'] . "'");
-        //mysqli_query($conn,"UPDATE users set id='" . $_POST['id'] . "', full_name='" . $_POST['full_name'] . "', last_name='" . $_POST['last_name'] . "', city_name='" . $_POST['city_name'] . "' ,email='" . $_POST['email'] . "' WHERE id='" . $_POST['userid'] . "'");
-
-        //header("location: position-update?pos=" .$_POST['position']."");
+        mysqli_query($conn,"UPDATE position set position_name ='" . $_POST['position'] . "' WHERE position_id ='" . $_GET['id'] . "'");
         $message = "Record Modified Successfully";
       }
     }
 
 }
-$result = mysqli_query($conn,"SELECT * FROM job_position WHERE id='" . $_GET['id'] . "'");
+$result = mysqli_query($conn,"SELECT * FROM position WHERE position_id ='" . $_GET['id'] . "'");
 $row= mysqli_fetch_array($result);
 
 ?>
@@ -72,7 +69,7 @@ $row= mysqli_fetch_array($result);
               <div class="page-title">
                 <div class="row">
                   <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Update Position: "<?php echo $row['position']?>"</h3>
+                    <h3>Update Position: "<?php echo $row['position_name']?>"</h3>
                     <p class="text-subtitle text-muted">Type the information you want to update</p>
                   </div>
                   <div class="col-12 col-md-6 order-md-2 order-first">
@@ -83,11 +80,11 @@ $row= mysqli_fetch_array($result);
                 </div>
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">"<?php echo $row['position']?>" Information</h4>
+                    <h4 class="card-title">"<?php echo $row['position_name']?>" Information</h4>
                   </div>
                   <div class="card-content">
                     <div class="card-body">
-                      <form class="form form-horizontal" action="position-update?id=<?php echo $row['id']?>" method="post">
+                      <form class="form form-horizontal" action="position-update?id=<?php echo $row['position_id']?>" method="post">
                         <?php if(isset($message)) { ?>
                         <div class="alert alert-success">
                           <i class="bi bi-check-circle"></i>
@@ -101,8 +98,8 @@ $row= mysqli_fetch_array($result);
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <input type="hidden" class="form-control form-control-xl" name="old_position" value="<?php echo $row['position']?>">
-                                <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position']?>">
+                                <input type="hidden" class="form-control form-control-xl" name="old_position" value="<?php echo $row['position_name']?>">
+                                <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position_name']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-briefcase"></i>
                                 </div>

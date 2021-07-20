@@ -302,7 +302,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["product_id"] ."</td><td>" .$row["name"] ."</td><td>" . $row["p1"] ."</td><td>" . $row["p2"] ."</td><td>" . $row["p3"]
+                                                echo "<tr><td>" .$row["product_id"] ."</td><td>" .$row["name"] ."</td><td>" . "$" . $row["p1"] ."</td><td>" . "$" . $row["p2"] ."</td><td>" . "$" . $row["p3"]
                                                  ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] . "ML" ."</td><td>".$row["unit"] . "/ctn" ."</td>";
                                             }
                                         } else {

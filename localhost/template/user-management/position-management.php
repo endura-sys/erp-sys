@@ -77,7 +77,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT * FROM job_position";
+                                        $sql = "SELECT * FROM position";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -89,13 +89,13 @@
                                     ?>
                                               <tr>
                                                 <td><?php echo $i; $i++; ?></td>
-                                                <td><?php echo $row["position"]; ?></td>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="position-update?id=<?php echo $row["id"]?>" >Update</a>
+                                                <td><?php echo $row["position_name"]; ?></td>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="position-update?id=<?php echo $row["position_id"]?>" >Update</a>
 
-														<button type="button" class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["position"]?>">
+														<button type="button" class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["position_name"]?>">
 															Delete
 														</button>
-														<div class="modal fade" id="confirmModal<?php echo $row["position"]?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+														<div class="modal fade" id="confirmModal<?php echo $row["position_name"]?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 															<div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
 																<div class="modal-content">
 																	<div class="modal-header">
@@ -103,7 +103,7 @@
 																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 																	</div>
 																	<div class="modal-body">
-																		<p>Confirm to delete position <b><?php echo $row["position"]; ?></b>?</p>
+																		<p>Confirm to delete position <b><?php echo $row["position_name"]; ?></b>?</p>
 																	</div>
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
@@ -112,7 +112,7 @@
 																		</button>
 
 																		<form  method="POST">
-																			<input type="hidden" name="positiondlt" value="<?php echo $row['position']; ?>">
+																			<input type="hidden" name="positiondlt" value="<?php echo $row['position_name']; ?>">
 																			<input type="submit" name="deletebtn" class="btn btn-danger ml-1" value="Delete">
 																			<i class="bx bx-check d-block d-sm-none"></i>
 																		</form>
@@ -120,7 +120,7 @@
 																			if (isset($_POST["deletebtn"])) {
 																				$position = $_POST["positiondlt"];
 
-																				$sql = "DELETE FROM job_position where position = '$position'";
+																				$sql = "DELETE FROM position where position_name = '$position'";
 																				$result = $conn->query($sql);
 
 																				$message = "User Deleted Successfully";

@@ -79,7 +79,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT no, p1, p2, p3, location, sake_brewer, name, volume, unit FROM wine_list";
+                                        $sql = "SELECT product_id, p1, p2, p3, location, sake_brewer, name, volume, unit FROM wine_list";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -90,7 +90,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["no"] ."</td><td>"
+                                                echo "<tr><td>" .$row["product_id"] ."</td><td>"
                                                 .$row["name"] ."</td><td>"
                                                 ."$" .$row["p1"] ."</td><td>"
                                                 ."$" .$row["p2"] ."</td><td>"
@@ -99,14 +99,14 @@
                                                 .$row["sake_brewer"] ."</td><td>"
                                                 .$row["volume"]. "ML" ."</td><td>"
                                                 .$row["unit"]. "/ctn" ."</td>";
-                                                $sql2 = "SELECT stock FROM stock_list where no ='" . $row["no"] ."'";
+                                                $sql2 = "SELECT stock FROM stock where product_id ='" . $row["product_id"] ."'";
                                                 $result2 = $conn->query($sql2);
                                                 $row2 = $result2->fetch_assoc();
                                                 echo "<td>" .$row2["stock"] ."</td>";
-                                                if($row2["stock"] == 0) { ?>
-                                                  <td><span class="badge bg-danger" >Out of stock</span></td>
-                                                <?php } else { ?>
+                                                if($row2["stock"] > 0) { ?>
                                                   <td><span class="badge bg-success" >In stock</span></td>
+                                                <?php } else { ?>
+                                                  <td><span class="badge bg-danger" >Out of stock</span></td>
                                                 <?php }
 
                                             }
