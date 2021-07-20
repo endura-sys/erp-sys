@@ -206,12 +206,9 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>供應商編號</th>
-                                        <th>商品編號</th>
-                                        <th>供應商姓名</th>
-                                        <th>聯絡電話</th>
-                                        <th>聯絡電郵</th>
-                                        <th>聯絡地址</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
                                     </tr>
                                 </thead>
 
@@ -222,7 +219,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT supplier_id, product_id, supplier_name, supplier_phone, supplier_email, supplier_address FROM supplier";
+                                        $sql = "SELECT supplier_id, supplier_name, supplier_email FROM supplier";
                                         $result = $conn->query($sql);
 
                                         $supplier_list = array();
@@ -233,7 +230,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["supplier_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row["supplier_name"] ."</td><td>" . $row["supplier_phone"] ."</td><td>".$row["supplier_email"] ."</td><td>" .$row["supplier_address"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["supplier_id"] ."</td><td>" .$row["supplier_name"] ."</td><td>".$row["supplier_email"] . "</td>";
                                             }
                                         } else {
                                             echo "0 results";
