@@ -2,12 +2,12 @@
       include ('userserver.php');
       include "database.php";
       $conn0=OpenCon();
-      $sql0 = "SELECT position FROM job_position";
+      $sql0 = "SELECT position_name FROM position";
       $result0 = $conn0->query($sql0);
       $position_list = array();
       $i=0;
       while($row0 = $result0->fetch_assoc()){
-        $position_list[$i]=$row0['position'];
+        $position_list[$i]=$row0['position_name'];
         $i++;
       }
       $arrlength = count($position_list);
@@ -70,11 +70,22 @@
 								<div class="form-body">
 									<div class="row">
 										<div class="col-md-4">
-											<label> Full Name</label>
+											<label>Lastname</label>
 										</div>
 										<div class="col-md-8">
 											<div class="form-group position-relative has-icon-left mb-4">
-												<input type="text" class="form-control form-control-xl" name="fullname" placeholder="Full Name" value=<?php echo $fullname; ?>>
+												<input type="text" class="form-control form-control-xl" name="lastname" placeholder="Lastname" value=<?php echo $lastname; ?>>
+												<div class="form-control-icon">
+													<i class="bi bi-person"></i>
+												</div>
+											</div>
+										</div>
+                    <div class="col-md-4">
+											<label>Surname</label>
+										</div>
+										<div class="col-md-8">
+											<div class="form-group position-relative has-icon-left mb-4">
+												<input type="text" class="form-control form-control-xl" name="surname" placeholder="Surname" value=<?php echo $surname; ?>>
 												<div class="form-control-icon">
 													<i class="bi bi-person"></i>
 												</div>
@@ -88,10 +99,15 @@
 												<!-- <input type="text" class="form-control form-control-xl" name="position" placeholder="Job Position" value=<?php echo $position; ?>> -->
                         <select name="position" class="form-control form-control-xl" >
                           <option value="">Select Position
-                          <?php
-                          for($x = 0; $x < $arrlength; $x++) {
-                          ?>
-                            <option value="<?php echo $position_list[$x]?>"><?php echo $position_list[$x];?></option>
+                            <?php
+                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+
+                            $sql0 = "SELECT position_id, position_name FROM position";
+                            $result0 = $conn->query($sql0);
+                            while($row0 = $result0->fetch_assoc()) {
+                              ?>
+                              <option value="<?php echo $row0["position_id"]?>"><?php echo $row0["position_name"];?></option>
                           <?php
                           }
                           ?>
@@ -110,17 +126,6 @@
 												<input type="email" class="form-control form-control-xl" name="email" placeholder="Email" value=<?php echo $email; ?>>
 												<div class="form-control-icon">
 													<i class="bi bi-envelope"></i>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-4">
-											<label>Phone</label>
-										</div>
-										<div class="col-md-8">
-											<div class="form-group position-relative has-icon-left mb-4">
-												<input type="text" class="form-control form-control-xl" name="phone" placeholder="Phone" value=<?php echo $phone; ?>>
-												<div class="form-control-icon">
-													<i class="bi bi-telephone"></i>
 												</div>
 											</div>
 										</div>
