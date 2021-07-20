@@ -62,85 +62,74 @@
         </li>
 
         <!-- Inventory inquiry -->
-   <li class="sidebar-item has-sub <?php if ($currentPage == 'stock-list') {echo "active";} else  {echo "noactive";}?>">
-            <a href="#" class='sidebar-link'>
+   <li class="sidebar-item <?php if ($currentPage == 'stock-list') {echo "active";} else  {echo "noactive";}?>">
+            <a href="stock-list" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                <span>Inventory inquiry</span>
+                <!-- <span>Inventory inquiry</span> -->
+                <span>Stock list</span>
             </a>
 
-            <ul class="submenu <?php if ($currentPage == 'stock-list') {echo "active";} else  {echo "noactive";}?>">
-
+            <!-- <ul class="submenu <?php if ($currentPage == 'stock-list') {echo "active";} else  {echo "noactive";}?>">
             <li class="submenu-item <?php if ($currentPage == 'stock-list') {echo "active";} else  {echo "noactive";}?>">
                     <a href="stock-list">Stock list</a>
                 </li>
-                <li class="submenu-item ">
-                    <a href="">Outbound list</a>
-                </li>
-            </ul>
+            </ul> -->
         </li>
 
         <!-- Purchase -->
-        <li class="sidebar-item has-sub <?php if ($currentPage == 'purchase-list') {echo "active";} else  {echo "noactive";}?>">
-            <a href="#" class='sidebar-link'>
+        <li class="sidebar-item <?php if ($currentPage == 'purchase-list') {echo "active";} else  {echo "noactive";}?>">
+            <a href="purchase-list" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Purchase</span>
             </a>
 
-            <ul class="submenu <?php if ($currentPage == 'purchase-list') {echo "active";} else  {echo "noactive";}?>">
+            <!-- <ul class="submenu <?php if ($currentPage == 'purchase-list') {echo "active";} else  {echo "noactive";}?>">
                 <li class="submenu-item <?php if ($currentPage == 'purchase-list') {echo "active";} ?>">
                 <a href="purchase-list">Purchase schedule</a>
                 </li>
-            </ul>
+            </ul> -->
         </li>
 
         <!-- Sales -->
-        <li class="sidebar-item has-sub <?php if ($currentPage == 'sales' ||$currentPage == 'branch') {echo "active";} else  {echo "noactive";}?>">
-            <a href="#" class='sidebar-link'>
+        <li class="sidebar-item <?php if ($currentPage == 'sales' ||$currentPage == 'branch') {echo "active";} else  {echo "noactive";}?>">
+            <a href="sales" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Sales</span>
             </a>
 
-            <ul class="submenu <?php if ($currentPage == 'sales' || $currentPage == 'branch') {echo "active";} else  {echo "noactive";}?>">
+            <!-- <ul class="submenu <?php if ($currentPage == 'sales' || $currentPage == 'branch') {echo "active";} else  {echo "noactive";}?>">
                 <li class="submenu-item <?php if ($currentPage == 'sales') {echo "active";} else {echo "noactive";} ?>">
                 <a href="sales">sales record</a>
                 </li>
-                <li class="submenu-item <?php if ($currentPage == 'branch') {echo "active";} else {echo "noactive";} ?>">
-                <a href="branch">branch record</a>
-            </ul>
+            </ul> -->
         </li>
 
         <!-- Inbound -->
-        <li class="sidebar-item has-sub <?php if ($currentPage == 'inbound-list') {echo "active";} else  {echo "noactive";}?>" >
-            <a href="#" class='sidebar-link'>
+        <li class="sidebar-item <?php if ($currentPage == 'inbound-list') {echo "active";} else  {echo "noactive";}?>" >
+            <a href="inbound-list" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Inbound</span>
             </a>
 
-            <ul class="submenu <?php if ($currentPage == 'inbound-list') {echo "active";} else  {echo "noactive";}?>">
+            <!-- <ul class="submenu <?php if ($currentPage == 'inbound-list') {echo "active";} else  {echo "noactive";}?>">
                 <li class="submenu-item <?php if ($currentPage == 'inbound-list') {echo "active";}?>">
                     <a href="inbound-list">Inbound schedule</a>
                 </li>
-                <li class="submenu-item ">
-                    <a href="">New inbound</a>
-                </li>
-            </ul>
+            </ul> -->
         </li>
 
         <!-- Outbound -->
-        <li class="sidebar-item has-sub <?php if ($currentPage == 'outbound-schedule') {echo "active";} ?>">
-            <a href="#" class='sidebar-link'>
+        <li class="sidebar-item <?php if ($currentPage == 'outbound-schedule') {echo "active";} ?>">
+            <a href="outbound-schedule" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                 <span>Outbound</span>
             </a>
 
-            <ul class="submenu <?php if ($currentPage == 'outbound-schedule') {echo "active";} ?>">
+            <!-- <ul class="submenu <?php if ($currentPage == 'outbound-schedule') {echo "active";} ?>">
                 <li class="submenu-item <?php if ($currentPage == 'outbound-schedule') {echo "active";} ?>">
                     <a href="outbound-schedule">Outbound schedule</a>
                 </li>
-                <li class="submenu-item ">
-                    <a href="">New outbound order</a>
-                </li>
-            </ul>
+            </ul> -->
         </li>
 
 
