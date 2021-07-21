@@ -1,3 +1,5 @@
+-- Import this sql file into the Database Server
+
 -- Create Database
 CREATE DATABASE sakedb;
 
@@ -18,7 +20,7 @@ USE sakedb;
 
 CREATE TABLE `customer` (
   `customer_id` int(20) NOT NULL,
-  `lastname` varchar(20) NOT NULL,
+  `firstname` varchar(20) NOT NULL,
   `surname` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -210,7 +212,7 @@ ALTER TABLE `stock`
 CREATE TABLE `employee` (
   `employee_id` int(20) NOT NULL,
   `position_id` int(20) DEFAULT NULL,
-  `lastname` varchar(30) NOT NULL,
+  `firstname` varchar(30) NOT NULL,
   `surname` varchar(11) NOT NULL,
   `email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,8 +1,8 @@
 # Sake ERP-System Documentation
 
 ## Discription
-ERS-System is designed for ... 
-This [bootstrap tamplete](https://zuramai.github.io/mazer/) was used to design the web-pages 
+ERS-System is designed for ...
+This [bootstrap tamplete](https://zuramai.github.io/mazer/) was used to **design** the web-pages and **php** for the backend
 
 ## Database
 
@@ -29,27 +29,33 @@ All the tables in the Database are listed in the order of importing (from top to
 |Inbound_item_list|||
 |Outbound_item_list|||
 
+```
+$result = $conn->query($sql);
+```
+
+The code below with the function `query()` is used for submitting the filled form to the Database; where `$sql` is variable for SQL code and `$conn` is variable to store connection information with the Database
+
 ## User-Management
+`$sql` variable is updated by the data entered into the form, where `method="post"` 
 ### Create User
+```
+$sql="INSERT INTO table_name VALUES (values)";
+```
 
 ### Update User
+`$sql="UPDATE table_name SET old_data=new_data WHERE condition";`
 
 ### Delete User
-
-## Position Management
-
-### Create Poistion
-
-### Update Position
+```
+$sql="DELETE FROM table_name WHERE condition";
+```
+### Position Management
+Position managent is similar to *User Management*, where the same logic for **Create**, **Update** and **Delete** are used. 
 
 
 ## Authorization
 
-### Sign-Up
-
-### Login
-
-The code below keeps the user logged until they **log out**, even if the user changes between web-pages 
+The code below keeps the user **logged in** until they **log out**, even if the user changes between web-pages 
 ```
 session_start();
 
@@ -58,10 +64,15 @@ if (isset($_GET['logout'])) {
   	unset($_SESSION['username']);
   	header("location: index");
 } 
- ```
+```
 
 ## Navigation Bar
 
+The code below is used to indicate which page is currently opened
+```
+if ($currentPage == 'page_name') {echo "active";} else  {echo "noactive";}
+```
+This *if* statement is encoded in the *class* of the menu list
 ## Financial Management
 
 ###  Sales 
