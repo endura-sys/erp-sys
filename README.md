@@ -27,7 +27,7 @@ All the tables in the Database are listed in the order of importing (from top to
 |Purchase_item_list|||
 |Sale_item_list|||
 |Inbound_item_list|||
-|Outbound_item)list|||
+|Outbound_item_list|||
 
 ## User-Management
 ### Create User
