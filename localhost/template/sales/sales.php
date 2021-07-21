@@ -75,8 +75,20 @@
 
                                                       <div class="col-sm-6 col-md-2">
                                                             <div class="form-group">
+
+                                                              <?php
+                                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+                                                                $sql_sale = "SELECT MAX(sale_id) FROM sales";
+                                                                $result_sale = $conn->query($sql_sale);
+                                                                $row_sale = $result_sale->fetch_assoc();
+                                                                $sale = (int) $row_sale["MAX(sale_id)"];
+                                                                $sale++;
+
+                                                              ?>
+
                                                                 <label for=sale_id>Sale ID:</label>
-                                                                <input type="integer" class="form-control" name="sale_id" id="Sale_id" placeholder="">
+                                                                <input type="integer" class="form-control" name="sale_id" id="Sale_id" value="<?php echo $sale; ?>">
                                                             </div>
                                                       </div>
 
@@ -89,11 +101,11 @@
                                                                   $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
 
-                                                                  $sql0 = "SELECT customer_id, lastname FROM customer";
+                                                                  $sql0 = "SELECT customer_id, firstname FROM customer";
                                                                   $result0 = $conn->query($sql0);
                                                                   while($row0 = $result0->fetch_assoc()) {
                                                                     ?>
-                                                                    <option value="<?php echo $row0["customer_id"]?>"><?php echo $row0["lastname"];?></option>
+                                                                    <option value="<?php echo $row0["customer_id"]?>"><?php echo $row0["firstname"];?></option>
 
                                                                   <?php
                                                                 }
@@ -112,11 +124,11 @@
                                                                   $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
 
-                                                                  $sql0 = "SELECT employee_id, lastname FROM employee";
+                                                                  $sql0 = "SELECT employee_id, firstname FROM employee";
                                                                   $result0 = $conn->query($sql0);
                                                                   while($row0 = $result0->fetch_assoc()) {
                                                                     ?>
-                                                                    <option value="<?php echo $row0["employee_id"]?>"><?php echo $row0["lastname"];?></option>
+                                                                    <option value="<?php echo $row0["employee_id"]?>"><?php echo $row0["firstname"];?></option>
 
                                                                   <?php
                                                                 }
@@ -394,11 +406,11 @@
                                                 $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
 
-                                                $sql0 = "SELECT employee_id, lastname FROM employee";
+                                                $sql0 = "SELECT employee_id, firstname FROM employee";
                                                 $result0 = $conn->query($sql0);
                                                 while($row0 = $result0->fetch_assoc()) {
                                                   ?>
-                                                  <option value="<?php echo $row0["employee_id"]?>"><?php echo $row0["lastname"];?></option>
+                                                  <option value="<?php echo $row0["employee_id"]?>"><?php echo $row0["firstname"];?></option>
 
                                                 <?php
                                               }

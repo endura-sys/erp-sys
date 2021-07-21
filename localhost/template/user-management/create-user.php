@@ -70,11 +70,11 @@
 								<div class="form-body">
 									<div class="row">
 										<div class="col-md-4">
-											<label>Lastname</label>
+											<label>First Name</label>
 										</div>
 										<div class="col-md-8">
 											<div class="form-group position-relative has-icon-left mb-4">
-												<input type="text" class="form-control form-control-xl" name="lastname" placeholder="Lastname" value=<?php echo $lastname; ?>>
+												<input type="text" class="form-control form-control-xl" name="firstname" placeholder="First Name" value=<?php echo $firstname; ?>>
 												<div class="form-control-icon">
 													<i class="bi bi-person"></i>
 												</div>

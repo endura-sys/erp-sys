@@ -5,14 +5,14 @@ $conn = OpenCon();
 
 
 $username = "";
-$lastname = "";
+$firstname = "";
 $surname = "";
 $position = "";
 $email = "";
 $user = "";
 $errors = array();
 if (isset($_POST['updatebtn'])) {
-    $lastname = $_POST["lastname"];
+    $firstname = $_POST["firstname"];
     $surname = $_POST["surname"];
     $position = $_POST["position"];
     $email = $_POST["email"];
@@ -21,7 +21,7 @@ if (isset($_POST['updatebtn'])) {
     $pw = $_POST["password"];
     $pw2 = $_POST["confirmpassword"];
 
-    if (empty($lastname)) { array_push($errors, "Lastname is required."); }
+    if (empty($firstname)) { array_push($errors, "First name is required."); }
     if (empty($surname)) { array_push($errors, "Surname is required."); }
     if (empty($position)) { array_push($errors, "Job Position is required."); }
     if (empty($email)) { array_push($errors, "Email is required."); }
@@ -46,7 +46,7 @@ if (isset($_POST['updatebtn'])) {
 
     if (count($errors) == 0) {
       if(count($_POST)>0) {
-        mysqli_query($conn,"UPDATE employee set lastname='" . $_POST['lastname'] ."', surname='" . $_POST['surname'] . "',
+        mysqli_query($conn,"UPDATE employee set firstname='" . $_POST['firstname'] ."', surname='" . $_POST['surname'] . "',
           position_id='" . $_POST['position'] . "' , email='" . $_POST['email']."' WHERE employee_id='" . $_POST['id'] . "'");
         mysqli_query($conn,"UPDATE account set username='" . $_POST['username'] ."', password='" . $_POST['password'] . "' WHERE employee_id='" . $_POST['id'] . "'");
         $message = "Record Modified Successfully";
@@ -120,12 +120,12 @@ $row2= mysqli_fetch_array($result2);
                         <div class="form-body">
                           <div class="row">
                             <div class="col-md-4">
-                              <label>Lastname</label>
+                              <label>First Name</label>
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
                                 <input type="hidden" class="form-control form-control-xl" name="id" value="<?php echo $row['employee_id']?>">
-                                <input type="text" class="form-control form-control-xl" name="lastname" value="<?php echo $row['lastname']?>">
+                                <input type="text" class="form-control form-control-xl" name="firstname" value="<?php echo $row['firstname']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-person"></i>
                                 </div>

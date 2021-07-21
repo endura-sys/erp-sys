@@ -65,7 +65,7 @@
                                 <thead>
                                     <tr>
                                         <th>№</th>
-                                        <th>Lastname</th>
+                                        <th>First Name</th>
                                         <th>Surname</th>
                                         <th>Position</th>
                                         <th>Email</th>
@@ -80,7 +80,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT employee_id, position_id, lastname, surname, email FROM employee";
+                                        $sql = "SELECT employee_id, position_id, firstname, surname, email, active FROM employee";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -90,66 +90,68 @@
                                             $i=1;
                                             while($row = $result->fetch_assoc()) {
                                     ?>
-                                              <tr>
-                                                <td><?php echo $i; $i++; ?></td>
-                                                <td><?php echo $row["lastname"]; ?></td>
-                                                <td><?php echo $row["surname"]; ?></td>
-                                                <?php
-                                                  $sql2 = "SELECT position_name FROM position WHERE position_id = '". $row["position_id"] ."'";
-                                                  $result2 = $conn->query($sql2);
-                                                  $row2 = $result2->fetch_assoc();
-                                                ?>
-                                                <td><?php echo $row2["position_name"]; ?></td>
-                                                <td><?php echo $row["email"]; ?></td>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="user-update?id=<?php echo $row["employee_id"]?>" >Update</a>
+                                                <?php if ($row["active"] == 1) { ?>
+                                                <tr>
+                                                  <td><?php echo $i; $i++; ?></td>
+                                                  <td><?php echo $row["firstname"]; ?></td>
+                                                  <td><?php echo $row["surname"]; ?></td>
+                                                  <?php
+                                                    $sql2 = "SELECT position_name FROM position WHERE position_id = '". $row["position_id"] ."'";
+                                                    $result2 = $conn->query($sql2);
+                                                    $row2 = $result2->fetch_assoc();
+                                                  ?>
+                                                  <td><?php echo $row2["position_name"]; ?></td>
+                                                  <td><?php echo $row["email"]; ?></td>
+                                                  <td><a class="btn btn-primary btn-sm shadow-sm" href="user-update?id=<?php echo $row["employee_id"]?>" >Update</a>
 
-														<button type="button" class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["employee_id"]?>">
-															Delete
-														</button>
-														<div class="modal fade" id="confirmModal<?php echo $row["employee_id"]?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-															<div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-																<div class="modal-content">
-																	<div class="modal-header">
-																		<h5 class="modal-title" id="exampleModalCenterTitle">Confirmation</h5>
-																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																	</div>
-																	<div class="modal-body">
-																		<p>Confirm to delete user <b><?php echo $row["lastname"]; ?></b>?</p>
-																	</div>
-																	<div class="modal-footer">
-																		<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-																			<i class="bx bx-x d-block d-sm-none"></i>
-																			<span class="d-none d-sm-block">Close</span>
-																		</button>
+                      														<button type="button" class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["employee_id"]?>">
+                      															Delete
+                      														</button>
+                      														<div class="modal fade" id="confirmModal<?php echo $row["employee_id"]?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      															<div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+                      																<div class="modal-content">
+                      																	<div class="modal-header">
+                      																		<h5 class="modal-title" id="exampleModalCenterTitle">Confirmation</h5>
+                      																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      																	</div>
+                      																	<div class="modal-body">
+                      																		<p>Confirm to delete user <b><?php echo $row["firstname"]; ?></b>?</p>
+                      																	</div>
+                      																	<div class="modal-footer">
+                      																		<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                      																			<i class="bx bx-x d-block d-sm-none"></i>
+                      																			<span class="d-none d-sm-block">Close</span>
+                      																		</button>
 
-																		<form  method="POST">
-																			<input type="hidden" name="id" value="<?php echo $row['employee_id']; ?>">
-																			<input type="submit" name="deletebtn" class="btn btn-danger ml-1" value="Delete">
-																			<i class="bx bx-check d-block d-sm-none"></i>
-																		</form>
-																		<?php
-																			if (isset($_POST["deletebtn"])) {
-																				$id = $_POST["id"];
+                      																		<form  method="POST">
+                      																			<input type="hidden" name="id" value="<?php echo $row['employee_id']; ?>">
+                      																			<input type="submit" name="deletebtn" class="btn btn-danger ml-1" value="Delete">
+                      																			<i class="bx bx-check d-block d-sm-none"></i>
+                      																		</form>
+                      																		<?php
+                      																			if (isset($_POST["deletebtn"])) {
+                      																				$id = $_POST["id"];
 
-																				$sql = "DELETE FROM employee where employee_id = '$id'";
-																				$result = $conn->query($sql);
+                      																				$sql = "UPDATE employee SET active = '0' where employee_id = '$id'";
+                      																				$result = $conn->query($sql);
 
-                                        $sql2 = "DELETE FROM account where employee_id = '$id'";
-																				$result2 = $conn->query($sql2);
+                                                              $sql2 = "DELETE FROM account where employee_id = '$id'";
+                      																				$result2 = $conn->query($sql2);
 
-																				$message = "User Deleted Successfully";
+                      																				$message = "User Deleted Successfully";
 
-																				header("location: user-management");
-																			}
-																		?>
+                      																				header("location: user-management");
+                      																			}
+                      																		?>
 
 
-																	</div>
-																</div>
-															</div>
-														</div>
-												</td>
-                                              </tr>
+                      																	</div>
+                      																</div>
+                      															</div>
+                      														</div>
+                      												</td>
+                                            </tr>
+                                          <?php } ?>
                                     <?php
                                               //  echo "<tr><td>" .$row["id"] ."</td><td>" .$row["full_name"] ."</td><td>" .$row["position"] ."</td><td>" . $row["email"] ."</td><td>" . $row["phone"] ."</td><td>" . $row["username"] ."</td><td>" .$row["password"] ."</td>";
                                             }

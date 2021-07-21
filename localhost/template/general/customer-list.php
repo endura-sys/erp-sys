@@ -224,7 +224,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Lastname</th>
+                                        <th>First Name</th>
                                         <th>Surname</th>
                                         <th>Email</th>
                                     </tr>
@@ -237,7 +237,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT customer_id, lastname, surname, email FROM customer";
+                                        $sql = "SELECT customer_id, firstname, surname, email FROM customer";
                                         $result = $conn->query($sql);
 
                                         $customer_list = array();
@@ -248,7 +248,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["customer_id"] ."</td><td>" .$row["lastname"] ."</td><td>" .$row["surname"] ."</td><td>" .$row["email"] . "</td>";
+                                                echo "<tr><td>" .$row["customer_id"] ."</td><td>" .$row["firstname"] ."</td><td>" .$row["surname"] ."</td><td>" .$row["email"] . "</td>";
                                             }
                                         } else {
                                             echo "0 results";
