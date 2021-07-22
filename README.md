@@ -5,7 +5,7 @@ Sake ERS-System is designed for helping Sake Retail Company to maintain Warehous
 This [bootstrap tamplete](https://zuramai.github.io/mazer/) was used to **design** the web-pages and **php** for the backend
 
 ## Database
-For visualization purpose, Database Relationship Model is available [here](database/database_table.jpg).
+For visualization purpose, Database Relationship Model is available [here](database/database_model.jpg).
 </br>
 Please insert [this SQL file](database/import_database.sql) into your Database Server, to create Database with all the tables.
 </br>
