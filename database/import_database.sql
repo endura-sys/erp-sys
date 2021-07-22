@@ -1,4 +1,4 @@
--- Import this sql file into the Database Server
+-- Note: Import this sql file into the Database Server
 
 -- Create Database
 CREATE DATABASE sakedb;
