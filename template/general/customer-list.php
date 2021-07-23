@@ -55,14 +55,14 @@
 
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
                                 data-bs-target="#border-add">
-                                Add new data
+                                Add new customer
                             </button>
                                 <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
                                     role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Add new data</h5>
+                                                <h5 class="modal-title">Add new customer</h5>
                                                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
                                                     aria-label="Close">
                                                     <i data-feather="x"></i>
@@ -71,61 +71,33 @@
                                             <div class="modal-body">
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                      <table class = "table">
+                                                          <thead>
+                                                              <tr>
+                                                                  <th class="col-md-4">First name:</th>
+                                                                  <th class="col-md-4">Surname:</th>
+                                                                  <th class="col-md-4">Email:</th>
+                                                              </tr>
+                                                          </thead>
+                                                          <tbody id="tbody">
+                                                              <tr>
+                                                                  <th><input type="varchar" class="form-control" name="firstname[]"></th>
+                                                                  <th><input type="varchar" class="form-control" name="surname[]"></th>
+                                                                  <th><input type="varchar" class="form-control" name="email[]"></th>
+                                                              </tr>
+                                                          </tbody>
+                                                      </table>
+                                                  </div>
 
-                                                            <div class="form-group">
-                                                                <label for="customer_id">Customer id:</label>
-                                                                <input type="integer" class="form-control" name="customer_id" id="Customer id" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="name">Customer name:</label>
-                                                                <input type="varchar" class="form-control" name="name" id="Customer name" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="gender">Gender:</label>
-                                                               <div>
-                                                                 <select name="gender" id="Gender" >
-                                                                 <option value="male">male</option>
-                                                                 <option value="female">female</option>
-                                                                 </select>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="contact_no">Contact no:</label>
-                                                                <input type="varchar" class="form-control" name="contact_no" id="Contact no" placeholder="">
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="col-md-6">
-
-                                                            <div class="form-group">
-                                                                <label for="contact_email">Contact email:</label>
-                                                                <input type="varchar" class="form-control" name="contact_email" id="Contact email" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="address">Address:</label>
-                                                                <input type="varchar" class="form-control" name="address" id="Address" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="member_point">Member point:</label>
-                                                                <input type="varchar" class="form-control" name="member_point" id="Member point" placeholder="">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="date_of_last_purchasing">Date of last purchasing</label>
-                                                                <input type="date" class="form-control" name="date_of_last_purchasing" id="Date of last purchasing" placeholder="">
-                                                            </div>
-                                                    </div>
+                                                  <div class="row">
+                                                      <div class="col-sm-6 col-md-6">
+                                                          <div class="form-group">
+                                                              <button type="button" class="btn btn-primary" onclick="add()">
+                                                                  <i class="bi bi-plus-circle"></i>
+                                                              </button>
+                                                          </div>
+                                                      </div>
+                                                  </div>
 
                                                     <div class="modal-footer">
                                                         <form data-target="#border-added" method="post">
@@ -168,32 +140,20 @@
                                                                     . mysqli_connect_error());
                                                             }
 
-                                                            $customer_id =  $_REQUEST['customer_id'];
-                                                            $name =  $_REQUEST['name'];
-                                                            $gender = $_REQUEST['gender'];
-                                                            $contact_no = $_REQUEST['contact_no'];
-                                                            $contact_email = $_REQUEST['contact_email'];
-                                                            $address = $_REQUEST['address'];
-                                                            $member_point = $_REQUEST['member_point'];
-                                                            $date_of_last_purchasing = $_REQUEST['date_of_last_purchasing'];
+                                                            $customer_firstname =  $_REQUEST['firstname'];
+                                                            $customer_surname =  $_REQUEST['surname'];
+                                                            $customer_email = $_REQUEST['email'];
 
-                                                            // Performing insert query execution
-                                                            $sql = "INSERT INTO customer VALUES ('$customer_id',
-                                                            '$name','$gender','$contact_no','$contact_email',
-                                                            '$address','$member_point','$date_of_last_purchasing')";
+                                                            $sql_id = "SELECT MAX(customer_id) FROM customer";
+                                                            $result_id = $conn->query($sql_id);
+                                                            $row_id = $result_id->fetch_assoc();
+                                                            $customer = (int) $row_id["MAX(customer_id)"];
 
-                                                            if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully."
-                                                                . " Please browse your localhost"
-                                                                . " to view the updated data</h3>";
-
-                                                                echo nl2br("Customer id : $customer_id\n"
-                                                                    . "Customer name : $name\nGender : $gender\nContact no : $contact_no\nContact email : $contact_email\nAddress : $address\nMember point : $member_point\nDate of last purchasing : $date_of_last_purchasing\n");
-                                                            } else{
-                                                                // echo "ERROR : Invalid input $sql. "
-                                                                // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. "
-                                                                . mysqli_error($conn);
+                                                            $N = count($customer_firstname);
+                                                            for ($i = 0; $i < $N; $i++) {
+                                                                $customer++;
+                                                                $sql = "INSERT INTO customer  VALUES ('$customer','$customer_firstname[$i]','$customer_surname[$i]','$customer_email[$i]')";
+                                                                $result = $conn->query($sql);
                                                             }
                                                             mysqli_close($conn);
                                                         ?>
@@ -227,6 +187,7 @@
                                         <th>First Name</th>
                                         <th>Surname</th>
                                         <th>Email</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
 
@@ -249,6 +210,72 @@
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
                                                 echo "<tr><td>" .$row["customer_id"] ."</td><td>" .$row["firstname"] ."</td><td>" .$row["surname"] ."</td><td>" .$row["email"] . "</td>";
+
+                                                ?>
+
+                                                <td><button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row["customer_id"]?>">Update</button>
+                                                    <div class="modal fade text-left modal-borderless" id="updateModal<?php echo $row["customer_id"]?>" tabindex="-1"
+                                                        role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Update customer</h5>
+                                                                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                        <i data-feather="x"></i>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                                    <form action="update-list" method="post">
+                                                                        <div class="row">
+
+                                                                          <!-- <div class="col-md-1">
+                                                                              <div class="form-group">
+                                                                                  <label for="product">ID:</label>
+                                                                                  <input type="integer" class="form-control" name="product" id="product" value="<?php echo $row["product_id"]?>">
+                                                                            </div>
+                                                                          </div> -->
+
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label for="firstname">First name:</label>
+                                                                                    <input type="hidden" name="customer" value="<?php echo $row['customer_id']; ?>">
+                                                                                    <input type="varchar" class="form-control" name="updateFirstname" id="firstname" value="<?php echo $row["firstname"]?>">
+                                                                              </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label for="surname">Surname:</label>
+                                                                                    <input type="varchar" class="form-control" name="updateSurname" id="surname" value="<?php echo $row["surname"]?>">
+                                                                              </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label for="email">Email:</label>
+                                                                                    <input type="varchar" class="form-control" name="updateEmail" id="email" value="<?php echo $row["email"]?>">
+                                                                              </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" type="Submit" class="btn btn-primary me-1 mb-1" name="updatecustomer">Update</button>
+                                                                            <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                                                                                <i class="bx bx-check d-block d-sm-none"></i>
+                                                                                <span class="d-none d-sm-block">Close</span>
+                                                                            </button>
+                                                                        </div>
+
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                              <?php
                                             }
                                         } else {
                                             echo "0 results";
@@ -281,6 +308,17 @@
     </div>
 
     <?php include('../footer.php'); ?>
+
+    <script>
+      function add() {
+        var html = "<th><input type='varchar' class='form-control' name='firstname[]'></th>";
+        html += "<th><input type='varchar' class='form-control' name='surname[]'></th>";
+        html += "<th><input type='varchar' class='form-control' name='email[]'></th>";
+        var table = document.getElementById("tbody");
+        var row = table.insertRow();
+        row.innerHTML = html;
+      }
+    </script>
 
 </body>
 

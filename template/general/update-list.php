@@ -31,6 +31,19 @@
         $result_update = $conn->query($sql_update);
 
         header("location: supplier-list");
+
+    } else if (isset($_POST["updatecustomer"])) {
+
+        $customer = $_POST['customer'];
+        $newfirstname = $_POST['updateFirstname'];
+        $newsurname = $_POST['updateSurname'];
+        $newemail = $_POST['updateEmail'];
+
+
+        $sql_update = "UPDATE customer SET firstname='$newfirstname', surname='$newsurname', email='$newemail' WHERE customer_id='$customer'";
+        $result_update = $conn->query($sql_update);
+
+        header("location: customer-list");
     }
 
     CloseCon($conn);

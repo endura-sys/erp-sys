@@ -10,6 +10,7 @@ RewriteRule ^dashboard /template/general/dashboard.php [L,QSA,NC]
 RewriteRule ^item-list /template/general/item-list.php [L,QSA,NC]
 RewriteRule ^supplier-list /template/general/supplier-list.php [L,QSA,NC]
 RewriteRule ^customer-list /template/general/customer-list.php [L,QSA,NC]
+RewriteRule ^update-list /template/general/update-list.php [L,QSA,NC]
 
 
 RewriteRule ^inbound-list /template/inbound/inbound-list.php [L,QSA,NC]
