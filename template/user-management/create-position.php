@@ -6,6 +6,7 @@
       include '../../database.php';
       $conn = OpenCon();
 
+      // Create Position
       if (isset($_POST["submitbtn"])) {
 
         $position = $_POST["position"];;
@@ -28,6 +29,7 @@
           header("location: position-management");
         }
       }
+      // Create Position
 
       CloseCon($conn);
       ?>
@@ -83,7 +85,9 @@
 					<div class="card-content">
 						<div class="card-body">
 							<form class="form form-horizontal" action="create-position" method="post">
+                <!-- Display Error -->
 								<?php include ('errors.php'); ?>
+                <!-- Display Error -->
 								<div class="form-body">
 									<div class="row">
 										<div class="col-md-4">
@@ -97,10 +101,12 @@
 												</div>
 											</div>
 										</div>
+                    <!-- Create Button -->
 										<div class="col-sm-12 d-flex justify-content-end">
 											<button type="submit" class="btn btn-primary me-1 mb-1" name="submitbtn">Create</button>
 											<button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
 										</div>
+                    <!-- Create Button -->
 									</div>
 								</div>
 							</form>

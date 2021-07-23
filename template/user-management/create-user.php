@@ -1,3 +1,4 @@
+<!-- List of Position for Dropdown -->
 <?php include('../header.php');
       include ('userserver.php');
       include "database.php";
@@ -13,7 +14,8 @@
       $arrlength = count($position_list);
       CloseCon($conn0);
 
-      ?>
+?>
+<!-- List of Position for Dropdown -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +68,9 @@
 					<div class="card-content">
 						<div class="card-body">
 							<form class="form form-horizontal" action="create-user" method="post">
+                <!-- Error Display -->
 								<?php include ('errors.php'); ?>
+                <!-- Error Display -->
 								<div class="form-body">
 									<div class="row">
 										<div class="col-md-4">
