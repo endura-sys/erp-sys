@@ -54,14 +54,14 @@
 
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
                                 data-bs-target="#border-add">
-                                Add new data
+                                Add new supplier
                             </button>
                                 <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
                                     role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Add new data</h5>
+                                                <h5 class="modal-title">Add new supplier</h5>
                                                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
                                                     aria-label="Close">
                                                     <i data-feather="x"></i>
@@ -70,46 +70,29 @@
                                             <div class="modal-body">
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <table class = "table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="col-md-6">Name:</th>
+                                                                    <th class="col-md-6">Email:</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tbody">
+                                                                <tr>
+                                                                    <th><input type="varchar" class="form-control" name="name[]"></th>
+                                                                    <th><input type="varchar" class="form-control" name="email[]"></th>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
 
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-md-6">
                                                             <div class="form-group">
-                                                                <label for="supplier_id">Supplier id:</label>
-                                                                <input type="integer" class="form-control" name="supplier_id" id="Supplier_id" placeholder="">
+                                                                <button type="button" class="btn btn-primary" onclick="add()">
+                                                                    <i class="bi bi-plus-circle"></i>
+                                                                </button>
                                                             </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="product_id">Product id:</label>
-                                                                <input type="varchar" class="form-control" name="product_id" id="Product_id" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="supplier_name">Supplier name:</label>
-                                                                <input type="varchar" class="form-control" name="supplier_name" id="Supplier_name" placeholder="">
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="col-md-6">
-
-                                                            <div class="form-group">
-                                                                <label for="supplier_phone">Supplier phone:</label>
-                                                                <input type="varchar" class="form-control" name="supplier_phone" id="Supplier_phone" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="supplier_email">Supplier email:</label>
-                                                                <input type="varchar" class="form-control" name="supplier_email" id="Supplier_email" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="supplier_address">Supplier address:</label>
-                                                                <input type="varchar" class="form-control" name="supplier_address" id="Supplier_address" placeholder="">
-                                                            </div>
-
                                                         </div>
                                                     </div>
 
@@ -123,7 +106,6 @@
                                                             <span class="d-none d-sm-block">Close</span>
                                                         </button>
                                                     </div>
-
                                                 </form>
                                             </div>
                                         </div>
@@ -153,31 +135,21 @@
                                                                 die("ERROR: Could not connect. "
                                                                     . mysqli_connect_error());
                                                             }
+                                                            $supplier_name = $_REQUEST['name'];
+                                                            $supplier_email = $_REQUEST['email'];
 
-                                                            $supplier_id =  $_REQUEST['supplier_id'];
-                                                            $product_id =  $_REQUEST['product_id'];
-                                                            $supplier_name = $_REQUEST['supplier_name'];
-                                                            $supplier_phone = $_REQUEST['supplier_phone'];
-                                                            $supplier_email = $_REQUEST['supplier_email'];
-                                                            $supplier_address = $_REQUEST['supplier_address'];
+                                                            $sql_id = "SELECT MAX(supplier_id) FROM supplier";
+                                                            $result_id = $conn->query($sql_id);
+                                                            $row_id = $result_id->fetch_assoc();
+                                                            $supplier = (int) $row_id["MAX(supplier_id)"];
 
-                                                            // Performing insert query execution
-                                                            $sql = "INSERT INTO supplier  VALUES ('$supplier_id'
-                                                                ,'$product_id','$supplier_name','$supplier_phone','$supplier_email','$supplier_address')";
-
-                                                            if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully."
-                                                                . " Please browse your localhost"
-                                                                . " to view the updated data</h3>";
-
-                                                                echo nl2br("No : $no\n"
-                                                                    . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
-                                                            } else{
-                                                                // echo "ERROR : Invalid input $sql. "
-                                                                // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. "
-                                                                . mysqli_error($conn);
+                                                            $N = count($supplier_name);
+                                                            for ($i = 0; $i < $N; $i++) {
+                                                                $supplier++;
+                                                                $sql = "INSERT INTO supplier  VALUES ('$supplier','$supplier_name[$i]','$supplier_email[$i]')";
+                                                                $result = $conn->query($sql);
                                                             }
+
                                                             mysqli_close($conn);
                                                         ?>
                                                         <div>
@@ -209,6 +181,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
 
@@ -231,6 +204,64 @@
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
                                                 echo "<tr><td>" .$row["supplier_id"] ."</td><td>" .$row["supplier_name"] ."</td><td>".$row["supplier_email"] . "</td>";
+                                                ?>
+
+                                                <td><button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row["supplier_id"]?>">Update</button>
+                                                    <div class="modal fade text-left modal-borderless" id="updateModal<?php echo $row["supplier_id"]?>" tabindex="-1"
+                                                        role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Update supplier</h5>
+                                                                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                        <i data-feather="x"></i>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div class="modal-body">
+                                                                    <form action="update-list" method="post">
+                                                                        <div class="row">
+
+                                                                          <!-- <div class="col-md-1">
+                                                                              <div class="form-group">
+                                                                                  <label for="product">ID:</label>
+                                                                                  <input type="integer" class="form-control" name="product" id="product" value="<?php echo $row["product_id"]?>">
+                                                                            </div>
+                                                                          </div> -->
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="name">Name:</label>
+                                                                                    <input type="hidden" name="supplier" value="<?php echo $row['supplier_id']; ?>">
+                                                                                    <input type="varchar" class="form-control" name="updateName" id="name" value="<?php echo $row["supplier_name"]?>">
+                                                                              </div>
+                                                                            </div>
+
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label for="email">Email:</label>
+                                                                                    <input type="varchar" class="form-control" name="updateEmail" id="email" value="<?php echo $row["supplier_email"]?>">
+                                                                              </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" type="Submit" class="btn btn-primary me-1 mb-1" name="updatesupplier">Update</button>
+                                                                            <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                                                                                <i class="bx bx-check d-block d-sm-none"></i>
+                                                                                <span class="d-none d-sm-block">Close</span>
+                                                                            </button>
+                                                                        </div>
+
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                              <?php
                                             }
                                         } else {
                                             echo "0 results";
@@ -263,5 +294,15 @@
     </div>
 
     <?php include('../footer.php'); ?>
+
+    <script>
+      function add() {
+        var html = "<th><input type='varchar' class='form-control' name='name[]'></th>";
+        html += "<th><input type='varchar' class='form-control' name='email[]'></th>";
+        var table = document.getElementById("tbody");
+        var row = table.insertRow();
+        row.innerHTML = html;
+      }
+    </script>
 
 </body>
