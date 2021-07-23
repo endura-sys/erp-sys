@@ -20,7 +20,7 @@
 
 	function OpenCon()
 	{
-		$dbhost = "enduraerp.ml";
+		$dbhost = "localhost";
 		$dbuser = "root";
 		$dbpass = "root";
 		$db = "sakedb";
