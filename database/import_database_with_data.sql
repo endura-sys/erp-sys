@@ -70,20 +70,21 @@ ALTER TABLE `customer`
 
 CREATE TABLE `position` (
   `position_id` int(20) NOT NULL,
-  `position_name` varchar(100) NOT NULL
+  `position_name` varchar(100) NOT NULL,
+  `access_level` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `position`
 --
 
-INSERT INTO `position` (`position_id`, `position_name`) VALUES
-(1, 'Boss'),
-(2, 'Designer'),
-(3, 'Intern'),
-(4, 'Manager'),
-(5, 'Programmer'),
-(6, 'Supervisor');
+INSERT INTO `position` (`position_id`, `position_name`, `access_level`) VALUES
+(1, 'Bosss', 'High'),
+(2, 'Designer', 'Low'),
+(3, 'Intern', 'Low'),
+(4, 'Manager', 'Medium'),
+(5, 'Programmer', 'High'),
+(6, 'Supervisor', 'Medium');
 
 --
 -- Indexes for table `position`
@@ -431,7 +432,7 @@ CREATE TABLE `employee` (
 INSERT INTO `employee` (`employee_id`, `position_id`, `firstname`, `surname`, `email`, `active`) VALUES
 (12, 6, 'chris', 'chan', 'chrischan@gmail.com', 1),
 (13, 2, 'chan', 'chan', 'catchyou@happy.com', 0),
-(14, 6, 'Aizhigit Mussali', 'handsome', 'random@gmail.com', 1),
+(14, 3, 'Aizhigit Mussali', 'handsome', 'random@gmail.com', 1),
 (18, 1, 'Bossss', 'handsome', 'boss@gmail.com', 1),
 (19, 1, 'sun', 'chan', 'sunchan@gmail.com', 0),
 (20, 1, 'helllo', 'chan', 'chan@gmail.com', 1),
@@ -479,7 +480,9 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`username`, `password`, `employee_id`) VALUES
 ('chrischan', 'chris1234', 12),
-('root', 'happy', 18);
+('root', 'happy', 18),
+('user', '123', 20),
+('user1', '123', 14);
 
 --
 -- Indexes for table `account`

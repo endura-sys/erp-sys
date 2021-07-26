@@ -1,22 +1,36 @@
--- Note: Import this sql file into the Database Server
+-- phpMyAdmin SQL Dump
+-- version 4.9.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Jul 23, 2021 at 08:21 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.4.1
 
--- Create Database
 CREATE DATABASE sakedb;
 
---
--- Create Tables with some values into Database created above
---
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
--- To create tables in the database 'sakedb'
 USE sakedb;
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `sakedb`
+--
 
 -- --------------------------------------------------------
--- Table 'customer'
 
+--
+-- Table structure for table `customer`
+--
 
 CREATE TABLE `customer` (
   `customer_id` int(20) NOT NULL,
@@ -25,30 +39,49 @@ CREATE TABLE `customer` (
   `email` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Indexes for table `customer`
+--
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`customer_id`);
 
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `customer_id` int(20) NOT NULL AUTO_INCREMENT;
+
+
 
 -- --------------------------------------------------------
--- Table 'position'
 
+--
+-- Table structure for table `position`
+--
 
 CREATE TABLE `position` (
   `position_id` int(20) NOT NULL,
-  `position_name` varchar(100) NOT NULL
+  `position_name` varchar(100) NOT NULL,
+  `access_level` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+--
+-- Indexes for table `position`
+--
 ALTER TABLE `position`
   ADD PRIMARY KEY (`position_id`);
 
+--
+-- AUTO_INCREMENT for table `position`
+--
 ALTER TABLE `position`
   MODIFY `position_id` int(20) NOT NULL AUTO_INCREMENT;
 
-
 -- --------------------------------------------------------
--- Table 'supplier'
 
+--
+-- Table structure for table `supplier`
+--
 
 CREATE TABLE `supplier` (
   `supplier_id` int(8) NOT NULL,
@@ -56,13 +89,24 @@ CREATE TABLE `supplier` (
   `supplier_email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Indexes for table `supplier`
+--
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`supplier_id`);
 
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `supplier_id` int(8) NOT NULL AUTO_INCREMENT;
+
 
 -- --------------------------------------------------------
--- Table 'empleyee'
 
+--
+-- Table structure for table `wine_list`
+--
 
 CREATE TABLE `wine_list` (
   `product_id` int(5) NOT NULL,
@@ -75,6 +119,10 @@ CREATE TABLE `wine_list` (
   `volume` int(5) DEFAULT NULL,
   `unit` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `wine_list`
+--
 
 INSERT INTO `wine_list` (`product_id`, `p1`, `p2`, `p3`, `location`, `sake_brewer`, `name`, `volume`, `unit`) VALUES
 (1, 290, 320, 380, '東京', 'オードヴィ庄内', 'ORBIAKUNA貴醸酒ワイン樽熟成', 500, '12'),
@@ -181,56 +229,199 @@ INSERT INTO `wine_list` (`product_id`, `p1`, `p2`, `p3`, `location`, `sake_brewe
 (102, 260, 280, 320, '奈良', '倉本酒造', 'KURAMOTO', 720, '12'),
 (103, 210, 230, 280, '新潟', '阿部酒造', '2020あべ純米吟醸楽風舞生', 720, '12'),
 (104, 370, 390, 480, '新潟', '阿部酒造', '2020あべ純米吟醸楽風舞生', 1800, '6'),
-(105, 280, 310, 380, '新潟', '阿部酒造', '2020あべ純米大吟醸原酒', 720, '12');
+(105, 280, 310, 380, '新潟', '阿部酒造', '2020あべ純米大吟醸原酒', 720, '12'),
+(106, 100, 200, 300, 'hk', 'abc', 'wine1', 800, '12'),
+(107, 200, 400, 600, 'kln', 'aaa', 'wine2', 1000, '10'),
+(108, 50, 100, 200, 'hk', 'abc', 'wine', 1000, '10');
 
-
+--
+-- Indexes for table `wine_list`
+--
 ALTER TABLE `wine_list`
   ADD PRIMARY KEY (`product_id`);
 
-
 -- --------------------------------------------------------
--- Table 'empleyee'
 
+--
+-- Table structure for table `stock`
+--
 
 CREATE TABLE `stock` (
   `product_id` int(11) NOT NULL,
   `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `stock`
+--
+
+INSERT INTO `stock` (`product_id`, `stock`) VALUES
+(1, 0),
+(2, 0),
+(3, 0),
+(4, 0),
+(5, 0),
+(6, 0),
+(7, 0),
+(8, 0),
+(9, 0),
+(10, 0),
+(11, 0),
+(12, 0),
+(13, 0),
+(14, 0),
+(15, 0),
+(16, 0),
+(17, 0),
+(18, 0),
+(19, 0),
+(20, 0),
+(21, 0),
+(22, 0),
+(23, 0),
+(24, 0),
+(25, 0),
+(26, 0),
+(27, 0),
+(28, 0),
+(29, 0),
+(30, 0),
+(31, 0),
+(32, 0),
+(33, 0),
+(34, 0),
+(35, 0),
+(36, 0),
+(37, 0),
+(38, 0),
+(39, 0),
+(40, 0),
+(41, 0),
+(42, 0),
+(43, 0),
+(44, 0),
+(45, 0),
+(46, 0),
+(47, 0),
+(48, 0),
+(49, 0),
+(50, 0),
+(51, 0),
+(52, 0),
+(53, 0),
+(54, 0),
+(55, 0),
+(56, 0),
+(57, 0),
+(58, 0),
+(59, 0),
+(60, 0),
+(61, 0),
+(62, 0),
+(63, 0),
+(64, 0),
+(65, 0),
+(66, 0),
+(67, 0),
+(68, 0),
+(69, 0),
+(70, 0),
+(71, 0),
+(72, 0),
+(73, 0),
+(74, 0),
+(75, 0),
+(76, 0),
+(77, 0),
+(78, 0),
+(79, 0),
+(80, 0),
+(81, 0),
+(82, 0),
+(83, 0),
+(84, 0),
+(85, 0),
+(86, 0),
+(87, 0),
+(88, 0),
+(89, 0),
+(90, 0),
+(91, 0),
+(92, 0),
+(93, 0),
+(94, 0),
+(95, 0),
+(96, 0),
+(97, 0),
+(98, 0),
+(99, 0),
+(100, 0),
+(101, 0),
+(102, 0),
+(103, 0),
+(104, 0),
+(105, 0),
+(106, 0),
+(107, 0),
+(108, 0);
+
+--
+-- Indexes for table `stock`
+--
 ALTER TABLE `stock`
   ADD KEY `product_id` (`product_id`);
 
-
+--
+-- Constraints for table `stock`
+--
 ALTER TABLE `stock`
   ADD CONSTRAINT `Connect product5` FOREIGN KEY (`product_id`) REFERENCES `wine_list` (`product_id`);
 
-
 -- --------------------------------------------------------
--- Table 'empleyee'
 
+--
+-- Table structure for table `employee`
+--
 
 CREATE TABLE `employee` (
   `employee_id` int(20) NOT NULL,
   `position_id` int(20) DEFAULT NULL,
   `firstname` varchar(30) NOT NULL,
   `surname` varchar(11) NOT NULL,
-  `email` varchar(30) NOT NULL
+  `email` varchar(30) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+
+--
+-- Indexes for table `employee`
+--
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`employee_id`),
   ADD KEY `position_id` (`position_id`);
 
+
+--
+-- AUTO_INCREMENT for table `employee`
+--
 ALTER TABLE `employee`
   MODIFY `employee_id` int(20) NOT NULL AUTO_INCREMENT;
 
+--
+-- Constraints for table `employee`
+--
 ALTER TABLE `employee`
-  ADD CONSTRAINT `Connect position` FOREIGN KEY (`position_id`) REFERENCES `position` (`position_id`);
+  ADD CONSTRAINT `Connect position` FOREIGN KEY (`position_id`) REFERENCES `position` (`position_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+
 
 
 -- --------------------------------------------------------
--- Table 'account'
 
+--
+-- Table structure for table `account`
+--
 
 CREATE TABLE `account` (
   `username` varchar(20) NOT NULL,
@@ -238,22 +429,28 @@ CREATE TABLE `account` (
   `employee_id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Indexes for table `account`
+--
 ALTER TABLE `account`
   ADD PRIMARY KEY (`username`),
   ADD KEY `employee_id` (`employee_id`);
 
-
-ALTER TABLE `account`
-  ADD CONSTRAINT `Connect Employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`);
+--
+-- Constraints for table `account`
+--
+  ALTER TABLE `account`
+    ADD CONSTRAINT `Connect Employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 
 -- --------------------------------------------------------
--- Table 'purchase'
 
+--
+-- Table structure for table `purchase`
+--
 
 CREATE TABLE `purchase` (
   `purchasing_id` int(20) NOT NULL,
-  `product_id` int(20) NOT NULL,
   `supplier_id` int(20) NOT NULL,
   `employee_id` int(20) NOT NULL,
   `production_date` date NOT NULL,
@@ -264,25 +461,35 @@ CREATE TABLE `purchase` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+--
+-- Indexes for table `purchase`
+--
 ALTER TABLE `purchase`
   ADD PRIMARY KEY (`purchasing_id`),
-  ADD KEY `product_id` (`product_id`),
   ADD KEY `supplier_id` (`supplier_id`),
   ADD KEY `employee_id` (`employee_id`);
 
-
+--
+-- AUTO_INCREMENT for table `purchase`
+--
 ALTER TABLE `purchase`
-  ADD CONSTRAINT `Connect Employee4` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`),
-  ADD CONSTRAINT `Connect product` FOREIGN KEY (`product_id`) REFERENCES `wine_list` (`product_id`),
-  ADD CONSTRAINT `Connect supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`);
+  MODIFY `purchasing_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100000001;
 
+--
+-- Constraints for table `purchase`
+--
+ALTER TABLE `purchase`
+  ADD CONSTRAINT `Connect Employee4` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `Connect supplier` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 -- --------------------------------------------------------
--- Table 'sales'
 
+--
+-- Table structure for table `sales`
+--
 
 CREATE TABLE `sales` (
-  `sale_id` int(8) NOT NULL,
+  `sale_id` int(20) NOT NULL,
   `customer_id` int(8) NOT NULL,
   `employee_id` int(8) NOT NULL,
   `sale_date` date NOT NULL,
@@ -294,24 +501,35 @@ CREATE TABLE `sales` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+--
+-- Indexes for table `sales`
+--
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`sale_id`),
   ADD KEY `customer_id` (`customer_id`),
   ADD KEY `employee_id` (`employee_id`);
 
-
+--
+-- AUTO_INCREMENT for table `sales`
+--
 ALTER TABLE `sales`
-  ADD CONSTRAINT `Connect Employee5` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`),
-  ADD CONSTRAINT `Connect customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+  MODIFY `sale_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200000001;
 
+--
+-- Constraints for table `sales`
+--
+ALTER TABLE `sales`
+  ADD CONSTRAINT `Connect Employee5` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `Connect customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON UPDATE CASCADE;
 
 -- --------------------------------------------------------
--- Table 'inbound'
 
+--
+-- Table structure for table `inbound`
+--
 
 CREATE TABLE `inbound` (
   `inbound_id` int(20) NOT NULL,
-  `purchasing_id` int(20) DEFAULT NULL,
   `employee_id` int(20) DEFAULT NULL,
   `inbound_date` date NOT NULL,
   `inbound_way` varchar(10) NOT NULL,
@@ -319,45 +537,65 @@ CREATE TABLE `inbound` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+--
+-- Indexes for table `inbound`
+--
 ALTER TABLE `inbound`
   ADD PRIMARY KEY (`inbound_id`),
-  ADD KEY `purchasing_id` (`purchasing_id`),
   ADD KEY `employee_id` (`employee_id`);
 
-
+--
+-- AUTO_INCREMENT for table `inbound`
+--
 ALTER TABLE `inbound`
-  ADD CONSTRAINT `Connect Employee2` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`),
-  ADD CONSTRAINT `Connect purchase` FOREIGN KEY (`purchasing_id`) REFERENCES `purchase` (`purchasing_id`);
+  MODIFY `inbound_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=300000001;
+
+--
+-- Constraints for table `inbound`
+--
+ALTER TABLE `inbound`
+  ADD CONSTRAINT `Connect Employee2` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
 
 
 -- --------------------------------------------------------
--- Table 'outbound'
 
+--
+-- Table structure for table `outbound`
+--
 
 CREATE TABLE `outbound` (
-  `outbound_id` int(8) NOT NULL,
-  `purchasing_id` int(20) NOT NULL,
+  `outbound_id` int(20) NOT NULL,
   `employee_id` int(8) DEFAULT NULL,
   `outbound_date` date DEFAULT NULL,
   `outbound_way` varchar(8) DEFAULT NULL,
   `outbound_cost` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+--
+-- Indexes for table `outbound`
+--
 ALTER TABLE `outbound`
   ADD PRIMARY KEY (`outbound_id`),
-  ADD KEY `purchase_id` (`purchasing_id`),
   ADD KEY `employee_id` (`employee_id`);
 
-
+--
+-- AUTO_INCREMENT for table `outbound`
+--
 ALTER TABLE `outbound`
-  ADD CONSTRAINT `Connect Employee3` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`),
-  ADD CONSTRAINT `Connect purchase2` FOREIGN KEY (`purchasing_id`) REFERENCES `purchase` (`purchasing_id`);
+  MODIFY `outbound_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400000001;
 
+--
+-- Constraints for table `outbound`
+--
+ALTER TABLE `outbound`
+  ADD CONSTRAINT `Connect Employee3` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- --------------------------------------------------------
--- Table 'purchase_items_list'
 
+--
+-- Table structure for table `purchase_items_list`
+--
 
 CREATE TABLE `purchase_items_list` (
   `purchasing_id` int(20) NOT NULL,
@@ -366,19 +604,25 @@ CREATE TABLE `purchase_items_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+--
+-- Indexes for table `purchase_items_list`
+--
 ALTER TABLE `purchase_items_list`
   ADD KEY `purchasing_id` (`purchasing_id`),
   ADD KEY `product_id` (`product_id`);
 
-
+--
+-- Constraints for table `purchase_items_list`
+--
 ALTER TABLE `purchase_items_list`
-  ADD CONSTRAINT `Conect product2` FOREIGN KEY (`product_id`) REFERENCES `wine_list` (`product_id`),
-  ADD CONSTRAINT `Connect purchase3` FOREIGN KEY (`purchasing_id`) REFERENCES `purchase` (`purchasing_id`);
-
+  ADD CONSTRAINT `Conect product2` FOREIGN KEY (`product_id`) REFERENCES `wine_list` (`product_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Connect purchase3` FOREIGN KEY (`purchasing_id`) REFERENCES `purchase` (`purchasing_id`) ON UPDATE CASCADE;
 
 -- --------------------------------------------------------
--- Table 'sale_items_list'
 
+--
+-- Table structure for table `sale_items_list`
+--
 
 CREATE TABLE `sale_items_list` (
   `sale_id` int(20) NOT NULL,
@@ -387,19 +631,25 @@ CREATE TABLE `sale_items_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+--
+-- Indexes for table `sale_items_list`
+--
 ALTER TABLE `sale_items_list`
   ADD KEY `sale_id` (`sale_id`),
   ADD KEY `product_id` (`product_id`);
 
-
+--
+-- Constraints for table `sale_items_list`
+--
 ALTER TABLE `sale_items_list`
-  ADD CONSTRAINT `Connect product4` FOREIGN KEY (`product_id`) REFERENCES `wine_list` (`product_id`),
+  ADD CONSTRAINT `Connect product4` FOREIGN KEY (`product_id`) REFERENCES `wine_list` (`product_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `Connect sale` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`sale_id`);
 
-
 -- --------------------------------------------------------
--- Table 'inbound_items_list'
 
+--
+-- Table structure for table `inbound_items_list`
+--
 
 CREATE TABLE `inbound_items_list` (
   `inbound_id` int(20) NOT NULL,
@@ -407,19 +657,27 @@ CREATE TABLE `inbound_items_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+--
+-- Indexes for table `inbound_items_list`
+--
 ALTER TABLE `inbound_items_list`
   ADD KEY `inbound_id` (`inbound_id`),
   ADD KEY `purchasing_id` (`purchasing_id`);
 
-
+--
+-- Constraints for table `inbound_items_list`
+--
 ALTER TABLE `inbound_items_list`
-  ADD CONSTRAINT `Connect Purchase5` FOREIGN KEY (`purchasing_id`) REFERENCES `purchase` (`purchasing_id`),
-  ADD CONSTRAINT `connect inbound` FOREIGN KEY (`inbound_id`) REFERENCES `inbound` (`inbound_id`);
+  ADD CONSTRAINT `Connect Purchase5` FOREIGN KEY (`purchasing_id`) REFERENCES `purchase` (`purchasing_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `connect inbound` FOREIGN KEY (`inbound_id`) REFERENCES `inbound` (`inbound_id`) ON UPDATE CASCADE;
+
 
 
 -- --------------------------------------------------------
--- Table 'outbound_items_list'
 
+--
+-- Table structure for table `outbound_items_list`
+--
 
 CREATE TABLE `outbound_items_list` (
   `outbound_id` int(20) NOT NULL,
@@ -427,11 +685,36 @@ CREATE TABLE `outbound_items_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+--
+-- Indexes for table `outbound_items_list`
+--
 ALTER TABLE `outbound_items_list`
   ADD KEY `outbound_id` (`outbound_id`),
   ADD KEY `sale_id` (`sale_id`);
 
-
+--
+-- Constraints for table `outbound_items_list`
+--
 ALTER TABLE `outbound_items_list`
-  ADD CONSTRAINT `Connect outbound` FOREIGN KEY (`outbound_id`) REFERENCES `outbound` (`outbound_id`),
-  ADD CONSTRAINT `Connet sale` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`sale_id`);
+  ADD CONSTRAINT `Connect outbound` FOREIGN KEY (`outbound_id`) REFERENCES `outbound` (`outbound_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `Connet sale` FOREIGN KEY (`sale_id`) REFERENCES `sales` (`sale_id`) ON UPDATE CASCADE;
+
+-- --------------------------------------------------------
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- Constraints for dumped tables
+--
+
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
