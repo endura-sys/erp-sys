@@ -1,5 +1,6 @@
 <?php include ('../header.php'); ?>
 <?php
+$restrict_low_access=true;
 include '../../database.php';
 $conn = OpenCon();
 

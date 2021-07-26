@@ -6,6 +6,9 @@
   	unset($_SESSION['username']);
   	header("location: index");
   }
+  if (!isset($_SESSION['username'])) {
+    header("location: login");
+  }
 ?>
   <div class="sidebar-menu">
     <ul class="menu">
@@ -134,6 +137,13 @@
 
 
         <!-- User management -->
+        <?php
+          $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+          $sql_check = "SELECT access_level FROM position, employee, account  WHERE position.position_id=employee.position_id AND employee.employee_id=account.employee_id AND account.username='" . $_SESSION['username'] . "'";
+          $result_check = $conn->query($sql_check);
+          $row = $result_check->fetch_assoc();
+          if($row['access_level']!='Low'){
+        ?>
         <li class="sidebar-item has-sub <?php if ($currentPage == 'user-management' || $currentPage == 'position-management') {echo "active";} else  {echo "noactive";}?>">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
@@ -149,6 +159,12 @@
                 </li>
             </ul>
         </li>
+      <?php
+        }else if($restrict_low_access==true){
+          header("location: index");
+        }
+        mysqli_close($conn);
+      ?>
 
         <li class="sidebar-item  ">
           <?php  if (isset($_SESSION['username'])){ ?>

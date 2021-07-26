@@ -1,5 +1,6 @@
 <!-- List of Position for Dropdown -->
 <?php include('../header.php');
+      $restrict_low_access=true;
       include ('userserver.php');
       include "database.php";
       $conn0=OpenCon();

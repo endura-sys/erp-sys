@@ -1,5 +1,7 @@
 <?php include('../header.php'); ?>
-<?php $currentPage = 'user-management'; ?>
+<?php $currentPage = 'user-management';
+      $restrict_low_access=true;
+ ?>
 
 <body>
     <div id="app">

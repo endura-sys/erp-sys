@@ -1,5 +1,7 @@
 <?php include('../header.php'); ?>
-<?php $currentPage = 'position-management'; ?>
+<?php $currentPage = 'position-management';
+      $restrict_low_access=true;
+?>
 
 <body>
     <div id="app">
@@ -65,7 +67,8 @@
                                 <thead>
                                     <tr>
                                         <th>№</th>
-                                        <th>position</th>
+                                        <th>Position</th>
+                                        <th>Access Level</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -90,6 +93,7 @@
                                               <tr>
                                                 <td><?php echo $i; $i++; ?></td>
                                                 <td><?php echo $row["position_name"]; ?></td>
+                                                <td><?php echo $row["access_level"]; ?></td>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="position-update?id=<?php echo $row["position_id"]?>" >Update</a>
 
 														<button type="button" class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmModal<?php echo $row["position_name"]?>">

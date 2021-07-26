@@ -1,6 +1,8 @@
 <?php include('../header.php');
+      $restrict_low_access=true;
       // initializing variables
       $position = "";
+      $access_level="";
 
       // connect to the database
       include '../../database.php';
@@ -9,21 +11,23 @@
       // Create Position
       if (isset($_POST["submitbtn"])) {
 
-        $position = $_POST["position"];;
+        $position = $_POST["position"];
+        $access_level = $_POST["access_level"];
 
         if (empty($position)) { array_push($errors, "Job Position is required."); }
+        if (empty($access_level)) { array_push($errors, "Access Level is required."); }
 
-        $sql = "SELECT * from job_position where position = '$position'";
+        $sql = "SELECT * from position where position_name = '$position'";
         $result = $conn->query($sql);
         $num = mysqli_num_rows($result);
 
         if ($num > 0) {
-          array_push($errors, "Username already exists. Please create a new username.");
+          array_push($errors, "Position already exists. Please create a new Position.");
         }
 
         if (count($errors) == 0) {
 
-          $sql = "INSERT INTO job_position (position) VALUES('$position')";
+          $sql = "INSERT INTO position (position_name, access_level) VALUES('$position', '$access_level')";
           $result = $conn->query($sql);
 
           header("location: position-management");
@@ -101,6 +105,22 @@
 												</div>
 											</div>
 										</div>
+                    <div class="col-md-4">
+											<label>Access Level</label>
+										</div>
+                    <div class="col-md-8">
+                      <div class="form-group position-relative has-icon-left mb-4">
+                        <select name="access_level" class="form-control form-control-xl" placeholder="Select Position">
+                          <option value="">Select Access Level</option>
+                          <option value="High">Super Admin</option>
+                          <option value="Medium">Corporate Admin</option>
+                          <option value="Low">Stuff</option>
+                        </select>
+                        <div class="form-control-icon">
+                          <i class="bi bi-briefcase"></i>
+                        </div>
+                      </div>
+                    </div>
                     <!-- Create Button -->
 										<div class="col-sm-12 d-flex justify-content-end">
 											<button type="submit" class="btn btn-primary me-1 mb-1" name="submitbtn">Create</button>
