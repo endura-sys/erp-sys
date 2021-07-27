@@ -113,30 +113,27 @@ $row= mysqli_fetch_array($result);
                               <div class="form-group position-relative has-icon-left mb-4">
                                 <select name="position" class="form-control form-control-xl" placeholder="Select Position">
                                   <?php
-                                    $sql_pos="SELECT access_level FROM position WHERE position_id= '" . $row['position_id']. "'";
-                                    $result_pos = $conn->query($sql_pos);
-                                    $row_pos = $result_pos->fetch_assoc();
+                                    // $sql_pos="SELECT access_level FROM position WHERE position_id= '" . $row['position_id']. "'";
+                                    // $result_pos = $conn->query($sql_pos);
+                                    // $row_pos = $result_pos->fetch_assoc();
                                   ?>
-                                  <option value="<?php echo $row_pos['access_level']?>"><?php echo $row_pos['access_level']?></option>
-                                  <?php $sql0 = "SELECT access_level FROM position";
+                                  <option value="<?php echo $row['access_level']?>"><?php echo $row['access_level']?></option>
+                                  <?php
+                                        $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                        $sql0 = "SELECT DISTINCT access_level FROM position";
                                         $result0 = $conn->query($sql0);
 
                                         while($row0 = $result0->fetch_assoc()) {
-                                          if($row['position_id']!=$row0['position_id']){
+                                          if($row['access_level']!=$row0['access_level']){
                                   ?>
-                                          <option value="<?php echo $row0['position_id']?>"><?php echo $row0['position_name']?></option>
+                                          <option value="<?php echo $row0['access_level']?>"><?php echo $row0['access_level']?></option>
                                   <?php
                                           }
                                         }
+                                        mysqli_close($conn);
                                   ?>
                                 </select>
-                                <select name="access_level" class="form-control form-control-xl" placeholder="Select Position">
-                                  <option value="<?php echo $row['position_name']?>"><?php echo $row['position_name']?></option>
-                                  <option value="High">High</option>
-                                  <option value="Medium">Medium</option>
-                                  <option value="Low">Low</option>;
-                                </select>
-                                <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position_name']?>">
+
                                 <div class="form-control-icon">
                                   <i class="bi bi-briefcase"></i>
                                 </div>
