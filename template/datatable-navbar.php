@@ -12,9 +12,17 @@
 ?>
   <div class="sidebar-menu">
     <ul class="menu">
-      <?php  if (isset($_SESSION['username'])) { ?>
-        <li class="sidebar-title"><h6>Welcome <strong><?php echo $_SESSION['username'];?></strong> </h6></li>
-      <?php } ?>
+      <?php
+        if (isset($_SESSION['username'])) {
+          $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+          $sql_get_id="SELECT employee_id FROM account WHERE username='".$_SESSION['username']."'";
+          $result_get_id = $conn->query($sql_get_id);
+          $row_get_id= mysqli_fetch_array($result_get_id);
+      ?>
+        <li class="sidebar-title"><h6>Welcome <strong><a href="user-update?id=<?php echo $row_get_id["employee_id"]?>"><?php echo $_SESSION['username'];?></a></strong> </h6></li>
+      <?php
+        }
+      ?>
         <li class="sidebar-title">Menu</li>
 
         <li class="sidebar-item <?php if ($currentPage == 'dashboard') {echo "active";} else  {echo "noactive";}?>">
@@ -138,7 +146,6 @@
 
         <!-- User management -->
         <?php
-          $conn = mysqli_connect("localhost", "root", "root", "sakedb");
           $sql_access_level_check = "SELECT access_level FROM position, employee, account  WHERE position.position_id=employee.position_id AND employee.employee_id=account.employee_id AND account.username='" . $_SESSION['username'] . "'";
           $result_access_level_check = $conn->query($sql_access_level_check);
           $row_access_level_check = $result_access_level_check->fetch_assoc();

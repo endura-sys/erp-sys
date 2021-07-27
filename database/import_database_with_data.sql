@@ -79,12 +79,13 @@ CREATE TABLE `position` (
 --
 
 INSERT INTO `position` (`position_id`, `position_name`, `access_level`) VALUES
-(1, 'Bosss', 'High'),
+(1, 'Boss', 'Medium'),
 (2, 'Designer', 'Low'),
 (3, 'Intern', 'Low'),
 (4, 'Manager', 'Medium'),
-(5, 'Programmer', 'High'),
-(6, 'Supervisor', 'Medium');
+(6, 'Supervisor', 'Medium'),
+(9, 'Super Admin', 'High'),
+(10, 'Corporate Admin', 'Medium');
 
 --
 -- Indexes for table `position`
@@ -96,7 +97,7 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `position_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `position_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 -- --------------------------------------------------------
 
@@ -430,13 +431,15 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`employee_id`, `position_id`, `firstname`, `surname`, `email`, `active`) VALUES
-(12, 6, 'chris', 'chan', 'chrischan@gmail.com', 1),
+(12, 3, 'chris', 'chan', 'chrischan@gmail.com', 1),
 (13, 2, 'chan', 'chan', 'catchyou@happy.com', 0),
-(14, 3, 'Aizhigit Mussali', 'handsome', 'random@gmail.com', 1),
-(18, 1, 'Bossss', 'handsome', 'boss@gmail.com', 1),
+(14, 10, 'Aizhigit', 'Mussali', 'random@gmail.com', 1),
+(18, 2, 'Harry', 'Potter', 'boss@gmail.com', 1),
 (19, 1, 'sun', 'chan', 'sunchan@gmail.com', 0),
-(20, 1, 'helllo', 'chan', 'chan@gmail.com', 1),
-(23, 6, 'ben', 'chen', 'benchen@gmail.com', 0);
+(20, 9, 'helllo', 'chan', 'chan@gmail.com', 1),
+(23, 6, 'ben', 'chen', 'benchen@gmail.com', 0),
+(24, 6, 'QWERTY', 'QAZWSX', 'qwerty@gmail.com', 0),
+(25, 10, 'Irene', 'Cht', 'irene@gmail.com', 1);
 
 
 --
@@ -451,7 +454,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `employee_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `employee_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for table `employee`
@@ -480,9 +483,10 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`username`, `password`, `employee_id`) VALUES
 ('chrischan', 'chris1234', 12),
-('root', 'happy', 18),
-('user', '123', 20),
-('user1', '123', 14);
+('irene', '123', 25),
+('midadmin', '123', 14),
+('root', '12345678', 18),
+('superadmin', '123', 20);
 
 --
 -- Indexes for table `account`

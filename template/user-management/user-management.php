@@ -94,7 +94,7 @@
                                               $sql_restrict_user_info="SELECT access_level FROM position WHERE position_id='".$row['position_id']."'";
                                               $result_restrict_user_info = $conn->query($sql_restrict_user_info);
                                               $row_restrict_user_info = $result_restrict_user_info->fetch_assoc();
-                                              if($row_access_level_check['access_level']=="Medium" AND $row_restrict_user_info['access_level']=="High"){
+                                              if($row_access_level_check['access_level']=="Medium" AND ($row_restrict_user_info['access_level']=="High" || $row_restrict_user_info['access_level']=="Medium")){
                                                 continue; //Do not show SuperAdmin Info for Corporate Admins
                                               }
                                     ?>
