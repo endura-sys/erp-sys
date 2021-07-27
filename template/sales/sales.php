@@ -283,7 +283,7 @@
 
                                                             $N = count($product);
                                                             for($i = 0; $i < $N; $i++) {
-                                                              $sql2 = "INSERT INTO sale_items_list (`sale_id`, `product_id`, `quantity`, `expect_outbound_date`, `is_outbound`) VALUES ('$sale_id', '$product[$i]', '$quantity[$i]', NULL, '')";
+                                                              $sql2 = "INSERT INTO sale_items_list VALUES ('$sale_id', '$product[$i]', '$quantity[$i]')";
                                                               $result2 = $conn->query($sql2);
                                                             }
 
@@ -335,6 +335,7 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>Sale ID</th>
                                         <th>Customer ID</th>
                                         <th>Employee ID</th>
@@ -376,9 +377,11 @@
                                                 } ?>
                                                 <tr>
                                                   <?php if($status == true) { ?>
-                                                    <td><input type="checkbox" name="outbound[]" class="form-check-input" value="<?php echo $row["sale_id"]?>" disabled><?php echo $row["sale_id"]?><br></td>
+                                                    <td><input type="checkbox" name="outbound[]" class="form-check-input" value="<?php echo $row["sale_id"]?>" disabled></td>
+                                                    <td><?php echo $row["sale_id"]?></td>
                                                   <?php } else { ?>
-                                                    <td><input type="checkbox" name="outbound[]" class="form-check-input" value="<?php echo $row["sale_id"]?>"><?php echo $row["sale_id"]?><br></td>
+                                                    <td><input type="checkbox" name="outbound[]" class="form-check-input" value="<?php echo $row["sale_id"]?>"></td>
+                                                    <td><?php echo $row["sale_id"]?></td>
                                                   <?php }
                                                 echo "<td>" .$row["customer_id"] ."</td><td>" .$row["employee_id"] ."</td><td>" .$row["sale_date"] ."</td><td>" .$row["sale_time"] ."</td><td>" .$row["payment_method"] ."</td><td>" .$row["total_sale"] ."</td>";
                                                 ?>
