@@ -152,6 +152,8 @@ $row2= mysqli_fetch_array($result2);
                                 <!-- <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position']?>"> -->
                                 <select name="position" class="form-control form-control-xl" placeholder="Select Position">
                                   <?php
+                                    $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
                                     $sql_pos="SELECT position_name FROM position WHERE position_id= '" . $row['position_id']. "'";
                                     $result_pos = $conn->query($sql_pos);
                                     $row_pos = $result_pos->fetch_assoc();
@@ -168,6 +170,7 @@ $row2= mysqli_fetch_array($result2);
                                   <?php
                                           }
                                         }
+                                      mysqli_close($conn);
                                   ?>
                                 </select>
                                 <div class="form-control-icon">
