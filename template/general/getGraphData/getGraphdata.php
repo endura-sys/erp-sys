@@ -1,45 +1,42 @@
 <?
-<<<<<<< Updated upstream
-$conn = mysqli_connect("localhost", "root", "root", "sakedb");
-=======
-<<<<<<< Updated upstream
-mysqli_connect("enduraerp.ml", "endurate_sakedb", "oIx6*\$nZ_do3", "endurate_sakedb");
-=======
 
-function getTodaySale($date) {
+function getTodaySale($date)
+{
 
-        include '../../database.php';
-        $conn = OpenCon();
+    include '../../database.php';
+    $conn = OpenCon();
 
-        $sql = "SELECT sale_date, sale_time, payment_method, total_sale FROM sales";
-        $result = $conn->query($sql);
+    $sql = "SELECT sale_date, sale_time, payment_method, total_sale FROM sales";
+    $result = $conn->query($sql);
 
-        $product_list = array();
+    $alipaySale = 0;
+    $fpsSale = 0;
+    $cashSale = 0;
 
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                if ($date = $row["payment_method"]) {
-                        switch($row){
-                            case "alipay":
-                        }
+    $product_list = array();
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            if ($date = $row["payment_date"]) {
+                switch ($row["payment_method"]) {
+                    case "alipay":
+                        $alipaySale += $row["total_sale"];
+                    case "FPS":
+                        $alipaySale += $row["total_sale"];
+                    case "cash":
+                        $alipaySale += $row["total_sale"];
                 }
-                echo "<tr><td>" .$row["product_id"] ."</td><td>" .$row["name"] ."</td><td>" . "$" . $row["p1"] ."</td><td>" . "$" . $row["p2"] ."</td><td>" . "$" . $row["p3"]
-                 ."</td><td>" .$row["location"] ."</td><td>" .$row["sake_brewer"] ."</td><td>" .$row["volume"] . "ML" ."</td><td>".$row["unit"] . "/ctn" ."</td>";
             }
-        } else {
-            echo "0 results";
+            echo "<tr><td>" . $row["product_id"] . "</td><td>" . $row["name"] . "</td><td>" . "$" . $row["p1"] . "</td><td>" . "$" . $row["p2"] . "</td><td>" . "$" . $row["p3"]
+                . "</td><td>" . $row["location"] . "</td><td>" . $row["sake_brewer"] . "</td><td>" . $row["volume"] . "ML" . "</td><td>" . $row["unit"] . "/ctn" . "</td>";
         }
-        echo $product_list[0][1];
-        CloseCon($conn);
-
-
-
+    } else {
+        echo "0 results";
+    }
+    echo $product_list[0][1];
+    CloseCon($conn);
 }
-
-
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 // Check connection
 if ($conn === false) {

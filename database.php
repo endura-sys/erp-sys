@@ -18,23 +18,7 @@ define( 'DB_CHARSET', 'utf8' );
 
 	function OpenCon()
 	{
-<<<<<<< Updated upstream
-		$dbhost = "localhost";
-		$dbuser = "root";
-		$dbpass = "root";
-		$db = "sakedb";
-=======
-<<<<<<< Updated upstream
-		$dbhost = "enduraerp.ml";
-		$dbuser = "endurate_sakedb";
-		$dbpass = "oIx6*\$nZ_do3";
-		$db = "endurate_sakedb";
->>>>>>> Stashed changes
-		$conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
-=======
-		
 		$conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die("Connect failed: %s\n". $conn -> error);
->>>>>>> Stashed changes
 
 		return $conn;
 	}
