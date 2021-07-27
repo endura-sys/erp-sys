@@ -18,7 +18,7 @@ if (isset($_POST['updatebtn'])) {
     $result_check = mysqli_query($conn,"SELECT * FROM position WHERE position_id ='" . $_GET['id'] . "'");
     $row_check= mysqli_fetch_array($result_check);
 
-    if($row_check['position']!=$position){
+    if($row_check['position_name']!=$position){
       if ($num_check > 0) {
         array_push($errors, "Position already exists. Please create a new position.");
       }
@@ -100,6 +100,42 @@ $row= mysqli_fetch_array($result);
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
                                 <input type="hidden" class="form-control form-control-xl" name="old_position" value="<?php echo $row['position_name']?>">
+                                <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position_name']?>">
+                                <div class="form-control-icon">
+                                  <i class="bi bi-briefcase"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Access Level</label>
+                            </div>
+                            <div class="col-md-8">
+                              <div class="form-group position-relative has-icon-left mb-4">
+                                <select name="position" class="form-control form-control-xl" placeholder="Select Position">
+                                  <?php
+                                    $sql_pos="SELECT access_level FROM position WHERE position_id= '" . $row['position_id']. "'";
+                                    $result_pos = $conn->query($sql_pos);
+                                    $row_pos = $result_pos->fetch_assoc();
+                                  ?>
+                                  <option value="<?php echo $row_pos['access_level']?>"><?php echo $row_pos['access_level']?></option>
+                                  <?php $sql0 = "SELECT access_level FROM position";
+                                        $result0 = $conn->query($sql0);
+
+                                        while($row0 = $result0->fetch_assoc()) {
+                                          if($row['position_id']!=$row0['position_id']){
+                                  ?>
+                                          <option value="<?php echo $row0['position_id']?>"><?php echo $row0['position_name']?></option>
+                                  <?php
+                                          }
+                                        }
+                                  ?>
+                                </select>
+                                <select name="access_level" class="form-control form-control-xl" placeholder="Select Position">
+                                  <option value="<?php echo $row['position_name']?>"><?php echo $row['position_name']?></option>
+                                  <option value="High">High</option>
+                                  <option value="Medium">Medium</option>
+                                  <option value="Low">Low</option>;
+                                </select>
                                 <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position_name']?>">
                                 <div class="form-control-icon">
                                   <i class="bi bi-briefcase"></i>

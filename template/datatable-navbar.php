@@ -139,10 +139,10 @@
         <!-- User management -->
         <?php
           $conn = mysqli_connect("localhost", "root", "root", "sakedb");
-          $sql_check = "SELECT access_level FROM position, employee, account  WHERE position.position_id=employee.position_id AND employee.employee_id=account.employee_id AND account.username='" . $_SESSION['username'] . "'";
-          $result_check = $conn->query($sql_check);
-          $row = $result_check->fetch_assoc();
-          if($row['access_level']!='Low'){
+          $sql_access_level_check = "SELECT access_level FROM position, employee, account  WHERE position.position_id=employee.position_id AND employee.employee_id=account.employee_id AND account.username='" . $_SESSION['username'] . "'";
+          $result_access_level_check = $conn->query($sql_access_level_check);
+          $row_access_level_check = $result_access_level_check->fetch_assoc();
+          if($row_access_level_check['access_level']!='Low'){
         ?>
         <li class="sidebar-item has-sub <?php if ($currentPage == 'user-management' || $currentPage == 'position-management') {echo "active";} else  {echo "noactive";}?>">
             <a href="#" class='sidebar-link'>
