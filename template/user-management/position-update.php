@@ -4,12 +4,15 @@
 include '../../database.php';
 $conn = OpenCon();
 
+$access_level = "";
 $position = "";
 $errors = array();
 if (isset($_POST['updatebtn'])) {
     $position = $_POST["position"];
+    $access_level = $_POST["access_level"];
 
     if (empty($position)) { array_push($errors, "Job Position is required."); }
+    if (empty($access_level)) { array_push($errors, "Access Level is required."); }
 
     $sql_check = "SELECT * from position where position_name = '$position'";
     $result_check = $conn->query($sql_check);
@@ -26,7 +29,7 @@ if (isset($_POST['updatebtn'])) {
 
     if (count($errors) == 0) {
       if(count($_POST)>0) {
-        mysqli_query($conn,"UPDATE position set position_name ='" . $_POST['position'] . "' WHERE position_id ='" . $_GET['id'] . "'");
+        mysqli_query($conn,"UPDATE position set position_name ='" . $_POST['position'] . "', access_level = '" . $_POST['access_level'] . "' WHERE position_id ='" . $_GET['id'] . "'");
         $message = "Record Modified Successfully";
       }
     }
@@ -111,7 +114,7 @@ $row= mysqli_fetch_array($result);
                             </div>
                             <div class="col-md-8">
                               <div class="form-group position-relative has-icon-left mb-4">
-                                <select name="position" class="form-control form-control-xl" placeholder="Select Position">
+                                <select name="access_level" class="form-control form-control-xl" placeholder="Select Position">
                                   <?php
                                     // $sql_pos="SELECT access_level FROM position WHERE position_id= '" . $row['position_id']. "'";
                                     // $result_pos = $conn->query($sql_pos);
