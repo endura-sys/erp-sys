@@ -154,9 +154,17 @@
               <li class="submenu-item <?php if ($currentPage == 'user-management') {echo "active";} ?>">
                   <a href="user-management">User Management</a>
               </li>
+              <?php
+                if($row_access_level_check['access_level']!='Medium'){
+              ?>
                 <li class="submenu-item <?php if ($currentPage == 'position-management') {echo "active";} ?>">
                     <a href="position-management">Position Management</a>
                 </li>
+              <?php
+                }else if($restrict_mid_access==true){
+                  header("location: index");
+                }
+              ?>
             </ul>
         </li>
       <?php

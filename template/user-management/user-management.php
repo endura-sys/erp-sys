@@ -91,6 +91,12 @@
                                             // output data of each row
                                             $i=1;
                                             while($row = $result->fetch_assoc()) {
+                                              $sql_restrict_user_info="SELECT access_level FROM position WHERE position_id='".$row['position_id']."'";
+                                              $result_restrict_user_info = $conn->query($sql_restrict_user_info);
+                                              $row_restrict_user_info = $result_restrict_user_info->fetch_assoc();
+                                              if($row_access_level_check['access_level']=="Medium" AND $row_restrict_user_info['access_level']=="High"){
+                                                continue; //Do not show SuperAdmin Info for Corporate Admins
+                                              }
                                     ?>
                                                 <?php if ($row["active"] == 1) { ?>
                                                 <tr>
@@ -145,8 +151,6 @@
                       																				header("location: user-management");
                       																			}
                       																		?>
-
-
                       																	</div>
                       																</div>
                       															</div>

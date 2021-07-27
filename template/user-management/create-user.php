@@ -101,21 +101,30 @@
 										</div>
 										<div class="col-md-8">
 											<div class="form-group position-relative has-icon-left mb-4">
-												<!-- <input type="text" class="form-control form-control-xl" name="position" placeholder="Job Position" value=<?php echo $position; ?>> -->
                         <select name="position" class="form-control form-control-xl" >
                           <option value="">Select Position
                             <?php
                             $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
 
-                            $sql0 = "SELECT position_id, position_name FROM position";
+                            $sql0 = "SELECT * FROM position";
                             $result0 = $conn->query($sql0);
-                            while($row0 = $result0->fetch_assoc()) {
+                            if($row_access_level_check['access_level']=='High'){ //SuperAdmins can create account for anyone
+                              while($row0 = $result0->fetch_assoc()) {
                               ?>
-                              <option value="<?php echo $row0["position_id"]?>"><?php echo $row0["position_name"];?></option>
-                          <?php
-                          }
-                          ?>
+                                <option value="<?php echo $row0["position_id"]?>"><?php echo $row0["position_name"];?></option>
+                              <?php
+                              }
+                            }else if($row_access_level_check['access_level']=='Medium'){ // Corporate Admins can only create account for Corporate Admins and General Stuff
+                              while($row0 = $result0->fetch_assoc()) {
+                                if($row0["access_level"]=="Low"){
+                              ?>
+                                <option value="<?php echo $row0["position_id"]?>"><?php echo $row0["position_name"];?></option>
+                              <?php
+                                }
+                              }
+                            }
+                            ?>
                         </select>
 
 												<div class="form-control-icon">

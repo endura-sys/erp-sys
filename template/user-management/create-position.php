@@ -1,5 +1,6 @@
 <?php include('../header.php');
       $restrict_low_access=true;
+      $restrict_mid_access=true;
       // initializing variables
       $position = "";
       $access_level="";

@@ -4,6 +4,12 @@ $restrict_low_access=true;
 include '../../database.php';
 $conn = OpenCon();
 
+$sql_restrict_mid_access="SELECT access_level FROM position,employee WHERE position.position_id=employee.position_id AND employee_id='".$_GET['id']."'";
+$result_restrict_mid_access = $conn->query($sql_restrict_mid_access);
+$row_restrict_mid_access= mysqli_fetch_array($result_restrict_mid_access);
+if($row_restrict_mid_access['access_level']=="High"){
+  $restrict_mid_access=true;
+}
 
 $username = "";
 $firstname = "";
@@ -159,10 +165,28 @@ $row2= mysqli_fetch_array($result2);
                                     $row_pos = $result_pos->fetch_assoc();
                                   ?>
                                   <option value="<?php echo $row['position_id']?>"><?php echo $row_pos['position_name']?></option>
-                                  <?php $sql0 = "SELECT position_id, position_name FROM position";
+                                  <?php $sql0 = "SELECT * FROM position";
                                         $result0 = $conn->query($sql0);
 
-                                        $product_list0 = array();
+                                        if($row_access_level_check['access_level']=='High'){ //SuperAdmins can create account for anyone
+                                          while($row0 = $result0->fetch_assoc()) {
+                                            if($row['position_id']!=$row0['position_id']){
+                                            ?>
+                                            <option value="<?php echo $row0["position_id"]?>"><?php echo $row0["position_name"];?></option>
+                                            <?php
+                                            }
+                                          }
+                                        }else if($row_access_level_check['access_level']=='Medium'){ // Corporate Admins can only create account for Corporate Admins and General Stuff
+                                          while($row0 = $result0->fetch_assoc()) {
+                                            if($row0["access_level"]=="Low"){
+                                              if($row['position_id']!=$row0['position_id']){
+                                              ?>
+                                              <option value="<?php echo $row0["position_id"]?>"><?php echo $row0["position_name"];?></option>
+                                              <?php
+                                              }
+                                            }
+                                          }
+                                        }
                                         while($row0 = $result0->fetch_assoc()) {
                                           if($row['position_id']!=$row0['position_id']){
                                   ?>

@@ -1,6 +1,7 @@
 <?php include('../header.php'); ?>
 <?php $currentPage = 'position-management';
       $restrict_low_access=true;
+      $restrict_mid_access=true;
 ?>
 
 <body>
