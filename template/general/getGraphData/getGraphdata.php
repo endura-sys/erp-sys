@@ -1,4 +1,4 @@
-<?
+<?php
 
 function getTodaySale($date)
 {
@@ -23,55 +23,18 @@ function getTodaySale($date)
                     case "alipay":
                         $alipaySale += $row["total_sale"];
                     case "FPS":
-                        $alipaySale += $row["total_sale"];
+                        $fpsSale += $row["total_sale"];
                     case "cash":
-                        $alipaySale += $row["total_sale"];
+                        $cashSale += $row["total_sale"];
                 }
             }
-            echo "<tr><td>" . $row["product_id"] . "</td><td>" . $row["name"] . "</td><td>" . "$" . $row["p1"] . "</td><td>" . "$" . $row["p2"] . "</td><td>" . "$" . $row["p3"]
-                . "</td><td>" . $row["location"] . "</td><td>" . $row["sake_brewer"] . "</td><td>" . $row["volume"] . "ML" . "</td><td>" . $row["unit"] . "/ctn" . "</td>";
         }
-    } else {
-        echo "0 results";
     }
-    echo $product_list[0][1];
+    array_push($product_list, $alipaySale);
+    array_push($product_list, $fpsSale);
+    array_push($product_list, $cashSale);
     CloseCon($conn);
+    return $product_list;
 }
 
-// Check connection
-if ($conn === false) {
-    die("ERROR: Could not connect. "
-        . mysqli_connect_error());
-}
-
-$no =  $_REQUEST['no'];
-$status =  $_REQUEST['status'];
-$p1 = $_REQUEST['p1'];
-$p2 = $_REQUEST['p2'];
-$p3 = $_REQUEST['p3'];
-$stock = $_REQUEST['stock'];
-$location = $_REQUEST['location'];
-$sake_brewer = $_REQUEST['sake_brewer'];
-$name = $_REQUEST['name'];
-$volume = $_REQUEST['volume'];
-$unit = $_REQUEST['unit'];
-
-// Performing insert query execution
-$sql = "INSERT INTO product  VALUES ('$no'
-,'$status','$p1','$p2','$p3','$stock','$location','$sake_brewer',
-'$name','$volume','$unit')";
-
-if (mysqli_query($conn, $sql)) {
-    echo "<h3>Data stored in a database successfully."
-        . " Please browse your localhost"
-        . " to view the updated data</h3>";
-
-    echo nl2br("No : $no\n"
-        . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
-} else {
-    // echo "ERROR : Invalid input $sql. "
-    // . mysqli_error($conn);
-    echo "ERROR : Invalid input. "
-        . mysqli_error($conn);
-}
-mysqli_close($conn);
+?>

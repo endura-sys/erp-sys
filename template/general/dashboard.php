@@ -81,7 +81,7 @@
 
 
 
-                
+
 
 
                 <section class="row">
@@ -93,25 +93,51 @@
                                 $('#datetimepicker').datetimepicker({
                                     format: 'dd-mm-yyyy',
                                     defaultDate: new Date(),
-                                    todayBtn : true,
-                                    minView: 2, 
-                                    pickTime: false, 
+                                    todayBtn: true,
+                                    minView: 2,
+                                    pickTime: false,
                                     language: 'zh-CN'
                                 });
                             });
                         </script>
                         <div class="form-group">
                             <div class="input-group date" id="datetimepicker">
-                                <input type="text" class="form-control" />
+                                <input id="today-date" type="text" class="form-control" value="<?php echo date('d-m-Y') ?>" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
+                                <!-- <button class="btn" id="submit">Submit</button> -->
                             </div>
                         </div>
                     </div>
-
                     <!-- Date picker -->
 
+                    <!-- include get Grap data -->
+                    <?php include('getGraphData/getGraphData.php'); ?>
+                    <script>
+                        $(function() {
+                            $("#today-date").on('change', function() {
+                                var x = $('#today-date').val();
+                                // var date321 = document.getElementById("today-date").value;
+                                $.ajax({
+                                    type: 'post',
+                                    //url: base_url,
+                                    success: function(x) {
+                                        var x = $('#today-date').val();
+                                        console.log(x);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    <!-- <script>
+                        var x = document.getElementById("date").value;
+                        console.log(x);
+                    </script> -->
+                    <!-- include get Grap data -->
+
+
+                    <!-- Date picker -->
                     <div class="col-12 col-lg-12">
                         <div class="row">
                             <div class="col-6 col-lg-3 col-md-6">
@@ -327,6 +353,14 @@
                 <script src="template/assets/vendors/apexcharts/apexcharts.js"></script>
                 <script src="template/assets/js/pages/dashboard.js"></script>
                 <!-- Passing the graph value to js -->
+
+                <script>
+                    n = new Date();
+                    y = n.getFullYear();
+                    m = n.getMonth() + 1;
+                    d = n.getDate();
+                    // document.getElementById("date").value = d + "-" + m + "-" + y;
+                </script>
 
             </footer>
         </div>
