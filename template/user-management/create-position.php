@@ -112,9 +112,9 @@
                       <div class="form-group position-relative has-icon-left mb-4">
                         <select name="access_level" class="form-control form-control-xl" placeholder="Select Position">
                           <option value="">Select Access Level</option>
-                          <option value="High">Super Admin</option>
-                          <option value="Medium">Corporate Admin</option>
-                          <option value="Low">Stuff</option>
+                          <option value="High">High</option>
+                          <option value="Medium">Medium</option>
+                          <option value="Low">Low</option>
                         </select>
                         <div class="form-control-icon">
                           <i class="bi bi-briefcase"></i>
