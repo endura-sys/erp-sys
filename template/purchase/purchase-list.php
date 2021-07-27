@@ -58,95 +58,176 @@
                                 data-bs-target="#border-add">
                                 Add new data
                             </button>
-                                <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
-                                    role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Add new data</h5>
-                                                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <i data-feather="x"></i>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form data-target="#border-added" method="post">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
+                            <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
+                                role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Add new purchase</h5>
+                                            <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i data-feather="x"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form data-target="#border-added" method="post">
+                                                <div class="row">
 
-                                                            <div class="form-group">
-                                                                <label for="purchasing_id">Purchasing id:</label>
-                                                                <input type="integegr" class="form-control" name="purchasing_id" id="Purchasing id" placeholder="">
-                                                            </div>
+                                                  <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
 
+                                                          <?php
+                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
-                                                            <div class="form-group">
-                                                                <label for="product_id">Product id:</label>
-                                                                <input type="integer" class="form-control" name="product_id" id="Product id" placeholder="">
-                                                            </div>
+                                                            $sql_purchase = "SELECT MAX(purchasing_id) FROM purchase";
+                                                            $result_purchase = $conn->query($sql_purchase);
+                                                            $row_purchase = $result_purchase->fetch_assoc();
+                                                            $purchase = (int) $row_purchase["MAX(purchasing_id)"];
+                                                            $purchase++;
 
+                                                          ?>
 
-                                                            <div class="form-group">
-                                                                <label for="quantity">Quantity:</label>
-                                                                <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="account_payable">Account payable:</label>
-                                                                <input type="integer" class="form-control" name="account_payable" id="Account_payable" placeholder="">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="supplier_id">Supplier id:</label>
-                                                                <input type="integer" class="form-control" name="supplier_id" id="Supplier id" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="employee_id">Employee id:</label>
-                                                                <input type="integer" class="form-control" name="employee_id" id="Employee id" placeholder="">
-                                                            </div>
-
+                                                            <label for=purchasing_id>Purchasing ID:</label>
+                                                            <input type="integer" class="form-control" name="purchasing_id" value="<?php echo $purchase; ?>">
                                                         </div>
+                                                  </div>
 
-                                                        <div class="col-md-6">
-
-                                                            <div class="form-group">
-                                                                <label for="production_date">Production date:</label>
-                                                                <input type="date" class="form-control" name="production_date" id="Production date" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="purchasing_date">Purchasing date:</label>
-                                                                <input type="date" class="form-control" name="purchasing_date" id="Purchasing date" placeholder="">
-                                                            </div>
+                                                  <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="supplier_id">Supplier ID:</label>
+                                                            <select name="supplier_id" class="form-control form-control-md" >
+                                                              <option value="">Select Supplier ID</option>
+                                                              <?php
+                                                              $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
 
-                                                            <div class="form-group">
-                                                                <label for="shelf_date">Shelf date:</label>
-                                                                <input type="date" class="form-control" name="shelf_date" id="Shelf date" placeholder="">
-                                                            </div>
+                                                              $sql0 = "SELECT supplier_id, supplier_name FROM supplier";
+                                                              $result0 = $conn->query($sql0);
+                                                              while($row0 = $result0->fetch_assoc()) {
+                                                                ?>
+                                                                <option value="<?php echo $row0["supplier_id"]?>"><?php echo $row0["supplier_name"];?></option>
 
+                                                              <?php
+                                                            }
+
+                                                            ?>
+                                                            </select>
                                                         </div>
-                                                    </div>
+                                                  </div>
 
-                                                    <div class="modal-footer">
-                                                        <form data-target="#border-added" method="post">
-                                                            <input type="submit" class="btn-check" value="Submit" id='submit'>
-                                                            <label class="btn btn-primary" for="submit">Submit</label>
-                                                        </form>
-                                                        <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
-                                                            <i class="bx bx-check d-block d-sm-none"></i>
-                                                            <span class="d-none d-sm-block">Close</span>
+                                                  <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="employee_id">Employee ID:</label>
+                                                            <select name="employee_id" class="form-control form-control-md" >
+                                                              <option value="">Select Employee ID</option>
+                                                              <?php
+                                                              $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+
+                                                              $sql0 = "SELECT employee_id, firstname FROM employee";
+                                                              $result0 = $conn->query($sql0);
+                                                              while($row0 = $result0->fetch_assoc()) {
+                                                                ?>
+                                                                <option value="<?php echo $row0["employee_id"]?>"><?php echo $row0["firstname"];?></option>
+
+                                                              <?php
+                                                            }
+
+                                                            ?>
+                                                            </select>
+                                                        </div>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="production_date">Production date:</label>
+                                                            <input type="date" class="form-control" name="production_date">
+                                                        </div>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="shelf_life">Shelf life:</label>
+                                                            <input type="varchar" class="form-control" name="shelf_life">
+                                                        </div>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="payment_status">Payment status:</label>
+                                                            <input type="varchar" class="form-control" name="payment_status">
+                                                        </div>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="shelf_date">Shelf date:</label>
+                                                            <input type="date" class="form-control" name="shelf_date">
+                                                        </div>
+                                                  </div>
+
+                                                  <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="status">Inbound status:</label>
+                                                            <select name="status" class="form-control form-control-md" >
+                                                              <option value="">Select Status</option>
+                                                              <option value="1">Yes</option>
+                                                              <option value="0">No</option>
+                                                            </select>
+                                                        </div>
+                                                  </div>
+
+                                                  <div class="form-group">
+                                                    <table class = "table">
+                                                      <thead>
+                                                        <tr>
+                                                          <th class="col-sm-6 col-md-6">Product ID:</th>
+                                                          <th class="col-sm-6 col-md-6">Quantity:</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody id="tbody">
+                                                        <tr>
+                                                            <th>
+                                                                <input type="integer" class="form-control" name="product_id[]">
+                                                            </th>
+
+                                                            <th>
+                                                                <input type="integer" class="form-control" name="quantity[]">
+                                                            </th>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </div>
+
+                                                  <div class="row">
+                                                    <div class="col-sm-6 col-md-6">
+                                                      <div class="form-group">
+                                                        <button type="button" class="btn btn-primary" onclick="add()">
+                                                            <i class="bi bi-plus-circle"></i>
                                                         </button>
+                                                      </div>
                                                     </div>
+                                                  </div>
+                                                </div>
 
-                                                </form>
-                                            </div>
+
+                                                <div class="modal-footer">
+                                                    <form data-target="#border-added" method="post">
+                                                        <input type="submit" class="btn-check" value="Submit" id='submit'>
+                                                        <label class="btn btn-primary" for="submit">Submit</label>
+                                                    </form>
+                                                    <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Close</span>
+                                                    </button>
+                                                </div>
+
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
                             <div class="modal fade text-left modal-borderless" id="border-added" tabindex="-1"
                                 role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -173,37 +254,26 @@
                                                             }
 
                                                             $purchasing_id =  $_REQUEST['purchasing_id'];
-                                                            $product_id =  $_REQUEST['product_id'];
-                                                            $quantity = $_REQUEST['quantity'];
-                                                            $account_payable = $_REQUEST['account_payable'];
                                                             $supplier_id = $_REQUEST['supplier_id'];
                                                             $employee_id = $_REQUEST['employee_id'];
                                                             $production_date = $_REQUEST['production_date'];
-                                                            $purchasing_date = $_REQUEST['purchasing_date'];
+                                                            $shelf_life = $_REQUEST['shelf_life'];
+                                                            $payment_status = $_REQUEST['payment_status'];
                                                             $shelf_date = $_REQUEST['shelf_date'];
+                                                            $status = $_REQUEST['status'];
+                                                            $product =  $_REQUEST['product_id'];
+                                                            $quantity = $_REQUEST['quantity'];
+
 
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO purchase VALUES ('$purchasing_id', '$account_payable',
-                                                            '$supplier_id','$employee_id','$production_date','$purchasing_date','$shelf_date')";
+                                                            $sql = "INSERT INTO purchase VALUES ('$purchasing_id','$supplier_id','$employee_id','$production_date','$shelf_life','$shelf_date','$payment_status','$status')";
+                                                            $result = $conn->query($sql);
 
-                                                            $sql_puchase_list = "INSERT INTO purchase_list VALUES ('$purchasing_id','$product_id','$quantity')";
-
-
-                                                            if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully."
-                                                                . " Please browse your localhost"
-                                                                . " to view the updated data</h3>";
-
-                                                                echo nl2br("Purchasing id : $purchasing_id\n"
-                                                                    . "Production id : $product_id\nQuantity : $quantity\nSupplier id : $supplier_id\nEmployee id : $employee_id\nProduction date : $production_date\nPurchasing date : $purchasing_date\nShelf date : $shelf_date");
-                                                            } else{
-                                                                // echo "ERROR : Invalid input $sql. "
-                                                                // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. "
-                                                                . mysqli_error($conn);
+                                                            $N = count($product);
+                                                            for($i = 0; $i < $N; $i++) {
+                                                              $sql2 = "INSERT INTO purchase_items_list VALUES ('$purchasing_id', '$product[$i]', '$quantity[$i]')";
+                                                              $result2 = $conn->query($sql2);
                                                             }
-
-                                                            $result_purchase_list=$conn->query($sql_puchase_list);
 
                                                             mysqli_close($conn);
                                                         ?>
@@ -428,5 +498,15 @@
     </div>
 
     <?php include('../footer.php'); ?>
+
+    <script>
+      function add() {
+        var html = "<th><input type='integer' class='form-control' name='product_id[]'></th>";
+        html += "<th><input type='integer' class='form-control' name='quantity[]'></th>";
+        var table = document.getElementById("tbody");
+        var row = table.insertRow();
+        row.innerHTML = html;
+      }
+    </script>
 
 </body>
