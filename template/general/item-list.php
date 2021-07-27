@@ -389,8 +389,7 @@
                                         echo $product_list[0][1];
                                         CloseCon($conn);
                                     ?>
-
-
+                                    <!-- Connect to the database -->
                                 </tbody>
 
                             </table>
