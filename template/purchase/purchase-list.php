@@ -304,13 +304,14 @@
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>Purchasing ID</th>
-                                        <th>Account Payable</th>
                                         <th>Supplier ID</th>
                                         <th>Employee ID</th>
                                         <th>Production Date</th>
-                                        <th>Purchasing Date</th>
+                                        <th>Shelf Life</th>
                                         <th>Shelf Date</th>
+                                        <th>Payment Status</th>
                                         <th>Inbound Status</th>
                                     </tr>
                                 </thead>
@@ -331,7 +332,7 @@
                                             // output data of each row
                                             while($row = $result->fetch_assoc()) {
                                                 $status=false;
-                                                $sql_inbound_status = "SELECT purchasing_id FROM inbound_items WHERE purchasing_id= '" . $row["purchasing_id"] . "'  ";
+                                                $sql_inbound_status = "SELECT * FROM inbound_items_list WHERE purchasing_id= '" . $row["purchasing_id"] . "'";
                                                 $result_inbound_status=$conn->query($sql_inbound_status);
                                                 if($result_inbound_status->num_rows > 0){
                                                   $status=true;
@@ -339,11 +340,12 @@
 
                                                 ?><tr>
                                                   <td><input type="checkbox" name="checkbox[]" class="form-check-input" id="checkbox<?php echo $row["purchasing_id"]?>" value="<?php echo $row["purchasing_id"]?>" <?php if($status==true){echo disabled;}?>>
-                                                      <label for="checkbox<?php echo $row["purchasing_id"]?>"><?php echo $row["purchasing_id"]?></label>
+                                                      <label for="checkbox<?php echo $row["purchasing_id"]?>"></label>
                                                   </td>
+                                                  <td><?php echo $row["purchasing_id"]?></td>
 
                                                 <?php
-                                                echo "<td>" . $row["account_payable"] ."</td><td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["purchasing_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>";
+                                                echo "<td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["shelf_life"] ."</td><td>" .$row["shelf_date"] ."</td><td>" .$row["payment_status"] ."</td><td>";
                                                 ?>
                                                 <?php  if ($status==true){ ?>
                                                 	 <spam class="badge bg-success" >Confirmed</span>
@@ -374,7 +376,7 @@
                                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Confirm</h5>
+                                            <h5 class="modal-title">Inbound Confirmation</h5>
                                             <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
                                                 aria-label="Close">
                                                 <i data-feather="x"></i>
@@ -387,18 +389,45 @@
                                                     <div class="col-md-6">
 
                                                         <div class="form-group">
-                                                            <label for="employee_id">Employee id:</label>
-                                                            <input type="integer" class="form-control" name="employee_id" id="Employee id" placeholder="">
+                                                            <label for=inbound_id>Inbound ID:</label>
+                                                            <?php
+                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+                                                            $sql_inbound = "SELECT MAX(inbound_id) FROM inbound";
+                                                            $result_inbound = $conn->query($sql_inbound);
+                                                            $row_inbound = $result_inbound->fetch_assoc();
+                                                            $inbound = (int) $row_inbound["MAX(inbound_id)"];
+                                                            $inbound++;
+                                                            ?>
+                                                            <input type="integer" class="form-control" name="inbound_id" id="inbound_id" value="<?php echo $inbound; ?>" placeholder="">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="employee_id">Employee ID:</label>
+                                                            <select name="employee_id" class="form-control form-control-md" >
+                                                              <option value="">Select Employee ID</option>
+                                                              <?php
+                                                              $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+
+                                                              $sql0 = "SELECT employee_id, firstname FROM employee";
+                                                              $result0 = $conn->query($sql0);
+                                                              while($row0 = $result0->fetch_assoc()) {
+                                                              ?>
+                                                                <option value="<?php echo $row0["employee_id"]?>"><?php echo $row0["firstname"];?></option>
+                                                              <?php
+                                                            }
+                                                            ?>
+                                                            </select>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="inbound_date">Inbound date:</label>
-                                                            <input type="date" class="form-control" name="inbound_date" id="Inbound date" placeholder="">
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="shelf_date">Shelf date:</label>
-                                                            <input type="date" class="form-control" name="shelf_date" id="Shelf date" placeholder="">
+                                                            <?php
+                                                            date_default_timezone_set('Asia/Hong_Kong');
+                                                            $date = date('Y-m-d');
+                                                            ?>
+                                                            <input type="date" class="form-control" name="inbound_date" id="Inbound date" value="<?php echo $date;?>" placeholder="">
                                                         </div>
 
                                                     </div>
@@ -407,13 +436,14 @@
 
                                                         <div class="form-group">
                                                             <label for="inbound_way">Inbound Way:</label>
-                                                            <input type="Text" class="form-control" name="inbound_way" id="Inbound_way" placeholder="">
+                                                            <input type="varchar" class="form-control" name="inbound_way" id="Inbound_way" placeholder="">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="inbound_cost">Inbound Cost:</label>
-                                                            <input type="Text" class="form-control" name="inbound_cost" id="inbound_cost" placeholder="">
+                                                            <input type="integer" class="form-control" name="inbound_cost" id="inbound_cost" placeholder="">
                                                         </div>
+
                                                     </div>
                                                 </div>
 
@@ -436,39 +466,35 @@
                               if (isset($_POST['confirminbound'])) {
                                 $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
+                                $confirm_inbound_id = $_POST["inbound_id"];
                                 $confirm_employee_id = $_POST["employee_id"];
                                 $confirm_inbound_date = $_POST["inbound_date"];
-                                $confirm_shelf_date = $_POST["shelf_date"];
                                 $confirm_inbound_way = $_POST["inbound_way"];
                                 $confirm_inbound_cost = $_POST["inbound_cost"];
 
-                                $sql = "INSERT INTO inbound (employee_id, inbound_date, shelf_date, inbound_way, inbound_cost) VALUES ('$confirm_employee_id', '$confirm_inbound_date', CURRENT_TIMESTAMP, '$confirm_inbound_way', '$confirm_inbound_cost')";
+                                $sql = "INSERT INTO inbound VALUES ('$confirm_inbound_id','$confirm_employee_id', '$confirm_inbound_date', '$confirm_inbound_way', '$confirm_inbound_cost')";
                                 $result = $conn->query($sql);
 
                                 $id=$_POST['checkbox'];
                                 $N=count($id);
 
-                                $sql2 = "SELECT MAX(inbound_id) FROM inbound";
-                                $result2 = $conn->query($sql2);
-                                $row = $result2->fetch_assoc();
-                                $in_id = $row["MAX(inbound_id)"];
-
                                 for($i=0; $i<$N; $i++){
 
-                                  $sql7 = "INSERT INTO `inbound_items` (`inbound_id`, `purchasing_id`) VALUES ('$in_id', '$id[$i]')";
-                                  $result = $conn->query($sql7);
+                                  $sql = "INSERT INTO inbound_items_list VALUES ('$confirm_inbound_id', '$id[$i]')";
+                                  $result = $conn->query($sql);
 
-                                  $sql2 = "SELECT product_id, quantity FROM purchase_list where purchasing_id='". $id[$i] ."'";
-                                  $result2 = $conn->query($sql2);
-                                  while($row2 = $result2->fetch_assoc()) {
-                                    $product = $row2["product_id"];
-                                    $quantity = $row2["quantity"];
-                                    $sql = "SELECT `stock` FROM `stock_list` WHERE no='$product'";
-                                    $result = $conn->query($sql);
-                                    $row = $result->fetch_assoc();
-                                    $stock = $row["stock"];
+                                  $sql_quantity = "SELECT product_id, quantity FROM purchase_items_list where purchasing_id='". $id[$i] ."'";
+                                  $result_quantity = $conn->query($sql_quantity);
+                                  while($row_quantity = $result_quantity->fetch_assoc()) {
+                                    $product = $row_quantity["product_id"];
+                                    $quantity = $row_quantity["quantity"];
+                                    $sql_stock = "SELECT `stock` FROM `stock` WHERE product_id='$product'";
+                                    $result_stock = $conn->query($sql_stock);
+                                    $row_stock = $result_stock->fetch_assoc();
+                                    $stock = $row_stock["stock"];
+                                    // $newstock = 10;
                                     $newstock = $stock + $quantity;
-                                    $sql3 = "UPDATE `stock_list` SET `stock` = '$newstock' WHERE `stock_list`.`no` = '$product'";
+                                    $sql3 = "UPDATE `stock` SET `stock` = '$newstock' WHERE `stock`.`product_id` = '$product'";
                                     $result3 = $conn->query($sql3);
                                   }
                                 }
