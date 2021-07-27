@@ -73,7 +73,7 @@
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
 
-                                                      <div class="col-sm-6 col-md-2">
+                                                      <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
 
                                                               <?php
@@ -88,11 +88,11 @@
                                                               ?>
 
                                                                 <label for=sale_id>Sale ID:</label>
-                                                                <input type="integer" class="form-control" name="sale_id" id="Sale_id" value="<?php echo $sale; ?>">
+                                                                <input type="integer" class="form-control" name="sale_id" value="<?php echo $sale; ?>">
                                                             </div>
                                                       </div>
 
-                                                      <div class="col-sm-6 col-md-2">
+                                                      <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="customer_id">Customer ID:</label>
                                                                 <select name="customer_id" class="form-control form-control-md" >
@@ -115,7 +115,7 @@
                                                             </div>
                                                       </div>
 
-                                                      <div class="col-sm-6 col-md-2">
+                                                      <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="employee_id">Employee ID:</label>
                                                                 <select name="employee_id" class="form-control form-control-md" >
@@ -138,21 +138,21 @@
                                                             </div>
                                                       </div>
 
-                                                      <div class="col-sm-6 col-md-2">
+                                                      <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="sale_date">Sale date:</label>
-                                                                <input type="date" class="form-control" name="sale_date" id="Sale_date" placeholder="">
+                                                                <input type="date" class="form-control" name="sale_date">
                                                             </div>
                                                       </div>
 
-                                                      <div class="col-sm-6 col-md-2">
+                                                      <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="sale_time">Sale time:</label>
-                                                                <input type="time" class="form-control" name="sale_time" id="Sale_time" placeholder="">
+                                                                <input type="time" class="form-control" name="sale_time">
                                                             </div>
                                                       </div>
 
-                                                      <div class="col-sm-6 col-md-2">
+                                                      <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="payment_method">Payment method:</label>
                                                                 <select name="payment_method" class="form-control form-control-md" >
@@ -161,6 +161,24 @@
                                                                   <option value="credit card">Credit Card</option>
                                                                   <option value="alipay">Alipay</option>
                                                                   <option value="FPS">FPS</option>
+                                                                </select>
+                                                            </div>
+                                                      </div>
+
+                                                      <div class="col-sm-6 col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="expect_outbound_date">Expect outbound date:</label>
+                                                                <input type="date" class="form-control" name="expect_outbound_date">
+                                                            </div>
+                                                      </div>
+
+                                                      <div class="col-sm-6 col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="status">Outbound status:</label>
+                                                                <select name="status" class="form-control form-control-md" >
+                                                                  <option value="">Select Status</option>
+                                                                  <option value="1">Yes</option>
+                                                                  <option value="0">No</option>
                                                                 </select>
                                                             </div>
                                                       </div>
@@ -199,7 +217,7 @@
                                                         <div class="col-sm-6 col-md-6 d-flex justify-content-end">
                                                               <div class="form-group">
                                                                   <label for="total_sale">Total sale:</label>
-                                                                  <input type="varchar" class="form-control" name="total_sale" id="total_sale" placeholder="">
+                                                                  <input type="varchar" class="form-control" name="total_sale">
                                                               </div>
                                                         </div>
                                                       </div>
@@ -253,12 +271,14 @@
                                                             $sale_date = $_REQUEST['sale_date'];
                                                             $sale_time = $_REQUEST['sale_time'];
                                                             $payment_method = $_REQUEST['payment_method'];
+                                                            $expect_outbound_date = $_REQUEST['expect_outbound_date'];
+                                                            $status = $_REQUEST['status'];
                                                             $product = $_REQUEST['product_id'];
                                                             $quantity = $_REQUEST['quantity'];
                                                             $total_sale = $_REQUEST['total_sale'];
 
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO sales VALUES ('$sale_id','$customer_id','$employee_id','$sale_date','$sale_time','$payment_method','$total_sale')";
+                                                            $sql = "INSERT INTO sales VALUES ('$sale_id','$customer_id','$employee_id','$sale_date','$sale_time','$payment_method','$total_sale', '$expect_outbound_date','$status')";
                                                             $result = $conn->query($sql);
 
                                                             $N = count($product);
