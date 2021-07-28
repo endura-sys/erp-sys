@@ -30,6 +30,9 @@
           $sql = "INSERT INTO `outbound_items_list` (`outbound_id`, `sale_id`) VALUES ('$outbound_id', '$id[$i]')";
           $result = $conn->query($sql);
 
+          $sql_status = "UPDATE sales SET is_outbound = '1' WHERE sale_id='" . $id[$i] . "'";
+          $result = $conn->query($sql_status);
+
           $sql2 = "SELECT product_id, quantity FROM sale_items_list where sale_id='". $id[$i] ."'";
           $result2 = $conn->query($sql2);
           while($row2 = $result2->fetch_assoc()) {

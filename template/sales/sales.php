@@ -356,7 +356,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT sale_id, customer_id, employee_id, sale_date, sale_time, payment_method, total_sale FROM sales";
+                                        $sql = "SELECT * FROM sales";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -364,17 +364,11 @@
                                         if ($result->num_rows > 0) {
                                             // output data of each row
                                             while($row = $result->fetch_assoc()) {
-                                                // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
-                                                // echo $product_list[0][2];
-                                                // print_r($product_list);
                                                 $status = false;
-                                                $sql2 = "SELECT * FROM outbound_items_list where sale_id ='" . $row["sale_id"] ."'";
-                                                $result2 = $conn->query($sql2);
-                                                if($result2->num_rows > 0) {
+                                                if ($row["is_outbound"] == 1) {
                                                   $status = true;
-                                                } else {
-                                                  $status = false;
-                                                } ?>
+                                                }
+                                                ?>
                                                 <tr>
                                                   <?php if($status == true) { ?>
                                                     <td><input type="checkbox" name="outbound[]" class="form-check-input" value="<?php echo $row["sale_id"]?>" disabled></td>
@@ -418,7 +412,16 @@
 
                                           <div class="form-group">
                                               <label for=outbound_id>Outbound ID:</label>
-                                              <input type="integer" class="form-control" name="outbound_id" id="outbound_id" placeholder="">
+                                              <?php
+                                              $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+                                              $sql_outbound = "SELECT MAX(outbound_id) FROM outbound";
+                                              $result_outbound = $conn->query($sql_outbound);
+                                              $row_outbound = $result_outbound->fetch_assoc();
+                                              $outbound = (int) $row_outbound["MAX(outbound_id)"];
+                                              $outbound++;
+                                              ?>
+                                              <input type="integer" class="form-control" name="outbound_id" id="outbound_id" value="<?php echo $outbound; ?>" placeholder="">
                                           </div>
 
                                           <div class="form-group">
@@ -426,9 +429,6 @@
                                               <select name="employee_id" class="form-control form-control-md" >
                                                 <option value="">Select Employee ID</option>
                                                 <?php
-                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
-
-
                                                 $sql0 = "SELECT employee_id, firstname FROM employee";
                                                 $result0 = $conn->query($sql0);
                                                 while($row0 = $result0->fetch_assoc()) {

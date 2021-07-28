@@ -14,6 +14,7 @@ RewriteRule ^update-list /template/general/update-list.php [L,QSA,NC]
 
 
 RewriteRule ^inbound-list /template/inbound/inbound-list.php [L,QSA,NC]
+RewriteRule ^inbound-info /template/inbound/inbound-info.php [L,QSA,NC]
 RewriteRule ^outbound-list /template/outbound/outbound-list.php [L,QSA,NC]
 RewriteRule ^purchase-list /template/purchase/purchase-list.php [L,QSA,NC]
 RewriteRule ^purchase-info /template/purchase/purchase-info.php [L,QSA,NC]
