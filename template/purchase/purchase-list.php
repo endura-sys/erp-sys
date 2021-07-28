@@ -312,6 +312,7 @@
                                         <th>Shelf Life</th>
                                         <th>Shelf Date</th>
                                         <th>Payment Status</th>
+                                        <th>Details</th>
                                         <th>Inbound Status</th>
                                     </tr>
                                 </thead>
@@ -345,8 +346,10 @@
                                                   <td><?php echo $row["purchasing_id"]?></td>
 
                                                 <?php
-                                                echo "<td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["shelf_life"] ."</td><td>" .$row["shelf_date"] ."</td><td>" .$row["payment_status"] ."</td><td>";
+                                                echo "<td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["shelf_life"] ."</td><td>" .$row["shelf_date"] ."</td><td>" .$row["payment_status"] ."</td>";
                                                 ?>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="purchase-info?id=<?php echo $row["purchasing_id"]?>">View</a></td>
+                                                <td>
                                                 <?php  if ($status==true){ ?>
                                                 	 <spam class="badge bg-success" >Confirmed</span>
                                                 <?php } else {?>

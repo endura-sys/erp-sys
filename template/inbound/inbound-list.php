@@ -229,7 +229,6 @@
                                         <th>Inbound ID</th>
                                         <th>Employee ID</th>
                                         <th>Inbound Date</th>
-                                        <th>Sheft Date</th>
                                         <th>Inbound Way</th>
                                         <th>Inbound Cost</th>
                                     </tr>
@@ -253,7 +252,7 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["inbound_id"]. "</td><td>" . $row["employee_id"] ."</td><td>" . $row["inbound_date"] ."</td><td>" .$row["shelf_date"] ."</td><td>" .$row["inbound_way"] ."</td><td>" .$row["inbound_cost"] ."</td><td>" ."</td>";
+                                                echo "<tr><td>" .$row["inbound_id"]. "</td><td>" . $row["employee_id"] ."</td><td>" . $row["inbound_date"] ."</td><td>" .$row["inbound_way"] ."</td><td>" .$row["inbound_cost"] ."</td>";
                                             }
                                         } else {
                                             echo "0 results";
