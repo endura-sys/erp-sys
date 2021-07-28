@@ -19,16 +19,7 @@
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
-                <div class="sidebar-header">
-                    <div class="d-flex justify-content-between">
-                        <div class="logo">
-                            <a href="index.html"><img src="" alt="Logo" srcset=""></a>
-                        </div>
-                        <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <?php include('../datatable-navbar.php'); ?>
 
@@ -78,30 +69,9 @@
 
 
 
-
-
-
-
-
-
                 <section class="row">
-
                     <!-- Date picker -->
                     <div class="col-6 col-lg-3 col-md-3">
-                        <!-- <script type="text/javascript">
-                            $(function() {
-                                $('#datetimepicker').datetimepicker({
-                                    format: 'dd-mm-yyyy',
-                                    defaultDate: new Date(),
-                                    todayBtn: true,
-                                    minView: 2,
-                                    pickTime: false,
-                                    language: 'zh-CN'
-                                });
-                            });
-                        </script> -->
-
-
                         <?php
                         date_default_timezone_set('Asia/Hong_Kong');
                         $date = date('Y-m-d');
@@ -109,30 +79,19 @@
                         <div class="form-group">
                             <input id="today-date" type="date" class="form-control" value="<?php echo $date ?>" />
                         </div>
-
-                        <!-- <div class="form-group">
-                            <div class="input-group date" id="datetimepicker">
-                                <input id="today-date" type="text" class="form-control" value="<?php echo date('d-m-Y') ?>" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                                <button class="btn" id="submit">Submit</button>
-                            </div>
-                        </div> -->
                     </div>
                     <!-- Date picker -->
 
-                    <!-- include get Grap data -->
-                    <?php include('getGraphData/getGraphData.php'); ?>
 
+                    <!-- include get Grap data -->
                     <script>
                         $(function() {
                             $("#today-date").on('change', function() {
                                 var x = $('#today-date').val();
-                                // var date321 = document.getElementById("today-date").value;
                                 $.ajax({
-                                    type: 'post',
+                                    type: 'GET',
                                     //url: base_url,
+                                    data: { "todayDate": $('#today-date').val() },
                                     success: function(x) {
                                         var x = $('#today-date').val();
                                         console.log(x);
@@ -141,14 +100,23 @@
                             });
                         });
                     </script>
-                    <!-- <script>
-                        var x = document.getElementById("date").value;
-                        console.log(x);
-                    </script> -->
+
+                    <?php
+                    include('getGraphData/getGraphData.php');
+                    echo var_dump(getTodaySale($_GET["todayDate"]));
+                    ?>
+
+
+
+
+
+
+
+
                     <!-- include get Grap data -->
 
 
-                    <!-- Date picker -->
+                    <!-- data in dashboard -->
                     <div class="col-12 col-lg-12">
                         <div class="row">
                             <div class="col-6 col-lg-3 col-md-6">
@@ -232,112 +200,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="row">
-                            <div class="col-12 col-xl-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Profile Visit</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <svg class="bi text-primary" width="32" height="32" fill="blue" style="width:10px">
-                                                        <use xlink:href="template/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-                                                    <h5 class="mb-0 ms-3">Europe</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <h5 class="mb-0">862</h5>
-                                            </div>
-                                            <div class="col-12">
-                                                <div id="chart-europe"></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <svg class="bi text-success" width="32" height="32" fill="blue" style="width:10px">
-                                                        <use xlink:href="template/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-                                                    <h5 class="mb-0 ms-3">America</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <h5 class="mb-0">375</h5>
-                                            </div>
-                                            <div class="col-12">
-                                                <div id="chart-america"></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <svg class="bi text-danger" width="32" height="32" fill="blue" style="width:10px">
-                                                        <use xlink:href="template/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-                                                    <h5 class="mb-0 ms-3">Indonesia</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <h5 class="mb-0">1025</h5>
-                                            </div>
-                                            <div class="col-12">
-                                                <div id="chart-indonesia"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-xl-8">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Latest Comments</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover table-lg">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Comment</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="col-3">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                </div>
-                                                                <p class="font-bold ms-3 mb-0">Si Cantik</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                            <p class=" mb-0">Congratulations on your graduation!</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="col-3">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                </div>
-                                                                <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                            <p class=" mb-0">Wow amazing design! Can you make another
-                                                                tutorial for
-                                                                this design?</p>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
 
 
