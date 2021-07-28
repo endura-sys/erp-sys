@@ -77,14 +77,26 @@
                         $date = date('Y-m-d');
                         ?>
                         <div class="form-group">
-                            <input id="today-date" type="date" class="form-control" value="<?php echo $date ?>" />
+                            <input id="today-date" name="todayDate" type="date" class="form-control" value="<?php echo $date ?>" />
                         </div>
                     </div>
                     <!-- Date picker -->
 
-
-                    <!-- include get Grap data -->
                     <script>
+                        $(function() {
+                            $("#today-date").on('change', function() {
+                                $.ajax({
+                                    type: 'GET',
+                                    //url: base_url,
+                                    success: function(x) {
+                                        <?php echo 12313 ?>
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    <!-- include get Grap data -->
+                    <!-- <script>
                         $(function() {
                             $("#today-date").on('change', function() {
                                 var x = $('#today-date').val();
@@ -99,15 +111,13 @@
                                 });
                             });
                         });
-                    </script>
+                    </script> -->
 
                     <?php
+                    echo $_GET["todayDate"];
                     include('getGraphData/getGraphData.php');
                     echo var_dump(getTodaySale($_GET["todayDate"]));
                     ?>
-
-
-
 
 
 
@@ -130,7 +140,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Alipay</h6>
-                                                <h6 class="font-extrabold mb-0">0</h6>
+                                                <h6 class="font-extrabold mb-0" id="alipaySale">0</h6>
                                             </div>
                                         </div>
                                     </div>
