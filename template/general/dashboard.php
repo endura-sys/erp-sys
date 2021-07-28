@@ -88,7 +88,7 @@
 
                     <!-- Date picker -->
                     <div class="col-6 col-lg-3 col-md-3">
-                        <script type="text/javascript">
+                        <!-- <script type="text/javascript">
                             $(function() {
                                 $('#datetimepicker').datetimepicker({
                                     format: 'dd-mm-yyyy',
@@ -99,21 +99,32 @@
                                     language: 'zh-CN'
                                 });
                             });
-                        </script>
+                        </script> -->
+
+
+                        <?php
+                        date_default_timezone_set('Asia/Hong_Kong');
+                        $date = date('Y-m-d');
+                        ?>
                         <div class="form-group">
+                            <input id="today-date" type="date" class="form-control" value="<?php echo $date ?>" />
+                        </div>
+
+                        <!-- <div class="form-group">
                             <div class="input-group date" id="datetimepicker">
                                 <input id="today-date" type="text" class="form-control" value="<?php echo date('d-m-Y') ?>" />
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
-                                <!-- <button class="btn" id="submit">Submit</button> -->
+                                <button class="btn" id="submit">Submit</button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- Date picker -->
 
                     <!-- include get Grap data -->
                     <?php include('getGraphData/getGraphData.php'); ?>
+
                     <script>
                         $(function() {
                             $("#today-date").on('change', function() {
