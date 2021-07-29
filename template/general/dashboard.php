@@ -19,7 +19,7 @@
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
-                
+
 
                 <?php include('../datatable-navbar.php'); ?>
 
@@ -81,17 +81,99 @@
                         </div>
                     </div>
                     <!-- Date picker -->
+                    
 
                     <script>
                         $(function() {
+                            var date = $('#today-date').val();
+
+                            $.ajax({
+                                url:'getGraphData',
+                                method:'POST',
+                                data:{
+                                    todayDate: date,
+                                },
+                                success:function(response){
+
+                                    const result = response.split(",");
+                                    document.getElementById("alipaySale").innerHTML = result[0];
+                                    document.getElementById("fpsSale").innerHTML = result[1];
+                                    document.getElementById("cashSale").innerHTML = result[2];
+                                    // alert(result[2]);
+                                    // alert(response);
+                                }
+                            });
+                            
+                            // jQuery.ajax({
+                            //     type: "GET",
+                            //     url: 'getGraphData',
+                            //     dataType: 'json',
+                            //     data: {
+                            //         functionname: 'getTodaySale',
+                            //         arguments: [date]
+                            //     },
+                            //     success: function(obj, textstatus) {
+                            //         console.log(123);
+                            //         if (!('error' in obj)) {
+                            //             yourVariable = obj.result;
+                            //             console.log(yourVariable);
+                            //             console.log(obj);
+                            //         } else {
+                            //             console.log(obj.error);
+                            //         }
+                            //     }
+                            // });
+
                             $("#today-date").on('change', function() {
+                                date = $('#today-date').val();
+                                var alipaySale = $('#alipaySale').val();
+
                                 $.ajax({
-                                    type: 'GET',
-                                    //url: base_url,
-                                    success: function(x) {
-                                        <?php echo 12313 ?>
-                                    }
-                                });
+                                url:'getGraphData',
+                                method:'POST',
+                                data:{
+                                    todayDate: date,
+                                },
+                                success:function(response){
+                                    const result = response.split(",");
+                                    document.getElementById("alipaySale").innerHTML = result[0];
+                                    document.getElementById("fpsSale").innerHTML = result[1];
+                                    document.getElementById("cashSale").innerHTML = result[2];
+                                    // alert(result[0] + result[1] + result[2]);
+                                    // alert(response);
+                                    // alert(JSON.parse(response.fps));
+                                }
+                            });
+
+                                // $.ajax({
+                                //     type: 'GET',
+                                //     //url: base_url,
+                                //     success: function(x) {
+                                //         // document.cookie = "date=", date;
+                                //         // console.log(date);
+                                //         document.getElementById("alipaySale").innerHTML = <?php echo $alipaySale + 1 ?>;
+                                //     }
+                                // });
+                                // jQuery.ajax({
+                                //     type: "POST",
+                                //     url: 'getGraphData',
+                                //     dataType: 'json',
+                                //     data: {
+                                //         functionname: 'getTodaySale',
+                                //         arguments: [date]
+                                //     },
+
+                                //     success: function(obj, textstatus) {
+                                //         console.log(123);
+                                //         if (!('error' in obj)) {
+                                //             yourVariable = obj.result;
+                                //             console.log(yourVariable);
+                                //             console.log(obj);
+                                //         } else {
+                                //             console.log(obj.error);
+                                //         }
+                                //     }
+                                // });
                             });
                         });
                     </script>
@@ -114,12 +196,9 @@
                     </script> -->
 
                     <?php
-                    echo $_GET["todayDate"];
-                    include('getGraphData/getGraphData.php');
-                    echo var_dump(getTodaySale($_GET["todayDate"]));
+                    $todayDate = $_COOKIE['date'];
+                    // echo var_dump(getTodaySale("2021-07-28"));
                     ?>
-
-
 
 
 
@@ -140,7 +219,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Alipay</h6>
-                                                <h6 class="font-extrabold mb-0" id="alipaySale">0</h6>
+                                                <h6 class="font-extrabold mb-0" id="alipaySale"></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -157,7 +236,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">FPS</h6>
-                                                <h6 class="font-extrabold mb-0">0</h6>
+                                                <h6 class="font-extrabold mb-0" id="fpsSale">0</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -174,7 +253,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Cash</h6>
-                                                <h6 class="font-extrabold mb-0">0</h6>
+                                                <h6 class="font-extrabold mb-0" id="cashSale">0</h6>
                                             </div>
                                         </div>
                                     </div>
