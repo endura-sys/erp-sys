@@ -82,7 +82,7 @@
                     </div>
                     <!-- Date picker -->
                     
-
+                    <!-- Get array value from getGraphData.php -->
                     <script>
                         $(function() {
                             var date = $('#today-date').val();
@@ -96,33 +96,13 @@
                                 success:function(response){
 
                                     const result = response.split(",");
-                                    document.getElementById("alipaySale").innerHTML = result[0];
-                                    document.getElementById("fpsSale").innerHTML = result[1];
-                                    document.getElementById("cashSale").innerHTML = result[2];
-                                    // alert(result[2]);
-                                    // alert(response);
+                                    document.getElementById("alipaySale").innerHTML = result[0] + "";
+                                    document.getElementById("fpsSale").innerHTML = result[1] + "";
+                                    document.getElementById("cashSale").innerHTML = result[2] + "";
+                                    document.getElementById("totalSale").innerHTML = result[3] + "";
                                 }
                             });
                             
-                            // jQuery.ajax({
-                            //     type: "GET",
-                            //     url: 'getGraphData',
-                            //     dataType: 'json',
-                            //     data: {
-                            //         functionname: 'getTodaySale',
-                            //         arguments: [date]
-                            //     },
-                            //     success: function(obj, textstatus) {
-                            //         console.log(123);
-                            //         if (!('error' in obj)) {
-                            //             yourVariable = obj.result;
-                            //             console.log(yourVariable);
-                            //             console.log(obj);
-                            //         } else {
-                            //             console.log(obj.error);
-                            //         }
-                            //     }
-                            // });
 
                             $("#today-date").on('change', function() {
                                 date = $('#today-date').val();
@@ -139,69 +119,13 @@
                                     document.getElementById("alipaySale").innerHTML = result[0];
                                     document.getElementById("fpsSale").innerHTML = result[1];
                                     document.getElementById("cashSale").innerHTML = result[2];
-                                    // alert(result[0] + result[1] + result[2]);
-                                    // alert(response);
-                                    // alert(JSON.parse(response.fps));
+                                    document.getElementById("totalSale").innerHTML = result[3];
                                 }
                             });
 
-                                // $.ajax({
-                                //     type: 'GET',
-                                //     //url: base_url,
-                                //     success: function(x) {
-                                //         // document.cookie = "date=", date;
-                                //         // console.log(date);
-                                //         document.getElementById("alipaySale").innerHTML = <?php echo $alipaySale + 1 ?>;
-                                //     }
-                                // });
-                                // jQuery.ajax({
-                                //     type: "POST",
-                                //     url: 'getGraphData',
-                                //     dataType: 'json',
-                                //     data: {
-                                //         functionname: 'getTodaySale',
-                                //         arguments: [date]
-                                //     },
-
-                                //     success: function(obj, textstatus) {
-                                //         console.log(123);
-                                //         if (!('error' in obj)) {
-                                //             yourVariable = obj.result;
-                                //             console.log(yourVariable);
-                                //             console.log(obj);
-                                //         } else {
-                                //             console.log(obj.error);
-                                //         }
-                                //     }
-                                // });
                             });
                         });
                     </script>
-                    <!-- include get Grap data -->
-                    <!-- <script>
-                        $(function() {
-                            $("#today-date").on('change', function() {
-                                var x = $('#today-date').val();
-                                $.ajax({
-                                    type: 'GET',
-                                    //url: base_url,
-                                    data: { "todayDate": $('#today-date').val() },
-                                    success: function(x) {
-                                        var x = $('#today-date').val();
-                                        console.log(x);
-                                    }
-                                });
-                            });
-                        });
-                    </script> -->
-
-                    <?php
-                    $todayDate = $_COOKIE['date'];
-                    // echo var_dump(getTodaySale("2021-07-28"));
-                    ?>
-
-
-
                     <!-- include get Grap data -->
 
 
@@ -270,7 +194,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Total</h6>
-                                                <h6 class="font-extrabold mb-0">0</h6>
+                                                <h6 class="font-extrabold mb-0" id="totalSale">0</h6>
                                             </div>
                                         </div>
                                     </div>

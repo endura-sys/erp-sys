@@ -45,17 +45,12 @@ function getTodaySale($date)
     $sql1 = "SELECT sale_date, sale_time, payment_method, total_sale FROM sales";
     $result = $conn->query($sql);
 
-    // $alipaySale = 0;
-    // $fpsSale = 0;
-    // $cashSale = 0;
-
-
     // Initial the array
     $product_list = array();
     $product_list['alipay'] += 0;
     $product_list['fps'] += 0;
     $product_list['cash'] += 0;
-
+    $product_list['total'] += 0;
 
     if ($result->num_rows > 0) {
         // output data of each row
@@ -72,18 +67,14 @@ function getTodaySale($date)
             }
         }
     }
-    // array_push($product_list, $alipaySale);
-    // array_push($product_list, $fpsSale);
-    // array_push($product_list, $cashSale);
+    $product_list['total'] += $product_list['alipay'];
+    $product_list['total'] += $product_list['fps'];
+    $product_list['total'] += $product_list['cash'];
     CloseCon($conn);
 
     foreach($product_list as $result) {
         echo $result, ",";
     }
-    
-    // echo $product_list;
-    // echo print_r($product_list);
-    // echo var_dump($product_list);
 }
 
 

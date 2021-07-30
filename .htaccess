@@ -13,7 +13,7 @@ RewriteRule ^supplier-list /template/general/supplier-list.php [L,QSA,NC]
 RewriteRule ^customer-list /template/general/customer-list.php [L,QSA,NC]
 RewriteRule ^update-list /template/general/update-list.php [L,QSA,NC]
 
-RewriteRule ^getGraphdata /template/general/getGraphData/getGraphdata.php [L,QSA,NC]
+RewriteRule ^getGraphData /template/general/getGraphData/getGraphData.php [L,QSA,NC]
 
 # Inbound
 RewriteRule ^inbound-list /template/inbound/inbound-list.php [L,QSA,NC]
