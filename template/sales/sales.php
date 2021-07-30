@@ -174,62 +174,41 @@
                                                             </div>
                                                       </div>
 
-                                                      <div class="form-group">
+
+                                                      <div class=" form-group">
                                                         <table class = "table">
                                                           <thead>
                                                             <tr>
-                                                              <th class="col-sm-5 col-md-5">Product ID:</th>
-                                                              <th class="col-sm-2 col-md-2">Price:</th>
-                                                              <th class="col-sm-5 col-md-5">Quantity:</th>
+                                                              <th class="col-sm-5 col-md-6">Product ID:</th>
+                                                              <th class="col-sm-5 col-md-6">Quantity:</th>
                                                               <th class="col-sm-1 col-md-1"></th>
                                                             </tr>
                                                           </thead>
                                                           <tbody id="tbody">
                                                             <tr>
+                                                                <th><input type="integer" class="form-control" name="product_id[]" required></th>
+                                                                <th><input type="integer" class="form-control" name="quantity[]" required></th>
                                                                 <th>
-                                                                    <input type="integer" class="form-control" name="product_id[]" required>
+                                                                    <button type="button" class="btn btn-primary" onclick="add(this)">Add</button>
                                                                 </th>
 
-                                                                <th>
-                                                                    <select class="form-control form-control-md" name="price[]" required>
-                                                                      <option value="">Select Price</option>
-                                                                      <option value="1">P1</option>
-                                                                      <option value="2">P2</option>
-                                                                      <option value="3">P3</option>
-                                                                    </select>
-                                                                </th>
-
-                                                                <th>
-                                                                    <input type="integer" class="form-control" name="quantity[]" required>
-                                                                </th>
-
-                                                                <th>
+                                                                <!-- <th>
                                                                     <button type="button" class="btn btn-danger" onclick="deleterow(this)">
                                                                         <i class="bi bi-x-circle"></i>
                                                                     </button>
-                                                                </th>
+                                                                </th> -->
 
                                                             </tr>
                                                           </tbody>
                                                         </table>
                                                       </div>
 
-                                                      <div class="row">
-                                                        <div class="col-sm-6 col-md-6">
-                                                          <div class="form-group">
-                                                            <button type="button" class="btn btn-primary" onclick="add()">
-                                                                <i class="bi bi-plus-circle"></i>
-                                                            </button>
-                                                          </div>
-                                                        </div>
-
-                                                        <div class="col-sm-6 col-md-6 d-flex justify-content-end">
+                                                        <div class="d-flex justify-content-end">
                                                               <div class="form-group">
                                                                   <label for="total_sale">Total sale:</label>
-                                                                  <input type="varchar" class="form-control" name="total_sale" required>
+                                                                  <input type="varchar" class="form-control" name="total_sale" id="total" required>
                                                               </div>
                                                         </div>
-                                                      </div>
                                                     </div>
 
 
@@ -517,15 +496,35 @@
     <?php include('../footer.php'); ?>
 
   <script>
-    function add() {
-      var html = "<th><input type='integer' class='form-control' name='product_id[]' required></th>";
-      html += "<th><select class='form-control form-control-md' name='price[]' required><option value=''>Select Price</option><option value='1'>P1</option><option value='2'>P2</option><option value='3'>P3</option></select></th>";
-      html += "<th><input type='integer' class='form-control' name='quantity[]' required></th>";
-      html += "<th><button type='button' class='btn btn-danger' onclick='deleterow(this)'><i class='bi bi-x-circle'></i></button></th>";
+    function add(btn) {
+      var product = btn.parentNode.previousElementSibling.previousElementSibling.firstElementChild.value;
+      var quantity = btn.parentNode.previousElementSibling.firstElementChild.value;
+      if (product != "" && quantity != "") {
+        // $.ajax({
+        //     url:'getTotal',
+        //     method:'POST',
+        //     data:{
+        //         productid: "product",
+        //         quantity: quantity,
+        //     },
+        //     success:function(response){
+        //         alert(response);
+        //         document.getElementById("total").value = response;
+        //     }
+        // });
+        document.getElementById("total").value += product * quantity;
+        btn.className = "btn btn-danger";
+        btn.innerHTML = "Remove";
+        btn.onclick = function() {return deleterow(this)};
 
-      var table = document.getElementById("tbody");
-      var row = table.insertRow();
-      row.innerHTML = html;
+        var html = "<th><input type='integer' class='form-control' name='product_id[]' required></th>";
+        html += "<th><input type='integer' class='form-control' name='quantity[]' required></th>";
+        html += "<th><button type='button' class='btn btn-primary' onclick='add(this)'>Add</button></th>";
+
+        var table = document.getElementById("tbody");
+        var row = table.insertRow();
+        row.innerHTML = html;
+      }
     }
   </script>
 
@@ -536,6 +535,15 @@
       table.deleteRow(i-1);
     }
   </script>
+
+  <!-- <script>
+    function calculate() {
+      var quantity = document.getElementById("q").value;
+      var product = document.getElementById("p").value;
+      if (product != "")
+        document.getElementById("total").value = product * quantity;
+    }
+  </script> -->
 
 </body>
 

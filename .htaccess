@@ -33,6 +33,7 @@ RewriteRule ^sales /template/sales/sales.php [L,QSA,NC]
 RewriteRule ^order-info /template/sales/order-info.php [L,QSA,NC]
 RewriteRule ^branch /template/sales/branch.php [L,QSA,NC]
 RewriteRule ^sales-to-outbound /template/sales/sales-to-outbound.php [L,QSA,NC]
+RewriteRule ^getTotal /template/sales/getTotal.php [L,QSA,NC]
 
 # Login
 RewriteRule ^login /template/auth/login.php [L,QSA,NC]
