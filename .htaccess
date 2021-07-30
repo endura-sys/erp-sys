@@ -13,7 +13,7 @@ RewriteRule ^supplier-list /template/general/supplier-list.php [L,QSA,NC]
 RewriteRule ^customer-list /template/general/customer-list.php [L,QSA,NC]
 RewriteRule ^update-list /template/general/update-list.php [L,QSA,NC]
 
-RewriteRule ^getGraphData /template/general/getGraphData/getGraphData.php [L,QSA,NC]
+RewriteRule ^getGraphdata /template/general/getGraphData/getGraphdata.php [L,QSA,NC]
 
 # Inbound
 RewriteRule ^inbound-list /template/inbound/inbound-list.php [L,QSA,NC]
@@ -56,3 +56,5 @@ RewriteRule ^errors /template/user-management/errors.php [L,QSA,NC]
 RewriteRule ^invoice-sales /template/pdf-generator/pdf/invoice-sales.php [L,QSA,NC]
 RewriteRule ^invoice-outbound /template/pdf-generator/pdf/invoice-outbound.php [L,QSA,NC]
 RewriteRule ^stock-list /template/inventory/stock-list.php [L,QSA,NC]
+
+RewriteRule ^financial-management /template/financial/financial-management.php [L,QSA,NC]

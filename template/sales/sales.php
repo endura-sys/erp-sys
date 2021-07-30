@@ -7,7 +7,7 @@
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
-                
+
 
                 <?php include('../datatable-navbar.php'); ?>
 
@@ -79,14 +79,14 @@
                                                               ?>
 
                                                                 <label for=sale_id>Sale ID:</label>
-                                                                <input type="integer" class="form-control" name="sale_id" value="<?php echo $sale; ?>">
+                                                                <input type="integer" class="form-control" name="sale_id" value="<?php echo $sale; ?>" required>
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="customer_id">Customer ID:</label>
-                                                                <select name="customer_id" class="form-control form-control-md" >
+                                                                <select name="customer_id" class="form-control form-control-md" required>
                                                                   <option value="">Select Customer ID</option>
                                                                   <?php
                                                                   $conn = mysqli_connect("localhost", "root", "root", "sakedb");
@@ -109,7 +109,7 @@
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="employee_id">Employee ID:</label>
-                                                                <select name="employee_id" class="form-control form-control-md" >
+                                                                <select name="employee_id" class="form-control form-control-md" required>
                                                                   <option value="">Select Employee ID</option>
                                                                   <?php
                                                                   $conn = mysqli_connect("localhost", "root", "root", "sakedb");
@@ -132,21 +132,21 @@
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="sale_date">Sale date:</label>
-                                                                <input type="date" class="form-control" name="sale_date">
+                                                                <input type="date" class="form-control" name="sale_date" required>
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="sale_time">Sale time:</label>
-                                                                <input type="time" class="form-control" name="sale_time">
+                                                                <input type="time" class="form-control" name="sale_time" required>
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="payment_method">Payment method:</label>
-                                                                <select name="payment_method" class="form-control form-control-md" >
+                                                                <select name="payment_method" class="form-control form-control-md" required>
                                                                   <option value="">Select Payment</option>
                                                                   <option value="cash">Cash</option>
                                                                   <option value="credit card">Credit Card</option>
@@ -159,14 +159,14 @@
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="expect_outbound_date">Expect outbound date:</label>
-                                                                <input type="date" class="form-control" name="expect_outbound_date">
+                                                                <input type="date" class="form-control" name="expect_outbound_date" required>
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="status">Outbound status:</label>
-                                                                <select name="status" class="form-control form-control-md" >
+                                                                <select name="status" class="form-control form-control-md" required>
                                                                   <option value="">Select Status</option>
                                                                   <option value="1">Yes</option>
                                                                   <option value="0">No</option>
@@ -178,19 +178,37 @@
                                                         <table class = "table">
                                                           <thead>
                                                             <tr>
-                                                              <th class="col-sm-6 col-md-6">Product ID:</th>
-                                                              <th class="col-sm-6 col-md-6">Quantity:</th>
+                                                              <th class="col-sm-5 col-md-5">Product ID:</th>
+                                                              <th class="col-sm-2 col-md-2">Price:</th>
+                                                              <th class="col-sm-5 col-md-5">Quantity:</th>
+                                                              <th class="col-sm-1 col-md-1"></th>
                                                             </tr>
                                                           </thead>
                                                           <tbody id="tbody">
                                                             <tr>
                                                                 <th>
-                                                                    <input type="integer" class="form-control" name="product_id[]">
+                                                                    <input type="integer" class="form-control" name="product_id[]" required>
                                                                 </th>
 
                                                                 <th>
-                                                                    <input type="integer" class="form-control" name="quantity[]">
+                                                                    <select class="form-control form-control-md" name="price[]" required>
+                                                                      <option value="">Select Price</option>
+                                                                      <option value="1">P1</option>
+                                                                      <option value="2">P2</option>
+                                                                      <option value="3">P3</option>
+                                                                    </select>
                                                                 </th>
+
+                                                                <th>
+                                                                    <input type="integer" class="form-control" name="quantity[]" required>
+                                                                </th>
+
+                                                                <th>
+                                                                    <button type="button" class="btn btn-danger" onclick="deleterow(this)">
+                                                                        <i class="bi bi-x-circle"></i>
+                                                                    </button>
+                                                                </th>
+
                                                             </tr>
                                                           </tbody>
                                                         </table>
@@ -208,7 +226,7 @@
                                                         <div class="col-sm-6 col-md-6 d-flex justify-content-end">
                                                               <div class="form-group">
                                                                   <label for="total_sale">Total sale:</label>
-                                                                  <input type="varchar" class="form-control" name="total_sale">
+                                                                  <input type="varchar" class="form-control" name="total_sale" required>
                                                               </div>
                                                         </div>
                                                       </div>
@@ -500,11 +518,22 @@
 
   <script>
     function add() {
-      var html = "<th><input type='integer' class='form-control' name='product_id[]'></th>";
-      html += "<th><input type='integer' class='form-control' name='quantity[]'></th>";
+      var html = "<th><input type='integer' class='form-control' name='product_id[]' required></th>";
+      html += "<th><select class='form-control form-control-md' name='price[]' required><option value=''>Select Price</option><option value='1'>P1</option><option value='2'>P2</option><option value='3'>P3</option></select></th>";
+      html += "<th><input type='integer' class='form-control' name='quantity[]' required></th>";
+      html += "<th><button type='button' class='btn btn-danger' onclick='deleterow(this)'><i class='bi bi-x-circle'></i></button></th>";
+
       var table = document.getElementById("tbody");
       var row = table.insertRow();
       row.innerHTML = html;
+    }
+  </script>
+
+  <script>
+    function deleterow(btn) {
+      var table = document.getElementById("tbody");
+      var i = btn.parentNode.parentNode.rowIndex;
+      table.deleteRow(i-1);
     }
   </script>
 

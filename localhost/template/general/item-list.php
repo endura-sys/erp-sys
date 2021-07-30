@@ -162,8 +162,8 @@
                                                 <tbody>
                                                     <center>
                                                         <?php
-
-                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                            include '../../database.php';
+                                                            $conn = OpenCon();
 
                                                             // Check connection
                                                             if($conn === false){

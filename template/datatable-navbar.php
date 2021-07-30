@@ -87,21 +87,15 @@ if (!isset($_SESSION['username'])) {
 
       </li>
 
-      <!-- Financial Management -->
-      <li class="sidebar-item has-sub">
-        <a href="#" class='sidebar-link'>
+      <li class="sidebar-item <?php if ($currentPage == 'financial-management') {
+                                echo "active";
+                              } else {
+                                echo "noactive";
+                              } ?>">
+        <a href="financial-management" class='sidebar-link'>
           <i class="bi bi-file-earmark-spreadsheet-fill"></i>
           <span>Financial Management</span>
         </a>
-
-        <ul class="submenu">
-          <li class="submenu-item ">
-            <a href="">Purchase schedule</a>
-          </li>
-          <li class="submenu-item ">
-            <a href="">Sales schedule</a>
-          </li>
-        </ul>
       </li>
 
       <!-- Inventory inquiry -->
