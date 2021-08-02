@@ -137,10 +137,10 @@ var chartIndonesia = new ApexCharts(document.querySelector("#chart-indonesia"), 
 
 var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
 
-chartIndonesia.render();
-chartAmerica.render();
-chartEurope.render();
-chartProfileVisit.render();
-chartVisitorsProfile.render();
+// chartIndonesia.render();
+// chartAmerica.render();
+// chartEurope.render();
+// chartProfileVisit.render();
+// chartVisitorsProfile.render();
 
 chartProductTotalSale.render();
