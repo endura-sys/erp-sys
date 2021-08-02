@@ -84,6 +84,7 @@
                     
                     <!-- Get array value from getGraphData.php -->
                     <script>
+                        <?php $productSalesAmount = [100, 20, 30, 20, 10]; ?>
                         $(function() {
                             var date = $('#today-date').val();
 
@@ -95,11 +96,14 @@
                                 },
                                 success:function(response){
 
+                                    // alert(response);
+
                                     const result = response.split(",");
                                     document.getElementById("alipaySale").innerHTML = result[0] + "";
                                     document.getElementById("fpsSale").innerHTML = result[1] + "";
                                     document.getElementById("cashSale").innerHTML = result[2] + "";
                                     document.getElementById("totalSale").innerHTML = result[3] + "";
+                                    var productSalesAmount = <?php echo json_encode($productSalesAmount); ?>;
                                 }
                             });
                             
@@ -120,6 +124,7 @@
                                     document.getElementById("fpsSale").innerHTML = result[1];
                                     document.getElementById("cashSale").innerHTML = result[2];
                                     document.getElementById("totalSale").innerHTML = result[3];
+                                    var productSalesAmount = <?php echo json_encode($productSalesAmount); ?>;
                                 }
                             });
 
@@ -208,7 +213,9 @@
                                         <h4>Profile Visit</h4>
                                     </div>
                                     <div class="card-body">
-                                        <div id="chart-profile-visit"></div>
+                                        <!-- <div id="chart-profile-visit"></div> -->
+                                        <div id="chart-product-total-sale"></div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -230,23 +237,23 @@
                 </div>
 
                 <!-- Passing the graph value to js -->
-                <?php $testArray = [9, 20, 30, 20, 10, 20, 30, 20, 10, 20, 30, 20]; ?>
+                <!-- <?php $productSalesAmount = [32, 20, 30, 20, 10, 20, 30, 20, 10, 20, 30, 20]; ?> -->
+                <?php
+                
+                $productSalesAmount = [50, 20, 30, 20, 10];
+                
+                // include('getGraphData/getGraphData.php');;
+                // getTodayProductSaleAmount($date);
 
+                ?>
                 <script type="text/javascript">
-                    var testArray = <?php echo json_encode($testArray); ?>;
+                    var productSalesAmount = <?php echo json_encode($productSalesAmount); ?>;
                 </script>
 
                 <script src="template/assets/vendors/apexcharts/apexcharts.js"></script>
                 <script src="template/assets/js/pages/dashboard.js"></script>
                 <!-- Passing the graph value to js -->
 
-                <script>
-                    n = new Date();
-                    y = n.getFullYear();
-                    m = n.getMonth() + 1;
-                    d = n.getDate();
-                    // document.getElementById("date").value = d + "-" + m + "-" + y;
-                </script>
 
             </footer>
         </div>

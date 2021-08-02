@@ -1,45 +1,13 @@
 <?php
-// header('Content-Type: application/json');
 
+include '../../../database.php';
 
-// $aResult = array();
-
-// if (!isset($_GET['functionname'])) {
-//     $aResult['error'] = 'No function name!';
-// }
-
-// if (!isset($_GET['arguments'])) {
-//     $aResult['error'] = 'No function arguments!';
-// }
-
-// if (!isset($aResult['error'])) {
-
-//     switch ($_GET['functionname']) {
-//         case 'getTodaySale':
-//             if (!is_array($_GET['arguments'])) {
-//                 $aResult['error'] = 'Error in arguments!';
-//             } else {
-//                 $aResult['result'] = getTodaySale($_GET['arguments'][0]);
-//             }
-//             break;
-
-//         default:
-//             $aResult['error'] = 'Not found function ' . $_GET['functionname'] . '!';
-//             break;
-//     }
-// }
-
-// echo json_encode($aResult);
 $date = $_POST['todayDate'];
-// $date = "2021-07-28";
 getTodaySale($date);
 
 function getTodaySale($date)
 {
-    include '../../../database.php';
     $conn = OpenCon();
-
-    // $date = $_GET['date'];
 
     $sql = "SELECT sale_date, sale_time, payment_method, total_sale FROM sales WHERE sale_date = '" . $date . "'";
     $sql1 = "SELECT sale_date, sale_time, payment_method, total_sale FROM sales";
@@ -76,5 +44,44 @@ function getTodaySale($date)
         echo $result, ",";
     }
 }
+
+echo "";
+
+$date = "2021-07-28";
+getTodayProductSaleAmount($date);
+
+function getTodayProductSaleAmount($date){
+
+    $conn = OpenCon();
+    $sql = "SELECT sale_id as s_id, sale_date FROM sales WHERE sale_date = '" . $date . "'";
+    $sql1 = "SELECT sale_id as s_i_id, product_id, quantity FROM sale_items_list WHERE sale_date = '" . $date . "'";
+    
+    $sql2 = "SELECT si.sale_id, si.product_id, si.quantity, s.sale_id, s.sale_date
+             FROM sale_items_list as si
+             LEFT JOIN sales as s
+             on s.sale_date = '" . $date . "'";
+            //  ORDER BY `si`.`product_id` ASC";
+
+    $result = $conn->query($sql2);
+
+    $product_list = array();
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            
+            $product_list[$row["product_id"]] += $row["quantity"] ;
+
+            // echo $row["product_id"] . ", +++ ";
+            // echo $row["s.sale_date"];
+            }
+        }
+        rsort($product_list);
+        foreach($product_list as $result) {
+            echo $result, ",";
+        }
+
+    }
+
 
 
