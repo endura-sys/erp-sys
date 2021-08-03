@@ -38,50 +38,19 @@ function getTodaySale($date)
     $product_list['total'] += $product_list['alipay'];
     $product_list['total'] += $product_list['fps'];
     $product_list['total'] += $product_list['cash'];
+
+    $data[] = ['alipay' => $product_list['alipay'], 'fps' => $product_list['fps'], 'cash' => $product_list['cash'], 'total' => $product_list['total']];
+
+
     CloseCon($conn);
 
-    foreach($product_list as $result) {
-        echo $result, ",";
-    }
+    echo json_encode($data);
+
+    // foreach($product_list as $result) {
+    //     echo $result, ",";
+    // }
+
+
+
+
 }
-
-echo "";
-
-$date = "2021-07-28";
-getTodayProductSaleAmount($date);
-
-function getTodayProductSaleAmount($date){
-
-    $conn = OpenCon();
-    $sql = "SELECT sale_id as s_id, sale_date FROM sales WHERE sale_date = '" . $date . "'";
-    $sql1 = "SELECT sale_id as s_i_id, product_id, quantity FROM sale_items_list WHERE sale_date = '" . $date . "'";
-    
-    $sql2 = "SELECT si.sale_id, si.product_id, si.quantity, s.sale_id, s.sale_date
-             FROM sale_items_list as si
-             LEFT JOIN sales as s
-             on s.sale_date = '" . $date . "'";
-            //  ORDER BY `si`.`product_id` ASC";
-
-    $result = $conn->query($sql2);
-
-    $product_list = array();
-
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while ($row = $result->fetch_assoc()) {
-            
-            $product_list[$row["product_id"]] += $row["quantity"] ;
-
-            // echo $row["product_id"] . ", +++ ";
-            // echo $row["s.sale_date"];
-            }
-        }
-        rsort($product_list);
-        foreach($product_list as $result) {
-            echo $result, ",";
-        }
-
-    }
-
-
-

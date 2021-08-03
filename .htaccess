@@ -1,8 +1,17 @@
+
+# URL setting
+
+########################################################################################
+########################################################################################
+
 Options -Indexes
 DirectoryIndex index.php
 
 RewriteEngine On
 RewriteBase /
+
+########################################################################################
+########################################################################################
 
 # Dashboard
 RewriteRule ^assets/(.*) [L,QSA,NC]
@@ -13,7 +22,13 @@ RewriteRule ^supplier-list /template/general/supplier-list.php [L,QSA,NC]
 RewriteRule ^customer-list /template/general/customer-list.php [L,QSA,NC]
 RewriteRule ^update-list /template/general/update-list.php [L,QSA,NC]
 
-RewriteRule ^getGraphdata /template/general/getGraphData/getGraphdata.php [L,QSA,NC]
+# Dashboard get data
+RewriteRule ^getGraphdata /template/general/getData/getGraphdata.php [L,QSA,NC]
+RewriteRule ^getTodaySale /template/general/getData/getTodaySale.php [L,QSA,NC]
+
+
+
+########################################################################################
 
 # Inbound
 RewriteRule ^inbound-list /template/inbound/inbound-list.php [L,QSA,NC]
@@ -35,6 +50,8 @@ RewriteRule ^branch /template/sales/branch.php [L,QSA,NC]
 RewriteRule ^sales-to-outbound /template/sales/sales-to-outbound.php [L,QSA,NC]
 RewriteRule ^getTotal /template/sales/getTotal.php [L,QSA,NC]
 
+########################################################################################
+
 # Login
 RewriteRule ^login /template/auth/login.php [L,QSA,NC]
 RewriteRule ^register /template/auth/register.php [L,QSA,NC]
@@ -52,6 +69,8 @@ RewriteRule ^create-position /template/user-management/create-position.php [L,QS
 RewriteRule ^delete-user /template/user-management/delete-user.php [L,QSA,NC]
 RewriteRule ^userserver /template/user-management/userserver.php [L,QSA,NC]
 RewriteRule ^errors /template/user-management/errors.php [L,QSA,NC]
+
+########################################################################################
 
 # invoice
 RewriteRule ^invoice-sales /template/pdf-generator/pdf/invoice-sales.php [L,QSA,NC]

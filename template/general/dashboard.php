@@ -82,14 +82,14 @@
                     </div>
                     <!-- Date picker -->
                     
-                    <!-- Get array value from getGraphData.php -->
+                    <!-- Get array value from getTodaySale.php -->
                     <script>
                         <?php $productSalesAmount = [100, 20, 30, 20, 10]; ?>
                         $(function() {
                             var date = $('#today-date').val();
 
                             $.ajax({
-                                url:'getGraphData',
+                                url:'getTodaySale',
                                 method:'POST',
                                 data:{
                                     todayDate: date,
@@ -98,8 +98,12 @@
 
                                     // alert(response);
 
-                                    const result = response.split(",");
-                                    document.getElementById("alipaySale").innerHTML = result[0] + "";
+                                    // const result = response.split(",");
+
+                                    var result = JSON.parse(response);
+                                    alert(result[0].name);
+
+                                    // document.getElementById("alipaySale").innerHTML = result + "";
                                     document.getElementById("fpsSale").innerHTML = result[1] + "";
                                     document.getElementById("cashSale").innerHTML = result[2] + "";
                                     document.getElementById("totalSale").innerHTML = result[3] + "";
@@ -113,7 +117,7 @@
                                 var alipaySale = $('#alipaySale').val();
 
                                 $.ajax({
-                                url:'getGraphData',
+                                url:'getTodaySale',
                                 method:'POST',
                                 data:{
                                     todayDate: date,
