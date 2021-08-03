@@ -52,6 +52,9 @@
                 </div>
                 <section class="section">
                     <div class="card">
+
+  
+
                         <div class="card-header">
                             Simple Datatable
 
@@ -334,7 +337,7 @@
                                                 }
 
                                                 ?><tr>
-                                                  <td><input type="checkbox" name="checkbox[]" class="form-check-input" id="checkbox<?php echo $row["purchasing_id"]?>" value="<?php echo $row["purchasing_id"]?>" <?php if($status==true){echo disabled;}?>>
+                                                  <td><input type="checkbox" name="checkbox[]" class="form-check-input" id="checkbox<?php echo $row["purchasing_id"]?>" value="<?php echo $row["purchasing_id"]?>" <?php if($status==true){echo "disabled";}?>>
                                                       <label for="checkbox<?php echo $row["purchasing_id"]?>"></label>
                                                   </td>
                                                   <td><?php echo $row["purchasing_id"]?></td>
@@ -528,5 +531,11 @@
             row.innerHTML = html;
         }
     </script>
+
+<?php
+    function Scan(){
+        
+    }
+?>
 
 </body>

@@ -48,6 +48,65 @@
                 <section class="section">
                     <div class="card">
 							          <div class="card-header">Simple Datatable</div>
+
+                       
+                    <div class="card-header">
+                            <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal" data-bs-target="#scaner">
+                                Scan
+                            </button>
+                            <div class="modal fade text-left modal-borderless" id="scaner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Items ID:</h5>
+                                            <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                                                <i data-feather="x"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form data-target="#border-added" method="post">
+                                                <div class="form-group">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="col-sm-6 col-md-6">ID:</th>
+                                                                    
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tbody">
+                                                                <tr>
+                                                                    <th>
+                                                                        <input type="integer" class="form-control" name="product_id[]">
+                                                                    </th>
+
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                        </div>
+                                                <div class="row">
+                                                        <div class="col-sm-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <button type="button" class="btn btn-primary" onclick="add()">
+                                                                    <i class="bi bi-plus-circle"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form data-target="#border-added" method="post">
+                                                        <input type="submit" class="btn-check" value="Submit" id='submit'>
+                                                        <label class="btn btn-primary" for="submit">Submit</label>
+                                                    </form>
+                                                    <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                                        <span class="d-none d-sm-block">Close</span>
+                                                    </button>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
@@ -88,9 +147,9 @@
                                                   while($row3 = $result3->fetch_assoc()) {
                                                     echo "<tr><td>" .$row["purchasing_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row2["name"] ."</td><td>$" .$row2["p2"] ."</td><td>" .$row["quantity"] ."</td><td>" .$row3["stock"] ."</td>";
                                                     if($row["quantity"] > $row3["stock"]) { ?>
-                                                      <td><span class="badge bg-danger">Out of stock</span></td>
+                                                      <td><span class="badge bg-danger">Not confirmed</span></td>
                                                     <?php } else { ?>
-                                                      <td><span class="badge bg-success">Ready</span></td>
+                                                      <td><span class="badge bg-success">confirmed</span></td>
                                                     <?php }
                                                   }
                                                 }
