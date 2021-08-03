@@ -7,16 +7,7 @@
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
-                <div class="sidebar-header">
-                    <div class="d-flex justify-content-between">
-                        <div class="logo">
-                            <a href="index.html"><img src="" alt="Logo" srcset=""></a>
-                        </div>
-                        <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                        </div>
-                    </div>
-                </div>
+
 
                 <?php include('../datatable-navbar.php'); ?>
 
@@ -88,14 +79,14 @@
                                                               ?>
 
                                                                 <label for=sale_id>Sale ID:</label>
-                                                                <input type="integer" class="form-control" name="sale_id" value="<?php echo $sale; ?>">
+                                                                <input type="integer" class="form-control" name="sale_id" value="<?php echo $sale; ?>" required>
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="customer_id">Customer ID:</label>
-                                                                <select name="customer_id" class="form-control form-control-md" >
+                                                                <select name="customer_id" class="form-control form-control-md" required>
                                                                   <option value="">Select Customer ID</option>
                                                                   <?php
                                                                   $conn = mysqli_connect("localhost", "root", "root", "sakedb");
@@ -118,7 +109,7 @@
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="employee_id">Employee ID:</label>
-                                                                <select name="employee_id" class="form-control form-control-md" >
+                                                                <select name="employee_id" class="form-control form-control-md" required>
                                                                   <option value="">Select Employee ID</option>
                                                                   <?php
                                                                   $conn = mysqli_connect("localhost", "root", "root", "sakedb");
@@ -141,21 +132,21 @@
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="sale_date">Sale date:</label>
-                                                                <input type="date" class="form-control" name="sale_date">
+                                                                <input type="date" class="form-control" name="sale_date" required>
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="sale_time">Sale time:</label>
-                                                                <input type="time" class="form-control" name="sale_time">
+                                                                <input type="time" class="form-control" name="sale_time" required>
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="payment_method">Payment method:</label>
-                                                                <select name="payment_method" class="form-control form-control-md" >
+                                                                <select name="payment_method" class="form-control form-control-md" required>
                                                                   <option value="">Select Payment</option>
                                                                   <option value="cash">Cash</option>
                                                                   <option value="credit card">Credit Card</option>
@@ -168,14 +159,14 @@
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="expect_outbound_date">Expect outbound date:</label>
-                                                                <input type="date" class="form-control" name="expect_outbound_date">
+                                                                <input type="date" class="form-control" name="expect_outbound_date" required>
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="status">Outbound status:</label>
-                                                                <select name="status" class="form-control form-control-md" >
+                                                                <select name="status" class="form-control form-control-md" required>
                                                                   <option value="">Select Status</option>
                                                                   <option value="1">Yes</option>
                                                                   <option value="0">No</option>
@@ -183,44 +174,41 @@
                                                             </div>
                                                       </div>
 
-                                                      <div class="form-group">
+
+                                                      <div class=" form-group">
                                                         <table class = "table">
                                                           <thead>
                                                             <tr>
-                                                              <th class="col-sm-6 col-md-6">Product ID:</th>
-                                                              <th class="col-sm-6 col-md-6">Quantity:</th>
+                                                              <th class="col-sm-5 col-md-6">Product ID:</th>
+                                                              <th class="col-sm-5 col-md-6">Quantity:</th>
+                                                              <th class="col-sm-1 col-md-1"></th>
                                                             </tr>
                                                           </thead>
                                                           <tbody id="tbody">
                                                             <tr>
+                                                                <th><input type="integer" class="form-control" name="product_id[]" required></th>
+                                                                <th><input type="integer" class="form-control" name="quantity[]" required></th>
                                                                 <th>
-                                                                    <input type="integer" class="form-control" name="product_id[]">
+                                                                    <button type="button" class="btn btn-primary" onclick="add(this)">Add</button>
                                                                 </th>
 
-                                                                <th>
-                                                                    <input type="integer" class="form-control" name="quantity[]">
-                                                                </th>
+                                                                <!-- <th>
+                                                                    <button type="button" class="btn btn-danger" onclick="deleterow(this)">
+                                                                        <i class="bi bi-x-circle"></i>
+                                                                    </button>
+                                                                </th> -->
+
                                                             </tr>
                                                           </tbody>
                                                         </table>
                                                       </div>
 
-                                                      <div class="row">
-                                                        <div class="col-sm-6 col-md-6">
-                                                          <div class="form-group">
-                                                            <button type="button" class="btn btn-primary" onclick="add()">
-                                                                <i class="bi bi-plus-circle"></i>
-                                                            </button>
-                                                          </div>
-                                                        </div>
-
-                                                        <div class="col-sm-6 col-md-6 d-flex justify-content-end">
+                                                        <div class="d-flex justify-content-end">
                                                               <div class="form-group">
                                                                   <label for="total_sale">Total sale:</label>
-                                                                  <input type="varchar" class="form-control" name="total_sale">
+                                                                  <input type="varchar" class="form-control" name="total_sale" id="total" required>
                                                               </div>
                                                         </div>
-                                                      </div>
                                                     </div>
 
 
@@ -356,7 +344,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT sale_id, customer_id, employee_id, sale_date, sale_time, payment_method, total_sale FROM sales";
+                                        $sql = "SELECT * FROM sales";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -364,17 +352,11 @@
                                         if ($result->num_rows > 0) {
                                             // output data of each row
                                             while($row = $result->fetch_assoc()) {
-                                                // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
-                                                // echo $product_list[0][2];
-                                                // print_r($product_list);
                                                 $status = false;
-                                                $sql2 = "SELECT * FROM outbound_items_list where sale_id ='" . $row["sale_id"] ."'";
-                                                $result2 = $conn->query($sql2);
-                                                if($result2->num_rows > 0) {
+                                                if ($row["is_outbound"] == 1) {
                                                   $status = true;
-                                                } else {
-                                                  $status = false;
-                                                } ?>
+                                                }
+                                                ?>
                                                 <tr>
                                                   <?php if($status == true) { ?>
                                                     <td><input type="checkbox" name="outbound[]" class="form-check-input" value="<?php echo $row["sale_id"]?>" disabled></td>
@@ -418,7 +400,16 @@
 
                                           <div class="form-group">
                                               <label for=outbound_id>Outbound ID:</label>
-                                              <input type="integer" class="form-control" name="outbound_id" id="outbound_id" placeholder="">
+                                              <?php
+                                              $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+                                              $sql_outbound = "SELECT MAX(outbound_id) FROM outbound";
+                                              $result_outbound = $conn->query($sql_outbound);
+                                              $row_outbound = $result_outbound->fetch_assoc();
+                                              $outbound = (int) $row_outbound["MAX(outbound_id)"];
+                                              $outbound++;
+                                              ?>
+                                              <input type="integer" class="form-control" name="outbound_id" id="outbound_id" value="<?php echo $outbound; ?>" placeholder="">
                                           </div>
 
                                           <div class="form-group">
@@ -426,9 +417,6 @@
                                               <select name="employee_id" class="form-control form-control-md" >
                                                 <option value="">Select Employee ID</option>
                                                 <?php
-                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
-
-
                                                 $sql0 = "SELECT employee_id, firstname FROM employee";
                                                 $result0 = $conn->query($sql0);
                                                 while($row0 = $result0->fetch_assoc()) {
@@ -508,14 +496,54 @@
     <?php include('../footer.php'); ?>
 
   <script>
-    function add() {
-      var html = "<th><input type='integer' class='form-control' name='product_id[]'></th>";
-      html += "<th><input type='integer' class='form-control' name='quantity[]'></th>";
-      var table = document.getElementById("tbody");
-      var row = table.insertRow();
-      row.innerHTML = html;
+    function add(btn) {
+      var product = btn.parentNode.previousElementSibling.previousElementSibling.firstElementChild.value;
+      var quantity = btn.parentNode.previousElementSibling.firstElementChild.value;
+      if (product != "" && quantity != "") {
+        // $.ajax({
+        //     url:'getTotal',
+        //     method:'POST',
+        //     data:{
+        //         productid: "product",
+        //         quantity: quantity,
+        //     },
+        //     success:function(response){
+        //         alert(response);
+        //         document.getElementById("total").value = response;
+        //     }
+        // });
+        document.getElementById("total").value += product * quantity;
+        btn.className = "btn btn-danger";
+        btn.innerHTML = "Remove";
+        btn.onclick = function() {return deleterow(this)};
+
+        var html = "<th><input type='integer' class='form-control' name='product_id[]' required></th>";
+        html += "<th><input type='integer' class='form-control' name='quantity[]' required></th>";
+        html += "<th><button type='button' class='btn btn-primary' onclick='add(this)'>Add</button></th>";
+
+        var table = document.getElementById("tbody");
+        var row = table.insertRow();
+        row.innerHTML = html;
+      }
     }
   </script>
+
+  <script>
+    function deleterow(btn) {
+      var table = document.getElementById("tbody");
+      var i = btn.parentNode.parentNode.rowIndex;
+      table.deleteRow(i-1);
+    }
+  </script>
+
+  <!-- <script>
+    function calculate() {
+      var quantity = document.getElementById("q").value;
+      var product = document.getElementById("p").value;
+      if (product != "")
+        document.getElementById("total").value = product * quantity;
+    }
+  </script> -->
 
 </body>
 

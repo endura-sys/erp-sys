@@ -1,5 +1,4 @@
 <?php include('../header.php'); ?>
-<?php $currentPage = 'outbound-schedule'; ?>
 
 <html>
 
@@ -7,14 +6,22 @@
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
-                
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="index.html"><img src="" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
 
                 <?php include('../datatable-navbar.php'); ?>
 
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
-
 
         <div id="main">
             <header class="mb-3">
@@ -26,38 +33,30 @@
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Outbound Schedule</h3>
-                            <p class="text-subtitle text-muted">For user to check outbound schedule</p>
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
+            					<div class="col-12 col-md-6 order-md-1 order-last">
+                        <h3>Inbound Order No: <?php echo $_GET['id'] ?></h3>
+            						<p class="text-subtitle text-muted">Details</p>
+            					</div>
+            					<div class="col-12 col-md-6 order-md-2 order-first">
+            						<div class="buttons d-flex justify-content-end h-70">
+            							<a href="inbound-list" class="btn btn-primary">Back</a>
+            						</div>
+            					</div>
+            				</div>
                 </div>
+
                 <section class="section">
                     <div class="card">
-
-                        <div class="card-header">
-                            Outbound Table
-                        </div>
-
+							          <div class="card-header">Simple Datatable</div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>Outbound ID</th>
-                                        <th>Employee ID</th>
-                                        <th>Outbound Date</th>
-                                        <th>Outbound Way</th>
-                                        <th>Outbound Cost</th>
-                                        <th>Details</th>
-                                        <th>Invoice</th>
+                                      <th>Purchase ID</th>
+                                      <th>Items ID</th>
+                                      <th>Items Name</th>
+                                      <th>Price</th>
+                                      <th>Quantity</th>
                                     </tr>
                                 </thead>
 
@@ -68,7 +67,7 @@
                                         include '../../database.php';
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT outbound_id, employee_id, outbound_date, outbound_way, outbound_cost FROM outbound";
+                                        $sql = "SELECT * FROM `inbound_items_list` where inbound_id='" . $_GET['id'] . "'";
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
@@ -79,11 +78,15 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                echo "<tr><td>" .$row["outbound_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["outbound_date"] ."</td><td>" . $row["outbound_way"] ."</td><td>" .$row["outbound_cost"] ."</td>";
-                                                ?>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="outbound-info?id=<?php echo $row["outbound_id"]?>">View</a></td>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="invoice-outbound?id=<?php echo $row["outbound_id"]?>" target="_blank">Generate</a></td>
-                                                <?php
+                                                $sql2 = "SELECT product_id, quantity FROM `purchase_items_list` where purchasing_id='". $row['purchasing_id'] ."'";
+                                                $result2 = $conn->query($sql2);
+                                                while($row2 = $result2->fetch_assoc()) {
+                                              		$sql3 = "SELECT name, volume, p2 FROM `wine_list` where product_id='". $row2['product_id'] ."'";
+                                              		$result3 = $conn->query($sql3);
+                                              		while($row3 = $result3->fetch_assoc()) {
+                                                    echo "<tr><td>" .$row["purchasing_id"] ."</td><td>" .$row2["product_id"] ."</td><td>" .$row3["name"] ."</td><td>$" .$row3["p2"] ."</td><td>" .$row2["quantity"] ."</td>";
+                                              		}
+                                              	}
                                             }
                                         } else {
                                             echo "0 results";
@@ -91,14 +94,10 @@
                                         echo $product_list[0][1];
                                         CloseCon($conn);
                                     ?>
-
-
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
-
                 </section>
             </div>
 

@@ -330,10 +330,8 @@
                                             // output data of each row
                                             while ($row = $result->fetch_assoc()) {
                                                 $status = false;
-                                                $sql_inbound_status = "SELECT * FROM inbound_items_list WHERE purchasing_id= '" . $row["purchasing_id"] . "'";
-                                                $result_inbound_status = $conn->query($sql_inbound_status);
-                                                if ($result_inbound_status->num_rows > 0) {
-                                                    $status = true;
+                                                if ($row["inbound_status"] == 1) {
+                                                  $status = true;
                                                 }
 
                                                 ?><tr>
@@ -404,9 +402,6 @@
                                                                 <select name="employee_id" class="form-control form-control-md">
                                                                     <option value="">Select Employee ID</option>
                                                                     <?php
-                                                                    $conn = mysqli_connect("localhost", "root", "root", "sakedb");
-
-
                                                                     $sql0 = "SELECT employee_id, firstname FROM employee";
                                                                     $result0 = $conn->query($sql0);
                                                                     while ($row0 = $result0->fetch_assoc()) {
@@ -480,6 +475,9 @@
                                         $sql = "INSERT INTO inbound_items_list VALUES ('$confirm_inbound_id', '$id[$i]')";
                                         $result = $conn->query($sql);
 
+                                        $sql_status = "UPDATE purchase SET inbound_status = '1' WHERE purchasing_id='" . $id[$i] . "'";
+                                        $result = $conn->query($sql_status);
+
                                         $sql_quantity = "SELECT product_id, quantity FROM purchase_items_list where purchasing_id='" . $id[$i] . "'";
                                         $result_quantity = $conn->query($sql_quantity);
                                         while ($row_quantity = $result_quantity->fetch_assoc()) {
@@ -489,7 +487,6 @@
                                             $result_stock = $conn->query($sql_stock);
                                             $row_stock = $result_stock->fetch_assoc();
                                             $stock = $row_stock["stock"];
-                                            // $newstock = 10;
                                             $newstock = $stock + $quantity;
                                             $sql3 = "UPDATE `stock` SET `stock` = '$newstock' WHERE `stock`.`product_id` = '$product'";
                                             $result3 = $conn->query($sql3);

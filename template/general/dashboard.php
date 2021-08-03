@@ -19,16 +19,7 @@
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
-                <div class="sidebar-header">
-                    <div class="d-flex justify-content-between">
-                        <div class="logo">
-                            <a href="index.html"><img src="" alt="Logo" srcset=""></a>
-                        </div>
-                        <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                        </div>
-                    </div>
-                </div>
+
 
                 <?php include('../datatable-navbar.php'); ?>
 
@@ -62,8 +53,8 @@
                     <div class="row">
 
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>DataTable</h3>
-                            <p class="text-subtitle text-muted">For user to check they list</p>
+                            <!-- <h3>DataTable</h3>
+                            <p class="text-subtitle text-muted">For user to check they list</p> -->
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -78,77 +69,76 @@
 
 
 
-
-
-
-
-
-
                 <section class="row">
-
                     <!-- Date picker -->
                     <div class="col-6 col-lg-3 col-md-3">
-                        <!-- <script type="text/javascript">
-                            $(function() {
-                                $('#datetimepicker').datetimepicker({
-                                    format: 'dd-mm-yyyy',
-                                    defaultDate: new Date(),
-                                    todayBtn: true,
-                                    minView: 2,
-                                    pickTime: false,
-                                    language: 'zh-CN'
-                                });
-                            });
-                        </script> -->
-
-
                         <?php
                         date_default_timezone_set('Asia/Hong_Kong');
                         $date = date('Y-m-d');
                         ?>
                         <div class="form-group">
-                            <input id="today-date" type="date" class="form-control" value="<?php echo $date ?>" />
+                            <input id="today-date" name="todayDate" type="date" class="form-control" value="<?php echo $date ?>" />
                         </div>
-
-                        <!-- <div class="form-group">
-                            <div class="input-group date" id="datetimepicker">
-                                <input id="today-date" type="text" class="form-control" value="<?php echo date('d-m-Y') ?>" />
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
-                                <button class="btn" id="submit">Submit</button>
-                            </div>
-                        </div> -->
                     </div>
                     <!-- Date picker -->
-
-                    <!-- include get Grap data -->
-                    <?php include('getGraphData/getGraphData.php'); ?>
-
+                    
+                    <!-- Get array value from getTodaySale.php -->
                     <script>
+                        <?php $productSalesAmount = [100, 20, 30, 20, 10]; ?>
                         $(function() {
+                            var date = $('#today-date').val();
+
+                            $.ajax({
+                                url:'getTodaySale',
+                                method:'POST',
+                                data:{
+                                    todayDate: date,
+                                },
+                                success:function(response){
+
+                                    // alert(response);
+
+                                    // const result = response.split(",");
+
+                                    var result = JSON.parse(response);
+                                    alert(result[0].name);
+
+                                    // document.getElementById("alipaySale").innerHTML = result + "";
+                                    document.getElementById("fpsSale").innerHTML = result[1] + "";
+                                    document.getElementById("cashSale").innerHTML = result[2] + "";
+                                    document.getElementById("totalSale").innerHTML = result[3] + "";
+                                    var productSalesAmount = <?php echo json_encode($productSalesAmount); ?>;
+                                }
+                            });
+                            
+
                             $("#today-date").on('change', function() {
-                                var x = $('#today-date').val();
-                                // var date321 = document.getElementById("today-date").value;
+                                date = $('#today-date').val();
+                                var alipaySale = $('#alipaySale').val();
+
                                 $.ajax({
-                                    type: 'post',
-                                    //url: base_url,
-                                    success: function(x) {
-                                        var x = $('#today-date').val();
-                                        console.log(x);
-                                    }
-                                });
+                                url:'getTodaySale',
+                                method:'POST',
+                                data:{
+                                    todayDate: date,
+                                },
+                                success:function(response){
+                                    const result = response.split(",");
+                                    document.getElementById("alipaySale").innerHTML = result[0];
+                                    document.getElementById("fpsSale").innerHTML = result[1];
+                                    document.getElementById("cashSale").innerHTML = result[2];
+                                    document.getElementById("totalSale").innerHTML = result[3];
+                                    var productSalesAmount = <?php echo json_encode($productSalesAmount); ?>;
+                                }
+                            });
+
                             });
                         });
                     </script>
-                    <!-- <script>
-                        var x = document.getElementById("date").value;
-                        console.log(x);
-                    </script> -->
                     <!-- include get Grap data -->
 
 
-                    <!-- Date picker -->
+                    <!-- data in dashboard -->
                     <div class="col-12 col-lg-12">
                         <div class="row">
                             <div class="col-6 col-lg-3 col-md-6">
@@ -162,7 +152,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Alipay</h6>
-                                                <h6 class="font-extrabold mb-0">0</h6>
+                                                <h6 class="font-extrabold mb-0" id="alipaySale"></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -179,7 +169,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">FPS</h6>
-                                                <h6 class="font-extrabold mb-0">0</h6>
+                                                <h6 class="font-extrabold mb-0" id="fpsSale">0</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +186,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Cash</h6>
-                                                <h6 class="font-extrabold mb-0">0</h6>
+                                                <h6 class="font-extrabold mb-0" id="cashSale">0</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -213,7 +203,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <h6 class="text-muted font-semibold">Total</h6>
-                                                <h6 class="font-extrabold mb-0">0</h6>
+                                                <h6 class="font-extrabold mb-0" id="totalSale">0</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -227,117 +217,13 @@
                                         <h4>Profile Visit</h4>
                                     </div>
                                     <div class="card-body">
-                                        <div id="chart-profile-visit"></div>
+                                        <!-- <div id="chart-profile-visit"></div> -->
+                                        <div id="chart-product-total-sale"></div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="row">
-                            <div class="col-12 col-xl-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Profile Visit</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <svg class="bi text-primary" width="32" height="32" fill="blue" style="width:10px">
-                                                        <use xlink:href="template/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-                                                    <h5 class="mb-0 ms-3">Europe</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <h5 class="mb-0">862</h5>
-                                            </div>
-                                            <div class="col-12">
-                                                <div id="chart-europe"></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <svg class="bi text-success" width="32" height="32" fill="blue" style="width:10px">
-                                                        <use xlink:href="template/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-                                                    <h5 class="mb-0 ms-3">America</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <h5 class="mb-0">375</h5>
-                                            </div>
-                                            <div class="col-12">
-                                                <div id="chart-america"></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <svg class="bi text-danger" width="32" height="32" fill="blue" style="width:10px">
-                                                        <use xlink:href="template/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-                                                    <h5 class="mb-0 ms-3">Indonesia</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <h5 class="mb-0">1025</h5>
-                                            </div>
-                                            <div class="col-12">
-                                                <div id="chart-indonesia"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-xl-8">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Latest Comments</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover table-lg">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Comment</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="col-3">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                </div>
-                                                                <p class="font-bold ms-3 mb-0">Si Cantik</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                            <p class=" mb-0">Congratulations on your graduation!</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="col-3">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                </div>
-                                                                <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class="col-auto">
-                                                            <p class=" mb-0">Wow amazing design! Can you make another
-                                                                tutorial for
-                                                                this design?</p>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
 
 
@@ -355,23 +241,23 @@
                 </div>
 
                 <!-- Passing the graph value to js -->
-                <?php $testArray = [9, 20, 30, 20, 10, 20, 30, 20, 10, 20, 30, 20]; ?>
+                <!-- <?php $productSalesAmount = [32, 20, 30, 20, 10, 20, 30, 20, 10, 20, 30, 20]; ?> -->
+                <?php
+                
+                $productSalesAmount = [50, 20, 30, 20, 10];
+                
+                // include('getGraphData/getGraphData.php');;
+                // getTodayProductSaleAmount($date);
 
+                ?>
                 <script type="text/javascript">
-                    var testArray = <?php echo json_encode($testArray); ?>;
+                    var productSalesAmount = <?php echo json_encode($productSalesAmount); ?>;
                 </script>
 
                 <script src="template/assets/vendors/apexcharts/apexcharts.js"></script>
                 <script src="template/assets/js/pages/dashboard.js"></script>
                 <!-- Passing the graph value to js -->
 
-                <script>
-                    n = new Date();
-                    y = n.getFullYear();
-                    m = n.getMonth() + 1;
-                    d = n.getDate();
-                    // document.getElementById("date").value = d + "-" + m + "-" + y;
-                </script>
 
             </footer>
         </div>

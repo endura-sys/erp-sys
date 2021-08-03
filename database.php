@@ -23,10 +23,11 @@ define( 'DB_CHARSET', 'utf8' );
 		return $conn;
 	}
 
-	function GetCon($conn)
+	function GetCon()
 	{
-		mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+		$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
+		return $conn;
 	}
 
 	function CloseCon($conn)

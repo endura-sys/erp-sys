@@ -16,7 +16,7 @@ var optionsProfileVisit = {
 	},
 	series: [{
 		name: 'sales',
-		data: testArray
+		data: productSalesAmount
 	}],
 	colors: '#435ebe',
 	xaxis: {
@@ -102,6 +102,32 @@ let optionsIndonesia = {
 }
 
 
+var optionsProductTotalSale = {
+	annotations: {
+		position: 'back'
+	},
+	dataLabels: {
+		enabled:false
+	},
+	chart: {
+		type: 'bar',
+		height: 300
+	},
+	fill: {
+		opacity:1
+	},
+	plotOptions: {
+		
+	},
+	series: [{
+		name: 'sales',
+		data: productSalesAmount
+	}],
+	colors: '#435ebe',
+	xaxis: {
+		categories: ["No.1","No.2","Mar","Apr","May"],
+	},
+}
 
 var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
 var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
@@ -109,8 +135,12 @@ var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), option
 var chartAmerica = new ApexCharts(document.querySelector("#chart-america"), optionsAmerica);
 var chartIndonesia = new ApexCharts(document.querySelector("#chart-indonesia"), optionsIndonesia);
 
-chartIndonesia.render();
-chartAmerica.render();
-chartEurope.render();
-chartProfileVisit.render();
-chartVisitorsProfile.render()
+var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
+
+// chartIndonesia.render();
+// chartAmerica.render();
+// chartEurope.render();
+// chartProfileVisit.render();
+// chartVisitorsProfile.render();
+
+chartProductTotalSale.render();

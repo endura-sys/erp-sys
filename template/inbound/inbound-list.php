@@ -231,6 +231,7 @@
                                         <th>Inbound Date</th>
                                         <th>Inbound Way</th>
                                         <th>Inbound Cost</th>
+                                        <th>Details</th>
                                     </tr>
                                 </thead>
 
@@ -253,6 +254,9 @@
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
                                                 echo "<tr><td>" .$row["inbound_id"]. "</td><td>" . $row["employee_id"] ."</td><td>" . $row["inbound_date"] ."</td><td>" .$row["inbound_way"] ."</td><td>" .$row["inbound_cost"] ."</td>";
+                                                ?>
+                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="inbound-info?id=<?php echo $row["inbound_id"]?>">View</a></td>
+                                                <?php
                                             }
                                         } else {
                                             echo "0 results";
