@@ -8,11 +8,30 @@
         text-align:center;
     }
 </style>
+<script>
+
+    function myFunction() {
+
+        var x;
+
+        var site = prompt("Enter the quantity.");
+
+        if (site != null) {
+
+            x = "Welocme at " + site + "! Have a good day";
+
+            document.getElementById("demo").innerHTML = x;
+
+        }
+
+    }
+
+</script>
 </head> 
 <body>
 <form method="post" name="yundanForm" οnsubmit='lost()'> 
 <input name="danhao" type="text" id="danhao"/>
-<input type="submit" value="submit" name="submit"/>  
+<input type="submit" value="submit" name="submit" onclick="myFunction()"/>  
 <input type="reset" value="reset" name="button"/> 
 </form>
 <!-- <form method="post" name="yundanForm" οnsubmit='lost()'> 
@@ -71,6 +90,7 @@ if(!empty($danhao)) {
         echo "<br>\n";
         echo "<br>\n";
         echo "Items：$danhao is confirmed successfully<br>\n";
+        
         }
 }
 // print_r($_POST)
