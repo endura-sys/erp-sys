@@ -18,6 +18,19 @@
     <link rel="stylesheet" href="template/assets/css/app.css">
     <link rel="stylesheet" href="template/assets/css/pages/auth.css">
 
+    <?php 
+    session_start();
+
+    if (isset($_GET['logout'])) {
+      session_destroy();
+      unset($_SESSION['username']);
+      header("location: index");
+    }
+    if (!isset($_SESSION['username'])) {
+      header("location: login");
+    }
+    ?>
+
 </head>
 
 </html>

@@ -158,7 +158,7 @@
                                                     <center>
                                                         <?php
 
-                                                        $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                        $conn = mysqli_connect('localhost', 'endurase_sakedb', 'oIx6!!!nZ_do3', 'endurase_sakedb');
 
                                                         // Check connection
                                                         if ($conn === false) {

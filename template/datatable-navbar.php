@@ -26,7 +26,7 @@ if (!isset($_SESSION['username'])) {
     <ul class="menu">
       <?php
       if (isset($_SESSION['username'])) {
-        $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+        $conn = mysqli_connect('localhost', 'endurase_sakedb', 'oIx6!!!nZ_do3', 'endurase_sakedb');
         $sql_get_id = "SELECT employee_id FROM account WHERE username='" . $_SESSION['username'] . "'";
         $result_get_id = $conn->query($sql_get_id);
         $row_get_id = mysqli_fetch_array($result_get_id);

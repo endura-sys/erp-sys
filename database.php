@@ -19,6 +19,7 @@ define( 'DB_CHARSET', 'utf8' );
 	function OpenCon()
 	{
 		$conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) or die("Connect failed: %s\n". $conn -> error);
+		$conn = new mysqli('localhost', 'endurase_sakedb', 'oIx6!!!nZ_do3', 'endurase_sakedb') or die("Connect failed: %s\n". $conn -> error);
 
 		return $conn;
 	}

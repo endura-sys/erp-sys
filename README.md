@@ -11,7 +11,7 @@ Please insert [this SQL file](database/import_database.sql) into your Database S
 </br>
 `function OpenCon(){...}` Connects Server with the Database </br>
 `function CloseCon(){...}` Closes Connection with the Database
-> `mysqli_connect("localhost", "root", "root", "sakedb");` can also be used to connect
+> `mysqli_connect('localhost', 'endurase_sakedb', 'oIx6!!!nZ_do3', 'endurase_sakedb');` can also be used to connect
 
 All the tables in the Database are listed in the order of importing (from top to bottom)
 
