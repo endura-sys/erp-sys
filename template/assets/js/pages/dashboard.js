@@ -16,7 +16,7 @@ var optionsProfileVisit = {
 	},
 	series: [{
 		name: 'sales',
-		data: productSalesAmount
+		data: productSale
 	}],
 	colors: '#435ebe',
 	xaxis: {
@@ -121,7 +121,7 @@ var optionsProductTotalSale = {
 	},
 	series: [{
 		name: 'sales',
-		data: productSalesAmount
+		data: productSale
 	}],
 	colors: '#435ebe',
 	xaxis: {
