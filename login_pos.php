@@ -1,9 +1,9 @@
 <?php
 
 $host = "localhost";
-$user = $_POST["user"];
-$pass = $_POST["pass"];
-$db = "sakedb";
+$user = $_POST["username"];
+$pass = $_POST["password"];
+$db = "endurase_sakedb";
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 if ($conn) {

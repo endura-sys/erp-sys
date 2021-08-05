@@ -5,13 +5,13 @@
 define( 'DB_HOST', 'localhost' );
 
 /** MySQL database name */
-define( 'DB_NAME', 'sakedb' );
+define( 'DB_NAME', 'endurase_sakedb' );
 
 /** MySQL database username */
-define( 'DB_USER', 'root' );
+define( 'DB_USER', 'endurase_sakedb' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'root' );
+define( 'DB_PASSWORD', 'oIx6!!!nZ_do3' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
