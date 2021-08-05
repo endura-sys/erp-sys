@@ -7,9 +7,9 @@
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
-CREATE DATABASE sakedb;
+CREATE DATABASE endurase_sakedb;
 
-USE sakedb;
+USE endurase_sakedb;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sakedb`
+-- Database: `endurase_sakedb`
 --
 
 -- --------------------------------------------------------

@@ -78,7 +78,7 @@
                                                         <div class="form-group">
 
                                                             <?php
-                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                            $conn = mysqli_connect("localhost", "endurase_sakedb", "oIx6!!!nZ_do3", "endurase_sakedb");
 
                                                             $sql_purchase = "SELECT MAX(purchasing_id) FROM purchase";
                                                             $result_purchase = $conn->query($sql_purchase);
@@ -99,7 +99,7 @@
                                                             <select name="supplier_id" class="form-control form-control-md">
                                                                 <option value="">Select Supplier ID</option>
                                                                 <?php
-                                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                                $conn = mysqli_connect("localhost", "endurase_sakedb", "oIx6!!!nZ_do3", "endurase_sakedb");
 
 
                                                                 $sql0 = "SELECT supplier_id, supplier_name FROM supplier";
@@ -122,7 +122,7 @@
                                                             <select name="employee_id" class="form-control form-control-md">
                                                                 <option value="">Select Employee ID</option>
                                                                 <?php
-                                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                                $conn = mysqli_connect("localhost", "endurase_sakedb", "oIx6!!!nZ_do3", "endurase_sakedb");
 
 
                                                                 $sql0 = "SELECT employee_id, firstname FROM employee";
@@ -244,7 +244,7 @@
                                                     <center>
                                                         <?php
 
-                                                        $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                        $conn = mysqli_connect("localhost", "endurase_sakedb", "oIx6!!!nZ_do3", "endurase_sakedb");
 
                                                         // Check connection
                                                         if ($conn === false) {
@@ -386,7 +386,7 @@
                                                             <div class="form-group">
                                                                 <label for=inbound_id>Inbound ID:</label>
                                                                 <?php
-                                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                                $conn = mysqli_connect("localhost", "endurase_sakedb", "oIx6!!!nZ_do3", "endurase_sakedb");
 
                                                                 $sql_inbound = "SELECT MAX(inbound_id) FROM inbound";
                                                                 $result_inbound = $conn->query($sql_inbound);
@@ -456,7 +456,7 @@
                                 $errors = array();
 
                                 if (isset($_POST['confirminbound'])) {
-                                    $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                    $conn = mysqli_connect("localhost", "endurase_sakedb", "oIx6!!!nZ_do3", "endurase_sakedb");
 
                                     $confirm_inbound_id = $_POST["inbound_id"];
                                     $confirm_employee_id = $_POST["employee_id"];

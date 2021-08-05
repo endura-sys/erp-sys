@@ -149,7 +149,7 @@ $row2= mysqli_fetch_array($result2);
                                 <!-- <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position']?>"> -->
                                 <select name="position" class="form-control form-control-xl" placeholder="Select Position">
                                   <?php
-                                    $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                    $conn = mysqli_connect("localhost", "endurase_sakedb", "oIx6!!!nZ_do3", "endurase_sakedb");
 
                                     $sql_pos="SELECT position_name FROM position WHERE position_id= '" . $row['position_id']. "'";
                                     $result_pos = $conn->query($sql_pos);

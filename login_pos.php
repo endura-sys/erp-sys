@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = $_POST["user"];
 $pass = $_POST["pass"];
-$db = "sakedb";
+$db = "endurase_sakedb";
 
 $conn = mysqli_connect($host, $user, $pass, $db);
 if ($conn) {
