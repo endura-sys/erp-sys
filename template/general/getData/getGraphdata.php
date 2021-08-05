@@ -2,9 +2,9 @@
 
 include '../../../database.php';
 
-// $date = $_POST['todayDate'];
+$date = $_POST['todayDate'];
 
-$date = "2021-08-03";
+// $date = "2021-08-03";
 getTodayProductSaleAmount($date);
 
 function getTodayProductSaleAmount($date){

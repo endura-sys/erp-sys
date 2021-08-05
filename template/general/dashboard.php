@@ -86,7 +86,42 @@
                     <!-- Get array value from getTodaySale.php -->
                     <script>
                         <?php $productSalesAmount = [100, 20, 30, 20, 10]; ?>
+
+
+
                         $(function() {
+
+                            var optionsProductTotalSale = {
+                                annotations: {
+                                    position: 'back'
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                chart: {
+                                    type: 'bar',
+                                    height: 300
+                                },
+                                fill: {
+                                    opacity: 1
+                                },
+                                plotOptions: {
+
+                                },
+                                series: [{
+                                    name: 'sales',
+                                    data: [0, 0, 0, 0, 0]
+                                }],
+                                colors: '#435ebe',
+                                xaxis: {
+                                    categories: ["1", "2", "3", "4", "5"],
+                                },
+                            }
+                            // console.log(productSale);
+                            var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
+                            chartProductTotalSale.render();
+
+
                             var date = $('#today-date').val();
 
                             $.ajax({
@@ -114,20 +149,27 @@
                             });
 
                             $.ajax({
-                                url: 'getGraphData',
+                                url: 'test111',
                                 method: 'POST',
                                 data: {
                                     todayDate: date,
                                 },
                                 success: function(response) {
-                                    // alert(response);
-                                    // const result = response.split(",");
-                                    var result = JSON.parse(response);
-                                    // for (var i = 0, emp; i < result.length; i++) {
-                                    //     emp = result[i] + "";
-                                    // }
-                                    productSale = result;
-                                    console.log(productSale);
+                                    var result = JSON.parse(JSON.stringify(response));
+                                    for (var i = 0, emp; i < result.length; i++) {
+                                        emp = result[i];
+                                    }
+                                    chartProductTotalSale.updateSeries([{
+                                        name: 'sales',
+                                        data: emp["product_quantity"]
+                                    }])
+                                    chartProductTotalSale.updateOptions({
+                                        xaxis: {
+                                            categories: emp["product_name"],
+                                        },
+                                    })
+                                    // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
+                                    // chartProductTotalSale.render();
                                 }
                             });
 
@@ -154,7 +196,32 @@
                                     }
                                 });
 
+                                $.ajax({
+                                url: 'test111',
+                                method: 'POST',
+                                data: {
+                                    todayDate: date,
+                                },
+                                success: function(response) {
+                                    var result = JSON.parse(JSON.stringify(response));
+                                    for (var i = 0, emp; i < result.length; i++) {
+                                        emp = result[i];
+                                    }
+                                    chartProductTotalSale.updateSeries([{
+                                        name: 'sales',
+                                        data: emp["product_quantity"]
+                                    }])
+                                    chartProductTotalSale.updateOptions({
+                                        xaxis: {
+                                            categories: emp["product_name"],
+                                        },
+                                    })
+                                    // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
+                                    // chartProductTotalSale.render();
+                                }
                             });
+                            });
+
                         });
                     </script>
                     <!-- include get Grap data -->
@@ -276,7 +343,7 @@
                 </script>
 
                 <script src="template/assets/vendors/apexcharts/apexcharts.js"></script>
-                <script src="template/assets/js/pages/dashboard.js"></script>
+                <!-- <script src="template/assets/js/pages/dashboard.js"></script> -->
                 <!-- Passing the graph value to js -->
 
 

@@ -129,6 +129,8 @@ var optionsProductTotalSale = {
 	},
 }
 
+console.log(typeof(optionsProductTotalSale));
+
 var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
 var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
 var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), optionsEurope);
