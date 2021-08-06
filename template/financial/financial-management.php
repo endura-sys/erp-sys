@@ -50,12 +50,67 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="form-group">
+                  <div class="row">
+                      <label>Type</label>
+                      <select class="choices form-select multiple-remove" id="selectType" multiple="multiple">
+                          <!-- <optgroup label="Type"> -->
+                              <option value="purchase">Purchase</option>
+                              <option value="sales">Sales</option>
+                          <!-- </optgroup> -->
+                      </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                      <label>Employee</label>
+                      <select class="choices form-select multiple-remove" multiple="multiple">
+                          <?php
+                              include '../../database.php';
+                              $conn = OpenCon();
+
+                              $sql0 = "SELECT * FROM employee";
+                              $result0 = $conn->query($sql0);
+
+                              $id = array();
+                              $name = array();
+
+                              while($row0 = $result0->fetch_assoc()) {
+                                array_push($id, $row0["employee_id"]);
+                                array_push($name, $row0["firstname"]);
+                              }
+
+                              $n = count($id);
+
+                              for($i = 0; $i < $n; $i++) {
+                                ?>
+                                <option value="<?php echo $id[$i] ?>"><?php echo $name[$i] ?></option>
+                                <?php
+                              }
+                          ?>
+                      </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                      <label>Status</label>
+                      <select class="choices form-select multiple-remove" multiple="multiple">
+                        <option value="confirmed">Confirmed</option>
+                        <option value="not_confirmed">Not confirmed</option>
+                      </select>
+                  </div>
+                </div>
+
+
+
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
                             Simple Datatable
                         </div>
-
                         <div class="card-body">
                           <form  method="post">
                             <table class="table table-striped" id="table1">
@@ -64,6 +119,7 @@
                                         <th>Order ID</th>
                                         <th>Employee ID</th>
                                         <th>Date</th>
+                                        <th>Type</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -72,8 +128,8 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        include '../../database.php';
-                                        $conn = OpenCon();
+                                        // include '../../database.php';
+                                        // $conn = OpenCon();
 
                                         $sql = "SELECT * FROM purchase";
                                         $result = $conn->query($sql);
@@ -94,6 +150,7 @@
                                                 <?php
                                                 echo "<td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td>";
                                                 ?>
+                                                <td>Purchase</td>
                                                 <td>
                                                 <?php  if ($status==true){ ?>
                                                 	 <spam class="badge bg-success" >Confirmed</span>
@@ -127,10 +184,11 @@
                                                   <td><?php echo $row["sale_id"]?></td>
 
                                                 <?php
-                                                echo "<td>" . $row["employee_id"] ."</td><td>" . $row["sale_id"] ."</td>";
+                                                echo "<td>" . $row["employee_id"] ."</td><td>" . $row["sale_date"] ."</td>";
                                                 ?>
+                                                <td>Sales</td>
                                                 <td>
-                                                <?php  if ($status==true){ ?>
+                                                <?php if ($status==true){ ?>
                                                 	 <spam class="badge bg-success" >Confirmed</span>
                                                 <?php } else {?>
                                                   <span class="badge bg-danger" >Not Confirmed</span>
@@ -174,14 +232,31 @@
 
     <?php include('../footer.php'); ?>
 
+    <script src="../template/assets/vendors/jquery/jquery.min.js"></script>
+    <script src="template/assets/js/ddtf.js"></script>
+
+
     <script>
-        function add() {
-            var html = "<th><input type='integer' class='form-control' name='product_id[]'></th>";
-            html += "<th><input type='integer' class='form-control' name='quantity[]'></th>";
-            var table = document.getElementById("tbody");
-            var row = table.insertRow();
-            row.innerHTML = html;
-        }
+      $("#table1").ddTableFilter();
+      // var $ = jQuery;
+      $(document).ready(function() {
+        var n = 0;
+        $("#selectType").on('change', function() {
+            var type = $("#selectType").val();
+            console.log(type);
+
+
+            $.ajax({
+              url: "getType",
+              method: "POST",
+              data: { n: n, type: type, },
+              success: function(response) {
+                console.log(response);
+              }
+            });
+            n++;
+        });
+      });
     </script>
 
 </body>
