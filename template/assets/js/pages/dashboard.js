@@ -16,7 +16,7 @@ var optionsProfileVisit = {
 	},
 	series: [{
 		name: 'sales',
-		data: productSalesAmount
+		data: productSale
 	}],
 	colors: '#435ebe',
 	xaxis: {
@@ -121,13 +121,15 @@ var optionsProductTotalSale = {
 	},
 	series: [{
 		name: 'sales',
-		data: productSalesAmount
+		data: productSale
 	}],
 	colors: '#435ebe',
 	xaxis: {
 		categories: ["No.1","No.2","Mar","Apr","May"],
 	},
 }
+
+console.log(typeof(optionsProductTotalSale));
 
 var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
 var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)

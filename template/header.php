@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="template/assets/css/app.css">
     <link rel="stylesheet" href="template/assets/css/pages/auth.css">
 
+    <link rel="stylesheet" href="template/assets/vendors/choices.js/choices.min.css" />
 </head>
 
 </html>

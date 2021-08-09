@@ -9,6 +9,7 @@
     <script src="../template/assets/js/moment.js"></script>
     <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.css">
     <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.min.css">
+    <script src="../template/general/getData/globalData.js"></script>
 </head>
 
 <body>
@@ -81,58 +82,146 @@
                         </div>
                     </div>
                     <!-- Date picker -->
-                    
+
                     <!-- Get array value from getTodaySale.php -->
                     <script>
                         <?php $productSalesAmount = [100, 20, 30, 20, 10]; ?>
+
+
+
                         $(function() {
+
+                            var optionsProductTotalSale = {
+                                annotations: {
+                                    position: 'back'
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                chart: {
+                                    type: 'bar',
+                                    height: 300
+                                },
+                                fill: {
+                                    opacity: 1
+                                },
+                                plotOptions: {
+
+                                },
+                                series: [{
+                                    name: 'sales',
+                                    data: [0, 0, 0, 0, 0]
+                                }],
+                                colors: '#435ebe',
+                                xaxis: {
+                                    categories: ["1", "2", "3", "4", "5"],
+                                },
+                            }
+                            // console.log(productSale);
+                            var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
+                            chartProductTotalSale.render();
+
+
                             var date = $('#today-date').val();
 
                             $.ajax({
-                                url:'getTodaySale',
-                                method:'POST',
-                                data:{
+                                url: 'getTodaySale',
+                                method: 'POST',
+                                data: {
                                     todayDate: date,
                                 },
-                                success:function(response){
+                                success: function(response) {
 
                                     // alert(response);
 
                                     // const result = response.split(",");
 
                                     var result = JSON.parse(response);
-                                    alert(result[0].name);
-
-                                    // document.getElementById("alipaySale").innerHTML = result + "";
-                                    document.getElementById("fpsSale").innerHTML = result[1] + "";
-                                    document.getElementById("cashSale").innerHTML = result[2] + "";
-                                    document.getElementById("totalSale").innerHTML = result[3] + "";
-                                    var productSalesAmount = <?php echo json_encode($productSalesAmount); ?>;
+                                    for (var i = 0, emp; i < result.length; i++) {
+                                        emp = result[i];
+                                        // console.log(emp);
+                                    }
+                                    document.getElementById("alipaySale").innerHTML = emp["alipay"] + "";
+                                    document.getElementById("fpsSale").innerHTML = emp["fps"] + "";
+                                    document.getElementById("cashSale").innerHTML = emp["cash"] + "";
+                                    document.getElementById("totalSale").innerHTML = emp["total"] + "";
                                 }
                             });
-                            
+
+                            $.ajax({
+                                url: 'test111',
+                                method: 'POST',
+                                data: {
+                                    todayDate: date,
+                                },
+                                success: function(response) {
+                                    var result = JSON.parse(JSON.stringify(response));
+                                    for (var i = 0, emp; i < result.length; i++) {
+                                        emp = result[i];
+                                    }
+                                    chartProductTotalSale.updateSeries([{
+                                        name: 'sales',
+                                        data: emp["product_quantity"]
+                                    }])
+                                    chartProductTotalSale.updateOptions({
+                                        xaxis: {
+                                            categories: emp["product_name"],
+                                        },
+                                    })
+                                    // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
+                                    // chartProductTotalSale.render();
+                                }
+                            });
 
                             $("#today-date").on('change', function() {
                                 date = $('#today-date').val();
                                 var alipaySale = $('#alipaySale').val();
 
                                 $.ajax({
-                                url:'getTodaySale',
-                                method:'POST',
-                                data:{
+                                    url: 'getTodaySale',
+                                    method: 'POST',
+                                    data: {
+                                        todayDate: date,
+                                    },
+                                    success: function(response) {
+
+                                        var result = JSON.parse(response);
+                                        for (var i = 0, emp; i < result.length; i++) {
+                                            emp = result[i];
+                                        }
+                                        document.getElementById("alipaySale").innerHTML = emp["alipay"] + "";
+                                        document.getElementById("fpsSale").innerHTML = emp["fps"] + "";
+                                        document.getElementById("cashSale").innerHTML = emp["cash"] + "";
+                                        document.getElementById("totalSale").innerHTML = emp["total"] + "";
+                                    }
+                                });
+
+                                $.ajax({
+                                url: 'test111',
+                                method: 'POST',
+                                data: {
                                     todayDate: date,
                                 },
-                                success:function(response){
-                                    const result = response.split(",");
-                                    document.getElementById("alipaySale").innerHTML = result[0];
-                                    document.getElementById("fpsSale").innerHTML = result[1];
-                                    document.getElementById("cashSale").innerHTML = result[2];
-                                    document.getElementById("totalSale").innerHTML = result[3];
-                                    var productSalesAmount = <?php echo json_encode($productSalesAmount); ?>;
+                                success: function(response) {
+                                    var result = JSON.parse(JSON.stringify(response));
+                                    for (var i = 0, emp; i < result.length; i++) {
+                                        emp = result[i];
+                                    }
+                                    chartProductTotalSale.updateSeries([{
+                                        name: 'sales',
+                                        data: emp["product_quantity"]
+                                    }])
+                                    chartProductTotalSale.updateOptions({
+                                        xaxis: {
+                                            categories: emp["product_name"],
+                                        },
+                                    })
+                                    // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
+                                    // chartProductTotalSale.render();
                                 }
                             });
-
                             });
+
                         });
                     </script>
                     <!-- include get Grap data -->
@@ -219,7 +308,7 @@
                                     <div class="card-body">
                                         <!-- <div id="chart-profile-visit"></div> -->
                                         <div id="chart-product-total-sale"></div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -241,11 +330,10 @@
                 </div>
 
                 <!-- Passing the graph value to js -->
-                <!-- <?php $productSalesAmount = [32, 20, 30, 20, 10, 20, 30, 20, 10, 20, 30, 20]; ?> -->
                 <?php
-                
-                $productSalesAmount = [50, 20, 30, 20, 10];
-                
+
+                // $productSalesAmount = [50, 20, 30, 20, 10];
+
                 // include('getGraphData/getGraphData.php');;
                 // getTodayProductSaleAmount($date);
 
@@ -255,7 +343,7 @@
                 </script>
 
                 <script src="template/assets/vendors/apexcharts/apexcharts.js"></script>
-                <script src="template/assets/js/pages/dashboard.js"></script>
+                <!-- <script src="template/assets/js/pages/dashboard.js"></script> -->
                 <!-- Passing the graph value to js -->
 
 
@@ -267,7 +355,7 @@
         <script src="../template/assets/js/bootstrap-datetimepicker.js"></script>
         <script src="../template/assets/js/bootstrap-datetimepicker.min.js"></script>
         <script src="../template/assets/js/bootstrap.min.js"></script>
-        <script src="../template/assets/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>"></script>
+        <script src="../template/assets/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
 
 

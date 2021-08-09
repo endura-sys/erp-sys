@@ -24,8 +24,10 @@ RewriteRule ^update-list /template/general/update-list.php [L,QSA,NC]
 
 # Dashboard get data
 RewriteRule ^getGraphdata /template/general/getData/getGraphdata.php [L,QSA,NC]
+RewriteRule ^test111 /template/general/getData/getGraphdata1.php [L,QSA,NC]
 RewriteRule ^getTodaySale /template/general/getData/getTodaySale.php [L,QSA,NC]
 
+RewriteRule ^testDatabase testDatabase.php [L,QSA,NC]
 
 
 ########################################################################################
@@ -79,3 +81,4 @@ RewriteRule ^invoice-outbound /template/pdf-generator/pdf/invoice-outbound.php [
 RewriteRule ^stock-list /template/inventory/stock-list.php [L,QSA,NC]
 
 RewriteRule ^financial-management /template/financial/financial-management.php [L,QSA,NC]
+RewriteRule ^getType /template/financial/getType.php [L,QSA,NC]
