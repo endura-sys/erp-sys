@@ -263,14 +263,13 @@
                                                         $product =  $_REQUEST['product_id'];
                                                         $quantity = $_REQUEST['quantity'];
 
-
                                                         // Performing insert query execution
                                                         $sql = "INSERT INTO purchase VALUES ('$purchasing_id','$supplier_id','$employee_id','$production_date','$shelf_life','$shelf_date','$payment_status','$status')";
                                                         $result = $conn->query($sql);
 
                                                         $N = count($product);
                                                         for ($i = 0; $i < $N; $i++) {
-                                                            $sql2 = "INSERT INTO purchase_items_list VALUES ('$purchasing_id', '$product[$i]', '$quantity[$i]')";
+                                                            $sql2 = "INSERT INTO purchase_items_list VALUES ('$purchasing_id', '$product[$i]', '$quantity[$i]', NULL)";
                                                             $result2 = $conn->query($sql2);
                                                         }
 

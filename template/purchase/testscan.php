@@ -8,41 +8,20 @@
         text-align:center;
     }
 </style>
-<script>
 
-    function myFunction() {
-
-        var x;
-
-        var site = prompt("Enter the quantity.");
-
-        if (site != null) {
-
-            x = "Welocme at " + site + "! Have a good day";
-
-            document.getElementById("demo").innerHTML = x;
-
-        }
-
-    }
-
-</script>
 </head> 
 <body>
 <form method="post" name="yundanForm" οnsubmit='lost()'> 
 <input name="danhao" type="text" id="danhao"/>
-<input type="submit" value="submit" name="submit" onclick="myFunction()"/>  
-<input type="reset" value="reset" name="button"/> 
-</form>
-<!-- <form method="post" name="yundanForm" οnsubmit='lost()'> 
 <input name="quantity" type="text" id="quantity"/>
-<input type="submit" value="submit_quantity" name="submit"/> 
-</form>  -->
+<input type="submit" value="submit" name="submit"/>  
+<input type="reset" value="reset" name="button"/>
+
 <?php 
 
 
 @$danhao = $_POST['danhao'];  
-// @$quantity = $_POST['danhao'];
+@$quantity = $_POST['quantity'];
  
 
 
@@ -82,15 +61,35 @@ if(!empty($danhao)) {
         echo "<br>\n";
         echo "<br>\n";  
         echo "<br>\n";
-        echo "Items：$danhao has already confirmed";
+        echo "Items：$danhao has already confirmed\n";
+        $sql_oldq = "SELECT `quantity` from `testphp`.`yundan` where num = '$danhao'";
+        $result_oldq = $conn->query($sql_oldq);
+        $row_oldq = $result_oldq->fetch_assoc();
+        $oldq = $row_oldq["quantity"];
+        $quan = $oldq + $quantity;
+        $sql = "UPDATE yundan SET quantity = '$quan' WHERE num = '$danhao'";
+        if (mysqli_query($conn, $sql)) {
+            echo "Record updated successfully\n";
+            echo "<br>The order is: $danhao\n";
+            echo "<br>The added number of Items is: $quantity\n";
+          } else {
+            echo "Error updating record1: " . mysqli_error($conn);
+          }
         
 } else {
         $insertnum = mysqli_query($conn,$sqlinsert);
         echo "<br>\n";
         echo "<br>\n";
         echo "<br>\n";
-        echo "Items：$danhao is confirmed successfully<br>\n";
-        
+        echo "<br>Items：$danhao is confirmed successfully<br>\n";
+        $sql = "UPDATE yundan SET quantity = '$quantity' WHERE num = '$danhao'";
+        if (mysqli_query($conn, $sql)) {
+            echo "<br>The order is :$danhao\n";
+            echo "<br>The total number of Items is$quantity\n";
+            echo "Record updated successfully";
+          } else {
+            echo "Error updating record2: " . mysqli_error($conn);
+          }
         }
 }
 // print_r($_POST)
