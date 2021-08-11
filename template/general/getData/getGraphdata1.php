@@ -22,6 +22,42 @@ function getTodayProductSaleAmount($date)
     AND s.sale_date = '" . $date . "'
     ORDER BY si_n.total_quantity DESC";
 
+    // SELECT s.*, w.product_id, w.name, si.quantity
+    // FROM sales s, wine_list w
+    // 	JOIN (SELECT * 
+    //           FROM sale_items_list si) AS si
+    //     WHERE si.sale_id = s.sale_id
+    //     AND si.product_id = w.product_id
+    //     AND s.sale_time = "2021-08-09"
+
+
+    // SELECT DISTINCT si.sale_id, si.product_id, w.product_id, w.name, SUM(si.quantity) as total_quantity
+    // FROM sale_items_list si, wine_list w
+    // 	JOIN (SELECT s.sale_id, s.sale_date
+    //           FROM sales s
+    //           WHERE sale_date = "2021-08-09") AS s_n
+    //     WHERE si.sale_id = s_n.sale_id
+    //     AND si.product_id = w.product_id
+	// 	GROUP BY si.product_id, si.sale_id
+
+
+// SELECT si.sale_id, si.product_id, si_n.total_quantity, s.sale_id, s.sale_date, w.product_id, w.name
+// sale_items_list AS si,
+// LEFT JOIN (
+// SELECT s.sale_id, s.sale_date,
+// SUM(Quantity) AS Purchase
+// FROM AccuPurchaseInvoice
+// GROUP BY ProductID
+// )p
+// ON p.ProductID = pr.RecordID
+// LEFT JOIN (
+// SELECT ProductID,
+// SUM(Quantity) AS Sales
+// FROM AccuSaleCustomer
+// GROUP BY ProductID
+// )s
+// ON s.ProductID = pr.RecordID
+
     $result = $conn->query($sql2);
 
     $product_quantity_list = array();
