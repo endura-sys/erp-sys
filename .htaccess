@@ -30,6 +30,9 @@ RewriteRule ^getTodaySale /template/general/getData/getTodaySale.php [L,QSA,NC]
 RewriteRule ^testDatabase testDatabase.php [L,QSA,NC]
 
 
+RewriteRule ^testButton template/financial/financial-test.php [L,QSA,NC]
+
+
 ########################################################################################
 
 # Inbound
