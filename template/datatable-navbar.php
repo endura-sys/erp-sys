@@ -37,7 +37,7 @@ if (!isset($_SESSION['username'])) {
       <?php
       }
       ?>
-      <div id="clockbox" ></div>
+      <div id="clockbox"></div>
 
 <script type="text/javascript">
 var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
