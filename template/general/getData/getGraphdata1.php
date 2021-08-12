@@ -20,7 +20,7 @@ function getTodayProductSaleAmount($date)
     $sql2 = "SELECT wine_list.name,sale_items_list.product_id,SUM(sale_items_list.quantity) as total
     FROM sale_items_list
     INNER JOIN sales ON sales.sale_id = sale_items_list.sale_id
-    INNER JOIN wine_list ON sale_items_list.product_id = wine_list.product_id 
+    INNER JOIN wine_list ON sale_items_list.product_id = wine_list.product_id
     WHERE sales.sale_date =  '" . $date . "'
     GROUP BY sale_items_list.product_id
     ORDER BY total DESC LIMIT 10";
@@ -34,11 +34,22 @@ function getTodayProductSaleAmount($date)
         AND si.product_id = w.product_id
 		GROUP BY si.product_id, si.sale_id ";
 
-  
+
+
+
+
+    $sql3 = "SELECT DISTINCT si.sale_id, si.product_id, w.product_id, w.name, SUM(si.quantity) as total_quantity
+    FROM sale_items_list si, wine_list w
+    	JOIN (SELECT s.sale_id, s.sale_date
+              FROM sales s
+              WHERE sale_date = '" . $date . "') AS s_n
+        WHERE si.sale_id = s_n.sale_id
+        AND si.product_id = w.product_id
+		GROUP BY si.product_id, si.sale_id";
 
     // SELECT s.*, w.product_id, w.name, si.quantity
     // FROM sales s, wine_list w
-    // 	JOIN (SELECT * 
+    // 	JOIN (SELECT *
     //           FROM sale_items_list si) AS si
     //     WHERE si.sale_id = s.sale_id
     //     AND si.product_id = w.product_id
