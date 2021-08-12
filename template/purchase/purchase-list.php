@@ -365,7 +365,7 @@
                                     </tbody>
 
                                 </table>
-                                <a type="button" class="btn btn-light-success me-1 mb-1" data-bs-toggle="modal" data-bs-target="#confirmModal">Confirm Inbound</a>
+                                <button class="btn btn-primary btn-md shadow-sm float-lg-end" type="button"  data-bs-toggle="modal" data-bs-target="#confirmModal">Confirm Inbound</button>
 
                                 <div class="modal fade text-left modal-borderless" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
