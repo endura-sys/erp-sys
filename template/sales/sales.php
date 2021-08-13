@@ -34,7 +34,7 @@
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Sales</li>
                                 </ol>
                             </nav>
                         </div>
@@ -186,17 +186,11 @@
                                                           </thead>
                                                           <tbody id="tbody">
                                                             <tr>
-                                                                <th><input type="integer" class="form-control" name="product_id[]" id="productid" required></th>
+                                                                <th><input type="integer" class="form-control" name="product_id[]" required></th>
                                                                 <th><input type="integer" class="form-control" name="quantity[]" required></th>
                                                                 <th>
                                                                     <button type="button" class="btn btn-primary" onclick="add(this)">Add</button>
                                                                 </th>
-
-                                                                <!-- <th>
-                                                                    <button type="button" class="btn btn-danger" onclick="deleterow(this)">
-                                                                        <i class="bi bi-x-circle"></i>
-                                                                    </button>
-                                                                </th> -->
 
                                                             </tr>
                                                           </tbody>
@@ -206,7 +200,7 @@
                                                         <div class="d-flex justify-content-end">
                                                               <div class="form-group">
                                                                   <label for="total_sale">Total sale:</label>
-                                                                  <input type="varchar" class="form-control" name="total_sale" id="total" value="0" required>
+                                                                  <input type="varchar" class="form-control" name="total_sale" id="total" required>
                                                               </div>
                                                         </div>
                                                     </div>
@@ -494,61 +488,37 @@
     </div>
 
     <?php include('../footer.php'); ?>
-    <script src="../template/assets/vendors/jquery/jquery.min.js"></script>
 
   <script>
-    $(function add(btn) {
+    function add(btn) {
       var product = btn.parentNode.previousElementSibling.previousElementSibling.firstElementChild.value;
       var quantity = btn.parentNode.previousElementSibling.firstElementChild.value;
-      btn.className = "btn btn-danger";
-      btn.innerHTML = "Remove";
-      btn.onclick = function() {return deleterow(this)};
+      if (product != "" && quantity != "") {
+        // $.ajax({
+        //     url:'getTotal',
+        //     method:'POST',
+        //     data:{
+        //         productid: "product",
+        //         quantity: quantity,
+        //     },
+        //     success:function(response){
+        //         alert(response);
+        //         document.getElementById("total").value = response;
+        //     }
+        // });
+        document.getElementById("total").value += product * quantity;
+        btn.className = "btn btn-danger";
+        btn.innerHTML = "Remove";
+        btn.onclick = function() {return deleterow(this)};
 
-      var html = "<th><input type='integer' class='form-control' name='product_id[]' required></th>";
-      html += "<th><input type='integer' class='form-control' name='quantity[]' required></th>";
-      html += "<th><button type='button' class='btn btn-primary' onclick='add(this)'>Add</button></th>";
+        var html = "<th><input type='integer' class='form-control' name='product_id[]' required></th>";
+        html += "<th><input type='integer' class='form-control' name='quantity[]' required></th>";
+        html += "<th><button type='button' class='btn btn-primary' onclick='add(this)'>Add</button></th>";
 
-      var table = document.getElementById("tbody");
-      var row = table.insertRow();
-      row.innerHTML = html;
-      $.ajax({
-          url: "getTotal",
-          method: "POST",
-          data:{ productid: product},
-          success:function(response){
-              response = parseInt(response);
-              var total = parseInt(document.getElementById("total").value);
-              total += response * quantity;
-              document.getElementById("total").value = total;
-
-          }
-      });
-      // if (product != "" && quantity != "") {
-      //   $.ajax({
-      //       url:'getTotal',
-      //       method:'POST',
-      //       data:{
-      //           productid: product,
-      //       },
-      //       success:function(response){
-      //           alert(response);
-      //           document.getElementById("total").value = response;
-      //
-      //       }
-      //   });
-        // document.getElementById("total").value += product * quantity;
-        // btn.className = "btn btn-danger";
-        // btn.innerHTML = "Remove";
-        // btn.onclick = function() {return deleterow(this)};
-        //
-        // var html = "<th><input type='integer' class='form-control' name='product_id[]' required></th>";
-        // html += "<th><input type='integer' class='form-control' name='quantity[]' required></th>";
-        // html += "<th><button type='button' class='btn btn-primary' onclick='add(this)'>Add</button></th>";
-        //
-        // var table = document.getElementById("tbody");
-        // var row = table.insertRow();
-        // row.innerHTML = html;
-      // }
+        var table = document.getElementById("tbody");
+        var row = table.insertRow();
+        row.innerHTML = html;
+      }
     }
   </script>
 

@@ -37,8 +37,8 @@ if (!isset($_SESSION['username'])) {
       <?php
       }
       ?>
-      <div id="clockbox"></div>
-
+      <div id="clockbox" class="sidebar-title"></div>
+      
 <script type="text/javascript">
 var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 var tmonth=["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -57,6 +57,7 @@ document.getElementById('clockbox').innerHTML=clocktext;
 GetClock();
 setInterval(GetClock,1000);
 </script>
+
       <li class="sidebar-title">Menu</li>
 
       <li class="sidebar-item <?php if ($currentPage == 'dashboard') {

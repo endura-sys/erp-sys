@@ -44,7 +44,7 @@
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Purchase</li>
                                 </ol>
                             </nav>
                         </div>
@@ -119,6 +119,19 @@
                                                     <div class="col-sm-6 col-md-3">
                                                         <div class="form-group">
                                                             <label for="employee_id">Employee ID:</label>
+                                                            <?php
+                                                            $user = $_SESSION['username'];
+                                                            // echo $user;
+                                                            $sql =" SELECT position.access_level
+                                                            from employee
+                                                            INNER JOIN account ON employee.employee_id = account.employee_id
+                                                            INNER JOIN position ON position.position_id = employee.position_id
+                                                            WHERE account.username = '$user'";
+                                                            $result_level = $conn->query($sql);
+                                                            $row_level = $result_level->fetch_assoc();
+                                                            // echo $row_level["access_level"];
+                                                            if($row_level["access_level"] == "High"){
+                                                            ?>
                                                             <select name="employee_id" class="form-control form-control-md">
                                                                 <option value="">Select Employee ID</option>
                                                                 <?php
@@ -130,12 +143,14 @@
                                                                 while ($row0 = $result0->fetch_assoc()) {
                                                                 ?>
                                                                     <option value="<?php echo $row0["employee_id"] ?>"><?php echo $row0["firstname"]; ?></option>
-
-                                                                <?php
-                                                                }
-
-                                                                ?>
+                                                                <?php } ?>
                                                             </select>
+                                                            <?php } else {?>                                                             
+
+                                                            <input type="char" readonly class="form-control" value="<?php echo $_SESSION['username']; ?>">
+                                                            <?php } ?>
+
+
                                                         </div>
                                                     </div>
 

@@ -43,21 +43,25 @@
                             <!-- <h3>You need Log In</h3> -->
                         <?php endif ?>
                     </div>
-                    <div class="col-12 col-md-6 order-md-2 order-first">
-
-                    </div>
+                
                 </div>
             </header>
 
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
-
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <!-- <h3>DataTable</h3>
-                            <p class="text-subtitle text-muted">For user to check they list</p> -->
+                    <div class="col-6 col-lg-3 col-md-3">
+                        <?php
+                        date_default_timezone_set('Asia/Hong_Kong');
+                        $date = date('Y-m-d');
+                        ?>
+                        
+                        <div class="form-group">
+                            <input id="today-date" name="todayDate" type="date" class="form-control" value="<?php echo $date ?>" />
                         </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
+                        
+                    </div>
+                    <div class="col-12 col-md-8 order-md-5 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -65,6 +69,7 @@
                                 </ol>
                             </nav>
                         </div>
+                    
                     </div>
                 </div>
 
@@ -72,15 +77,8 @@
 
                 <section class="row">
                     <!-- Date picker -->
-                    <div class="col-6 col-lg-3 col-md-3">
-                        <?php
-                        date_default_timezone_set('Asia/Hong_Kong');
-                        $date = date('Y-m-d');
-                        ?>
-                        <div class="form-group">
-                            <input id="today-date" name="todayDate" type="date" class="form-control" value="<?php echo $date ?>" />
-                        </div>
-                    </div>
+              
+          
                     <!-- Date picker -->
 
                     <!-- Get array value from getTodaySale.php -->
