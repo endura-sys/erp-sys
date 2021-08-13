@@ -132,14 +132,23 @@
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="sale_date">Sale date:</label>
-                                                                <input type="date" class="form-control" name="sale_date" required>
+                                                                <?php
+                                                                date_default_timezone_set('Asia/Hong_Kong');
+                                                                $saledate = date('Y-m-d');
+                                                                ?>
+                                                                <input type="date" class="form-control" name="sale_date" value="<?php echo $saledate; ?>">
+
                                                             </div>
                                                       </div>
 
                                                       <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="sale_time">Sale time:</label>
-                                                                <input type="time" class="form-control" name="sale_time" required>
+                                                                <?php
+                                                                date_default_timezone_set('Asia/Hong_Kong');
+                                                                $saletime = date('H:i');
+                                                                ?>
+                                                                <input type="time" class="form-control" name="sale_time" value="<?php echo $saletime; ?>">
                                                             </div>
                                                       </div>
 
@@ -186,11 +195,11 @@
                                                           </thead>
                                                           <tbody id="tbody">
                                                             <tr>
-                                                                <th><input type="integer" class="form-control" name="product_id[]" id="productid" required></th>
-                                                                <th><input type="integer" class="form-control" name="quantity[]" required></th>
-                                                                <th>
-                                                                    <button type="button" class="btn btn-primary" onclick="add(this)">Add</button>
-                                                                </th>
+                                                                <td><input type="integer" class="form-control inputchange" name="product_id[]" id="productid" required></td>
+                                                                <td><input type="integer" class="form-control inputchange" name="quantity[]" required></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-danger dltbtn">Remove</button>
+                                                                </td>
 
                                                                 <!-- <th>
                                                                     <button type="button" class="btn btn-danger" onclick="deleterow(this)">
@@ -202,6 +211,15 @@
                                                           </tbody>
                                                         </table>
                                                       </div>
+
+                                                      <div class="row">
+                                                          <div class="col-sm-6 col-md-6">
+                                                              <div class="form-group">
+                                                                  <button type="button" class="btn btn-primary addbtn">Add</button>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+
 
                                                         <div class="d-flex justify-content-end">
                                                               <div class="form-group">
@@ -436,7 +454,7 @@
                                                 date_default_timezone_set('Asia/Hong_Kong');
                                                 $date = date('Y-m-d');
                                                 ?>
-                                                <input type="date" class="form-control" name="outbound_date" id="outbound_date" value="<?php echo $date;?>">
+                                                <input type="date" class="form-control" name="outbound_date" id="outbound_date" value="<?php echo $saledate;?>">
                                             </div>
 
 
@@ -496,8 +514,109 @@
     <?php include('../footer.php'); ?>
     <script src="../template/assets/vendors/jquery/jquery.min.js"></script>
 
-  <script>
-    $(function add(btn) {
+
+    <script>
+
+      var amount = [0];
+      $(document).on('click', ".addbtn", function add(event){
+
+          // var btn = event.target;
+          // var product = btn.parentNode.previousElementSibling.previousElementSibling.firstElementChild.value;
+          // var quantity = btn.parentNode.previousElementSibling.firstElementChild.value;
+          //
+          // console.log(product);
+          // console.log(quantity);
+
+          // $(this).off("click", add);
+          // $(this).removeClass("btn-primary addbtn").addClass("btn-danger dltbtn");
+          // btn.innerHTML = "Remove";
+          // btn.onclick = function() {return deleterow(this)};
+
+          var html = "<td><input type='integer' class='form-control inputchange' name='product_id[]' required></td>";
+          html += "<td><input type='integer' class='form-control inputchange' name='quantity[]' required></td>";
+          html += "<td><button type='button' class='btn btn-danger dltbtn'>Remove</button></td>";
+
+          var table = document.getElementById("tbody");
+          var row = table.insertRow();
+          row.innerHTML = html;
+          amount.push(0);
+          // $.ajax({
+          //     url: "getTotal",
+          //     method: "POST",
+          //     data:{ productid: product},
+          //     success:function(response){
+          //         response = parseInt(response);
+          //         amount.push(response * quantity);
+          //         var len = amount.length;
+          //         var total = 0;
+          //         for (var i = 0; i < len; i++) {
+          //           total += amount[i];
+          //         }
+          //         console.log(total);
+          //         document.getElementById("total").value = total;
+          //
+          //     }
+          // });
+
+      });
+
+    </script>
+
+    <script>
+      $(document).on('click', ".dltbtn", function deleterow(event) {
+        var btn = event.target;
+        var table = document.getElementById("tbody");
+        var i = btn.parentNode.parentNode.rowIndex;
+        console.log(i-1);
+        amount.splice(i-1,1);
+        var len = amount.length;
+        var total = 0;
+        for (var i = 0; i < len; i++) {
+          total += amount[i];
+        }
+        console.log(total);
+        document.getElementById("total").value = total;
+
+
+        table.deleteRow(i-1);
+      });
+    </script>
+
+    <script>
+      $(document).on('change', ".inputchange", function change(event) {
+        var row = $(this).closest("tr");
+        var product = row.find("td:eq(0)>input").val();
+        var quantity = row.find("td:eq(1)>input").val();
+        var index = event.target.parentNode.parentNode.rowIndex;
+
+
+        if (product != "" && quantity != "") {
+          console.log(product);
+          console.log(quantity);
+          $.ajax({
+              url: "getTotal",
+              method: "POST",
+              data:{ productid: product},
+              success:function(response){
+                  response = parseInt(response);
+                  amount[index-1] = response * quantity;
+                  var len = amount.length;
+                  var total = 0;
+                  for (var i = 0; i < len; i++) {
+                    total += amount[i];
+                  }
+                  console.log(total);
+                  document.getElementById("total").value = total;
+
+              }
+          });
+        }
+
+      });
+    </script>
+
+  <!-- <script>
+    function add(btn) {
       var product = btn.parentNode.previousElementSibling.previousElementSibling.firstElementChild.value;
       var quantity = btn.parentNode.previousElementSibling.firstElementChild.value;
       btn.className = "btn btn-danger";
@@ -550,15 +669,7 @@
         // row.innerHTML = html;
       // }
     }
-  </script>
-
-  <script>
-    function deleterow(btn) {
-      var table = document.getElementById("tbody");
-      var i = btn.parentNode.parentNode.rowIndex;
-      table.deleteRow(i-1);
-    }
-  </script>
+  </script> -->
 
   <!-- <script>
     function calculate() {
