@@ -20,13 +20,13 @@
                     	<?php include('errors.php'); ?>
                     <!-- Error Display -->
                       <div class="form-group position-relative has-icon-left mb-4">
-                          <input type="text" name="username" class="form-control form-control-xl" placeholder="Username" style="font-size: 1rem;">
+                          <input type="text" name="username" class="form-control form-control-md" placeholder="Username" style="font-size: 1rem;">
                           <div class="form-control-icon">
                               <i class="bi bi-person"></i>
                           </div>
                       </div>
                       <div class="form-group position-relative has-icon-left mb-4">
-                          <input type="password" name="password" class="form-control form-control-xl" placeholder="Password" style="font-size: 1rem;">
+                          <input type="password" name="password" class="form-control form-control-md" placeholder="Password" style="font-size: 1rem;">
                           <div class="form-control-icon">
                               <i class="bi bi-shield-lock"></i>
                           </div>
@@ -35,7 +35,7 @@
                           <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a></p>
                       </div> -->
                       <!-- Login Button -->
-                      <button class="btn btn-primary btn-block btn-lg shadow-lg mt-4" name="login_user">Log in</button>
+                      <button class="btn btn-primary btn-block btn-md shadow-lg mt-4" name="login_user">Log in</button>
                       <!-- Login Button -->
                   </form>
               </div>
