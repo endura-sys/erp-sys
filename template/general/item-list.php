@@ -16,6 +16,7 @@
 
         <div id="main">
             <header class="mb-3">
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
@@ -252,6 +253,7 @@
                                     $conn = OpenCon();
 
                                     $sql = "SELECT product_id, p1, p2, p3, location, sake_brewer, name, volume, unit FROM wine_list";
+                                    $result = $conn->query('set names utf8');
                                     $result = $conn->query($sql);
 
                                     $product_list = array();
