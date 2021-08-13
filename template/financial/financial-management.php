@@ -4,6 +4,8 @@
 
 ?>
 
+<link rel="stylesheet" href="template/assets/css/Filter.css">
+
 <body>
     <div id="app">
         <div id="sidebar" class="active">
@@ -56,8 +58,8 @@
                       <label>Type</label>
                       <select class="choices form-select multiple-remove" id="selectType" multiple="multiple">
                           <!-- <optgroup label="Type"> -->
-                              <option value="purchase">Purchase</option>
-                              <option value="sales">Sales</option>
+                              <option value="purchase" href="#" onclick="$('.table').tableFilter('filterRows', 'purchase')">Purchase</option>
+                              <option value="sales" href="#" onclick="$('.table').tableFilter('filterRows', 'sales')">Sales</option>
                           <!-- </optgroup> -->
                       </select>
                   </div>
@@ -98,11 +100,19 @@
                   <div class="row">
                       <label>Status</label>
                       <select class="choices form-select multiple-remove" multiple="multiple">
-                        <option value="confirmed">Confirmed</option>
-                        <option value="not_confirmed">Not confirmed</option>
+                        <option value="confirmed" href="#" onclick="$('.table').tableFilter('filterRows', 'Confirmed')">Confirmed</option>
+                        <option value="not_confirmed" href="#" onclick="$('.table').tableFilter('filterRows', 'Not confirmed')">Not confirmed</option>
                       </select>
                   </div>
                 </div>
+
+                <div>
+                  <a cla="btn btn-primary" herf="#" onclick="$('.table').tableFilter('filterRows', 'sales')">Sales</a>
+                </div>
+                <div>
+                  <a cla="btn btn-primary" herf="#" onclick="$('.table').tableFilter('filterRows', 'Not confirmed')">Not confirmed</a>
+                </div>
+
 
 
 
@@ -115,10 +125,10 @@
                           <form  method="post">
                             <table class="table table-striped" id="table1">
                                 <thead>
-                                    <tr>
+                                    <tr class="filters">
                                         <th>Order ID</th>
-                                        <th>Employee ID</th>
-                                        <th>Date</th>
+                                        <th>Employee</th>
+                                        <th>Date></th>
                                         <th>Type</th>
                                         <th>Status</th>
                                     </tr>
@@ -233,10 +243,12 @@
     <?php include('../footer.php'); ?>
 
     <script src="../template/assets/vendors/jquery/jquery.min.js"></script>
-    <script src="template/assets/js/ddtf.js"></script>
-
-
+    <script src="template/assets/js/jquery.table-filter.min.js"></script>
     <script>
+      $('table').tableFilter();
+    </script>
+
+    <!-- <script>
       $("#table1").ddTableFilter();
       // var $ = jQuery;
       $(document).ready(function() {
@@ -257,6 +269,6 @@
             n++;
         });
       });
-    </script>
+    </script> -->
 
 </body>
