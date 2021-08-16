@@ -53,50 +53,20 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <div class="row">
                       <label>Type</label>
                       <select class="choices form-select multiple-remove" id="selectType" multiple="multiple">
-                          <!-- <optgroup label="Type"> -->
+                          <optgroup label="Type">
                               <option value="purchase" href="#" onclick="$('.table').tableFilter('filterRows', 'purchase')">Purchase</option>
                               <option value="sales" href="#" onclick="$('.table').tableFilter('filterRows', 'sales')">Sales</option>
-                          <!-- </optgroup> -->
+                          </optgroup>
                       </select>
                   </div>
-                </div>
+                </div> -->
 
-                <div class="form-group">
-                  <div class="row">
-                      <label>Employee</label>
-                      <select class="choices form-select multiple-remove" multiple="multiple">
-                          <?php
-                              include '../../database.php';
-                              $conn = OpenCon();
 
-                              $sql0 = "SELECT * FROM employee";
-                              $result0 = $conn->query($sql0);
-
-                              $id = array();
-                              $name = array();
-
-                              while($row0 = $result0->fetch_assoc()) {
-                                array_push($id, $row0["employee_id"]);
-                                array_push($name, $row0["firstname"]);
-                              }
-
-                              $n = count($id);
-
-                              for($i = 0; $i < $n; $i++) {
-                                ?>
-                                <option value="<?php echo $id[$i] ?>"><?php echo $name[$i] ?></option>
-                                <?php
-                              }
-                          ?>
-                      </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <div class="row">
                       <label>Status</label>
                       <select class="choices form-select multiple-remove" multiple="multiple">
@@ -111,7 +81,7 @@
                 </div>
                 <div>
                   <a cla="btn btn-primary" herf="#" onclick="$('.table').tableFilter('filterRows', 'Not confirmed')">Not confirmed</a>
-                </div>
+                </div> -->
 
 
 
@@ -128,7 +98,7 @@
                                     <tr class="filters">
                                         <th>Order ID</th>
                                         <th>Employee</th>
-                                        <th>Date></th>
+                                        <th>Date</th>
                                         <th>Type</th>
                                         <th>Status</th>
                                     </tr>
@@ -138,8 +108,8 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        // include '../../database.php';
-                                        // $conn = OpenCon();
+                                        include '../../database.php';
+                                        $conn = OpenCon();
 
                                         $sql = "SELECT * FROM purchase";
                                         $result = $conn->query($sql);
@@ -158,7 +128,11 @@
                                                   <td><?php echo $row["purchasing_id"]?></td>
 
                                                 <?php
-                                                echo "<td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td>";
+                                                $sql_employee = "SELECT firstname FROM employee WHERE employee_id = '". $row["employee_id"]. "'";
+                                                $result_employee = $conn->query($sql_employee);
+                                                while ($row_employee = $result_employee->fetch_assoc()) {
+                                                  echo "<td>" . $row_employee["firstname"] ."</td><td>" . $row["production_date"] ."</td>";
+                                                }
                                                 ?>
                                                 <td>Purchase</td>
                                                 <td>
@@ -194,7 +168,11 @@
                                                   <td><?php echo $row["sale_id"]?></td>
 
                                                 <?php
-                                                echo "<td>" . $row["employee_id"] ."</td><td>" . $row["sale_date"] ."</td>";
+                                                $sql_employee = "SELECT firstname FROM employee WHERE employee_id = '". $row["employee_id"]. "'";
+                                                $result_employee = $conn->query($sql_employee);
+                                                while ($row_employee = $result_employee->fetch_assoc()) {
+                                                  echo "<td>" . $row_employee["firstname"] ."</td><td>" . $row["sale_date"] ."</td>";
+                                                }
                                                 ?>
                                                 <td>Sales</td>
                                                 <td>
@@ -243,10 +221,14 @@
     <?php include('../footer.php'); ?>
 
     <script src="../template/assets/vendors/jquery/jquery.min.js"></script>
-    <script src="template/assets/js/jquery.table-filter.min.js"></script>
+    <script src="template/assets/js/ddtf.js"></script>
     <script>
-      $('table').tableFilter();
+      $("#table1").ddTableFilter();
     </script>
+
+    <!-- <script>
+      $('table').tableFilter();
+    </script> -->
 
     <!-- <script>
       $("#table1").ddTableFilter();
