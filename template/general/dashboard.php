@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.css">
     <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.min.css">
     <script src="../template/general/getData/globalData.js"></script>
+    <!-- <script type="text/javascript" src="../template/general/getData/globalData.js"></script> -->
 </head>
 
 <body>
@@ -18,13 +19,11 @@
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
 
-
                 <?php include('../datatable-navbar.php'); ?>
 
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
-
 
         <div id="main">
             <header class="mb-3">
@@ -40,25 +39,25 @@
                             <!-- <h3>You need Log In</h3> -->
                         <?php endif ?>
                     </div>
-                
+
                 </div>
             </header>
 
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
-                    <div class="col-6 col-lg-3 col-md-3">
-                        <?php
-                        date_default_timezone_set('Asia/Hong_Kong');
-                        $date = date('Y-m-d');
-                        ?>
-                        
-                        <div class="form-group">
-                            <input id="today-date" name="todayDate" type="date" class="form-control" value="<?php echo $date ?>" />
+                        <div class="col-6 col-lg-3 col-md-3">
+                            <?php
+                            date_default_timezone_set('Asia/Hong_Kong');
+                            $date = date('Y-m-d');
+                            ?>
+
+                            <div class="form-group">
+                                <input id="today-date" name="todayDate" type="date" class="form-control" value="<?php echo $date ?>" />
+                            </div>
+
                         </div>
-                        
-                    </div>
-                    <div class="col-12 col-md-8 order-md-5 order-first">
+                        <div class="col-12 col-md-8 order-md-5 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
@@ -66,27 +65,36 @@
                                 </ol>
                             </nav>
                         </div>
-                    
+
                     </div>
                 </div>
 
-
-
                 <section class="row">
                     <!-- Date picker -->
-              
-          
+
+
                     <!-- Date picker -->
 
                     <!-- Get array value from getTodaySale.php -->
-                    <script>
-                        <?php $productSalesAmount = [100, 20, 30, 20, 10]; ?>
-
-
-
+                    <!-- <script>
                         $(function() {
 
-                            var optionsProductTotalSale = {
+                        function load_js()
+                        {
+                            var head = document.getElementsByTagName('head')[0];
+                            var script= document.createElement('script');
+                            script.src= 'dashboard.js';
+                            head.appendChild(script);
+                        }
+                        load_js();
+                    });
+
+                    </script> -->
+
+                    <script>
+                        $(function() {
+                            // Day sales
+                            var optionsProductTotalDaySale = {
                                 annotations: {
                                     position: 'back'
                                 },
@@ -112,11 +120,8 @@
                                     categories: ["1", "2", "3", "4", "5"],
                                 },
                             }
-                            // console.log(productSale);
-                            var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
+                            var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
                             chartProductTotalSale.render();
-
-
                             var date = $('#today-date').val();
 
                             $.ajax({
@@ -163,7 +168,7 @@
                                             categories: emp["product_name"],
                                         },
                                     })
-                                    // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
+                                    // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
                                     // chartProductTotalSale.render();
                                 }
                             });
@@ -192,30 +197,62 @@
                                 });
 
                                 $.ajax({
-                                url: 'test111',
-                                method: 'POST',
-                                data: {
-                                    todayDate: date,
-                                },
-                                success: function(response) {
-                                    var result = JSON.parse(JSON.stringify(response));
-                                    for (var i = 0, emp; i < result.length; i++) {
-                                        emp = result[i];
+                                    url: 'test111',
+                                    method: 'POST',
+                                    data: {
+                                        todayDate: date,
+                                    },
+                                    success: function(response) {
+                                        var result = JSON.parse(JSON.stringify(response));
+                                        for (var i = 0, emp; i < result.length; i++) {
+                                            emp = result[i];
+                                        }
+                                        chartProductTotalSale.updateSeries([{
+                                            name: 'sales',
+                                            data: emp["product_quantity"]
+                                        }])
+                                        chartProductTotalSale.updateOptions({
+                                            xaxis: {
+                                                categories: emp["product_name"],
+                                            },
+                                        })
+                                        // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
+                                        // chartProductTotalSale.render();
                                     }
-                                    chartProductTotalSale.updateSeries([{
-                                        name: 'sales',
-                                        data: emp["product_quantity"]
-                                    }])
-                                    chartProductTotalSale.updateOptions({
-                                        xaxis: {
-                                            categories: emp["product_name"],
-                                        },
-                                    })
-                                    // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
-                                    // chartProductTotalSale.render();
-                                }
+                                });
                             });
-                            });
+
+
+                            // Period sales
+                            var optionsProductTotalPeriodSale = {
+                                annotations: {
+                                    position: 'back'
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                chart: {
+                                    type: 'bar',
+                                    height: 300
+                                },
+                                fill: {
+                                    opacity: 1
+                                },
+                                plotOptions: {
+
+                                },
+                                series: [{
+                                    name: 'sales',
+                                    data: [0, 0, 0, 0, 0]
+                                }],
+                                colors: '#435ebe',
+                                xaxis: {
+                                    categories: ["1", "2", "3", "4", "5"],
+                                },
+                            }
+                            var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-period-sale"), optionsProductTotalPeriodSale);
+                            chartProductTotalSale.render();
+                            var date = $('#today-date').val();
 
                         });
                     </script>
@@ -294,20 +331,71 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Today sales -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Sales</h4>
+                                        <h4>Today Sales</h4>
                                     </div>
                                     <div class="card-body">
                                         <!-- <div id="chart-profile-visit"></div> -->
-                                        <div id="chart-product-total-sale"></div>
-
+                                        <div id="chart-product-day-sale"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Today sales -->
+
+                        <!-- Period Sales -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Period sale</h4>
+                                    </div>
+                                    <div class="col-6 col-lg-3 col-md-3">
+                                        <?php
+                                        date_default_timezone_set('Asia/Hong_Kong');
+                                        $date = date('Y-m-d');
+                                        ?>
+                                        <div class="form-group">
+                                            <input id="today-date" name="todayDate" type="date" class="form-control" value="<?php echo $date ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- <div id="chart-profile-visit"></div> -->
+                                        <div id="chart-product-period-sale"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Period Sales -->
+
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Line Area Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="area"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Radial Gradient Chart</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="radialGradient"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
 
@@ -333,28 +421,24 @@
                 // getTodayProductSaleAmount($date);
 
                 ?>
-                <script type="text/javascript">
+                <!-- <script type="text/javascript">
                     var productSalesAmount = <?php echo json_encode($productSalesAmount); ?>;
-                </script>
+                </script> -->
 
-                <script src="template/assets/vendors/apexcharts/apexcharts.js"></script>
                 <!-- <script src="template/assets/js/pages/dashboard.js"></script> -->
                 <!-- Passing the graph value to js -->
-
 
             </footer>
         </div>
     </div>
 
     <footer>
+        <script src="template/assets/vendors/apexcharts/apexcharts.js"></script>
         <script src="../template/assets/js/bootstrap-datetimepicker.js"></script>
         <script src="../template/assets/js/bootstrap-datetimepicker.min.js"></script>
         <script src="../template/assets/js/bootstrap.min.js"></script>
         <script src="../template/assets/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-
-
-
-
+        <script src="../template/assets/js/pages/ui-apexchart.js"></script>
 
     </footer>
 

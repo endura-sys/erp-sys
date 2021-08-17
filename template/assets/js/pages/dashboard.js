@@ -102,7 +102,7 @@ let optionsIndonesia = {
 }
 
 
-var optionsProductTotalSale = {
+var optionsProductTotalDaySale = {
 	annotations: {
 		position: 'back'
 	},
@@ -129,7 +129,7 @@ var optionsProductTotalSale = {
 	},
 }
 
-console.log(typeof(optionsProductTotalSale));
+// console.log(typeof(optionsProductTotalDaySale));
 
 var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
 var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
@@ -137,7 +137,7 @@ var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), option
 var chartAmerica = new ApexCharts(document.querySelector("#chart-america"), optionsAmerica);
 var chartIndonesia = new ApexCharts(document.querySelector("#chart-indonesia"), optionsIndonesia);
 
-var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-total-sale"), optionsProductTotalSale);
+var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
 
 // chartIndonesia.render();
 // chartAmerica.render();
