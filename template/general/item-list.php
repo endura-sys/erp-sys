@@ -5,7 +5,7 @@
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
-                
+
 
                 <?php include('../datatable-navbar.php'); ?>
 

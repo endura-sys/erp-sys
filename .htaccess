@@ -26,7 +26,7 @@ RewriteRule ^inbound /template/inbound/inbound-list.php [L,QSA,NC]
 RewriteRule ^outbound /template/outbound/outbound-schedule.php [L,QSA,NC]
 
 # Dashboard get data
-RewriteRule ^getGraphdata /template/general/getData/getGraphdata.php [L,QSA,NC]
+RewriteRule ^getPeriodGraphData /template/general/getData/getPeriodGraphData.php [L,QSA,NC]
 RewriteRule ^test111 /template/general/getData/getGraphdata1.php [L,QSA,NC]
 RewriteRule ^getTodaySale /template/general/getData/getTodaySale.php [L,QSA,NC]
 
@@ -47,6 +47,13 @@ RewriteRule ^purchase-list /template/purchase/purchase-list.php [L,QSA,NC]
 RewriteRule ^purchase-info /template/purchase/purchase-info.php [L,QSA,NC]
 RewriteRule ^test /template/purchase/testscan.php [L,QSA,NC]
 RewriteRule ^update-purchase-list /template/purchase/update-list.php [L,QSA,NC]
+
+RewriteRule ^update-purchase-list /template/purchase/update-list.php [L,QSA,NC]
+
+
+
+
+
 
 # Outbound
 RewriteRule ^outbound-list /template/outbound/outbound-list.php [L,QSA,NC]
