@@ -44,11 +44,26 @@
                     <div class="card">
                         <div class="card-header">
                             Simple Datatable
+                            <?php
+                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                            $user = $_SESSION['username'];
+                                                            //echo $user;
+                                                            $sql =" SELECT position.access_level
+                                                            from employee
+                                                            INNER JOIN account ON employee.employee_id = account.employee_id
+                                                            INNER JOIN position ON position.position_id = employee.position_id
+                                                            WHERE account.username = '$user'";
+                                                            $result_level = $conn->query($sql);
+                                                            $row_level = $result_level->fetch_assoc();
+                                                            // echo $row_alevel["access_level"];
+                                                          
+                                                            if($row_level["access_level"] == "High"){?>
 
-                            <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
-                                data-bs-target="#border-add">
+                            <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal" data-bs-target="#border-add">
                                 Add new data
-                            </button>
+                            </button> <?php } else {?>
+                                 <?php } ?>
+                            
                                 <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
                                     role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
@@ -346,6 +361,8 @@
                                         <th>Details</th>
                                         <th>Invoice</th>
                                         <th>Status</th>
+                                        <?php if ($row_level["access_level"] == "High") { ?>
+                                        <th>Action</th> <?php } ?>
                                     </tr>
                                 </thead>
 
@@ -386,8 +403,92 @@
                                                   <td><span class="badge bg-success" >Confirmed</span></td>
                                                 <?php } else { ?>
                                                   <td><span class="badge bg-danger" >Not Confirmed</span></td>
-                                                <?php }
-                                            }
+                                                <?php } ?>
+                                                <?php if ($row_level["access_level"] == "High") { ?>
+<td><button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row["sale_id"]?>">Update</button>
+<div class="modal fade text-left modal-borderless" id="updateModal<?php echo $row["sale_id"]?>" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update</h5>
+                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form action="update-list" method="post">
+                    <div class="row">
+
+                      <!-- <div class="col-md-1">
+                          <div class="form-group">
+                              <label for="product">ID:</label>
+                              <input type="integer" class="form-control" name="product" id="product" value="<?php echo $row["product_id"]?>">
+                        </div>
+                      </div> -->
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="name">Customer ID:</label>
+                                <input type="hidden" name="sale" value="<?php echo $row['sale_id']; ?>">
+                                <input type="varchar" class="form-control" name="updateCustomer" id="name" value="<?php echo $row["customer_id"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="email">Employee ID:</label>
+                                <input type="integer" class="form-control" name="updateEmployee" id="email" value="<?php echo $row["employee_id"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="sale_date">Sale_date:</label>
+                                <input type="integer" class="form-control" name="updatesale_date" id="email" value="<?php echo $row["sale_date"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="sale_time">sale_time:</label>
+                                <input type="integer" class="form-control" name="updatesale_time" id="email" value="<?php echo $row["sale_time"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="payment_method">payment_method:</label>
+                                <input type="varchar" class="form-control" name="updatepayment_method" id="email" value="<?php echo $row["payment_method"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="total_sale">total_sale:</label>
+                                <input type="varchar" class="form-control" name="updatetotal_sale" id="email" value="<?php echo $row["total_sale"]?>">
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" type="Submit" class="btn btn-primary me-1 mb-1" name="updatesales">Update</button>
+                        <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Close</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</td> <?php } ?>
+
+                                        <?php    }
                                         } else {
                                             echo "0 results";
                                         }

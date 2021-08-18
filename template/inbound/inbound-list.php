@@ -51,11 +51,25 @@
                     <div class="card">
                         <div class="card-header">
                             Simple Datatable
-
+                            <?php
+                        $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                $user = $_SESSION['username'];
+                                                            // echo $user;
+                                                            $sql = " SELECT position.access_level
+                                                            from employee
+                                                            INNER JOIN account ON employee.employee_id = account.employee_id
+                                                            INNER JOIN position ON position.position_id = employee.position_id
+                                                            WHERE account.username = '$user'";
+                                                            $result_level = $conn->query($sql);
+                                                            $row_level = $result_level->fetch_assoc();
+                                                            // echo $row_level["access_level"];
+                                                            
+                                                            ?>
+                            <?php if ($row_level["access_level"] == "High") { ?>
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
                                 data-bs-target="#border-add">
                                 Add new data
-                            </button>
+                            </button> <?php } ?>
                                 <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
                                     role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -149,7 +163,9 @@
                                 role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                                     <div class="modal-content">
+                                        
                                         <div class="modal-header">
+                                            
                                             <h5 class="modal-title">Add new data</h5>
                                             <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
                                                 aria-label="Close">
@@ -222,6 +238,7 @@
 
                         </div>
 
+                        
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
@@ -231,7 +248,10 @@
                                         <th>Inbound Date</th>
                                         <th>Inbound Way</th>
                                         <th>Inbound Cost</th>
-                                        <th>Details</th>
+                                        <?php if ($row_level["access_level"] == "High") { ?>
+                                        <th>Details</th> <?php } ?>
+
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
 
@@ -256,6 +276,71 @@
                                                 echo "<tr><td>" .$row["inbound_id"]. "</td><td>" . $row["employee_id"] ."</td><td>" . $row["inbound_date"] ."</td><td>" .$row["inbound_way"] ."</td><td>" .$row["inbound_cost"] ."</td>";
                                                 ?>
                                                 <td><a class="btn btn-primary btn-sm shadow-sm" href="inbound-info?id=<?php echo $row["inbound_id"]?>">View</a></td>
+
+                                                <?php if ($row_level["access_level"] == "High") { ?>
+                                                <td><button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row["inbound_id"]?>">Update</button>
+<div class="modal fade text-left modal-borderless" id="updateModal<?php echo $row["inbound_id"]?>" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update</h5>
+                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form action="update-list" method="post">
+                    <div class="row">
+
+  
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="name">Employee ID:</label>
+                                <input type="hidden" name="inbound" value="<?php echo $row['inbound_id']; ?>">
+                                <input type="integer" class="form-control" name="updateemployee_id" id="name" value="<?php echo $row["employee_id"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="email">Inbound Date:</label>
+                                <input type="integer" class="form-control" name="updateinbound_date" id="email" value="<?php echo $row["inbound_date"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="sale_date">Inbound Way:</label>
+                                <input type="integer" class="form-control" name="updateinbound_way" id="email" value="<?php echo $row["inbound_way"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="sale_time">Inbound Cost:</label>
+                                <input type="integer" class="form-control" name="updateinbound_cost" id="email" value="<?php echo $row["inbound_cost"]?>">
+                          </div>
+                        </div>
+
+
+                    <div class="modal-footer">
+                        <button type="submit" type="Submit" class="btn btn-primary me-1 mb-1" name="updateinbound">Update</button>
+                        <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Close</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</td> <?php } ?>
                                                 <?php
                                             }
                                         } else {

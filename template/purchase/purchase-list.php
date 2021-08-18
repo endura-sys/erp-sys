@@ -53,14 +53,28 @@
                 <section class="section">
                     <div class="card">
 
-  
+
 
                         <div class="card-header">
                             Simple Datatable
-
+                            <?php
+                        $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                $user = $_SESSION['username'];
+                                                            // echo $user;
+                                                            $sql = " SELECT position.access_level
+                                                            from employee
+                                                            INNER JOIN account ON employee.employee_id = account.employee_id
+                                                            INNER JOIN position ON position.position_id = employee.position_id
+                                                            WHERE account.username = '$user'";
+                                                            $result_level = $conn->query($sql);
+                                                            $row_level = $result_level->fetch_assoc();
+                                                            // echo $row_level["access_level"];
+                                                            
+                                                            ?>
+                            <?php if ($row_level["access_level"] == "High") { ?>
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal" data-bs-target="#border-add">
                                 Add new data
-                            </button>
+                            </button> <?php } ?>
                             <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
                                     <div class="modal-content">
@@ -120,34 +134,26 @@
                                                         <div class="form-group">
                                                             <label for="employee_id">Employee ID:</label>
                                                             <?php
-                                                            $user = $_SESSION['username'];
-                                                            // echo $user;
-                                                            $sql =" SELECT position.access_level
-                                                            from employee
-                                                            INNER JOIN account ON employee.employee_id = account.employee_id
-                                                            INNER JOIN position ON position.position_id = employee.position_id
-                                                            WHERE account.username = '$user'";
-                                                            $result_level = $conn->query($sql);
-                                                            $row_level = $result_level->fetch_assoc();
+                                                            
                                                             // echo $row_level["access_level"];
-                                                            if($row_level["access_level"] == "High"){
+                                                            if ($row_level["access_level"] == "High") {
                                                             ?>
-                                                            <select name="employee_id" class="form-control form-control-md">
-                                                                <option value="">Select Employee ID</option>
-                                                                <?php
-                                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                                <select name="employee_id" class="form-control form-control-md">
+                                                                    <option value="">Select Employee ID</option>
+                                                                    <?php
+                                                                    $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
 
-                                                                $sql0 = "SELECT employee_id, firstname FROM employee";
-                                                                $result0 = $conn->query($sql0);
-                                                                while ($row0 = $result0->fetch_assoc()) {
-                                                                ?>
-                                                                    <option value="<?php echo $row0["employee_id"] ?>"><?php echo $row0["firstname"]; ?></option>
-                                                                <?php } ?>
-                                                            </select>
-                                                            <?php } else {?>                                                             
+                                                                    $sql0 = "SELECT employee_id, firstname FROM employee";
+                                                                    $result0 = $conn->query($sql0);
+                                                                    while ($row0 = $result0->fetch_assoc()) {
+                                                                    ?>
+                                                                        <option value="<?php echo $row0["employee_id"] ?>"><?php echo $row0["firstname"]; ?></option>
+                                                                    <?php } ?>
+                                                                </select>
+                                                            <?php } else { ?>
 
-                                                            <input type="char" readonly class="form-control" value="<?php echo $_SESSION['username']; ?>">
+                                                                <input type="char" readonly class="form-control" value="<?php echo $_SESSION['username']; ?>">
                                                             <?php } ?>
 
 
@@ -311,26 +317,28 @@
                         </div>
 
                         <div class="card-body">
-                          <form  method="post">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Purchasing ID</th>
-                                        <th>Supplier ID</th>
-                                        <th>Employee ID</th>
-                                        <th>Production Date</th>
-                                        <th>Shelf Life</th>
-                                        <th>Shelf Date</th>
-                                        <th>Payment Status</th>
-                                        <th>Details</th>
-                                        <th>Inbound Status</th>
-                                    </tr>
-                                </thead>
+                            <form method="post">
+                                <table class="table table-striped" id="table1">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Purchasing ID</th>
+                                            <th>Supplier ID</th>
+                                            <th>Employee ID</th>
+                                            <th>Production Date</th>
+                                            <th>Shelf Life</th>
+                                            <th>Shelf Date</th>
+                                            <th>Payment Status</th>
+                                            <th>Details</th>
+                                            <th>Inbound Status</th>
+                                            <?php if ($row_level["access_level"] == "High") { ?>
+                                                <th> Action </th> <?php } ?>
+                                        </tr>
+                                    </thead>
 
-                                <tbody>
-                                    <!-- Connect to the database -->
-                                    <?php
+                                    <tbody>
+                                        <!-- Connect to the database -->
+                                        <?php
 
                                         include '../../database.php';
                                         $conn = OpenCon();
@@ -345,42 +353,133 @@
                                             while ($row = $result->fetch_assoc()) {
                                                 $status = false;
                                                 if ($row["inbound_status"] == 1) {
-                                                  $status = true;
+                                                    $status = true;
                                                 }
 
-                                                ?><tr>
-                                                  <td><input type="checkbox" name="checkbox[]" class="form-check-input" id="checkbox<?php echo $row["purchasing_id"]?>" value="<?php echo $row["purchasing_id"]?>" <?php if($status==true){echo "disabled";}?>>
-                                                      <label for="checkbox<?php echo $row["purchasing_id"]?>"></label>
-                                                  </td>
-                                                  <td><?php echo $row["purchasing_id"]?></td>
+                                        ?><tr>
+                                                    <td><input type="checkbox" name="checkbox[]" class="form-check-input" id="checkbox<?php echo $row["purchasing_id"] ?>" value="<?php echo $row["purchasing_id"] ?>" <?php if ($status == true) {
+                                                                                                                                                                                                                            echo "disabled";
+                                                                                                                                                                                                                        } ?>>
+                                                        <label for="checkbox<?php echo $row["purchasing_id"] ?>"></label>
+                                                    </td>
+                                                    <td><?php echo $row["purchasing_id"] ?></td>
 
-                                                <?php
-                                                echo "<td>" . $row["supplier_id"] ."</td><td>" . $row["employee_id"] ."</td><td>" . $row["production_date"] ."</td><td>" .$row["shelf_life"] ."</td><td>" .$row["shelf_date"] ."</td><td>" .$row["payment_status"] ."</td>";
-                                                ?>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="purchase-info?id=<?php echo $row["purchasing_id"]?>">View</a></td>
-                                                <td>
-                                                <?php  if ($status==true){ ?>
-                                                	 <spam class="badge bg-success" >Confirmed</span>
-                                                <?php } else {?>
-                                                  <span class="badge bg-danger" >Not Confirmed</span>
-                                                <?php } ?>
-                                              </td>
+                                                    <?php
+                                                    echo "<td>" 
+                                                    . $row["supplier_id"] . "</td><td>" 
+                                                    . $row["employee_id"] . "</td><td>" 
+                                                    . $row["production_date"] . "</td><td>" 
+                                                    . $row["shelf_life"] . "</td><td>" 
+                                                    . $row["shelf_date"] . "</td><td>" 
+                                                    . $row["payment_status"] . "</td>";
+                                                    ?>
+                                                    <td><a class="btn btn-primary btn-sm shadow-sm" href="purchase-info?id=<?php echo $row["purchasing_id"] ?>">View</a></td>
 
 
 
-                                                <?php
+
+
+
+
+                                                    <td>
+                                                        <?php if ($status == true) { ?>
+                                                            <spam class="badge bg-success">Confirmed</span>
+                                                            <?php } else { ?>
+                                                                <span class="badge bg-danger">Not Confirmed</span>
+                                                            <?php } ?>
+                                                    </td>
+
+                                                    <?php if ($row_level["access_level"] == "High") { ?>
+                                                <td><button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row["purchasing_id"]?>">Update</button>
+<div class="modal fade text-left modal-borderless" id="updateModal<?php echo $row["purchasing_id"]?>" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update</h5>
+                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form action="update-list" method="post">
+                    <div class="row">
+
+  
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="name">supplier_id:</label>
+                                <input type="hidden" name="purchasing" value="<?php echo $row['purchasing_id']; ?>">
+                                <input type="integer" class="form-control" name="updatesupplier_id" id="name" value="<?php echo $row["supplier_id"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="email">employee_id:</label>
+                                <input type="integer" class="form-control" name="updateemployee_id" id="email" value="<?php echo $row["employee_id"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="sale_date">production_date:</label>
+                                <input type="integer" class="form-control" name="updateproduction_date" id="email" value="<?php echo $row["production_date"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="sale_time">	shelf_life:</label>
+                                <input type="integer" class="form-control" name="updateshelf_life" id="email" value="<?php echo $row["shelf_life"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="sale_time">shelf_date:</label>
+                                <input type="integer" class="form-control" name="updateshelf_date" id="email" value="<?php echo $row["shelf_date"]?>">
+                          </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="sale_time">payment_status:</label>
+                                <input type="integer" class="form-control" name="updatepayment_status" id="email" value="<?php echo $row["payment_status"]?>">
+                          </div>
+                        </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" type="Submit" class="btn btn-primary me-1 mb-1" name="updatepurchase">Update</button>
+                        <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Close</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</td> <?php } ?>
+
+                                            <?php
                                             }
                                         } else {
                                             echo "0 results";
                                         }
                                         echo $purchase_list[0][1];
                                         CloseCon($conn);
-                                        ?>
+                                            ?>
 
                                     </tbody>
 
                                 </table>
-                                <button class="btn btn-primary btn-md shadow-sm float-lg-end" type="button"  data-bs-toggle="modal" data-bs-target="#confirmModal">Confirm Inbound</button>
+                                <button class="btn btn-primary btn-md shadow-sm float-lg-end" type="button" data-bs-toggle="modal" data-bs-target="#confirmModal">Confirm Inbound</button>
 
                                 <div class="modal fade text-left modal-borderless" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -543,10 +642,10 @@
         }
     </script>
 
-<?php
-    function Scan(){
-        
+    <?php
+    function Scan()
+    {
     }
-?>
+    ?>
 
 </body>

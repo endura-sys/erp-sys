@@ -48,6 +48,7 @@
                                       <th>Items Name</th>
                                       <th>Price</th>
                                       <th>Quantity</th>
+                                      
                                     </tr>
                                 </thead>
 
