@@ -158,13 +158,8 @@
                                                     <center>
                                                         <?php
 
-                                                        $conn = mysqli_connect("localhost", "endurase_sakedb", "oIx6!!!nZ_do3", "endurase_sakedb");
-
-                                                        // Check connection
-                                                        if ($conn === false) {
-                                                            die("ERROR: Could not connect. "
-                                                                . mysqli_connect_error());
-                                                        }
+                                                        include '../../database.php';
+                                                        $conn = OpenCon();
 
                                                         $p1 = $_REQUEST['p1'];
                                                         $p2 = $_REQUEST['p2'];
@@ -206,6 +201,7 @@
                                                         //     . mysqli_error($conn);
                                                         // }
                                                         mysqli_close($conn);
+                                                        
                                                         ?>
                                                         <div>
                                                             <div class="card-body">

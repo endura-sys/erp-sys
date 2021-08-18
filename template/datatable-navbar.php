@@ -110,19 +110,7 @@ if (!isset($_SESSION['username'])) {
           <span>Stock list</span>
         </a>
 
-        <!-- <ul class="submenu <?php if ($currentPage == 'stock-list') {
-                                  echo "active";
-                                } else {
-                                  echo "noactive";
-                                } ?>">
-            <li class="submenu-item <?php if ($currentPage == 'stock-list') {
-                                      echo "active";
-                                    } else {
-                                      echo "noactive";
-                                    } ?>">
-                    <a href="stock-list">Stock list</a>
-                </li>
-            </ul> -->
+
       </li>
 
       <!-- Purchase -->
@@ -136,17 +124,6 @@ if (!isset($_SESSION['username'])) {
           <span>Purchase</span>
         </a>
 
-        <!-- <ul class="submenu <?php if ($currentPage == 'purchase-list') {
-                                  echo "active";
-                                } else {
-                                  echo "noactive";
-                                } ?>">
-                <li class="submenu-item <?php if ($currentPage == 'purchase-list') {
-                                          echo "active";
-                                        } ?>">
-                <a href="purchase-list">Purchase schedule</a>
-                </li>
-            </ul> -->
       </li>
 
       <!-- Sales -->
@@ -160,19 +137,7 @@ if (!isset($_SESSION['username'])) {
           <span>Sales</span>
         </a>
 
-        <!-- <ul class="submenu <?php if ($currentPage == 'sales' || $currentPage == 'branch') {
-                                  echo "active";
-                                } else {
-                                  echo "noactive";
-                                } ?>">
-                <li class="submenu-item <?php if ($currentPage == 'sales') {
-                                          echo "active";
-                                        } else {
-                                          echo "noactive";
-                                        } ?>">
-                <a href="sales">sales record</a>
-                </li>
-            </ul> -->
+
       </li>
 
       <!-- Inbound -->
@@ -186,17 +151,7 @@ if (!isset($_SESSION['username'])) {
           <span>Inbound</span>
         </a>
 
-        <!-- <ul class="submenu <?php if ($currentPage == 'inbound-list') {
-                                  echo "active";
-                                } else {
-                                  echo "noactive";
-                                } ?>">
-                <li class="submenu-item <?php if ($currentPage == 'inbound-list') {
-                                          echo "active";
-                                        } ?>">
-                    <a href="inbound-list">Inbound schedule</a>
-                </li>
-            </ul> -->
+
       </li>
 
       <!-- Outbound -->
@@ -208,15 +163,6 @@ if (!isset($_SESSION['username'])) {
           <span>Outbound</span>
         </a>
 
-        <!-- <ul class="submenu <?php if ($currentPage == 'outbound-schedule') {
-                                  echo "active";
-                                } ?>">
-                <li class="submenu-item <?php if ($currentPage == 'outbound-schedule') {
-                                          echo "active";
-                                        } ?>">
-                    <a href="outbound-schedule">Outbound schedule</a>
-                </li>
-            </ul> -->
       </li>
 
 
