@@ -70,16 +70,11 @@
                 </div>
 
                 <section class="row">
-                    <!-- Date picker -->
-
-
-                    <!-- Date picker -->
-
-                    </script> -->
 
                     <script type="text/javascript">
                         $(function() {
                             renderProductTotalDaySale();
+                            renderYearGrossProfit();
 
                             $("#today-date").on('change', function() {
                                 renderProductTotalDaySaleOnchange();

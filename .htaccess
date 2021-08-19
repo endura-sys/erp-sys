@@ -26,9 +26,11 @@ RewriteRule ^inbound /template/inbound/inbound-list.php [L,QSA,NC]
 RewriteRule ^outbound /template/outbound/outbound-schedule.php [L,QSA,NC]
 
 # Dashboard get data
-RewriteRule ^getPeriodGraphData /template/general/getData/getPeriodGraphData.php [L,QSA,NC]
 RewriteRule ^test111 /template/general/getData/getGraphdata1.php [L,QSA,NC]
 RewriteRule ^getTodaySale /template/general/getData/getTodaySale.php [L,QSA,NC]
+
+RewriteRule ^getPeriodGraphData /template/general/getData/getPeriodGraphData.php [L,QSA,NC]
+
 
 RewriteRule ^testDatabase testDatabase.php [L,QSA,NC]
 
