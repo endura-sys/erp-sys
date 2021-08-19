@@ -516,11 +516,11 @@
 var areaOptions = {
   series: [{
       name: "series1",
-      data: [31, 40, 28, 51, 42, 109, 100],
+      data: [31, 40, 28, 51, 42, 109, 100, 12, 12, 13, 35, 15],
     },
     {
       name: "series2",
-      data: [11, 32, 45, 32, 34, 52, 41],
+      data: [11, 32, 45, 32, 34, 52, 41, 31, 40, 28, 51, 42],
     },
   ],
   chart: {
@@ -534,22 +534,27 @@ var areaOptions = {
     curve: "smooth",
   },
   xaxis: {
-    type: "datetime",
+    type: "date",
     categories: [
-      "2018-09-19T00:00:00.000Z",
-      "2018-09-19T01:30:00.000Z",
-      "2018-09-19T02:30:00.000Z",
-      "2018-09-19T03:30:00.000Z",
-      "2018-09-19T04:30:00.000Z",
-      "2018-09-19T05:30:00.000Z",
-      "2018-09-19T06:30:00.000Z",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ],
   },
-  tooltip: {
-    x: {
-      format: "dd/MM/yy HH:mm",
-    },
-  },
+  // tooltip: {
+  //   x: {
+  //     format: "dd/MM/yy HH:mm",
+  //   },
+  // },
 };
 
 

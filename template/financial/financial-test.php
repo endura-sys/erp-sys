@@ -5,7 +5,6 @@
     <script src="../template/assets/js/moment.js"></script>
     <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.css">
     <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.min.css">
-    <script src="../template/general/getData/globalData.js"></script>
 </head>
 
 <button id="test">testestset</button>

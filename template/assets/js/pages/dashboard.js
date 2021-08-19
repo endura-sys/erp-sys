@@ -1,143 +1,143 @@
-var optionsProfileVisit = {
-	annotations: {
-		position: 'back'
-	},
-	dataLabels: {
-		enabled:false
-	},
-	chart: {
-		type: 'bar',
-		height: 300
-	},
-	fill: {
-		opacity:1
-	},
-	plotOptions: {
-	},
-	series: [{
-		name: 'sales',
-		data: productSale
-	}],
-	colors: '#435ebe',
-	xaxis: {
-		categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul", "Aug","Sep","Oct","Nov","Dec"],
-	},
-}
-let optionsVisitorsProfile  = {
-	series: [70, 30],
-	labels: ['Male', 'Female'],
-	colors: ['#435ebe','#55c6e8'],
-	chart: {
-		type: 'donut',
-		width: '100%',
-		height:'350px'
-	},
-	legend: {
-		position: 'bottom'
-	},
-	plotOptions: {
-		pie: {
-			donut: {
-				size: '30%'
-			}
-		}
-	}
-}
+// var optionsProfileVisit = {
+// 	annotations: {
+// 		position: 'back'
+// 	},
+// 	dataLabels: {
+// 		enabled:false
+// 	},
+// 	chart: {
+// 		type: 'bar',
+// 		height: 300
+// 	},
+// 	fill: {
+// 		opacity:1
+// 	},
+// 	plotOptions: {
+// 	},
+// 	series: [{
+// 		name: 'sales',
+// 		data: productSale
+// 	}],
+// 	colors: '#435ebe',
+// 	xaxis: {
+// 		categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul", "Aug","Sep","Oct","Nov","Dec"],
+// 	},
+// }
+// let optionsVisitorsProfile  = {
+// 	series: [70, 30],
+// 	labels: ['Male', 'Female'],
+// 	colors: ['#435ebe','#55c6e8'],
+// 	chart: {
+// 		type: 'donut',
+// 		width: '100%',
+// 		height:'350px'
+// 	},
+// 	legend: {
+// 		position: 'bottom'
+// 	},
+// 	plotOptions: {
+// 		pie: {
+// 			donut: {
+// 				size: '30%'
+// 			}
+// 		}
+// 	}
+// }
 
-var optionsEurope = {
-	series: [{
-		name: 'series1',
-		data: [310, 800, 600, 430, 540, 340, 605, 805,430, 540, 340, 605]
-	}],
-	chart: {
-		height: 80,
-		type: 'area',
-		toolbar: {
-			show:false,
-		},
-	},
-	colors: ['#5350e9'],
-	stroke: {
-		width: 2,
-	},
-	grid: {
-		show:false,
-	},
-	dataLabels: {
-		enabled: false
-	},
-	xaxis: {
-		type: 'datetime',
-		categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z","2018-09-19T07:30:00.000Z","2018-09-19T08:30:00.000Z","2018-09-19T09:30:00.000Z","2018-09-19T10:30:00.000Z","2018-09-19T11:30:00.000Z"],
-		axisBorder: {
-			show:false
-		},
-		axisTicks: {
-			show:false
-		},
-		labels: {
-			show:false,
-		}
-	},
-	show:false,
-	yaxis: {
-		labels: {
-			show:false,
-		},
-	},
-	tooltip: {
-		x: {
-			format: 'dd/MM/yy HH:mm'
-		},
-	},
-};
+// var optionsEurope = {
+// 	series: [{
+// 		name: 'series1',
+// 		data: [310, 800, 600, 430, 540, 340, 605, 805,430, 540, 340, 605]
+// 	}],
+// 	chart: {
+// 		height: 80,
+// 		type: 'area',
+// 		toolbar: {
+// 			show:false,
+// 		},
+// 	},
+// 	colors: ['#5350e9'],
+// 	stroke: {
+// 		width: 2,
+// 	},
+// 	grid: {
+// 		show:false,
+// 	},
+// 	dataLabels: {
+// 		enabled: false
+// 	},
+// 	xaxis: {
+// 		type: 'datetime',
+// 		categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z","2018-09-19T07:30:00.000Z","2018-09-19T08:30:00.000Z","2018-09-19T09:30:00.000Z","2018-09-19T10:30:00.000Z","2018-09-19T11:30:00.000Z"],
+// 		axisBorder: {
+// 			show:false
+// 		},
+// 		axisTicks: {
+// 			show:false
+// 		},
+// 		labels: {
+// 			show:false,
+// 		}
+// 	},
+// 	show:false,
+// 	yaxis: {
+// 		labels: {
+// 			show:false,
+// 		},
+// 	},
+// 	tooltip: {
+// 		x: {
+// 			format: 'dd/MM/yy HH:mm'
+// 		},
+// 	},
+// };
 
-let optionsAmerica = {
-	...optionsEurope,
-	colors: ['#008b75'],
-}
-let optionsIndonesia = {
-	...optionsEurope,
-	colors: ['#dc3545'],
-}
+// let optionsAmerica = {
+// 	...optionsEurope,
+// 	colors: ['#008b75'],
+// }
+// let optionsIndonesia = {
+// 	...optionsEurope,
+// 	colors: ['#dc3545'],
+// }
 
 
-var optionsProductTotalDaySale = {
-	annotations: {
-		position: 'back'
-	},
-	dataLabels: {
-		enabled:false
-	},
-	chart: {
-		type: 'bar',
-		height: 300
-	},
-	fill: {
-		opacity:1
-	},
-	plotOptions: {
+// var optionsProductTotalDaySale = {
+// 	annotations: {
+// 		position: 'back'
+// 	},
+// 	dataLabels: {
+// 		enabled:false
+// 	},
+// 	chart: {
+// 		type: 'bar',
+// 		height: 300
+// 	},
+// 	fill: {
+// 		opacity:1
+// 	},
+// 	plotOptions: {
 		
-	},
-	series: [{
-		name: 'sales',
-		data: productSale
-	}],
-	colors: '#435ebe',
-	xaxis: {
-		categories: ["No.1","No.2","Mar","Apr","May"],
-	},
-}
+// 	},
+// 	series: [{
+// 		name: 'sales',
+// 		data: [] // Data in dashboard.php
+// 	}],
+// 	colors: '#435ebe',
+// 	xaxis: {
+// 		categories: [], // Data in dashboard.php
+// 	},
+// }
 
 // console.log(typeof(optionsProductTotalDaySale));
 
-var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
-var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
-var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), optionsEurope);
-var chartAmerica = new ApexCharts(document.querySelector("#chart-america"), optionsAmerica);
-var chartIndonesia = new ApexCharts(document.querySelector("#chart-indonesia"), optionsIndonesia);
+// var chartProfileVisit = new ApexCharts(document.querySelector("#chart-profile-visit"), optionsProfileVisit);
+// var chartVisitorsProfile = new ApexCharts(document.getElementById('chart-visitors-profile'), optionsVisitorsProfile)
+// var chartEurope = new ApexCharts(document.querySelector("#chart-europe"), optionsEurope);
+// var chartAmerica = new ApexCharts(document.querySelector("#chart-america"), optionsAmerica);
+// var chartIndonesia = new ApexCharts(document.querySelector("#chart-indonesia"), optionsIndonesia);
 
-var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
+// var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
 
 // chartIndonesia.render();
 // chartAmerica.render();
@@ -145,4 +145,144 @@ var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-produc
 // chartProfileVisit.render();
 // chartVisitorsProfile.render();
 
+// chartProductTotalSale.render();
+
+
+var chartProductTotalSale;
+
+function renderProductTotalDaySale() {
+
+var optionsProductTotalDaySale = {
+	annotations: {
+		position: 'back'
+	},
+	dataLabels: {
+		enabled: false
+	},
+	chart: {
+		type: 'bar',
+		height: 300
+	},
+	fill: {
+		opacity: 1
+	},
+	plotOptions: {
+
+	},
+	series: [{
+		name: 'sales',
+		data: [0, 0, 0, 0, 0]
+	}],
+	colors: '#435ebe',
+	xaxis: {
+		categories: ["1", "2", "3", "4", "5"],
+	},
+}
+// console.log(productSale);
+chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
 chartProductTotalSale.render();
+
+
+var date = $('#today-date').val();
+
+$.ajax({
+	url: 'getTodaySale',
+	method: 'POST',
+	data: {
+		todayDate: date,
+	},
+	success: function (response) {
+
+		// alert(response);
+
+		// const result = response.split(",");
+
+		var result = JSON.parse(response);
+		for (var i = 0, emp; i < result.length; i++) {
+			emp = result[i];
+			// console.log(emp);
+		}
+		document.getElementById("alipaySale").innerHTML = emp["alipay"] + "";
+		document.getElementById("fpsSale").innerHTML = emp["fps"] + "";
+		document.getElementById("cashSale").innerHTML = emp["cash"] + "";
+		document.getElementById("totalSale").innerHTML = emp["total"] + "";
+	}
+});
+
+$.ajax({
+	url: 'test111',
+	method: 'POST',
+	data: {
+		todayDate: date,
+	},
+	success: function (response) {
+		var result = JSON.parse(JSON.stringify(response));
+		for (var i = 0, emp; i < result.length; i++) {
+			emp = result[i];
+		}
+		chartProductTotalSale.updateSeries([{
+			name: 'sales',
+			data: emp["product_quantity"]
+		}])
+		chartProductTotalSale.updateOptions({
+			xaxis: {
+				categories: emp["product_name"],
+			},
+		})
+		// var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
+		// chartProductTotalSale.render();
+	}
+});
+
+}
+
+
+function renderProductTotalDaySaleOnchange(){
+	date = $('#today-date').val();
+        var alipaySale = $('#alipaySale').val();
+
+        $.ajax({
+            url: 'getTodaySale',
+            method: 'POST',
+            data: {
+                todayDate: date,
+            },
+            success: function (response) {
+
+                var result = JSON.parse(response);
+                for (var i = 0, emp; i < result.length; i++) {
+                    emp = result[i];
+                }
+                document.getElementById("alipaySale").innerHTML = emp["alipay"] + "";
+                document.getElementById("fpsSale").innerHTML = emp["fps"] + "";
+                document.getElementById("cashSale").innerHTML = emp["cash"] + "";
+                document.getElementById("totalSale").innerHTML = emp["total"] + "";
+            }
+        });
+
+        $.ajax({
+            url: 'test111',
+            method: 'POST',
+            data: {
+                todayDate: date,
+            },
+            success: function (response) {
+                var result = JSON.parse(JSON.stringify(response));
+                for (var i = 0, emp; i < result.length; i++) {
+                    emp = result[i];
+                }
+                chartProductTotalSale.updateSeries([{
+                    name: 'sales',
+                    data: emp["product_quantity"]
+                }])
+                chartProductTotalSale.updateOptions({
+                    xaxis: {
+                        categories: emp["product_name"],
+                    },
+                })
+                // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
+                // chartProductTotalSale.render();
+            }
+        });
+
+}

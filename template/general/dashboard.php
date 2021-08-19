@@ -9,8 +9,8 @@
     <script src="../template/assets/js/moment.js"></script>
     <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.css">
     <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.min.css">
-    <script src="../template/general/getData/globalData.js"></script>
-    <!-- <script type="text/javascript" src="../template/general/getData/globalData.js"></script> -->
+    <script src="../template/assets/js/pages/dashboard.js"></script>
+
 </head>
 
 <body>
@@ -91,168 +91,172 @@
 
                     </script> -->
 
-                    <script>
+                    <script type="text/javascript">
                         $(function() {
+
+                            renderProductTotalDaySale();
+
                             // Day sales
-                            var optionsProductTotalDaySale = {
-                                annotations: {
-                                    position: 'back'
-                                },
-                                dataLabels: {
-                                    enabled: false
-                                },
-                                chart: {
-                                    type: 'bar',
-                                    height: 300
-                                },
-                                fill: {
-                                    opacity: 1
-                                },
-                                plotOptions: {
+                            // var optionsProductTotalDaySale = {
+                            //     annotations: {
+                            //         position: 'back'
+                            //     },
+                            //     dataLabels: {
+                            //         enabled: false
+                            //     },
+                            //     chart: {
+                            //         type: 'bar',
+                            //         height: 300
+                            //     },
+                            //     fill: {
+                            //         opacity: 1
+                            //     },
+                            //     plotOptions: {
 
-                                },
-                                series: [{
-                                    name: 'sales',
-                                    data: [0, 0, 0, 0, 0]
-                                }],
-                                colors: '#435ebe',
-                                xaxis: {
-                                    categories: ["1", "2", "3", "4", "5"],
-                                },
-                            }
-                            var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
-                            chartProductTotalSale.render();
-                            var date = $('#today-date').val();
+                            //     },
+                            //     series: [{
+                            //         name: 'sales',
+                            //         data: [0, 0, 0, 0, 0]
+                            //     }],
+                            //     colors: '#435ebe',
+                            //     xaxis: {
+                            //         categories: ["1", "2", "3", "4", "5"],
+                            //     },
+                            // }
+                            // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
+                            // chartProductTotalSale.render();
+                            // var date = $('#today-date').val();
 
-                            $.ajax({
-                                url: 'getTodaySale',
-                                method: 'POST',
-                                data: {
-                                    todayDate: date,
-                                },
-                                success: function(response) {
+                            // $.ajax({
+                            //     url: 'getTodaySale',
+                            //     method: 'POST',
+                            //     data: {
+                            //         todayDate: date,
+                            //     },
+                            //     success: function(response) {
 
-                                    // alert(response);
+                            //         // alert(response);
 
-                                    // const result = response.split(",");
+                            //         // const result = response.split(",");
 
-                                    var result = JSON.parse(response);
-                                    for (var i = 0, emp; i < result.length; i++) {
-                                        emp = result[i];
-                                        // console.log(emp);
-                                    }
-                                    document.getElementById("alipaySale").innerHTML = emp["alipay"] + "";
-                                    document.getElementById("fpsSale").innerHTML = emp["fps"] + "";
-                                    document.getElementById("cashSale").innerHTML = emp["cash"] + "";
-                                    document.getElementById("totalSale").innerHTML = emp["total"] + "";
-                                }
-                            });
+                            //         var result = JSON.parse(response);
+                            //         for (var i = 0, emp; i < result.length; i++) {
+                            //             emp = result[i];
+                            //             // console.log(emp);
+                            //         }
+                            //         document.getElementById("alipaySale").innerHTML = emp["alipay"] + "";
+                            //         document.getElementById("fpsSale").innerHTML = emp["fps"] + "";
+                            //         document.getElementById("cashSale").innerHTML = emp["cash"] + "";
+                            //         document.getElementById("totalSale").innerHTML = emp["total"] + "";
+                            //     }
+                            // });
 
-                            $.ajax({
-                                url: 'test111',
-                                method: 'POST',
-                                data: {
-                                    todayDate: date,
-                                },
-                                success: function(response) {
-                                    var result = JSON.parse(JSON.stringify(response));
-                                    for (var i = 0, emp; i < result.length; i++) {
-                                        emp = result[i];
-                                    }
-                                    chartProductTotalSale.updateSeries([{
-                                        name: 'sales',
-                                        data: emp["product_quantity"]
-                                    }])
-                                    chartProductTotalSale.updateOptions({
-                                        xaxis: {
-                                            categories: emp["product_name"],
-                                        },
-                                    })
-                                    // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
-                                    // chartProductTotalSale.render();
-                                }
-                            });
+                            // $.ajax({
+                            //     url: 'test111',
+                            //     method: 'POST',
+                            //     data: {
+                            //         todayDate: date,
+                            //     },
+                            //     success: function(response) {
+                            //         var result = JSON.parse(JSON.stringify(response));
+                            //         for (var i = 0, emp; i < result.length; i++) {
+                            //             emp = result[i];
+                            //         }
+                            //         chartProductTotalSale.updateSeries([{
+                            //             name: 'sales',
+                            //             data: emp["product_quantity"]
+                            //         }])
+                            //         chartProductTotalSale.updateOptions({
+                            //             xaxis: {
+                            //                 categories: emp["product_name"],
+                            //             },
+                            //         })
+                            //         // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
+                            //         // chartProductTotalSale.render();
+                            //     }
+                            // });
 
                             $("#today-date").on('change', function() {
-                                date = $('#today-date').val();
-                                var alipaySale = $('#alipaySale').val();
+                                renderProductTotalDaySaleOnchange();
+                                // date = $('#today-date').val();
+                                // var alipaySale = $('#alipaySale').val();
 
-                                $.ajax({
-                                    url: 'getTodaySale',
-                                    method: 'POST',
-                                    data: {
-                                        todayDate: date,
-                                    },
-                                    success: function(response) {
+                                // $.ajax({
+                                //     url: 'getTodaySale',
+                                //     method: 'POST',
+                                //     data: {
+                                //         todayDate: date,
+                                //     },
+                                //     success: function(response) {
 
-                                        var result = JSON.parse(response);
-                                        for (var i = 0, emp; i < result.length; i++) {
-                                            emp = result[i];
-                                        }
-                                        document.getElementById("alipaySale").innerHTML = emp["alipay"] + "";
-                                        document.getElementById("fpsSale").innerHTML = emp["fps"] + "";
-                                        document.getElementById("cashSale").innerHTML = emp["cash"] + "";
-                                        document.getElementById("totalSale").innerHTML = emp["total"] + "";
-                                    }
-                                });
+                                //         var result = JSON.parse(response);
+                                //         for (var i = 0, emp; i < result.length; i++) {
+                                //             emp = result[i];
+                                //         }
+                                //         document.getElementById("alipaySale").innerHTML = emp["alipay"] + "";
+                                //         document.getElementById("fpsSale").innerHTML = emp["fps"] + "";
+                                //         document.getElementById("cashSale").innerHTML = emp["cash"] + "";
+                                //         document.getElementById("totalSale").innerHTML = emp["total"] + "";
+                                //     }
+                                // });
 
-                                $.ajax({
-                                    url: 'test111',
-                                    method: 'POST',
-                                    data: {
-                                        todayDate: date,
-                                    },
-                                    success: function(response) {
-                                        var result = JSON.parse(JSON.stringify(response));
-                                        for (var i = 0, emp; i < result.length; i++) {
-                                            emp = result[i];
-                                        }
-                                        chartProductTotalSale.updateSeries([{
-                                            name: 'sales',
-                                            data: emp["product_quantity"]
-                                        }])
-                                        chartProductTotalSale.updateOptions({
-                                            xaxis: {
-                                                categories: emp["product_name"],
-                                            },
-                                        })
-                                        // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
-                                        // chartProductTotalSale.render();
-                                    }
-                                });
+                                // $.ajax({
+                                //     url: 'test111',
+                                //     method: 'POST',
+                                //     data: {
+                                //         todayDate: date,
+                                //     },
+                                //     success: function(response) {
+                                //         var result = JSON.parse(JSON.stringify(response));
+                                //         for (var i = 0, emp; i < result.length; i++) {
+                                //             emp = result[i];
+                                //         }
+                                //         chartProductTotalSale.updateSeries([{
+                                //             name: 'sales',
+                                //             data: emp["product_quantity"]
+                                //         }])
+                                //         chartProductTotalSale.updateOptions({
+                                //             xaxis: {
+                                //                 categories: emp["product_name"],
+                                //             },
+                                //         })
+                                //         // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-day-sale"), optionsProductTotalDaySale);
+                                //         // chartProductTotalSale.render();
+                                //     }
+                                // });
                             });
 
 
-                            // Period sales
-                            var optionsProductTotalPeriodSale = {
-                                annotations: {
-                                    position: 'back'
-                                },
-                                dataLabels: {
-                                    enabled: false
-                                },
-                                chart: {
-                                    type: 'bar',
-                                    height: 300
-                                },
-                                fill: {
-                                    opacity: 1
-                                },
-                                plotOptions: {
+                            // // Period sales
+                            // var optionsProductTotalPeriodSale = {
+                            //     annotations: {
+                            //         position: 'back'
+                            //     },
+                            //     dataLabels: {
+                            //         enabled: false
+                            //     },
+                            //     chart: {
+                            //         type: 'bar',
+                            //         height: 300
+                            //     },
+                            //     fill: {
+                            //         opacity: 1
+                            //     },
+                            //     plotOptions: {
 
-                                },
-                                series: [{
-                                    name: 'sales',
-                                    data: [0, 0, 0, 0, 0]
-                                }],
-                                colors: '#435ebe',
-                                xaxis: {
-                                    categories: ["1", "2", "3", "4", "5"],
-                                },
-                            }
-                            var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-period-sale"), optionsProductTotalPeriodSale);
-                            chartProductTotalSale.render();
-                            var date = $('#today-date').val();
+                            //     },
+                            //     series: [{
+                            //         name: 'sales',
+                            //         data: [0, 0, 0, 0, 0]
+                            //     }],
+                            //     colors: '#435ebe',
+                            //     xaxis: {
+                            //         categories: ["1", "2", "3", "4", "5"],
+                            //     },
+                            // }
+                            // var chartProductTotalSale = new ApexCharts(document.querySelector("#chart-product-period-sale"), optionsProductTotalPeriodSale);
+                            // chartProductTotalSale.render();
+                            // var date = $('#today-date').val();
 
                         });
                     </script>
@@ -349,7 +353,7 @@
                         <!-- Today sales -->
 
                         <!-- Period Sales -->
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
@@ -365,19 +369,18 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <!-- <div id="chart-profile-visit"></div> -->
                                         <div id="chart-product-period-sale"></div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Period Sales -->
 
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Line Area Chart</h4>
+                                        <h4>Period sale</h4>
                                     </div>
                                     <div class="card-body">
                                         <div id="area"></div>
@@ -412,21 +415,6 @@
                     </div>
                 </div>
 
-                <!-- Passing the graph value to js -->
-                <?php
-
-                // $productSalesAmount = [50, 20, 30, 20, 10];
-
-                // include('getGraphData/getGraphData.php');;
-                // getTodayProductSaleAmount($date);
-
-                ?>
-                <!-- <script type="text/javascript">
-                    var productSalesAmount = <?php echo json_encode($productSalesAmount); ?>;
-                </script> -->
-
-                <!-- <script src="template/assets/js/pages/dashboard.js"></script> -->
-                <!-- Passing the graph value to js -->
 
             </footer>
         </div>
