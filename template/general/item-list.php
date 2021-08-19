@@ -157,14 +157,9 @@
                                                 <tbody>
                                                     <center>
                                                         <?php
-
-                                                        $conn = mysqli_connect("localhost", "root", "root", "sakedb");
-
-                                                        // Check connection
-                                                        if ($conn === false) {
-                                                            die("ERROR: Could not connect. "
-                                                                . mysqli_connect_error());
-                                                        }
+                                                        require_once('../../database.php');
+                                                        // include '../../database.php';
+                                                        $conn = OpenCon();
 
                                                         $p1 = $_REQUEST['p1'];
                                                         $p2 = $_REQUEST['p2'];
@@ -192,19 +187,19 @@
                                                             $result = $conn->query($sql);
                                                         }
 
-                                                        // if(mysqli_query($conn, $sql)){
-                                                        //     echo "<h3>Data stored in a database successfully."
-                                                        //     . " Please browse your localhost"
-                                                        //     . " to view the updated data</h3>";
-                                                        //
-                                                        //     echo nl2br("No : $no\n"
-                                                        //         . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
-                                                        // } else{
-                                                        //     // echo "ERROR : Invalid input $sql. "
-                                                        //     // . mysqli_error($conn);
-                                                        //     echo "ERROR : Invalid input. "
-                                                        //     . mysqli_error($conn);
-                                                        // }
+                                                        if(mysqli_query($conn, $sql)){
+                                                            echo "<h3>Data stored in a database successfully."
+                                                            . " Please browse your localhost"
+                                                            . " to view the updated data</h3>";
+                                                        
+                                                            echo nl2br("No : $no\n"
+                                                                . "Status : $status\nP1 : $p1\nP2 : $p2\nP3 : $p3\nStatus : $status\nLocation : $location\nSake brewer : $sake_brewer\nName : $name\nVolume : $volume\nUnit : $unit\n");
+                                                        } else{
+                                                            // echo "ERROR : Invalid input $sql. "
+                                                            // . mysqli_error($conn);
+                                                            echo "ERROR : Invalid input. "
+                                                            . mysqli_error($conn);
+                                                        }
                                                         mysqli_close($conn);
                                                         ?>
                                                         <div>
@@ -248,7 +243,8 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                    include '../../database.php';
+                                    require_once('../../database.php');
+                                    // include '../../database.php';
                                     $conn = OpenCon();
 
                                     $sql = "SELECT product_id, p1, p2, p3, location, sake_brewer, name, volume, unit FROM wine_list";
