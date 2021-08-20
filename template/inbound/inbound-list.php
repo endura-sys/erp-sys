@@ -70,75 +70,149 @@
                                 data-bs-target="#border-add">
                                 Add new data
                             </button> <?php } ?>
-                                <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
-                                    role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Add new data</h5>
-                                                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <i data-feather="x"></i>
-                                                </button>
+                            <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Add new purchase</h5>
+                                            <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                                                <i data-feather="x"></i>
+                                            </button>
                                             </div>
                                             <div class="modal-body">
                                                 <form data-target="#border-added" method="post">
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-sm-6 col-md-3">
 
                                                             <div class="form-group">
-                                                                <label for="inbound_id">Inbound id:</label>
-                                                                <input type="integer" class="form-control" name="inbound_id" id="Inbound id" placeholder="">
-                                                            </div>
+                                                            <?php
+                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
+                                                            $sql_inbound = "SELECT MAX(inbound_id) FROM inbound";
+                                                            $result_inbound = $conn->query($sql_inbound);
+                                                            $row_inbound = $result_inbound->fetch_assoc();
+                                                            $inbound = (int) $row_inbound["MAX(inbound_id)"];
+                                                            $inbound++;
+
+                                                            ?>
+                                                                <label for="inbound_id">Inbound id:</label>
+                                                                <input type="integer" class="form-control" name="inbound_id" id="Inbound id" value="<?php echo $inbound; ?>" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="purchasing_id">Purchasing id:</label>
-                                                                <input type="integer" class="form-control" name="purchasing_id" id="Purchasing id" placeholder="">
-                                                            </div>
+                                                                <select name="purchasing_id" class="form-control form-control-md">
+                                                                <option value="">Select purchasing_id</option>
+                                                                <?php
+                                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
 
 
-                                                            <div class="form-group">
-                                                                <label for="product_id">Product id:</label>
-                                                                <input type="integer" class="form-control" name="product_id" id="Product id" placeholder="">
-                                                            </div>
+                                                                $sql0 = "SELECT purchasing_id FROM purchase";
+                                                                $result0 = $conn->query($sql0);
+                                                                while ($row0 = $result0->fetch_assoc()) {
+                                                                ?>
+                                                                    <option value="<?php echo $row0["purchasing_id"] ?>"><?php echo $row0["purchasing_id"]; ?></option>
 
+                                                                <?php
+                                                                }
 
-                                                            <div class="form-group">
-                                                                <label for="quantity">Quantity:</label>
-                                                                <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
-                                                            </div>
-
-
-                                                            <div class="form-group">
-                                                                <label for="employee_id">Employee id:</label>
-                                                                <input type="integer" class="form-control" name="employee_id" id="Employee id" placeholder="">
+                                                                ?>
+                                                            </select>
                                                             </div>
                                                         </div>
 
+                                                            <!-- <div class="form-group">
+                                                                <label for="product_id">Product id:</label>
+                                                                <input type="integer" class="form-control" name="product_id" id="Product id" placeholder="">
+                                                            </div> -->
 
-                                                        <div class="col-md-6">
 
+                                                            <!-- <div class="form-group">
+                                                                <label for="quantity">Quantity:</label>
+                                                                <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
+                                                            </div> -->
+
+                                                        <div class="col-sm-6 col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="employee_id">Employee id:</label>
+                                                                <select name="employee_id" class="form-control form-control-md">
+                                                                    <option value="">Select Employee ID</option>
+                                                                    <?php
+                                                                    $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+
+                                                                    $sql0 = "SELECT employee_id, firstname FROM employee";
+                                                                    $result0 = $conn->query($sql0);
+                                                                    while ($row0 = $result0->fetch_assoc()) {
+                                                                    ?>
+                                                                        <option value="<?php echo $row0["employee_id"] ?>"><?php echo $row0["firstname"]; ?></option>
+                                                                    <?php } ?>
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                     
+
+
+                                                       
+                                                <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="inbound_date">Inbound date:</label>
                                                                 <input type="date" class="form-control" name="inbound_date" id="Inbound date" placeholder="">
                                                             </div>
+                                                </div>
 
-
+                                                <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="shelf_date">Shelf date:</label>
                                                                 <input type="date" class="form-control" name="shelf_date" id="Shelf date" placeholder="">
                                                             </div>
+                                                </div>
 
-
+                                                <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="inbound_way">Shipping way:</label>
                                                                 <input type="varchar" class="form-control" name="inbound_way" id="Shipping way" placeholder="">
                                                             </div>
+                                                </div>
 
-
+                                                <div class="col-sm-6 col-md-3">
                                                             <div class="form-group">
                                                                 <label for="inbound_cost">Shipping cost:</label>
                                                                 <input type="integer" class="form-control" name="inbound_cost" id="Shipping cost" placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                    <div class="form-group">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="col-sm-6 col-md-6">Product ID:</th>
+                                                                    <th class="col-sm-6 col-md-6">Quantity:</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tbody">
+                                                                <tr>
+                                                                    <th>
+                                                                        <input type="integer" class="form-control" name="product_id">
+                                                                    </th>
+
+                                                                    <th>
+                                                                        <input type="integer" class="form-control" name="quantity">
+                                                                    </th>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <button type="button" class="btn btn-primary" onclick="add()">
+                                                                    <i class="bi bi-plus-circle"></i>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -196,9 +270,10 @@
                                                             $inbound_way = $_REQUEST['inbound_way'];
                                                             $inbound_cost = $_REQUEST['inbound_cost'];
 
+                                                            echo '$inbound_id','$employee_id','$inbound_date',
+                                                            '$inbound_way','$inbound_cost';
                                                             // Performing insert query execution
-                                                            $sql = "INSERT INTO inbound VALUES ('$inbound_id','$purchasing_id','$product_id','$quantity',
-                                                            '$employee_id','$inbound_date','$shelf_date',
+                                                            $sql = "INSERT INTO inbound VALUES ('$inbound_id','$employee_id','$inbound_date',
                                                             '$inbound_way','$inbound_cost')";
 
                                                             if(mysqli_query($conn, $sql)){
@@ -372,6 +447,17 @@
             </footer>
         </div>
     </div>
+
+    <script>
+        function add() {
+            var html = "<th><input type='integer' class='form-control' name='product_id[]'></th>";
+            html += "<th><input type='integer' class='form-control' name='quantity[]'></th>";
+            var table = document.getElementById("tbody");
+            var row = table.insertRow();
+            row.innerHTML = html;
+        }
+    </script>
+
 
     <?php include('../footer.php'); ?>
 
