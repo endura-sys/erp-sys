@@ -45,7 +45,8 @@
                         <div class="card-header">
                             Simple Datatable
                             <?php
-                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                            require_once('../../database.php');
+                                                            $conn = OpenCon();
                                                             $user = $_SESSION['username'];
                                                             //echo $user;
                                                             $sql =" SELECT position.access_level
@@ -83,7 +84,9 @@
                                                             <div class="form-group">
 
                                                               <?php
-                                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                        
+                                                                require_once('../../database.php');
+                                                                $conn = OpenCon();
 
                                                                 $sql_sale = "SELECT MAX(sale_id) FROM sales";
                                                                 $result_sale = $conn->query($sql_sale);
@@ -104,7 +107,9 @@
                                                                 <select name="customer_id" class="form-control form-control-md" required>
                                                                   <option value="">Select Customer ID</option>
                                                                   <?php
-                                                                  $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+                                                                    require_once('../../database.php');
+                                                                    $conn = OpenCon();
 
 
                                                                   $sql0 = "SELECT customer_id, firstname FROM customer";
@@ -127,7 +132,9 @@
                                                                 <select name="employee_id" class="form-control form-control-md" required>
                                                                   <option value="">Select Employee ID</option>
                                                                   <?php
-                                                                  $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                        
+                                                                    require_once('../../database.php');
+                                                                    $conn = OpenCon();
 
 
                                                                   $sql0 = "SELECT employee_id, firstname FROM employee";
@@ -272,7 +279,8 @@
                                                     <center>
                                                         <?php
 
-                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                            require_once('../../database.php');
+                                                            $conn = OpenCon();
 
                                                             // Check connection
                                                             if($conn === false){
@@ -514,7 +522,9 @@
                                           <div class="form-group">
                                               <label for=outbound_id>Outbound ID:</label>
                                               <?php
-                                              $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                            
+                                                require_once('../../database.php');
+                                                $conn = OpenCon();
 
                                               $sql_outbound = "SELECT MAX(outbound_id) FROM outbound";
                                               $result_outbound = $conn->query($sql_outbound);

@@ -158,13 +158,8 @@
                                                     <center>
                                                         <?php
 
-                                                        $conn = mysqli_connect("localhost", "root", "root", "sakedb");
-
-                                                        // Check connection
-                                                        if ($conn === false) {
-                                                            die("ERROR: Could not connect. "
-                                                                . mysqli_connect_error());
-                                                        }
+                                                        require_once('../../database.php');
+                                                        $conn = OpenCon();
 
                                                         $p1 = $_REQUEST['p1'];
                                                         $p2 = $_REQUEST['p2'];
@@ -248,7 +243,7 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                    include '../../database.php';
+                                    require_once('../../database.php');
                                     $conn = OpenCon();
 
                                     $sql = "SELECT product_id, p1, p2, p3, location, sake_brewer, name, volume, unit FROM wine_list";

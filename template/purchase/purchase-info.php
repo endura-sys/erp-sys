@@ -121,7 +121,9 @@ $today = date("Y-m-d");
 // @$sqlinsert = "INSERT INTO `sakedb`.`purchase_items_list`(num) VALUES('$danhao')";
 // $selecttoday = "select `num` from `yundan` where `time` LIKE '%$today%'";
 // $counttoday = "select count(*) from `testphp`.`yundan` where `time` LIKE '%$today%'"; 
-$conn=mysqli_connect("localhost","root","root", "sakedb");
+
+require_once('../../database.php');
+$conn = OpenCon();
  
 $my_db = mysqli_select_db($sakedb,$conn);   
 $selectnum = mysqli_query($conn,$sqlselect); 

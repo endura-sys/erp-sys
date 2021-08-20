@@ -123,8 +123,8 @@
                                                     <center>
                                                         <?php
 
-                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
-
+                                                            require_once('../../database.php');
+                                                            $conn = OpenCon();
                                                             // Check connection
                                                             if($conn === false){
                                                                 die("ERROR: Could not connect. "
@@ -186,8 +186,8 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        include '../../database.php';
-                                        $conn = OpenCon();
+                                    require_once('../../database.php');
+                                    $conn = OpenCon();
 
                                         $sql = "SELECT customer_id, firstname, surname, email FROM customer";
                                         $result = $conn->query($sql);

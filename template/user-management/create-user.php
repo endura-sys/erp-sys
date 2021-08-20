@@ -95,7 +95,8 @@
                         <select name="position" class="form-control form-control-xl" >
                           <option value="">Select Position
                             <?php
-                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                require_once('../../database.php');
+                                $conn = OpenCon();
 
 
                             $sql0 = "SELECT * FROM position";

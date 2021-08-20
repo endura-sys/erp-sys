@@ -119,13 +119,9 @@
                                                     <center>
                                                         <?php
 
-                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                            require_once('../../database.php');
+                                                            $conn = OpenCon();
 
-                                                            // Check connection
-                                                            if($conn === false){
-                                                                die("ERROR: Could not connect. "
-                                                                    . mysqli_connect_error());
-                                                            }
                                                             $supplier_name = $_REQUEST['name'];
                                                             $supplier_email = $_REQUEST['email'];
 

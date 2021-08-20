@@ -52,7 +52,8 @@
                         <div class="card-header">
                             Simple Datatable
                             <?php
-                        $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                require_once('../../database.php');
+                                $conn = OpenCon();
                                 $user = $_SESSION['username'];
                                                             // echo $user;
                                                             $sql = " SELECT position.access_level
@@ -86,7 +87,9 @@
 
                                                             <div class="form-group">
                                                             <?php
-                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                            
+                                                            require_once('../../database.php');
+                                                            $conn = OpenCon();
 
                                                             $sql_inbound = "SELECT MAX(inbound_id) FROM inbound";
                                                             $result_inbound = $conn->query($sql_inbound);
@@ -105,7 +108,9 @@
                                                                 <select name="purchasing_id" class="form-control form-control-md">
                                                                 <option value="">Select purchasing_id</option>
                                                                 <?php
-                                                                $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+                                                                require_once('../../database.php');
+                                                                $conn = OpenCon();
 
 
                                                                 $sql0 = "SELECT purchasing_id FROM purchase";
@@ -139,7 +144,9 @@
                                                                 <select name="employee_id" class="form-control form-control-md">
                                                                     <option value="">Select Employee ID</option>
                                                                     <?php
-                                                                    $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                        
+                                                                    require_once('../../database.php');
+                                                                    $conn = OpenCon();
 
 
                                                                     $sql0 = "SELECT employee_id, firstname FROM employee";
@@ -252,7 +259,8 @@
                                                     <center>
                                                         <?php
 
-                                                            $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+                                                            require_once('../../database.php');
+                                                            $conn = OpenCon();
 
                                                             // Check connection
                                                             if($conn === false){
