@@ -26,7 +26,7 @@ function getTodayProductSaleAmount()
         // output data of each row
         $i = 0;
         while ($row = $result->fetch_assoc()) {
-            $product_list[(int)$row["MONTH(sale_date)"]] = (int)$row["SUM(total_sale)"];
+            $product_list[(int)$row["MONTH(sale_date)"] - 1] = (int)$row["SUM(total_sale)"];
         }
     }
 
