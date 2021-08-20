@@ -176,7 +176,7 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        include '../../database.php';
+                                        require_once('../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT supplier_id, supplier_name, supplier_email FROM supplier";

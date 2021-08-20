@@ -1,7 +1,7 @@
 <?php include ('../header.php'); ?>
 <?php
 $restrict_low_access=true;
-include '../../database.php';
+require_once('../../database.php');
 $conn = OpenCon();
 
 $sql_restrict_mid_access="SELECT access_level FROM position,employee WHERE position.position_id=employee.position_id AND employee_id='".$_GET['id']."'";

@@ -64,7 +64,7 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        include '../../database.php';
+                                        require_once('../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT * FROM `inbound_items_list` where inbound_id='" . $_GET['id'] . "'";

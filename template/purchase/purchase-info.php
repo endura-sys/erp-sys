@@ -219,7 +219,7 @@ document.getElementById ('danhao').blur();
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        include '../../database.php';
+                                        require_once('../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT * FROM `purchase_items_list` where purchasing_id='" . $_GET['id'] . "'";

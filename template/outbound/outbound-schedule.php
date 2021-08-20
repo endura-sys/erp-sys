@@ -341,7 +341,7 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        include '../../database.php';
+                                        require_once('../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT outbound_id, employee_id, outbound_date, outbound_way, outbound_cost FROM outbound";

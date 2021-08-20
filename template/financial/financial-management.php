@@ -123,7 +123,7 @@
                                                                 date_default_timezone_set('Asia/Hong_Kong');
                                                                 $saledate = date('Y-m-d');
 
-                                                                include '../../database.php';
+                                                                require_once('../../database.php');
                                                                 $conn = OpenCon();
 
                                                                 $sql_exp = "SELECT * FROM expense_type";

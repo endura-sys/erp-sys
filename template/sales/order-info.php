@@ -57,7 +57,7 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        include '../../database.php';
+                                        require_once('../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT * FROM `sale_items_list` where sale_id='" . $_GET['id'] . "'";

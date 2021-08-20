@@ -2,7 +2,7 @@
 <?php include('../header.php');
       $restrict_low_access=true;
       include ('userserver.php');
-      include "database.php";
+	  require_once('../../database.php');
       $conn0=OpenCon();
       $sql0 = "SELECT position_name FROM position";
       $result0 = $conn0->query($sql0);
