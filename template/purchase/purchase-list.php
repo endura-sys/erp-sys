@@ -69,7 +69,7 @@
                                                             $result_level = $conn->query($sql);
                                                             $row_level = $result_level->fetch_assoc();
                                                             // echo $row_level["access_level"];
-                                                            
+
                                                             ?>
                             <?php if ($row_level["access_level"] == "High") { ?>
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal" data-bs-target="#border-add">
@@ -134,7 +134,7 @@
                                                         <div class="form-group">
                                                             <label for="employee_id">Employee ID:</label>
                                                             <?php
-                                                            
+
                                                             // echo $row_level["access_level"];
                                                             if ($row_level["access_level"] == "High") {
                                                             ?>
@@ -203,14 +203,19 @@
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th class="col-sm-6 col-md-6">Product ID:</th>
-                                                                    <th class="col-sm-6 col-md-6">Quantity:</th>
+                                                                    <th class="col-sm-6 col-md-4">Product ID:</th>
+                                                                    <th class="col-sm-6 col-md-4">Price:</th>
+                                                                    <th class="col-sm-6 col-md-4">Quantity:</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="tbody">
                                                                 <tr>
                                                                     <th>
                                                                         <input type="integer" class="form-control" name="product_id[]">
+                                                                    </th>
+
+                                                                    <th>
+                                                                        <input type="integer" class="form-control" name="price[]">
                                                                     </th>
 
                                                                     <th>
@@ -230,6 +235,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="d-flex justify-content-end">
+                                                          <div class="form-group">
+                                                              <label for="total_sale">Total amount:</label>
+                                                              <input type="varchar" class="form-control" name="total_sale" id="total" required>
+                                                          </div>
+                                                    </div>
+
                                                 </div>
 
 
@@ -364,12 +377,12 @@
                                                     <td><?php echo $row["purchasing_id"] ?></td>
 
                                                     <?php
-                                                    echo "<td>" 
-                                                    . $row["supplier_id"] . "</td><td>" 
-                                                    . $row["employee_id"] . "</td><td>" 
-                                                    . $row["production_date"] . "</td><td>" 
-                                                    . $row["shelf_life"] . "</td><td>" 
-                                                    . $row["shelf_date"] . "</td><td>" 
+                                                    echo "<td>"
+                                                    . $row["supplier_id"] . "</td><td>"
+                                                    . $row["employee_id"] . "</td><td>"
+                                                    . $row["production_date"] . "</td><td>"
+                                                    . $row["shelf_life"] . "</td><td>"
+                                                    . $row["shelf_date"] . "</td><td>"
                                                     . $row["payment_status"] . "</td>";
                                                     ?>
                                                     <td><a class="btn btn-primary btn-sm shadow-sm" href="purchase-info?id=<?php echo $row["purchasing_id"] ?>">View</a></td>
@@ -406,7 +419,7 @@
                 <form action="update-list" method="post">
                     <div class="row">
 
-  
+
 
                         <div class="col-md-2">
                             <div class="form-group">
@@ -634,6 +647,7 @@
     <script>
         function add() {
             var html = "<th><input type='integer' class='form-control' name='product_id[]'></th>";
+            html += "<th><input type='integer' class='form-control' name='price[]'></th>";
             html += "<th><input type='integer' class='form-control' name='quantity[]'></th>";
             var table = document.getElementById("tbody");
             var row = table.insertRow();

@@ -6,3 +6,5 @@
 <script src="template/assets/vendors/choices.js/choices.min.js"></script>
 
 <script src="template/assets/js/main.js"></script>
+
+<script src="../template/assets/vendors/jquery/jquery.min.js"></script>

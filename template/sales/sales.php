@@ -56,14 +56,14 @@
                                                             $result_level = $conn->query($sql);
                                                             $row_level = $result_level->fetch_assoc();
                                                             // echo $row_alevel["access_level"];
-                                                          
+
                                                             if($row_level["access_level"] == "High"){?>
 
                             <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal" data-bs-target="#border-add">
                                 Add new data
                             </button> <?php } else {?>
                                  <?php } ?>
-                            
+
                                 <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1"
                                     role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
@@ -292,15 +292,16 @@
                                                             $quantity = $_REQUEST['quantity'];
                                                             $total_sale = $_REQUEST['total_sale'];
 
-                                                            // Performing insert query execution
-                                                            $sql = "INSERT INTO sales VALUES ('$sale_id','$customer_id','$employee_id','$sale_date','$sale_time','$payment_method','$total_sale', '$expect_outbound_date','$status')";
-                                                            $result = $conn->query($sql);
-
                                                             $N = count($product);
+                                                            $items = array();
                                                             for($i = 0; $i < $N; $i++) {
-                                                              $sql2 = "INSERT INTO sale_items_list VALUES ('$sale_id', '$product[$i]', '$quantity[$i]')";
-                                                              $result2 = $conn->query($sql2);
+                                                              $items["$product[$i]"] = "$quantity[$i]";
                                                             }
+                                                            console.log($items);
+                                                            $items_json = json_encode($items);
+                                                            // Performing insert query execution
+                                                            $sql = "INSERT INTO sales VALUES ('$sale_id','$customer_id','$employee_id', '$items_json', '$sale_date','$sale_time','$payment_method','$total_sale', '$expect_outbound_date','$status')";
+                                                            $result = $conn->query($sql);
 
                                                             // if(mysqli_query($conn, $sql)){
                                                             //   $N = count($product);
