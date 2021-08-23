@@ -24,6 +24,7 @@ RewriteRule ^update-list /template/general/update-list.php [L,QSA,NC]
 RewriteRule ^sales /template/sales/sales.php [L,QSA,NC]
 RewriteRule ^inbound /template/inbound/inbound-list.php [L,QSA,NC]
 RewriteRule ^outbound /template/outbound/outbound-schedule.php [L,QSA,NC]
+RewriteRule ^purchase1 /template/purchase/purchase-info.php [L,QSA,NC]
 
 # Dashboard get data
 RewriteRule ^test111 /template/general/getData/getTodayGraphData.php [L,QSA,NC]

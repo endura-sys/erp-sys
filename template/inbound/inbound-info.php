@@ -77,7 +77,6 @@
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                $sql2 = "SELECT product_id, quantity FROM `purchase_items_list` where purchasing_id='". $row['purchasing_id'] ."'";
                                                 $result2 = $conn->query($sql2);
                                                 while($row2 = $result2->fetch_assoc()) {
                                               		$sql3 = "SELECT name, volume, p2 FROM `wine_list` where product_id='". $row2['product_id'] ."'";

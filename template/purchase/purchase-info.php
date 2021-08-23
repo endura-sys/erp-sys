@@ -1,5 +1,5 @@
 <?php include('../header.php'); ?>
-
+<?php include('purchase-to-inbound.php'); ?>
 <html>
 
 <body>
@@ -269,6 +269,93 @@ document.getElementById ('danhao').blur();
                                     ?>                                  
                                 </tbody>
                             </table>
+
+                            <button type="button" name="submitinbound" class="btn btn-primary btn-md shadow-sm float-lg-end" data-bs-toggle="modal" data-bs-target="#confirmModal">Confirm Inbound</button>
+                            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+								<div class="modal-content">
+								<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalCenterTitle">Inbound Confirmation</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+																
+                                    <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                          <div class="form-group">
+                                              <label for=inbound_id>Inbound ID:</label>
+                                              <?php
+                                              $conn = mysqli_connect("localhost", "root", "root", "sakedb");
+
+                                              $sql_inbound = "SELECT MAX(inbound_id) FROM inbound";
+                                              $result_inbound = $conn->query($sql_inbound);
+                                              $row_inbound = $result_inbound->fetch_assoc();
+                                              $inbound = (int) $row_inbound["MAX(inbound_id)"];
+                                              $inbound++;
+                                              ?>
+                                              <input type="integer" class="form-control" name="inbound_id" id="inbound_id" value="<?php echo $inbound; ?>" placeholder="">
+                                          </div>
+
+                                          <div class="form-group">
+                                              <label for="employee_id">Employee ID:</label>
+                                              <select name="employee_id" class="form-control form-control-md" >
+                                                <option value="">Select Employee ID</option>
+                                                <?php
+                                                $sql0 = "SELECT employee_id, firstname FROM employee";
+                                                $result0 = $conn->query($sql0);
+                                                while($row0 = $result0->fetch_assoc()) {
+                                                  ?>
+                                                  <option value="<?php echo $row0["employee_id"]?>"><?php echo $row0["firstname"];?></option>
+
+                                                <?php
+                                              }
+
+                                              ?>
+                                              </select>
+                                          </div>
+
+                                            <div class="form-group">
+                                                <label for="inbound_date">Inbound Date</label>
+                                                <input type="date" class="form-control" name="inbound_date" id="inbound_date" value="<?php echo $saledate;?>">
+                                            </div>
+
+
+                                          </div>
+
+                                          <div class="col-md-6">
+
+
+                                            <div class="form-group">
+                                                <label for="inbound_way">Inbound Way</label>
+                                                <input type="varchar" class="form-control" name="inbound_way" id="inbound_way">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inbound_cost">Inbound Cost</label>
+                                                <input type="varchar" class="form-control" name="inbound_cost" id="inbound_cost">
+                                            </div>
+
+                                            
+                                        </div>
+                                    </div>
+								</div>
+
+								<div class="modal-footer">
+								<button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+								    <i class="bx bx-x d-block d-sm-none"></i>
+								    <span class="d-none d-sm-block">Close</span>
+								</button>
+
+								<button type="submit" name="confirminbound" class="btn btn-primary ml-1" value="confirminbound">Confirm</button>
+								    <i class="bx bx-check d-block d-sm-none"></i>
+
+												</div>
+								            </div>
+								        </div>
+								    </div>
+
+
                         </div>
                     </div>
                 </section>
@@ -278,6 +365,16 @@ document.getElementById ('danhao').blur();
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
                         <p>2021 &copy; ERP</p>
+                        <?php  
+                                                $inbound_id = $_POST["inbound_id"];
+                                                $employee_id = $_POST["employee_id"];
+                                                $inbounddate = $_POST["inbound_date"];
+                                                $inboundway = $_POST["inbound_way"];
+                                                $inboundcost = $_POST["inbound_cost"];
+                                                echo $inbound_id, $employee_id, $inbounddate,$inboundway,$inboundcost;
+                                                echo "hello";
+                                            
+                                            ?>
                     </div>
                     <div class="float-end">
                         <p>Something here</p>
