@@ -69,7 +69,6 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        require_once('../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT * FROM position";

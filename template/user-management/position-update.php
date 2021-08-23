@@ -114,7 +114,6 @@ $row= mysqli_fetch_array($result);
                                   ?>
                                   <option value="<?php echo $row['access_level']?>"><?php echo $row['access_level']?></option>
                                   <?php
-                                        require_once('../../database.php');
                                         $conn = OpenCon();
                                         $sql0 = "SELECT DISTINCT access_level FROM position";
                                         $result0 = $conn->query($sql0);

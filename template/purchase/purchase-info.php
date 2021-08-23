@@ -121,9 +121,7 @@ $today = date("Y-m-d");
 // @$sqlinsert = "INSERT INTO `sakedb`.`purchase_items_list`(num) VALUES('$danhao')";
 // $selecttoday = "select `num` from `yundan` where `time` LIKE '%$today%'";
 // $counttoday = "select count(*) from `testphp`.`yundan` where `time` LIKE '%$today%'"; 
-
-require_once('../../database.php');
-$conn = OpenCon();
+$conn=mysqli_connect("localhost","root","root", "sakedb");
  
 $my_db = mysqli_select_db($sakedb,$conn);   
 $selectnum = mysqli_query($conn,$sqlselect); 
@@ -219,7 +217,6 @@ document.getElementById ('danhao').blur();
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        require_once('../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT * FROM `purchase_items_list` where purchasing_id='" . $_GET['id'] . "'";

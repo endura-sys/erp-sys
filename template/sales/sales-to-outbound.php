@@ -13,7 +13,7 @@
       }
       else
       {
-        include '../../database.php';
+        require_once('../../database.php');
         $conn = OpenCon();
 
         $sql = "INSERT INTO outbound (outbound_id, employee_id, outbound_date, outbound_way, outbound_cost) VALUES ('$outbound_id', $employee_id, '$outbounddate', '$outboundway', '$outboundcost')";

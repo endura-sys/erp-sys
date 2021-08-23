@@ -123,8 +123,8 @@
                                                     <center>
                                                         <?php
 
-                                                            require_once('../../database.php');
                                                             $conn = OpenCon();
+
                                                             // Check connection
                                                             if($conn === false){
                                                                 die("ERROR: Could not connect. "
@@ -186,8 +186,7 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                    require_once('../../database.php');
-                                    $conn = OpenCon();
+                                        $conn = OpenCon();
 
                                         $sql = "SELECT customer_id, firstname, surname, email FROM customer";
                                         $result = $conn->query($sql);

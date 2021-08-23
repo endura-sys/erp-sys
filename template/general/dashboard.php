@@ -77,7 +77,7 @@
                             renderYearGrossProfit();
 
                             $("#today-date").on('change', function() {
-                                renderProductTotalDaySale();
+                                renderProductTotalDaySaleOnchange();
                             });
                         });
                     </script>

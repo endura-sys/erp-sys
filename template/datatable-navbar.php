@@ -26,7 +26,6 @@ if (!isset($_SESSION['username'])) {
     <ul class="menu">
       <?php
       if (isset($_SESSION['username'])) {
-        require_once('../database.php');
         $conn = OpenCon();
         $sql_get_id = "SELECT employee_id FROM account WHERE username='" . $_SESSION['username'] . "'";
         $result_get_id = $conn->query($sql_get_id);

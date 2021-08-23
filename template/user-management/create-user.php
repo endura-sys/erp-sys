@@ -2,7 +2,7 @@
 <?php include('../header.php');
       $restrict_low_access=true;
       include ('userserver.php');
-	  require_once('../../database.php');
+      include "database.php";
       $conn0=OpenCon();
       $sql0 = "SELECT position_name FROM position";
       $result0 = $conn0->query($sql0);
@@ -95,8 +95,7 @@
                         <select name="position" class="form-control form-control-xl" >
                           <option value="">Select Position
                             <?php
-                                require_once('../../database.php');
-                                $conn = OpenCon();
+                            $conn = OpenCon();
 
 
                             $sql0 = "SELECT * FROM position";

@@ -67,7 +67,6 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        require_once('../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT product_id, p1, p2, p3, location, sake_brewer, name, volume, unit FROM wine_list";

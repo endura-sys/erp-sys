@@ -6,7 +6,7 @@
       $access_level="";
 
       // connect to the database
-      include '../../database.php';
+      require_once('../../database.php');
       $conn = OpenCon();
 
       // Create Position

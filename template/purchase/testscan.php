@@ -31,9 +31,7 @@ $today = date("Y-m-d");
 @$sqlinsert = "INSERT INTO `testphp`.`yundan`(num) VALUES('$danhao')";
 $selecttoday = "select `num` from `yundan` where `time` LIKE '%$today%'";
 $counttoday = "select count(*) from `testphp`.`yundan` where `time` LIKE '%$today%'"; 
-
-require_once('../../database.php');
-$conn = OpenCon();
+$conn=mysqli_connect("localhost","root","root", "testphp");
  
 $my_db = mysqli_select_db($testphp,$conn);   
 $selectnum = mysqli_query($conn,$sqlselect); 

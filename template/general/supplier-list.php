@@ -119,9 +119,13 @@
                                                     <center>
                                                         <?php
 
-                                                            require_once('../../database.php');
                                                             $conn = OpenCon();
 
+                                                            // Check connection
+                                                            if($conn === false){
+                                                                die("ERROR: Could not connect. "
+                                                                    . mysqli_connect_error());
+                                                            }
                                                             $supplier_name = $_REQUEST['name'];
                                                             $supplier_email = $_REQUEST['email'];
 
@@ -176,7 +180,6 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        require_once('../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT supplier_id, supplier_name, supplier_email FROM supplier";

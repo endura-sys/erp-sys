@@ -58,8 +58,7 @@
                         <div class="card-header">
                             Simple Datatable
                             <?php
-                                require_once('../../database.php');
-                                $conn = OpenCon();
+                        $conn = OpenCon();
                                 $user = $_SESSION['username'];
                                                             // echo $user;
                                                             $sql = " SELECT position.access_level
@@ -93,8 +92,6 @@
                                                         <div class="form-group">
 
                                                             <?php
-                                                        
-                                                            require_once('../../database.php');
                                                             $conn = OpenCon();
 
                                                             $sql_purchase = "SELECT MAX(purchasing_id) FROM purchase";
@@ -116,8 +113,6 @@
                                                             <select name="supplier_id" class="form-control form-control-md">
                                                                 <option value="">Select Supplier ID</option>
                                                                 <?php
-                                                        
-                                                                require_once('../../database.php');
                                                                 $conn = OpenCon();
 
 
@@ -146,8 +141,6 @@
                                                                 <select name="employee_id" class="form-control form-control-md">
                                                                     <option value="">Select Employee ID</option>
                                                                     <?php
-                                                                    
-                                                                    require_once('../../database.php');
                                                                     $conn = OpenCon();
 
 
@@ -272,7 +265,6 @@
                                                     <center>
                                                         <?php
 
-                                                        require_once('../../database.php');
                                                         $conn = OpenCon();
 
                                                         // Check connection
@@ -348,7 +340,6 @@
                                         <!-- Connect to the database -->
                                         <?php
 
-                                        require_once('../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT * FROM purchase";
@@ -507,8 +498,6 @@
                                                             <div class="form-group">
                                                                 <label for=inbound_id>Inbound ID:</label>
                                                                 <?php
-                                                        
-                                                                require_once('../../database.php');
                                                                 $conn = OpenCon();
 
                                                                 $sql_inbound = "SELECT MAX(inbound_id) FROM inbound";
@@ -579,7 +568,6 @@
                                 $errors = array();
 
                                 if (isset($_POST['confirminbound'])) {
-                                    require_once('../../database.php');
                                     $conn = OpenCon();
 
                                     $confirm_inbound_id = $_POST["inbound_id"];

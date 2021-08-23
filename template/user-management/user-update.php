@@ -1,7 +1,6 @@
 <?php include ('../header.php'); ?>
 <?php
 $restrict_low_access=true;
-require_once('../../database.php');
 $conn = OpenCon();
 
 $sql_restrict_mid_access="SELECT access_level FROM position,employee WHERE position.position_id=employee.position_id AND employee_id='".$_GET['id']."'";
@@ -149,8 +148,6 @@ $row2= mysqli_fetch_array($result2);
                                 <!-- <input type="text" class="form-control form-control-xl" name="position" value="<?php echo $row['position']?>"> -->
                                 <select name="position" class="form-control form-control-xl" placeholder="Select Position">
                                   <?php
-                                    
-                                    require_once('../../database.php');
                                     $conn = OpenCon();
 
                                     $sql_pos="SELECT position_name FROM position WHERE position_id= '" . $row['position_id']. "'";
