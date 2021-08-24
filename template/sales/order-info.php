@@ -6,7 +6,7 @@
     <div id="app">
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
-                
+
 
                 <?php include('../datatable-navbar.php'); ?>
 
@@ -59,25 +59,30 @@
 
                                         $conn = OpenCon();
 
-                                        $sql = "SELECT * FROM `sale_items_list` where sale_id='" . $_GET['id'] . "'";
+                                        $sql = "SELECT sale_items FROM sales where sale_id='" . $_GET['id'] . "'";
                                         $result = $conn->query($sql);
+                                        $row = $result->fetch_assoc();
+                                        $sale_arr = json_decode($row["sale_items"], true);
 
-                                        $product_list = array();
+                                        // $sql = "SELECT * FROM `sale_items_list` where sale_id='" . $_GET['id'] . "'";
+                                        // $result = $conn->query($sql);
+                                        //
+                                        // $product_list = array();
 
-                                        if ($result->num_rows > 0) {
+                                        // if ($result->num_rows > 0) {
                                             // output data of each row
-                                            while($row = $result->fetch_assoc()) {
+                                            while (list($product, $quantity) = each($sale_arr)) {
                                                 // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
                                                 // echo $product_list[0][2];
                                                 // print_r($product_list);
-                                                $sql2 = "SELECT name, p2 FROM `wine_list` where product_id='". $row['product_id'] ."'";
+                                                $sql2 = "SELECT name, p2 FROM `wine_list` where product_id='". $product ."'";
                                             		$result2 = $conn->query($sql2);
                                                 while($row2 = $result2->fetch_assoc()) {
-                                                  $sql3 = "SELECT stock FROM stock where product_id ='" . $row["product_id"] ."'";
+                                                  $sql3 = "SELECT stock FROM stock where product_id ='" . $product ."'";
                                                   $result3 = $conn->query($sql3);
                                                   while($row3 = $result3->fetch_assoc()) {
-                                                    echo "<tr><td>" .$row["sale_id"] ."</td><td>" .$row["product_id"] ."</td><td>" .$row2["name"] ."</td><td>$" .$row2["p2"] ."</td><td>" .$row["quantity"] ."</td><td>" .$row3["stock"] ."</td>";
-                                                    if($row["quantity"] > $row3["stock"]) { ?>
+                                                    echo "<tr><td>" .$_GET['id'] ."</td><td>" .$product ."</td><td>" .$row2["name"] ."</td><td>$" .$row2["p2"] ."</td><td>" .$quantity ."</td><td>" .$row3["stock"] ."</td>";
+                                                    if($quantity > $row3["stock"]) { ?>
                                                       <td><span class="badge bg-danger" >Out of stock</span></td>
                                                     <?php } else { ?>
                                                       <td><span class="badge bg-success" >Ready</span></td>
@@ -86,9 +91,9 @@
                                                 }
                                             }
 
-                                        } else {
-                                            echo "0 results";
-                                        }
+                                        // } else {
+                                        //     echo "0 results";
+                                        // }
                                         echo $product_list[0][1];
                                         CloseCon($conn);
                                     ?>

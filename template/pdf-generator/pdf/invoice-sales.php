@@ -32,19 +32,21 @@
 	include '../../../database.php';
 	$conn = OpenCon();
 
-	$sql = "SELECT product_id, quantity FROM `sale_items_list` where sale_id=$sale";
+	$sql = "SELECT sale_items FROM sales where sale_id=$sale";
 	$result = $conn->query($sql);
 	$i = 1;
 	$totalquantity = 0;
 	$totalamount= 0;
-	while($row = $result->fetch_assoc()) {
-		$sql2 = "SELECT name, volume, p2 FROM `wine_list` where product_id='". $row['product_id'] ."'";
+	$row = $result->fetch_assoc();
+	$sale_arr = json_decode($row["sale_items"], true);
+	while(list($product, $quantity) = each($sale_arr)) {
+		$sql2 = "SELECT name, volume, p2 FROM `wine_list` where product_id='". $product ."'";
 		$result2 = $conn->query($sql2);
 		while($row2 = $result2->fetch_assoc()) {
 			$p = (int) $row2["p2"];
-			$q = (int) $row["quantity"];
+			$q = (int) $quantity;
 			$a = $p * $q;
-			$pdf_object->addProdcutInfo($i, $row2["name"], $row2["volume"], $row2["p2"], $row["quantity"], $a);
+			$pdf_object->addProdcutInfo($i, $row2["name"], $row2["volume"], $row2["p2"], $quantity, $a);
 			$i++;
 			$totalquantity += $q;
 			$totalamount += $a;
