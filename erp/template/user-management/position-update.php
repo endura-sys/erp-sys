@@ -2,7 +2,7 @@
       $restrict_low_access=true;
       $restrict_mid_access=true;
 
-require_once('../../database.php');
+require_once('../../../database.php');
 $conn = OpenCon();
 
 $access_level = "";

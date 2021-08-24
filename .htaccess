@@ -5,7 +5,7 @@
 ########################################################################################
 
 Options -Indexes
-DirectoryIndex index.php
+DirectoryIndex /erp/index.php
 
 RewriteEngine On
 RewriteBase /
@@ -96,9 +96,9 @@ RewriteRule ^errors /erp/template/user-management/errors.php [L,QSA,NC]
 ########################################################################################
 
 # invoice
-RewriteRule ^invoice-sales /template/pdf-generator/pdf/invoice-sales.php [L,QSA,NC]
-RewriteRule ^invoice-outbound /template/pdf-generator/pdf/invoice-outbound.php [L,QSA,NC]
-RewriteRule ^stock-list /template/inventory/stock-list.php [L,QSA,NC]
+RewriteRule ^invoice-sales /erp/template/pdf-generator/pdf/invoice-sales.php [L,QSA,NC]
+RewriteRule ^invoice-outbound /erp/template/pdf-generator/pdf/invoice-outbound.php [L,QSA,NC]
+RewriteRule ^stock-list /erp/template/inventory/stock-list.php [L,QSA,NC]
 
-RewriteRule ^financial-management /template/financial/financial-management.php [L,QSA,NC]
-RewriteRule ^getType /template/financial/getType.php [L,QSA,NC]
+RewriteRule ^financial-management /erp/template/financial/financial-management.php [L,QSA,NC]
+RewriteRule ^getType /erp/template/financial/getType.php [L,QSA,NC]

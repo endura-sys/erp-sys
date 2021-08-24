@@ -56,7 +56,7 @@
                                     <!-- Connect to the database -->
                                     <?php
 
-                                        require_once('../../database.php');
+                                        require_once('../../../database.php');
                                         $conn = OpenCon();
 
                                         $sql = "SELECT * FROM `outbound_items_list` where outbound_id='" . $_GET['id'] . "'";
