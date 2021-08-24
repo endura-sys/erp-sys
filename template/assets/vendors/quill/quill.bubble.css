@@ -923,7 +923,7 @@
   color: #fff;
   content: attr(href);
   font-weight: normal;
-  overflow: hidden;
+  /* overflow: hidden */;
   padding: 5px 15px;
   text-decoration: none;
   z-index: 1;

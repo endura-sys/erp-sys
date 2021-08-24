@@ -39,7 +39,7 @@
   .button:hover{background:#398FF7;color:#fff;}
   .share, .share li {padding: 0;list-style: none;max-width: 500px;display: block;text-align: center;}
   .share {margin: 30px auto 15px auto;}
-  .share li {padding: 0 15px;margin: 0 auto;text-align: center;display: inline;overflow: hidden;position: relative;right: -15px;}
+  .share li {padding: 0 15px;margin: 0 auto;text-align: center;display: inline;/* overflow: hidden */;position: relative;right: -15px;}
   .share li:first-child {top: -3px;}
   @media screen and (max-width: 640px) {
     h1{font-size:48px;line-height:56px;}
