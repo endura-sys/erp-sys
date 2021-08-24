@@ -52,24 +52,23 @@
                         <div class="card-header">
                             Simple Datatable
                             <?php
-                        $conn = OpenCon();
-                                $user = $_SESSION['username'];
-                                                            // echo $user;
-                                                            $sql = " SELECT position.access_level
+                            $conn = OpenCon();
+                            $user = $_SESSION['username'];
+                            // echo $user;
+                            $sql = " SELECT position.access_level
                                                             from employee
                                                             INNER JOIN account ON employee.employee_id = account.employee_id
                                                             INNER JOIN position ON position.position_id = employee.position_id
                                                             WHERE account.username = '$user'";
-                                                            $result_level = $conn->query($sql);
-                                                            $row_level = $result_level->fetch_assoc();
-                                                            // echo $row_level["access_level"];
-                                                            
-                                                            ?>
+                            $result_level = $conn->query($sql);
+                            $row_level = $result_level->fetch_assoc();
+                            // echo $row_level["access_level"];
+
+                            ?>
                             <?php if ($row_level["access_level"] == "High") { ?>
-                            <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal"
-                                data-bs-target="#border-add">
-                                Add new data
-                            </button> <?php } ?>
+                                <button type="button" class="btn btn-outline-primary block float-start float-lg-end" data-bs-toggle="modal" data-bs-target="#border-add">
+                                    Add new data
+                                </button> <?php } ?>
                             <div class="modal fade text-left modal-borderless" id="border-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
                                     <div class="modal-content">
@@ -78,13 +77,13 @@
                                             <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
                                                 <i data-feather="x"></i>
                                             </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form data-target="#border-added" method="post">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-md-3">
+                                        </div>
+                                        <div class="modal-body">
+                                            <form data-target="#border-added" method="post">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-md-3">
 
-                                                            <div class="form-group">
+                                                        <div class="form-group">
                                                             <?php
                                                             $conn = OpenCon();
 
@@ -95,14 +94,14 @@
                                                             $inbound++;
 
                                                             ?>
-                                                                <label for="inbound_id">Inbound id:</label>
-                                                                <input type="integer" class="form-control" name="inbound_id" id="Inbound id" value="<?php echo $inbound; ?>" placeholder="">
-                                                            </div>
+                                                            <label for="inbound_id">Inbound id:</label>
+                                                            <input type="integer" class="form-control" name="inbound_id" id="Inbound id" value="<?php echo $inbound; ?>" placeholder="">
                                                         </div>
-                                                        <div class="col-sm-6 col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="purchasing_id">Purchasing id:</label>
-                                                                <select name="purchasing_id" class="form-control form-control-md">
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="purchasing_id">Purchasing id:</label>
+                                                            <select name="purchasing_id" class="form-control form-control-md">
                                                                 <option value="">Select purchasing_id</option>
                                                                 <?php
                                                                 $conn = OpenCon();
@@ -119,332 +118,326 @@
 
                                                                 ?>
                                                             </select>
-                                                            </div>
                                                         </div>
+                                                    </div>
 
-                                                            <!-- <div class="form-group">
+                                                    <!-- <div class="form-group">
                                                                 <label for="product_id">Product id:</label>
                                                                 <input type="integer" class="form-control" name="product_id" id="Product id" placeholder="">
                                                             </div> -->
 
 
-                                                            <!-- <div class="form-group">
+                                                    <!-- <div class="form-group">
                                                                 <label for="quantity">Quantity:</label>
                                                                 <input type="integer" class="form-control" name="quantity" id="Quantity" placeholder="">
                                                             </div> -->
 
-                                                        <div class="col-sm-6 col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="employee_id">Employee id:</label>
-                                                                <select name="employee_id" class="form-control form-control-md">
-                                                                    <option value="">Select Employee ID</option>
-                                                                    <?php
-                                                                    $conn = OpenCon();
+                                                    <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="employee_id">Employee id:</label>
+                                                            <select name="employee_id" class="form-control form-control-md">
+                                                                <option value="">Select Employee ID</option>
+                                                                <?php
+                                                                $conn = OpenCon();
 
 
-                                                                    $sql0 = "SELECT employee_id, firstname FROM employee";
-                                                                    $result0 = $conn->query($sql0);
-                                                                    while ($row0 = $result0->fetch_assoc()) {
-                                                                    ?>
-                                                                        <option value="<?php echo $row0["employee_id"] ?>"><?php echo $row0["firstname"]; ?></option>
-                                                                    <?php } ?>
-                                                                    </select>
-                                                            </div>
-                                                        </div>
-                                                     
-
-
-                                                       
-                                                <div class="col-sm-6 col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="inbound_date">Inbound date:</label>
-                                                                <input type="date" class="form-control" name="inbound_date" id="Inbound date" placeholder="">
-                                                            </div>
-                                                </div>
-
-                                                <div class="col-sm-6 col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="shelf_date">Shelf date:</label>
-                                                                <input type="date" class="form-control" name="shelf_date" id="Shelf date" placeholder="">
-                                                            </div>
-                                                </div>
-
-                                                <div class="col-sm-6 col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="inbound_way">Shipping way:</label>
-                                                                <input type="varchar" class="form-control" name="inbound_way" id="Shipping way" placeholder="">
-                                                            </div>
-                                                </div>
-
-                                                <div class="col-sm-6 col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="inbound_cost">Shipping cost:</label>
-                                                                <input type="integer" class="form-control" name="inbound_cost" id="Shipping cost" placeholder="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                    <div class="form-group">
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="col-sm-6 col-md-6">Product ID:</th>
-                                                                    <th class="col-sm-6 col-md-6">Quantity:</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="tbody">
-                                                                <tr>
-                                                                    <th>
-                                                                        <input type="integer" class="form-control" name="product_id">
-                                                                    </th>
-
-                                                                    <th>
-                                                                        <input type="integer" class="form-control" name="quantity">
-                                                                    </th>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-md-6">
-                                                            <div class="form-group">
-                                                                <button type="button" class="btn btn-primary" onclick="add()">
-                                                                    <i class="bi bi-plus-circle"></i>
-                                                                </button>
-                                                            </div>
+                                                                $sql0 = "SELECT employee_id, firstname FROM employee";
+                                                                $result0 = $conn->query($sql0);
+                                                                while ($row0 = $result0->fetch_assoc()) {
+                                                                ?>
+                                                                    <option value="<?php echo $row0["employee_id"] ?>"><?php echo $row0["firstname"]; ?></option>
+                                                                <?php } ?>
+                                                            </select>
                                                         </div>
                                                     </div>
 
-                                                    <div class="modal-footer">
-                                                        <form data-target="#border-added" method="post">
-                                                            <input type="submit" class="btn-check" value="Submit" id='submit'>
-                                                            <label class="btn btn-primary" for="submit">Submit</label>
-                                                        </form>
-                                                        <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
-                                                            <i class="bx bx-check d-block d-sm-none"></i>
-                                                            <span class="d-none d-sm-block">Close</span>
-                                                        </button>
+
+
+
+                                                    <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="inbound_date">Inbound date:</label>
+                                                            <input type="date" class="form-control" name="inbound_date" id="Inbound date" placeholder="">
+                                                        </div>
                                                     </div>
 
-                                                </form>
+                                                    <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="shelf_date">Shelf date:</label>
+                                                            <input type="date" class="form-control" name="shelf_date" id="Shelf date" placeholder="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="inbound_way">Shipping way:</label>
+                                                            <input type="varchar" class="form-control" name="inbound_way" id="Shipping way" placeholder="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-6 col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="inbound_cost">Shipping cost:</label>
+                                                            <input type="integer" class="form-control" name="inbound_cost" id="Shipping cost" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="col-sm-6 col-md-6">Product ID:</th>
+                                                        <th class="col-sm-6 col-md-6">Quantity:</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbody">
+                                                    <tr>
+                                                        <th>
+                                                            <input type="integer" class="form-control" name="product_id">
+                                                        </th>
+
+                                                        <th>
+                                                            <input type="integer" class="form-control" name="quantity">
+                                                        </th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <button type="button" class="btn btn-primary" onclick="add()">
+                                                        <i class="bi bi-plus-circle"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            <div class="modal fade text-left modal-borderless" id="border-added" tabindex="-1"
-                                role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                    <div class="modal-content">
-                                        
-                                        <div class="modal-header">
-                                            
-                                            <h5 class="modal-title">Add new data</h5>
-                                            <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
-                                                aria-label="Close">
-                                                <i data-feather="x"></i>
+
+                                        <div class="modal-footer">
+                                            <form data-target="#border-added" method="post">
+                                                <input type="submit" class="btn-check" value="Submit" id='submit'>
+                                                <label class="btn btn-primary" for="submit">Submit</label>
+                                            </form>
+                                            <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                                                <i class="bx bx-check d-block d-sm-none"></i>
+                                                <span class="d-none d-sm-block">Close</span>
                                             </button>
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="card-body">
-                                                <tbody>
-                                                    <center>
-                                                        <?php
 
-                                                            $conn = OpenCon();
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade text-left modal-borderless" id="border-added" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
 
-                                                            // Check connection
-                                                            if($conn === false){
-                                                                die("ERROR: Could not connect. "
-                                                                    . mysqli_connect_error());
-                                                            }
+                                    <div class="modal-header">
 
-                                                            $inbound_id = $_REQUEST['inbound_id'];
-                                                            $purchasing_id =  $_REQUEST['purchasing_id'];
-                                                            $product_id =  $_REQUEST['product_id'];
-                                                            $quantity = $_REQUEST['quantity'];
-                                                            $employee_id = $_REQUEST['employee_id'];
-                                                            $inbound_date = $_REQUEST['inbound_date'];
-                                                            $shelf_date = $_REQUEST['shelf_date'];
-                                                            $inbound_way = $_REQUEST['inbound_way'];
-                                                            $inbound_cost = $_REQUEST['inbound_cost'];
+                                        <h5 class="modal-title">Add new data</h5>
+                                        <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                                            <i data-feather="x"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="card-body">
+                                            <tbody>
+                                                <center>
+                                                    <?php
 
-                                                            echo '$inbound_id','$employee_id','$inbound_date',
-                                                            '$inbound_way','$inbound_cost';
-                                                            // Performing insert query execution
-                                                            $sql = "INSERT INTO inbound VALUES ('$inbound_id','$employee_id','$inbound_date',
+                                                    $conn = OpenCon();
+
+                                                    // Check connection
+                                                    if ($conn === false) {
+                                                        die("ERROR: Could not connect. "
+                                                            . mysqli_connect_error());
+                                                    }
+
+                                                    $inbound_id = $_REQUEST['inbound_id'];
+                                                    $purchasing_id =  $_REQUEST['purchasing_id'];
+                                                    $product_id =  $_REQUEST['product_id'];
+                                                    $quantity = $_REQUEST['quantity'];
+                                                    $employee_id = $_REQUEST['employee_id'];
+                                                    $inbound_date = $_REQUEST['inbound_date'];
+                                                    $shelf_date = $_REQUEST['shelf_date'];
+                                                    $inbound_way = $_REQUEST['inbound_way'];
+                                                    $inbound_cost = $_REQUEST['inbound_cost'];
+
+                                                    echo '$inbound_id', '$employee_id', '$inbound_date',
+                                                    '$inbound_way', '$inbound_cost';
+                                                    // Performing insert query execution
+                                                    $sql = "INSERT INTO inbound VALUES ('$inbound_id','$employee_id','$inbound_date',
                                                             '$inbound_way','$inbound_cost')";
 
-                                                            if(mysqli_query($conn, $sql)){
-                                                                echo "<h3>Data stored in a database successfully."
-                                                                . " Please browse your localhost"
-                                                                . " to view the updated data</h3>";
+                                                    if (mysqli_query($conn, $sql)) {
+                                                        echo "<h3>Data stored in a database successfully."
+                                                            . " Please browse your localhost"
+                                                            . " to view the updated data</h3>";
 
-                                                                echo nl2br("Inbound id : $inbound_id\n"
-                                                                    . "Purchasing id : $purchasing_id\nProduct id : $product_id\nQuantity : $quantity\nEmployee id : $employee_id\nInbound date : $inbound_date\nShelf date : $shelf_date\nShipping way : $inbound_way\nShipping cost : $inbound_cost\n");
-                                                            } else{
-                                                                // echo "ERROR : Invalid input $sql. "
-                                                                // . mysqli_error($conn);
-                                                                echo "ERROR : Invalid input. "
-                                                                . mysqli_error($conn);
-                                                            }
-                                                            mysqli_close($conn);
-                                                        ?>
-                                                        <div>
-                                                            <div class="card-body">
-                                                            </div>
-
-                                                            <input type="addnew" value="Addnew" class="btn-check" id="addnew"
-                                                                onClick="document.location.href='addnew'" />
-                                                            <label class="btn btn-outline-success" for="addnew">Add another data</label>
-
-                                                            <input type="mainn" value="Mainn" class="btn-check" id="mainn"
-                                                                onClick="document.location.href='dashboard'" />
-                                                            <label class="btn btn-outline-danger" for="mainn">Back to database</label>
+                                                        echo nl2br("Inbound id : $inbound_id\n"
+                                                            . "Purchasing id : $purchasing_id\nProduct id : $product_id\nQuantity : $quantity\nEmployee id : $employee_id\nInbound date : $inbound_date\nShelf date : $shelf_date\nShipping way : $inbound_way\nShipping cost : $inbound_cost\n");
+                                                    } else {
+                                                        // echo "ERROR : Invalid input $sql. "
+                                                        // . mysqli_error($conn);
+                                                        echo "ERROR : Invalid input. "
+                                                            . mysqli_error($conn);
+                                                    }
+                                                    mysqli_close($conn);
+                                                    ?>
+                                                    <div>
+                                                        <div class="card-body">
                                                         </div>
-                                                    </center>
-                                                </tbody>
-                                            </div>
+
+                                                        <input type="addnew" value="Addnew" class="btn-check" id="addnew" onClick="document.location.href='addnew'" />
+                                                        <label class="btn btn-outline-success" for="addnew">Add another data</label>
+
+                                                        <input type="mainn" value="Mainn" class="btn-check" id="mainn" onClick="document.location.href='dashboard'" />
+                                                        <label class="btn btn-outline-danger" for="mainn">Back to database</label>
+                                                    </div>
+                                                </center>
+                                            </tbody>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
-                        
-                        <div class="card-body">
-                            <table class="table table-striped" id="table1">
-                                <thead>
-                                    <tr>
-                                        <th>Inbound ID</th>
-                                        <th>Employee ID</th>
-                                        <th>Inbound Date</th>
-                                        <th>Inbound Way</th>
-                                        <th>Inbound Cost</th>
-                                        <?php if ($row_level["access_level"] == "High") { ?>
+                    </div>
+
+
+                    <div class="card-body">
+                        <table class="table table-striped" id="table1">
+                            <thead>
+                                <tr>
+                                    <th>Inbound ID</th>
+                                    <th>Employee ID</th>
+                                    <th>Inbound Date</th>
+                                    <th>Inbound Way</th>
+                                    <th>Inbound Cost</th>
+                                    <?php if ($row_level["access_level"] == "High") { ?>
                                         <th>Details</th> <?php } ?>
 
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
 
-                                <tbody>
-                                    <!-- Connect to the database -->
-                                    <?php
+                            <tbody>
+                                <!-- Connect to the database -->
+                                <?php
 
-                                        $conn = OpenCon();
+                                $conn = OpenCon();
 
-                                        $sql = "SELECT * FROM inbound";
-                                        $result = $conn->query($sql);
+                                $sql = "SELECT * FROM inbound";
+                                $result = $conn->query($sql);
 
-                                        $inbound_list = array();
+                                $inbound_list = array();
 
-                                        if ($result->num_rows > 0) {
-                                            // output data of each row
-                                            while($row = $result->fetch_assoc()) {
-                                                // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
-                                                // echo $product_list[0][2];
-                                                // print_r($product_list);
-                                                echo "<tr><td>" .$row["inbound_id"]. "</td><td>" . $row["employee_id"] ."</td><td>" . $row["inbound_date"] ."</td><td>" .$row["inbound_way"] ."</td><td>" .$row["inbound_cost"] ."</td>";
-                                                ?>
-                                                <td><a class="btn btn-primary btn-sm shadow-sm" href="inbound-info?id=<?php echo $row["inbound_id"]?>">View</a></td>
+                                if ($result->num_rows > 0) {
+                                    // output data of each row
+                                    while ($row = $result->fetch_assoc()) {
+                                        // array_push($product_list, array($row["no"], $row["name"], $row["status"], $row["p1"],  $row["p2"],  $row["p3"],  $row["stock"],  $row["location"],  $row["sake_brewer"],  $row["volume"],  $row["unit"] ));
+                                        // echo $product_list[0][2];
+                                        // print_r($product_list);
+                                        echo "<tr><td>" . $row["inbound_id"] . "</td><td>" . $row["employee_id"] . "</td><td>" . $row["inbound_date"] . "</td><td>" . $row["inbound_way"] . "</td><td>" . $row["inbound_cost"] . "</td>";
+                                ?>
+                                        <td><a class="btn btn-primary btn-sm shadow-sm" href="inboundTest" >View</a></td>
 
-                                                <?php if ($row_level["access_level"] == "High") { ?>
-                                                <td><button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row["inbound_id"]?>">Update</button>
-<div class="modal fade text-left modal-borderless" id="updateModal<?php echo $row["inbound_id"]?>" tabindex="-1"
-    role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Update</h5>
-                <button type="button" class="close rounded-pill" data-bs-dismiss="modal"
-                    aria-label="Close">
-                    <i data-feather="x"></i>
-                </button>
-            </div>
+                                        <?php if ($row_level["access_level"] == "High") { ?>
+                                            <td><button type="button" class="btn btn-primary btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#updateModal<?php echo $row["inbound_id"] ?>">Update</button>
+                                                <div class="modal fade text-left modal-borderless" id="updateModal<?php echo $row["inbound_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-scrollable modal-full" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Update</h5>
+                                                                <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                                                                    <i data-feather="x"></i>
+                                                                </button>
+                                                            </div>
 
-            <div class="modal-body">
-                <form action="update-list" method="post">
-                    <div class="row">
-
-  
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="name">Employee ID:</label>
-                                <input type="hidden" name="inbound" value="<?php echo $row['inbound_id']; ?>">
-                                <input type="integer" class="form-control" name="updateemployee_id" id="name" value="<?php echo $row["employee_id"]?>">
-                          </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="email">Inbound Date:</label>
-                                <input type="integer" class="form-control" name="updateinbound_date" id="email" value="<?php echo $row["inbound_date"]?>">
-                          </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="sale_date">Inbound Way:</label>
-                                <input type="integer" class="form-control" name="updateinbound_way" id="email" value="<?php echo $row["inbound_way"]?>">
-                          </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="sale_time">Inbound Cost:</label>
-                                <input type="integer" class="form-control" name="updateinbound_cost" id="email" value="<?php echo $row["inbound_cost"]?>">
-                          </div>
-                        </div>
+                                                            <div class="modal-body">
+                                                                <form action="update-list" method="post">
+                                                                    <div class="row">
 
 
-                    <div class="modal-footer">
-                        <button type="submit" type="Submit" class="btn btn-primary me-1 mb-1" name="updateinbound">Update</button>
-                        <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
-                            <i class="bx bx-check d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Close</span>
-                        </button>
+
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="name">Employee ID:</label>
+                                                                                <input type="hidden" name="inbound" value="<?php echo $row['inbound_id']; ?>">
+                                                                                <input type="integer" class="form-control" name="updateemployee_id" id="name" value="<?php echo $row["employee_id"] ?>">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="email">Inbound Date:</label>
+                                                                                <input type="integer" class="form-control" name="updateinbound_date" id="email" value="<?php echo $row["inbound_date"] ?>">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="sale_date">Inbound Way:</label>
+                                                                                <input type="integer" class="form-control" name="updateinbound_way" id="email" value="<?php echo $row["inbound_way"] ?>">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label for="sale_time">Inbound Cost:</label>
+                                                                                <input type="integer" class="form-control" name="updateinbound_cost" id="email" value="<?php echo $row["inbound_cost"] ?>">
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" type="Submit" class="btn btn-primary me-1 mb-1" name="updateinbound">Update</button>
+                                                                            <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                                                                                <i class="bx bx-check d-block d-sm-none"></i>
+                                                                                <span class="d-none d-sm-block">Close</span>
+                                                                            </button>
+                                                                        </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td> <?php } ?>
+                                <?php
+                                    }
+                                } else {
+                                    echo "0 results";
+                                }
+                                echo $inbound_list[0][1];
+                                CloseCon($conn);
+                                ?>
+
+
+                            </tbody>
+
+                        </table>
                     </div>
-
-                </form>
             </div>
+
+            </section>
         </div>
-    </div>
-</div>
-</td> <?php } ?>
-                                                <?php
-                                            }
-                                        } else {
-                                            echo "0 results";
-                                        }
-                                        echo $inbound_list[0][1];
-                                        CloseCon($conn);
-                                    ?>
 
-
-                                </tbody>
-
-                            </table>
-                        </div>
-                    </div>
-
-                </section>
-            </div>
-
-            <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>2021 &copy; ERP</p>
-                    </div>
-                    <div class="float-end">
-                        <p>Something here</p>
-                    </div>
+        <footer>
+            <div class="footer clearfix mb-0 text-muted">
+                <div class="float-start">
+                    <p>2021 &copy; ERP</p>
                 </div>
-            </footer>
-        </div>
+                <div class="float-end">
+                    <p>Something here</p>
+                </div>
+            </div>
+        </footer>
+    </div>
     </div>
 
     <script>

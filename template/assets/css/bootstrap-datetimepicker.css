@@ -28,7 +28,8 @@
 	float: right;
 }
 
-.datetimepicker-dropdown, .datetimepicker-dropdown-left {
+.datetimepicker-dropdown,
+.datetimepicker-dropdown-left {
 	top: 0;
 	left: 0;
 }
@@ -111,7 +112,7 @@
 	left: 7px;
 }
 
-.datetimepicker > div {
+.datetimepicker>div {
 	display: none;
 }
 
@@ -139,7 +140,7 @@
 	margin: 0;
 }
 
-.datetimepicker  td,
+.datetimepicker td,
 .datetimepicker th {
 	text-align: center;
 	width: 20px;

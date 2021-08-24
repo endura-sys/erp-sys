@@ -337,6 +337,7 @@
                                         $conn = OpenCon();
 
                                         $sql = "SELECT outbound_id, employee_id, outbound_date, outbound_way, outbound_cost FROM outbound";
+                                        $result = $conn->query('set names utf8');
                                         $result = $conn->query($sql);
 
                                         $product_list = array();

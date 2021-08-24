@@ -19,6 +19,7 @@
         if (empty($access_level)) { array_push($errors, "Access Level is required."); }
 
         $sql = "SELECT * from position where position_name = '$position'";
+        $result = $conn->query('set names utf8');
         $result = $conn->query($sql);
         $num = mysqli_num_rows($result);
 

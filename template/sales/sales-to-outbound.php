@@ -17,6 +17,7 @@
         $conn = OpenCon();
 
         $sql = "INSERT INTO outbound (outbound_id, employee_id, outbound_date, outbound_way, outbound_cost) VALUES ('$outbound_id', $employee_id, '$outbounddate', '$outboundway', '$outboundcost')";
+        $result = $conn->query('set names utf8');
         $result = $conn->query($sql);
 
         // $sql2 = "SELECT MAX(outbound_id) FROM outbound";

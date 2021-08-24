@@ -37,6 +37,7 @@ if (isset($_POST["submitbtn"])) {
   else if ($pw != $pw2) { array_push($errors, "Passwords do not match."); }
 
   $sql = "SELECT * from account where username = '$user'";
+  $result = $conn->query('set names utf8');
   $result = $conn->query($sql);
   $num = mysqli_num_rows($result);
 
