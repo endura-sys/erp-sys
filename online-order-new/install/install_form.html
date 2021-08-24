@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+	引入bootstarp相关文件以及jq文件
+-->
+  <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <script src="//cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+ 	<script src="c" type="text/javascript" charset="utf-8"></script>
+  <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+	<meta charset="utf-8"/>
+	<!--
+    网站标题
+    -->
+	<title>系统安装</title>
+</head>
+
+
+<body>
+	<!--
+	欢迎面板
+-->
+<div class="container-fluid">
+	<div class="row-fluid" style="background-color: darkslateblue; color: #FFFFA0; padding: 10px;">
+		<div class="span12">
+			<div class="hero-unit">
+				<h1>
+					安装
+				</h1>
+				<p>
+					欢迎安装点餐系统，请正确输入您的相关配置信息！
+				</p>
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="panel panel-danger" >
+  <div class="panel-heading" style="background-color: darkslateblue;color: white;margin-top: 50px;margin-left: 30px;margin-right: 30px;">数据库信息</div>
+  <div class="panel-body">
+	<div class="main" ><form class="container container-small" method="post" action="index.php">
+	<input type="hidden" name="step" value="2">
+	<div class="desc"><b></b></div><table class="tb2">
+	<tr><th class="tbopt">&nbsp;数据库服务器:</th>
+	<td><input class="form-control" type="text" name="dbinfo[dbhost]" value="localhost" size="35" class="txt"></td>
+	<td>&nbsp;</td>
+	</tr>
+
+	<tr><th class="tbopt">&nbsp;数据库名:</th>
+	<td><input class="form-control" type="text" name="dbinfo[dbname]" value="mycms" size="35" class="txt"> &nbsp;&nbsp;<input type="checkbox" checked name="dbinfo[mk_newdb]" value="1" />新建库名</td>
+	<td>&nbsp;</td>
+	</tr>
+
+	<tr><th class="tbopt">&nbsp;数据库用户名:</th>
+	<td><input class="form-control" type="text" name="dbinfo[dbuser]" value="root" size="35" class="txt"></td>
+	<td>&nbsp;</td>
+	</tr>
+
+	<tr><th class="tbopt">&nbsp;数据库密码:</th>
+	<td><input class="form-control" type="text" name="dbinfo[dbpw]" value="root" size="35" class="txt"></td>
+	<td>&nbsp;</td>
+	</tr>
+
+
+
+	<tr><th class="tbopt">&nbsp;数据库端口:</th>
+	<td><input class="form-control" type="text" name="dbinfo[dbport]" value="3306" size="35" class="txt"></td>
+	<td>&nbsp;</td>
+	</tr>
+
+	</table>
+
+
+	<table class="tb2">
+	<tr><th class="tbopt">&nbsp;</th>
+	<td><input type="submit" name="submitname" value="下一步" class="btn btn-default">
+	</td>
+	<td>&nbsp;</td>
+	</tr>
+
+	</table>
+	</form>
+
+		</div></div></div></div>
+	
+</body>
