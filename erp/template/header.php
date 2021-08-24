@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php 
-require_once('../../database.php');
+require_once('../../../database.php');
 ?>
 
 <head>
