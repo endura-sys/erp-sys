@@ -12,4 +12,4 @@
 
 /** Loads the WordPress Environment and Template */
 // header('Location: /template/dashboard.php');
-require __DIR__ . '/template/dashboard.php';
+require __DIR__ . '/erp/template/dashboard.php';

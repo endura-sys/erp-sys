@@ -11,7 +11,7 @@ $user = "";
 $errors = array();
 
 // connect to the database
-require_once('../../database.php');
+require_once('../../../database.php');
 $conn = OpenCon();
 // connect to the database
 

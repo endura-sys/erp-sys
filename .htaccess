@@ -15,46 +15,46 @@ RewriteBase /
 
 # Dashboard
 RewriteRule ^assets/(.*) [L,QSA,NC]
-RewriteRule ^index /template/general/dashboard.php [L,QSA,NC]
-RewriteRule ^dashboard /template/general/dashboard.php [L,QSA,NC]
-RewriteRule ^item-list /template/general/item-list.php [L,QSA,NC]
-RewriteRule ^supplier-list /template/general/supplier-list.php [L,QSA,NC]
-RewriteRule ^customer-list /template/general/customer-list.php [L,QSA,NC]
-RewriteRule ^update-list /template/general/update-list.php [L,QSA,NC]
-RewriteRule ^sales /template/sales/sales.php [L,QSA,NC]
-RewriteRule ^inbound /template/inbound/inbound-list.php [L,QSA,NC]
-RewriteRule ^outbound /template/outbound/outbound-schedule.php [L,QSA,NC]
-RewriteRule ^purchase1 /template/purchase/purchase-info.php [L,QSA,NC]
+RewriteRule ^index /erp/template/general/dashboard.php [L,QSA,NC]
+RewriteRule ^dashboard /erp/template/general/dashboard.php [L,QSA,NC]
+RewriteRule ^item-list /erp/template/general/item-list.php [L,QSA,NC]
+RewriteRule ^supplier-list /erp/template/general/supplier-list.php [L,QSA,NC]
+RewriteRule ^customer-list /erp/template/general/customer-list.php [L,QSA,NC]
+RewriteRule ^update-list /erp/template/general/update-list.php [L,QSA,NC]
+RewriteRule ^sales /erp/template/sales/sales.php [L,QSA,NC]
+RewriteRule ^inbound /erp/template/inbound/inbound-list.php [L,QSA,NC]
+RewriteRule ^outbound /erp/template/outbound/outbound-schedule.php [L,QSA,NC]
+RewriteRule ^purchase1 /erp/template/purchase/purchase-info.php [L,QSA,NC]
 
 # Dashboard get data
-RewriteRule ^test111 /template/general/getData/getTodayGraphData.php [L,QSA,NC]
-RewriteRule ^getTodaySale /template/general/getData/getTodaySale.php [L,QSA,NC]
+RewriteRule ^test111 /erp/template/general/getData/getTodayGraphData.php [L,QSA,NC]
+RewriteRule ^getTodaySale /erp/template/general/getData/getTodaySale.php [L,QSA,NC]
 
-RewriteRule ^getPeriodGraphData /template/general/getData/getPeriodGraphData.php [L,QSA,NC]
-
-
-RewriteRule ^testDatabase testDatabase.php [L,QSA,NC]
+RewriteRule ^getPeriodGraphData /erp/template/general/getData/getPeriodGraphData.php [L,QSA,NC]
 
 
-RewriteRule ^testButton template/financial/financial-test.php [L,QSA,NC]
+RewriteRule ^testDatabase /erp/testDatabase.php [L,QSA,NC]
+
+
+RewriteRule ^testButton /erp/template/financial/financial-test.php [L,QSA,NC]
 
 
 ########################################################################################
 
 # Inbound
-RewriteRule ^inbound-list /template/inbound/inbound-list.php [L,QSA,NC]
-RewriteRule ^inbound-info /template/inbound/inbound-info.php [L,QSA,NC]
+RewriteRule ^inbound-list /erp/template/inbound/inbound-list.php [L,QSA,NC]
+RewriteRule ^inbound-info /erp/template/inbound/inbound-info.php [L,QSA,NC]
 
-RewriteRule ^inboundTest /template/inbound/inboundTest.php [L,QSA,NC]
+RewriteRule ^inboundTest /erp/template/inbound/inboundTest.php [L,QSA,NC]
 
 
 # Purchase
-RewriteRule ^purchase-list /template/purchase/purchase-list.php [L,QSA,NC]
-RewriteRule ^purchase-info /template/purchase/purchase-info.php [L,QSA,NC]
-RewriteRule ^test /template/purchase/testscan.php [L,QSA,NC]
-RewriteRule ^update-purchase-list /template/purchase/update-list.php [L,QSA,NC]
+RewriteRule ^purchase-list /erp/template/purchase/purchase-list.php [L,QSA,NC]
+RewriteRule ^purchase-info /erp/template/purchase/purchase-info.php [L,QSA,NC]
+RewriteRule ^test /erp/template/purchase/testscan.php [L,QSA,NC]
+RewriteRule ^update-purchase-list /erp/template/purchase/update-list.php [L,QSA,NC]
 
-RewriteRule ^update-purchase-list /template/purchase/update-list.php [L,QSA,NC]
+RewriteRule ^update-purchase-list /erp/template/purchase/update-list.php [L,QSA,NC]
 
 
 
@@ -62,36 +62,36 @@ RewriteRule ^update-purchase-list /template/purchase/update-list.php [L,QSA,NC]
 
 
 # Outbound
-RewriteRule ^outbound-list /template/outbound/outbound-list.php [L,QSA,NC]
-RewriteRule ^outbound-schedule /template/outbound/outbound-schedule.php [L,QSA,NC]
-RewriteRule ^outbound-info /template/outbound/outbound-info.php [L,QSA,NC]
+RewriteRule ^outbound-list /erp/template/outbound/outbound-list.php [L,QSA,NC]
+RewriteRule ^outbound-schedule /erp/template/outbound/outbound-schedule.php [L,QSA,NC]
+RewriteRule ^outbound-info /erp/template/outbound/outbound-info.php [L,QSA,NC]
 
 # Sales
-RewriteRule ^sales /template/sales/sales.php [L,QSA,NC]
-RewriteRule ^order-info /template/sales/order-info.php [L,QSA,NC]
-RewriteRule ^branch /template/sales/branch.php [L,QSA,NC]
-RewriteRule ^sales-to-outbound /template/sales/sales-to-outbound.php [L,QSA,NC]
-RewriteRule ^getTotal /template/sales/getTotal.php [L,QSA,NC]
+RewriteRule ^sales /erp/template/sales/sales.php [L,QSA,NC]
+RewriteRule ^order-info /erp/template/sales/order-info.php [L,QSA,NC]
+RewriteRule ^branch /erp/template/sales/branch.php [L,QSA,NC]
+RewriteRule ^sales-to-outbound /erp/template/sales/sales-to-outbound.php [L,QSA,NC]
+RewriteRule ^getTotal /erp/template/sales/getTotal.php [L,QSA,NC]
 
 ########################################################################################
 
 # Login
-RewriteRule ^login /template/auth/login.php [L,QSA,NC]
-RewriteRule ^register /template/auth/register.php [L,QSA,NC]
+RewriteRule ^login /erp/template/auth/login.php [L,QSA,NC]
+RewriteRule ^register /erp/template/auth/register.php [L,QSA,NC]
 
-RewriteRule ^addnew /template/addnew/addnew.php [L,QSA,NC]
-RewriteRule ^insert /template/addnew/insert.php [L,QSA,NC]
+RewriteRule ^addnew /erp/template/addnew/addnew.php [L,QSA,NC]
+RewriteRule ^insert /erp/template/addnew/insert.php [L,QSA,NC]
 
 # user-management
-RewriteRule ^user-management /template/user-management/user-management.php [L,QSA,NC]
-RewriteRule ^position-management /template/user-management/position-management.php [L,QSA,NC]
-RewriteRule ^user-update /template/user-management/user-update.php [L,QSA,NC]
-RewriteRule ^position-update /template/user-management/position-update.php [L,QSA,NC]
-RewriteRule ^create-user /template/user-management/create-user.php [L,QSA,NC]
-RewriteRule ^create-position /template/user-management/create-position.php [L,QSA,NC]
-RewriteRule ^delete-user /template/user-management/delete-user.php [L,QSA,NC]
-RewriteRule ^userserver /template/user-management/userserver.php [L,QSA,NC]
-RewriteRule ^errors /template/user-management/errors.php [L,QSA,NC]
+RewriteRule ^user-management /erp/template/user-management/user-management.php [L,QSA,NC]
+RewriteRule ^position-management /erp/template/user-management/position-management.php [L,QSA,NC]
+RewriteRule ^user-update /erp/template/user-management/user-update.php [L,QSA,NC]
+RewriteRule ^position-update /erp/template/user-management/position-update.php [L,QSA,NC]
+RewriteRule ^create-user /erp/template/user-management/create-user.php [L,QSA,NC]
+RewriteRule ^create-position /erp/template/user-management/create-position.php [L,QSA,NC]
+RewriteRule ^delete-user /erp/template/user-management/delete-user.php [L,QSA,NC]
+RewriteRule ^userserver /erp/template/user-management/userserver.php [L,QSA,NC]
+RewriteRule ^errors /erp/template/user-management/errors.php [L,QSA,NC]
 
 ########################################################################################
 
