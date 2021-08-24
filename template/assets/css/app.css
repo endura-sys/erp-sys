@@ -461,7 +461,7 @@
 .divider {
     display: block;
     text-align: center;
-    overflow: hidden;
+    /* overflow: hidden */;
     margin: 1rem 0
 }
 
@@ -1029,7 +1029,7 @@
     list-style: none;
     display: none;
     transition: max-height 2s cubic-bezier(0, .55, .45, 1);
-    overflow: hidden
+    /* overflow: hidden */
 }
 
 .sidebar-wrapper .menu .submenu.active {

@@ -45,6 +45,9 @@ RewriteRule ^testButton template/financial/financial-test.php [L,QSA,NC]
 RewriteRule ^inbound-list /template/inbound/inbound-list.php [L,QSA,NC]
 RewriteRule ^inbound-info /template/inbound/inbound-info.php [L,QSA,NC]
 
+RewriteRule ^inboundTest /template/inbound/inboundTest.php [L,QSA,NC]
+
+
 # Purchase
 RewriteRule ^purchase-list /template/purchase/purchase-list.php [L,QSA,NC]
 RewriteRule ^purchase-info /template/purchase/purchase-info.php [L,QSA,NC]
