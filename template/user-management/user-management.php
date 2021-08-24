@@ -74,6 +74,7 @@
                                         $conn = OpenCon();
 
                                         $sql = "SELECT employee_id, position_id, firstname, surname, email, active FROM employee";
+                                        $result = $conn->query('set names utf8');
                                         $result = $conn->query($sql);
 
                                         $product_list = array();

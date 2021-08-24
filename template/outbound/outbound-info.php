@@ -60,6 +60,7 @@
                                         $conn = OpenCon();
 
                                         $sql = "SELECT * FROM `outbound_items_list` where outbound_id='" . $_GET['id'] . "'";
+                                        $result = $conn->query('set names utf8');
                                         $result = $conn->query($sql);
 
                                         $product_list = array();
