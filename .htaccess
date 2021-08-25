@@ -14,7 +14,7 @@ RewriteBase /
 ########################################################################################
 
 # Dashboard
-RewriteRule ^assets/(.*) [L,QSA,NC]
+RewriteRule ^erp/assets/(.*) /erp/template/assets/.* [L,QSA,NC]
 RewriteRule ^index /erp/template/general/dashboard.php [L,QSA,NC]
 RewriteRule ^dashboard /erp/template/general/dashboard.php [L,QSA,NC]
 RewriteRule ^item-list /erp/template/general/item-list.php [L,QSA,NC]

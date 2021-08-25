@@ -10,7 +10,7 @@
           <div class="col-lg-8 col-12">
               <div id="auth-left">
                   <div class="auth-logo">
-                      <a href="index"><img src="template/assets/images/logo/sake_logo.png" alt="Logo will appear here"></a>
+                      <a href="index"><img src="erp/template/assets/images/logo/sake_logo.png" alt="Logo will appear here"></a>
                   </div>
                   <h1 class="auth-title">Log in</h1>
                   <p class="auth-subtitle mb-5">Log in with the data provided by the Company</p>

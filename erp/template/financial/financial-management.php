@@ -4,7 +4,7 @@
 
 ?>
 
-<link rel="stylesheet" href="template/assets/css/Filter.css">
+<link rel="stylesheet" href="erp/template/assets/css/Filter.css">
 
 <body>
     <div id="app">
@@ -527,8 +527,8 @@
 
     <?php include('../footer.php'); ?>
 
-    <script src="../template/assets/vendors/jquery/jquery.min.js"></script>
-    <script src="template/assets/js/ddtf.js"></script>
+    <script src="../erp/template/assets/vendors/jquery/jquery.min.js"></script>
+    <script src="erp/template/assets/js/ddtf.js"></script>
     <script>
       $("#table1").ddTableFilter();
     </script>

@@ -5,11 +5,11 @@
 <html lang="en">
 
 <head>
-    <script src="../template/assets/vendors/jquery/jquery.min.js"></script>
-    <script src="../template/assets/js/moment.js"></script>
-    <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.css">
-    <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.min.css">
-    <script src="../template/assets/js/pages/dashboard.js"></script>
+    <script src="../erp/template/assets/vendors/jquery/jquery.min.js"></script>
+    <script src="../erp/template/assets/js/moment.js"></script>
+    <link rel="stylesheet" href="../erp/template/assets/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="../erp/template/assets/css/bootstrap-datetimepicker.min.css">
+    <script src="../erp/template/assets/js/pages/dashboard.js"></script>
 
 </head>
 
@@ -242,12 +242,12 @@
     </div>
 
     <footer>
-        <script src="template/assets/vendors/apexcharts/apexcharts.js"></script>
-        <script src="../template/assets/js/bootstrap-datetimepicker.js"></script>
-        <script src="../template/assets/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="../template/assets/js/bootstrap.min.js"></script>
-        <script src="../template/assets/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-        <script src="../template/assets/js/pages/ui-apexchart.js"></script>
+        <script src="erp/template/assets/vendors/apexcharts/apexcharts.js"></script>
+        <script src="../erp/template/assets/js/bootstrap-datetimepicker.js"></script>
+        <script src="../erp/template/assets/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="../erp/template/assets/js/bootstrap.min.js"></script>
+        <script src="../erp/template/assets/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+        <script src="../erp/template/assets/js/pages/ui-apexchart.js"></script>
 
     </footer>
 

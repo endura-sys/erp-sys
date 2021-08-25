@@ -55,10 +55,10 @@ for ($i = 0; $i < $menuNumber; $i++) {
 		mui.init();
 	</script>
 
-	<script src="../template/assets/vendors/jquery/jquery.min.js"></script>
-	<script src="../template/assets/js/moment.js"></script>
-	<link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.css">
-	<link rek="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.min.css">
+	<script src="../erp/template/assets/vendors/jquery/jquery.min.js"></script>
+	<script src="../erp/template/assets/js/moment.js"></script>
+	<link rel="stylesheet" href="../erp/template/assets/css/bootstrap-datetimepicker.css">
+	<link rek="stylesheet" href="../erp/template/assets/css/bootstrap-datetimepicker.min.css">
 	<script src="../template/general/getData/globalData.js"></script>
 
 </head>
@@ -245,7 +245,7 @@ for ($i = 0; $i < $menuNumber; $i++) {
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/TotalPricePerOrder.css" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="template/assets/css/main.css">
+	<link rel="stylesheet" href="erp/template/assets/css/main.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 

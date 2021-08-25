@@ -2,9 +2,9 @@
 
 <head>
     <script src="../assets/vendors/jquery/jquery.min.js"></script>
-    <script src="../template/assets/js/moment.js"></script>
-    <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.css">
-    <link rel="stylesheet" href="../template/assets/css/bootstrap-datetimepicker.min.css">
+    <script src="../erp/template/assets/js/moment.js"></script>
+    <link rel="stylesheet" href="../erp/template/assets/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="../erp/template/assets/css/bootstrap-datetimepicker.min.css">
 </head>
 
 <button id="test">testestset</button>
