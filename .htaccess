@@ -14,7 +14,7 @@ RewriteBase /
 ########################################################################################
 
 # Dashboard
-RewriteRule ^erp/assets/(.*) /erp/template/assets/.* [L,QSA,NC]
+RewriteRule ^assets/(.*) [L,QSA,NC]
 RewriteRule ^index /erp/template/general/dashboard.php [L,QSA,NC]
 RewriteRule ^dashboard /erp/template/general/dashboard.php [L,QSA,NC]
 RewriteRule ^item-list /erp/template/general/item-list.php [L,QSA,NC]
@@ -102,3 +102,10 @@ RewriteRule ^stock-list /erp/template/inventory/stock-list.php [L,QSA,NC]
 
 RewriteRule ^financial-management /erp/template/financial/financial-management.php [L,QSA,NC]
 RewriteRule ^getType /erp/template/financial/getType.php [L,QSA,NC]
+
+
+########################################################################################
+
+
+RewriteRule ^order-online /online-order-new/order.php [L,QSA,NC]
+
